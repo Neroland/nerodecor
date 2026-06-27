@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "${mod_id}",
+  "version": "${mod_version}",
+  "name": "${mod_name}",
+  "description": "NeroDecor - multiloader build (Fabric).",
+  "authors": ["${mod_authors}"],
+  "license": "${mod_license}",
+  "accessWidener": "nerodecor.accesswidener",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["za.co.neroland.nerodecor.fabric.NeroDecorFabric"],
+    "client": ["za.co.neroland.nerodecor.fabric.NeroDecorFabricClient"]
+  },
+  "mixins": [
+    "nerodecor-common.mixins.json",
+    "nerodecor.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${fabric_loader_version}",
+    "minecraft": ">=${minecraft_version}",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
