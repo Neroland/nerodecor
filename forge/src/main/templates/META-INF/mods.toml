@@ -27,3 +27,85 @@ mandatory = true
 versionRange = "${minecraft_version_range}"
 ordering = "NONE"
 side = "BOTH"
+
+# Neroland Core — the ONLY hard dependency; shared foundation, must load BEFORE NeroDecor (ordering = AFTER).
+[[dependencies.${mod_id}]]
+modId = "nerolandcore"
+mandatory = true
+versionRange = "${nerolandcore_version_range}"
+ordering = "AFTER"
+side = "BOTH"
+
+# Optional synergy mods — NeroDecor functions fully without any of them. When present they load BEFORE
+# NeroDecor so their Core tags / progression state / dashboard drivers are available; discovery is via
+# Core tags + the shared contracts, never a hard import. External-mod interop stays dormant until those
+# mods port to 26.1+.
+[[dependencies.${mod_id}]]
+modId = "nerospace"
+mandatory = false
+versionRange = "[0,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "nerotech"
+mandatory = false
+versionRange = "[0,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "nerocolonies"
+mandatory = false
+versionRange = "[0,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "nerosecurity"
+mandatory = false
+versionRange = "[0,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "nerologistics"
+mandatory = false
+versionRange = "[0,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "create"
+mandatory = false
+versionRange = "[0,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "ae2"
+mandatory = false
+versionRange = "[0,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "mekanism"
+mandatory = false
+versionRange = "[0,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "ad_astra"
+mandatory = false
+versionRange = "[0,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "energizedpower"
+mandatory = false
+versionRange = "[0,)"
+ordering = "AFTER"
+side = "BOTH"
