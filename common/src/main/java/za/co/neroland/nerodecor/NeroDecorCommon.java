@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import za.co.neroland.nerodecor.config.NeroDecorConfig;
+import za.co.neroland.nerodecor.registry.DecorRegistries;
 
 /**
  * Loader-agnostic entry point for NeroDecor. Each loader entry point
@@ -25,5 +26,8 @@ public final class NeroDecorCommon {
 
         // Register NeroDecor's config schema with Core (render kill-switches + later keys).
         NeroDecorConfig.init();
+
+        // Register the decor blocks, block items, data components, and creative-tab contents.
+        DecorRegistries.init();
     }
 }

@@ -25,6 +25,10 @@ allprojects {
 // Dynamic, machine-independent paths (resolved from rootProject.projectDir).
 ext.commonJava = "${rootProject.projectDir}/common/src/main/java"
 ext.commonResources = "${rootProject.projectDir}/common/src/main/resources"
+// Datagen (NeoForge runData) writes generated JSON here, kept SEPARATE from hand-/gen_textures-managed
+// main resources so the datagen HashCache only owns this dir (it deletes "stale" files under its output).
+// Spliced into every loader node's resources alongside commonResources (see each loader build.gradle).
+ext.commonGenerated = "${rootProject.projectDir}/common/src/generated/resources"
 
 subprojects {
     apply plugin: 'java'

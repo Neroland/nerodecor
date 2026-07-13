@@ -255,10 +255,14 @@ def main():
         data = expected[rel]
         digest = hashlib.sha256(data).hexdigest()
         abspath = os.path.join(RES, rel)
-        disk_ok = os.path.exists(abspath) and hashlib.sha256(open(abspath, "rb").read()).hexdigest() == digest
-        if not os.path.exists(abspath):
+        # Read defensively: a file may be reported present but unreadable (e.g. a stale mount).
+        try:
+            disk_digest = hashlib.sha256(open(abspath, "rb").read()).hexdigest()
+        except OSError:
+            disk_digest = None
+        if disk_digest is None:
             created.append(rel)
-        elif not disk_ok or manifest.get(rel) != digest:
+        elif disk_digest != digest or manifest.get(rel) != digest:
             changed.append(rel)
 
     if args.check:

@@ -1,0 +1,137 @@
+package za.co.neroland.nerodecor.registry;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.UnaryOperator;
+
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.MapColor;
+
+import za.co.neroland.nerodecor.NeroDecorCommon;
+import za.co.neroland.nerodecor.client.ctm.CtmStyle;
+import za.co.neroland.nerodecor.content.block.DecorCubeBlock;
+import za.co.neroland.nerodecor.content.block.DecorPaneBlock;
+import za.co.neroland.nerodecor.content.block.DecorSlabBlock;
+import za.co.neroland.nerodecor.content.block.DecorStairBlock;
+import za.co.neroland.nerodecor.content.block.DecorWallBlock;
+import za.co.neroland.nerodecor.registry.RegistrationProvider.RegistryEntry;
+
+/**
+ * The Stage-E static block families (hull, industrial panel, reinforced glass, neon),
+ * registered cross-loader through {@link RegistrationProvider}. Each block carries the
+ * paintable {@code COLOR} property and its CTM family id. This set is representative of the
+ * four families and every shape type (cube/slab/stair/wall/pane); it grows toward the
+ * ADR-001 budget by adding entries here (datagen + gen_textures read the same set).
+ *
+ * <p>{@link #ALL} keeps registration order so {@code ModItems} and datagen iterate the same
+ * list. CTM family ids are {@code nerodecor:<family>}; two faces connect on same family +
+ * same painted colour.
+ */
+public final class DecorBlocks {
+
+    public static final RegistrationProvider<Block> BLOCKS =
+            RegistrationProvider.get(Registries.BLOCK, NeroDecorCommon.MOD_ID);
+
+    /** Every registered decor block, in registration order. */
+    public static final List<RegistryEntry<? extends Block>> ALL = new ArrayList<>();
+
+    private static final Identifier FAM_HULL = fam("hull");
+    private static final Identifier FAM_PANEL = fam("panel");
+    private static final Identifier FAM_GLASS = fam("glass");
+    private static final Identifier FAM_NEON = fam("neon");
+
+    // --- Hull / structural (metal cube + full shape set) --------------------
+    public static final RegistryEntry<Block> HULL_NERO_ALLOY = cube("hull_nero_alloy", FAM_HULL, DecorBlocks::metal);
+    public static final RegistryEntry<Block> HULL_NERO_ALLOY_SLAB = slab("hull_nero_alloy_slab", FAM_HULL, DecorBlocks::metal);
+    public static final RegistryEntry<Block> HULL_NERO_ALLOY_STAIRS = stairs("hull_nero_alloy_stairs", HULL_NERO_ALLOY, FAM_HULL, DecorBlocks::metal);
+    public static final RegistryEntry<Block> HULL_NERO_ALLOY_WALL = wall("hull_nero_alloy_wall", FAM_HULL, DecorBlocks::metal);
+    public static final RegistryEntry<Block> HULL_STARSTEEL = cube("hull_starsteel", FAM_HULL, DecorBlocks::metal);
+    public static final RegistryEntry<Block> HULL_STARSTEEL_SLAB = slab("hull_starsteel_slab", FAM_HULL, DecorBlocks::metal);
+    public static final RegistryEntry<Block> HULL_STARSTEEL_STAIRS = stairs("hull_starsteel_stairs", HULL_STARSTEEL, FAM_HULL, DecorBlocks::metal);
+    public static final RegistryEntry<Block> HULL_STARSTEEL_WALL = wall("hull_starsteel_wall", FAM_HULL, DecorBlocks::metal);
+
+    // --- Industrial panels --------------------------------------------------
+    public static final RegistryEntry<Block> PANEL_NERO_ALLOY = cube("panel_nero_alloy", FAM_PANEL, DecorBlocks::metal);
+    public static final RegistryEntry<Block> PANEL_NERO_ALLOY_SLAB = slab("panel_nero_alloy_slab", FAM_PANEL, DecorBlocks::metal);
+    public static final RegistryEntry<Block> PANEL_NERO_ALLOY_STAIRS = stairs("panel_nero_alloy_stairs", PANEL_NERO_ALLOY, FAM_PANEL, DecorBlocks::metal);
+
+    // --- Reinforced glass (translucent; cube + pane + slab) -----------------
+    public static final RegistryEntry<Block> GLASS_PLASMA = cube("glass_plasma_glass", FAM_GLASS, CtmStyle.GLASS, DecorBlocks::glass);
+    public static final RegistryEntry<Block> GLASS_PLASMA_PANE = pane("glass_plasma_glass_pane", FAM_GLASS, DecorBlocks::glass);
+    public static final RegistryEntry<Block> GLASS_PLASMA_SLAB = slab("glass_plasma_glass_slab", FAM_GLASS, CtmStyle.GLASS, DecorBlocks::glass);
+
+    // --- Neon light strips (emissive; cube for now, strip shape in a later pass) ---
+    public static final RegistryEntry<Block> NEON_RED = cube("neon_red", FAM_NEON, CtmStyle.STRIP, DecorBlocks::neon);
+    public static final RegistryEntry<Block> NEON_CYAN = cube("neon_cyan", FAM_NEON, CtmStyle.STRIP, DecorBlocks::neon);
+
+    private DecorBlocks() {
+    }
+
+    /** Force class-load so all fields register. */
+    public static void init() {
+    }
+
+    // --- property presets ---------------------------------------------------
+    private static BlockBehaviour.Properties metal(BlockBehaviour.Properties p) {
+        return p.mapColor(MapColor.METAL).strength(4.0F, 6.0F).requiresCorrectToolForDrops().sound(SoundType.METAL);
+    }
+
+    private static BlockBehaviour.Properties glass(BlockBehaviour.Properties p) {
+        return p.mapColor(MapColor.NONE).strength(0.5F).sound(SoundType.GLASS).noOcclusion();
+    }
+
+    private static BlockBehaviour.Properties neon(BlockBehaviour.Properties p) {
+        return p.mapColor(MapColor.COLOR_LIGHT_BLUE).strength(0.4F).sound(SoundType.GLASS).lightLevel(s -> 15);
+    }
+
+    // --- register helpers ---------------------------------------------------
+    private static RegistryEntry<Block> cube(String name, Identifier family, UnaryOperator<BlockBehaviour.Properties> props) {
+        return cube(name, family, CtmStyle.FULL, props);
+    }
+
+    private static RegistryEntry<Block> cube(String name, Identifier family, CtmStyle style,
+                                             UnaryOperator<BlockBehaviour.Properties> props) {
+        return track(BLOCKS.register(name, key -> new DecorCubeBlock(props.apply(base(key)), family, style)));
+    }
+
+    private static RegistryEntry<Block> slab(String name, Identifier family, UnaryOperator<BlockBehaviour.Properties> props) {
+        return slab(name, family, CtmStyle.FULL, props);
+    }
+
+    private static RegistryEntry<Block> slab(String name, Identifier family, CtmStyle style,
+                                             UnaryOperator<BlockBehaviour.Properties> props) {
+        return track(BLOCKS.register(name, key -> new DecorSlabBlock(props.apply(base(key)), family, style)));
+    }
+
+    private static RegistryEntry<Block> stairs(String name, RegistryEntry<Block> baseCube, Identifier family,
+                                               UnaryOperator<BlockBehaviour.Properties> props) {
+        return track(BLOCKS.register(name,
+                key -> new DecorStairBlock(baseCube.get().defaultBlockState(), props.apply(base(key)), family, CtmStyle.FULL)));
+    }
+
+    private static RegistryEntry<Block> wall(String name, Identifier family, UnaryOperator<BlockBehaviour.Properties> props) {
+        return track(BLOCKS.register(name, key -> new DecorWallBlock(props.apply(base(key)), family, CtmStyle.FULL)));
+    }
+
+    private static RegistryEntry<Block> pane(String name, Identifier family, UnaryOperator<BlockBehaviour.Properties> props) {
+        return track(BLOCKS.register(name, key -> new DecorPaneBlock(props.apply(base(key)), family)));
+    }
+
+    private static BlockBehaviour.Properties base(ResourceKey<Block> key) {
+        return BlockBehaviour.Properties.of().setId(key);
+    }
+
+    private static RegistryEntry<Block> track(RegistryEntry<Block> entry) {
+        ALL.add(entry);
+        return entry;
+    }
+
+    private static Identifier fam(String path) {
+        return Identifier.fromNamespaceAndPath(NeroDecorCommon.MOD_ID, path);
+    }
+}
