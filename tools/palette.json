@@ -1,0 +1,28 @@
+{
+  "_comment": "NeroDecor palette manifest — mirrors Neroland Core's exported palette (PaletteRegistry / CoreFinishes, Core 1.9.0). Keep RGB values in lockstep with common/.../palette/CoreFinishes.java so decor tones match machine trims. gen_textures.py reads this; it is the single source of truth for the generator's colours.",
+  "schema": 1,
+  "materials": {
+    "nero_alloy":    { "rgb": "2E8B9E", "emissive": false, "light": 0 },
+    "starsteel":     { "rgb": "9FC4E0", "emissive": false, "light": 0 },
+    "void_crystal":  { "rgb": "7A3FB0", "emissive": true,  "light": 6 },
+    "plasma_glass":  { "rgb": "3FD0E0", "emissive": true,  "light": 4 }
+  },
+  "accents": {
+    "white":      { "rgb": "F9FFFE" },
+    "light_gray": { "rgb": "9D9D97" },
+    "gray":       { "rgb": "474F52" },
+    "black":      { "rgb": "1D1D21" },
+    "red":        { "rgb": "B02E26" },
+    "orange":     { "rgb": "F9801D" },
+    "yellow":     { "rgb": "FED83D" },
+    "lime":       { "rgb": "80C71F" },
+    "green":      { "rgb": "5E7C16" },
+    "cyan":       { "rgb": "169C9C" },
+    "light_blue": { "rgb": "3AB3DA" },
+    "blue":       { "rgb": "3C44AA" },
+    "purple":     { "rgb": "8932B8" },
+    "magenta":    { "rgb": "C74EBD" },
+    "pink":       { "rgb": "F38BAA" },
+    "brown":      { "rgb": "835432" }
+  }
+}

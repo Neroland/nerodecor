@@ -239,7 +239,9 @@ tasks.register('genAssets') {
         if (python == null) {
             throw new GradleException("genAssets: no Python found; set -PpythonCmd=<path>. pyenv root: ${pyenvRoot}")
         }
-        ['tools/gen_textures.py', 'tools/gen_bbmodels.py'].each { script ->
+        // NeroDecor models come from datagen (not Blockbench), so genAssets runs only the
+        // reproducible texture pipeline. See tools/gen_textures.py + nerodecor/MODELS.md.
+        ['tools/gen_textures.py'].each { script ->
             def proc = wrap(python + [script, '--multiloader']).execute(null, repoRoot)
             def out = new StringBuilder(); def err = new StringBuilder()
             proc.consumeProcessOutput(out, err); proc.waitFor()

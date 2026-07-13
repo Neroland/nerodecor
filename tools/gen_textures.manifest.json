@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "outputs": {
+    "block/glass_plasma_glass.png": "f3faf091c7aabfac471a85aad1db4e39690cdb884e4cffad35f5de6f9a4e43ff",
+    "block/glass_plasma_glass_ctm.png": "53b5709a42f413037ba15e13fdf7e4cec1b4f308f6af799250da7ab0e6a2c7d0",
+    "block/glass_plasma_glass_emissive.png": "fcb43c5e955fe33fbc76c2d819f28a068e53e7354a4a4d1fa1e0f24517358815",
+    "block/hull_nero_alloy.png": "299e469c0562470bf09a0b57b1e7add9c69b3f5fa4494d5155984d3c6b87fbe0",
+    "block/hull_nero_alloy_ctm.png": "04e48ef2c50d09c4a153070feda02f276612558a729da9fea8b3eef4483bfab1",
+    "block/hull_starsteel.png": "d5160fefb039e2a0402443c49dda3f2b09508eb60955d810f30222deeef5baf7",
+    "block/hull_starsteel_ctm.png": "83e2372bffe781d64fabe3b3859c4ceb5fa4ec5cc23530c62b099f8f328cbda5",
+    "block/neon_cyan.png": "7e214c1bdf299bbfe05a6dadc59ac77151c77328d41ec3a84155f8201b9ddc77",
+    "block/neon_cyan_ctm.png": "88260c63c01e95861874a52ae09442cef8c0b9b9916da4c7f75932460a254f7c",
+    "block/neon_cyan_emissive.png": "c0ad612231b1c838b91d7a1ffe2a045a22979267b3b28386421a3a13b5c2d40b",
+    "block/neon_red.png": "2c6d6dcf9b9b1a86940d4cd9b0832b7ec41dfdbdbcd8ad4c7ee0a09bdb5641f5",
+    "block/neon_red_ctm.png": "1fb820c26394d910f8b78c90e5f5f343d4475b65370a9df97a97cda7ef1be1d3",
+    "block/neon_red_emissive.png": "0dc7e85decf3102e7ebac0bfb1329bd928ed79db5320d69df8aed491540c5546",
+    "block/panel_nero_alloy.png": "70d10e5f407c9383ecae83e2acd676b3e9fc71cdfb795b9a33f1ff4324cf348a",
+    "block/panel_nero_alloy_ctm.png": "4fb296be5393ed607426cc5ed5d181219e4ef95bedb5b25944638d71d2b2edbe",
+    "item/glass_plasma_glass.png": "573122d094dc6e73a81471f175d481cadfdc88af05faf03f3e5f50fb8067c254",
+    "item/hull_nero_alloy.png": "7d0393c6b45a6c80bc030256de042e8c2b9fd514e88f6da156cb46760eefa009",
+    "item/hull_starsteel.png": "6a0e149137448c77c0fc6b5d64051ef524d3794094d38170855ecf1d025f500b",
+    "item/neon_cyan.png": "796ca70d702760cefa4930caca91b13bb49206da58b861ef31d62f545d8575ae",
+    "item/neon_red.png": "aeac0fd9dad9255b8db30e734ca0a532e988adcab39143b3e658ce92fe601ca6",
+    "item/panel_nero_alloy.png": "6024eb2d801f7d748f7c911eaf4a060ce86bb248460412d7dc2d543036f1016e"
+  }
+}
