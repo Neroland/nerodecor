@@ -227,6 +227,16 @@ tasks.register('genAssets') {
             def r = pyenvRoot.replaceAll(/[\\\/]+$/, '')
             candidates << [r + (isWindows ? '\\shims\\python.bat' : '/shims/python')]
             candidates << [r + (isWindows ? '\\bin\\python.exe' : '/bin/python')]
+            // pyenv installs live under versions/<ver>/python(.exe); the gradle daemon's PATH usually
+            // lacks the shims, so enumerate the installed versions directly (newest last -> preferred).
+            def versionsDir = new File(r, 'versions')
+            if (versionsDir.isDirectory()) {
+                versionsDir.listFiles({ f -> f.isDirectory() } as java.io.FileFilter)
+                        ?.sort { it.name }
+                        ?.each { v ->
+                            candidates << [new File(v, isWindows ? 'python.exe' : 'bin/python').absolutePath]
+                        }
+            }
         }
         def python = null
         for (c in candidates) {

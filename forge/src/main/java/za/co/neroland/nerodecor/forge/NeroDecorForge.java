@@ -1,6 +1,7 @@
 package za.co.neroland.nerodecor.forge;
 
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.bus.BusGroup;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -8,6 +9,7 @@ import net.minecraftforge.fml.loading.FMLEnvironment;
 
 import za.co.neroland.nerodecor.NeroDecorCommon;
 import za.co.neroland.nerodecor.client.NeroDecorClient;
+import za.co.neroland.nerodecor.command.NeroDecorCommands;
 import za.co.neroland.nerodecor.registry.ForgeRegistrationFactory;
 
 /** MinecraftForge entry point for NeroDecor. */
@@ -21,6 +23,8 @@ public final class NeroDecorForge {
         NeroDecorCommon.init();
         // ...then attach every collected register to the mod bus group.
         ForgeRegistrationFactory.registerAll(modBusGroup);
+        // Showcase command (/nerodecor gallery) on the game bus.
+        RegisterCommandsEvent.BUS.addListener(event -> NeroDecorCommands.register(event.getDispatcher()));
         if (FMLEnvironment.dist == Dist.CLIENT) {
             NeroDecorClient.initClient();
         }
