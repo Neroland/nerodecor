@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "nerodecor:hull_starsteel"
+    }
+  },
+  "result": {
+    "id": "nerodecor:hull_starsteel_stairs",
+    "count": 4
+  }
+}

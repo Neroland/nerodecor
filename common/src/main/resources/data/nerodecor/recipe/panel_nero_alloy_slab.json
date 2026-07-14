@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "nerodecor:panel_nero_alloy"
+    }
+  },
+  "result": {
+    "id": "nerodecor:panel_nero_alloy_slab",
+    "count": 6
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "nerodecor:hull_nero_alloy",
+      "required": false
+    },
+    {
+      "id": "nerodecor:hull_nero_alloy_slab",
+      "required": false
+    },
+    {
+      "id": "nerodecor:hull_nero_alloy_stairs",
+      "required": false
+    },
+    {
+      "id": "nerodecor:hull_nero_alloy_wall",
+      "required": false
+    },
+    {
+      "id": "nerodecor:hull_starsteel",
+      "required": false
+    },
+    {
+      "id": "nerodecor:hull_starsteel_slab",
+      "required": false
+    },
+    {
+      "id": "nerodecor:hull_starsteel_stairs",
+      "required": false
+    },
+    {
+      "id": "nerodecor:hull_starsteel_wall",
+      "required": false
+    }
+  ]
+}

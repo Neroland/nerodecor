@@ -25,10 +25,6 @@ allprojects {
 // Dynamic, machine-independent paths (resolved from rootProject.projectDir).
 ext.commonJava = "${rootProject.projectDir}/common/src/main/java"
 ext.commonResources = "${rootProject.projectDir}/common/src/main/resources"
-// Datagen (NeoForge runData) writes generated JSON here, kept SEPARATE from hand-/gen_textures-managed
-// main resources so the datagen HashCache only owns this dir (it deletes "stale" files under its output).
-// Spliced into every loader node's resources alongside commonResources (see each loader build.gradle).
-ext.commonGenerated = "${rootProject.projectDir}/common/src/generated/resources"
 
 subprojects {
     apply plugin: 'java'
@@ -243,9 +239,9 @@ tasks.register('genAssets') {
         if (python == null) {
             throw new GradleException("genAssets: no Python found; set -PpythonCmd=<path>. pyenv root: ${pyenvRoot}")
         }
-        // NeroDecor models come from datagen (not Blockbench), so genAssets runs only the
-        // reproducible texture pipeline. See tools/gen_textures.py + nerodecor/MODELS.md.
-        ['tools/gen_textures.py'].each { script ->
+        // NeroDecor resources are committed JSON emitted by gen_resources.py (blockstates/models/
+        // loot/recipes/tags/lang) + textures by gen_textures.py — no runtime datagen. See MODELS.md.
+        ['tools/gen_resources.py', 'tools/gen_textures.py'].each { script ->
             def proc = wrap(python + [script, '--multiloader']).execute(null, repoRoot)
             def out = new StringBuilder(); def err = new StringBuilder()
             proc.consumeProcessOutput(out, err); proc.waitFor()

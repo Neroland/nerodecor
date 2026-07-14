@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "nerodecor:block/glass_plasma_glass"
+  },
+  "render_type": "minecraft:cutout"
+}

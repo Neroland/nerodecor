@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_glass_pane_side_alt",
+  "textures": {
+    "pane": "nerodecor:block/glass_plasma_glass",
+    "edge": "nerodecor:block/glass_plasma_glass"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "nerodecor:panel_nero_alloy",
+      "required": false
+    },
+    {
+      "id": "nerodecor:panel_nero_alloy_slab",
+      "required": false
+    },
+    {
+      "id": "nerodecor:panel_nero_alloy_stairs",
+      "required": false
+    }
+  ]
+}

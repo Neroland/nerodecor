@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "nerodecor:glass_plasma_glass",
+      "required": false
+    },
+    {
+      "id": "nerodecor:glass_plasma_glass_pane",
+      "required": false
+    },
+    {
+      "id": "nerodecor:glass_plasma_glass_slab",
+      "required": false
+    }
+  ]
+}

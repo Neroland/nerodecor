@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "nerodecor:neon_cyan",
+      "required": false
+    },
+    {
+      "id": "nerodecor:neon_red",
+      "required": false
+    }
+  ]
+}

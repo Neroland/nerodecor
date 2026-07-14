@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "nerodecor:hull_nero_alloy"
+    }
+  },
+  "result": {
+    "id": "nerodecor:hull_nero_alloy_stairs",
+    "count": 4
+  }
+}

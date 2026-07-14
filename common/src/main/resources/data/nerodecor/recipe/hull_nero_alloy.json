@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MM",
+    "MM"
+  ],
+  "key": {
+    "M": {
+      "item": "nerolandcore:nero_alloy_ingot"
+    }
+  },
+  "result": {
+    "id": "nerodecor:hull_nero_alloy",
+    "count": 4
+  }
+}

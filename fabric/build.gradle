@@ -23,7 +23,6 @@ base { archivesName = "nerodecor-fabric-${mc}" }
 // Pull in the shared common source + resources.
 sourceSets.main.java.srcDir rootProject.ext.commonJava
 sourceSets.main.resources.srcDir rootProject.ext.commonResources
-sourceSets.main.resources.srcDir rootProject.ext.commonGenerated  // datagen output (runData)
 
 dependencies {
     minecraft "com.mojang:minecraft:${mc}"

@@ -30,7 +30,6 @@ repositories {
 // Pull in the shared common source + resources.
 sourceSets.main.java.srcDir rootProject.ext.commonJava
 sourceSets.main.resources.srcDir rootProject.ext.commonResources
-sourceSets.main.resources.srcDir rootProject.ext.commonGenerated  // datagen output (runData)
 
 dependencies {
     // Neroland Core — the ONLY hard dependency. Resolved from mavenLocal() locally or the
@@ -93,22 +92,6 @@ neoForge {
         server {
             server()
             gameDirectory = file('runs/server')
-        }
-
-        // Datagen harness: the single NeoForge runData run that writes NeroDecor's loader-agnostic
-        // blockstates/models/loot/recipes/tags/lang JSON straight into common/src/main/resources, so all
-        // six cells consume the same generated assets. Run with `:neoforge:<mc>:runData`.
-        data {
-            clientData()
-            gameDirectory = file('runs/data')
-            // Output to the dedicated generated dir (its HashCache only owns this dir, so it never
-            // deletes the hand-/gen_textures-managed main resources). --existing points at main
-            // resources so datagen can reference existing textures without regenerating them.
-            def genOut = rootProject.file('common/src/generated/resources')
-            def existing = rootProject.file('common/src/main/resources')
-            programArguments.addAll('--mod', rootProject.mod_id, '--all',
-                    '--output', genOut.absolutePath,
-                    '--existing', existing.absolutePath)
         }
 
         // Stop ModDevGradle from (re)generating absolute, machine-specific

@@ -57,6 +57,21 @@ state is wired per loader (NeoForge/Forge model events, Fabric renderer API) **b
 first `CtmSurface` block exists and can be confirmed in a running client — the visual half
 of Gate D is verified with the developer.
 
+## `gen_resources` — the committed-JSON harness
+
+`python tools/gen_resources.py` (or `./gradlew genAssets`).
+
+NeroDecor follows the ecosystem convention: **resources are committed JSON in
+`common/src/main/resources`, emitted by a Python harness — no runtime datagen** (MC
+`runData` is deliberately avoided; its HashCache deletes every non-generated file under its
+output dir). `gen_resources.py` reads a `SPEC` mirroring `registry/DecorBlocks.java` and
+writes, for the registered blocks: blockstates, block + item models (referencing
+`nerodecor:block/<texture>`), loot tables, crafting recipes (vanilla + Core only, no gate),
+`neroland:decor/<family>` + `minecraft:mineable/pickaxe` tags, and `en_us` lang. Colour is
+tint-only, so blockstates map to a single model per shape (the `COLOR` property is applied by
+the render tint provider, not by the blockstate). To add blocks, extend the `SPEC` list to
+match `DecorBlocks`, rerun, and validate the JSON.
+
 ## `gen_textures` pipeline
 
 `python tools/gen_textures.py [--multiloader] [--check] [--prune] [--force]`

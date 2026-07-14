@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "nerodecor:block/panel_nero_alloy"
+  }
+}

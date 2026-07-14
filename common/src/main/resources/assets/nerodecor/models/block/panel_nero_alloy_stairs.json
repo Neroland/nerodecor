@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "nerodecor:block/panel_nero_alloy",
+    "top": "nerodecor:block/panel_nero_alloy",
+    "side": "nerodecor:block/panel_nero_alloy"
+  }
+}

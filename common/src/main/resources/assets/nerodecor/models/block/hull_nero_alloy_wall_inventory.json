@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "nerodecor:block/hull_nero_alloy"
+  }
+}

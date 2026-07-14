@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MMM"
+  ],
+  "key": {
+    "M": {
+      "item": "nerolandcore:nero_alloy_ingot"
+    }
+  },
+  "result": {
+    "id": "nerodecor:panel_nero_alloy",
+    "count": 3
+  }
+}

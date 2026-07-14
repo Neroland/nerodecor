@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "nerodecor:glass_plasma_glass",
+    "nerodecor:glass_plasma_glass_pane",
+    "nerodecor:glass_plasma_glass_slab",
+    "nerodecor:hull_nero_alloy",
+    "nerodecor:hull_nero_alloy_slab",
+    "nerodecor:hull_nero_alloy_stairs",
+    "nerodecor:hull_nero_alloy_wall",
+    "nerodecor:hull_starsteel",
+    "nerodecor:hull_starsteel_slab",
+    "nerodecor:hull_starsteel_stairs",
+    "nerodecor:hull_starsteel_wall",
+    "nerodecor:neon_cyan",
+    "nerodecor:neon_red",
+    "nerodecor:panel_nero_alloy",
+    "nerodecor:panel_nero_alloy_slab",
+    "nerodecor:panel_nero_alloy_stairs"
+  ]
+}

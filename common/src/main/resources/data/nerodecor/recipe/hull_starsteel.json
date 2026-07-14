@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MM",
+    "MM"
+  ],
+  "key": {
+    "M": {
+      "item": "nerolandcore:starsteel_ingot"
+    }
+  },
+  "result": {
+    "id": "nerodecor:hull_starsteel",
+    "count": 4
+  }
+}

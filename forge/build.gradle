@@ -32,7 +32,6 @@ jarJar.register()
 // Pull in the shared common source + resources.
 sourceSets.main.java.srcDir rootProject.ext.commonJava
 sourceSets.main.resources.srcDir rootProject.ext.commonResources
-sourceSets.main.resources.srcDir rootProject.ext.commonGenerated  // datagen output (runData)
 
 // Forge 26's ModLauncher builds a JPMS layer from the dev runtime classpath. If classes and
 // processed resources are separate entries, the mod's classes can be seen as module "main" while

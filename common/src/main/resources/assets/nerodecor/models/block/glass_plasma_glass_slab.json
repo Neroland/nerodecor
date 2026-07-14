@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "nerodecor:block/glass_plasma_glass",
+    "top": "nerodecor:block/glass_plasma_glass",
+    "side": "nerodecor:block/glass_plasma_glass"
+  }
+}

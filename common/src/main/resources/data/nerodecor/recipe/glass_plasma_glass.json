@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MM",
+    "MM"
+  ],
+  "key": {
+    "M": {
+      "item": "nerolandcore:plasma_glass_block"
+    }
+  },
+  "result": {
+    "id": "nerodecor:glass_plasma_glass",
+    "count": 4
+  }
+}
