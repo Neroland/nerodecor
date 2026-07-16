@@ -9,7 +9,7 @@
   shared content under `common/` and wire it through each loader entry point.
 - Mod id: **`nerodecor`** (matches the registry namespace + every loader manifest). Package root:
   `za.co.neroland.nerodecor`. Author: **Neroland**.
-- Version: **0.0.1-alpha.1**.
+- Version: **0.1.0-beta.1**.
 - Targets **MC 26.1.2 AND 26.2** on **NeoForge, MinecraftForge/Forge, and Fabric** → the **"6 cells"**.
   **Java 25.** Mappings = official Mojang names (26.x ships de-obfuscated; no Parchment).
 

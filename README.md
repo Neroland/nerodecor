@@ -2,7 +2,7 @@
 
 > Part of the [Neroland](../neroland-mc-ecosystem) sci-fi Minecraft mod ecosystem, built on **Neroland Core**.
 
-**Status:** barebones multiloader skeleton — version `0.0.1-alpha.1`. No gameplay content yet.
+**Status:** beta — version `0.1.0-beta.1`. First decorative content set (hull/panel, glass, and neon families with shape variants, connected textures, paint recolouring). See [`CHANGELOG.md`](CHANGELOG.md).
 
 ## Build targets
 

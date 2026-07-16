@@ -3,8 +3,9 @@
 Player- and contributor-facing documentation for **NeroDecor**, part of the
 [Neroland ecosystem](../../neroland-mc-ecosystem/README.md). Built on **Neroland Core**.
 
-> **Status:** barebones — this mod is scaffolded (version `0.0.1-alpha.1`) but has no gameplay
-> content yet. Pages will grow as features land. Keep this wiki updated alongside code changes
+> **Status:** beta — version `0.1.0-beta.1`. The first decorative content set has landed
+> (hull/panel, glass, and neon families with shape variants, connected textures and paint
+> recolouring). Pages will grow as features land. Keep this wiki updated alongside code changes
 > (see [`../AGENTS.md`](../AGENTS.md) / [`../CLAUDE.md`](../CLAUDE.md)).
 
 ## Contents
