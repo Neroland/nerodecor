@@ -45,35 +45,52 @@ public final class DecorBlocks {
     private static final Identifier FAM_GLASS = fam("glass");
     private static final Identifier FAM_NEON = fam("neon");
 
-    // --- Hull / structural (metal cube + full shape set) --------------------
-    public static final RegistryEntry<Block> HULL_NERO_ALLOY = cube("hull_nero_alloy", FAM_HULL, DecorBlocks::metal);
-    public static final RegistryEntry<Block> HULL_NERO_ALLOY_SLAB = slab("hull_nero_alloy_slab", FAM_HULL, DecorBlocks::metal);
-    public static final RegistryEntry<Block> HULL_NERO_ALLOY_STAIRS = stairs("hull_nero_alloy_stairs", HULL_NERO_ALLOY, FAM_HULL, DecorBlocks::metal);
-    public static final RegistryEntry<Block> HULL_NERO_ALLOY_WALL = wall("hull_nero_alloy_wall", FAM_HULL, DecorBlocks::metal);
-    public static final RegistryEntry<Block> HULL_STARSTEEL = cube("hull_starsteel", FAM_HULL, DecorBlocks::metal);
-    public static final RegistryEntry<Block> HULL_STARSTEEL_SLAB = slab("hull_starsteel_slab", FAM_HULL, DecorBlocks::metal);
-    public static final RegistryEntry<Block> HULL_STARSTEEL_STAIRS = stairs("hull_starsteel_stairs", HULL_STARSTEEL, FAM_HULL, DecorBlocks::metal);
-    public static final RegistryEntry<Block> HULL_STARSTEEL_WALL = wall("hull_starsteel_wall", FAM_HULL, DecorBlocks::metal);
+    // Finish sets — keep in LOCKSTEP with tools/gen_textures.py + tools/gen_resources.py.
+    private static final String[] STRUCT_MATERIALS = {"nero_alloy", "starsteel", "void_crystal"};
+    private static final String[] GLASS_FINISHES = {"plasma_glass", "cyan", "light_blue"};
+    private static final String[] NEON_COLOURS = {
+            "red", "orange", "yellow", "lime", "green", "cyan",
+            "light_blue", "blue", "purple", "magenta", "pink", "white"};
 
-    // --- Industrial panels --------------------------------------------------
-    public static final RegistryEntry<Block> PANEL_NERO_ALLOY = cube("panel_nero_alloy", FAM_PANEL, DecorBlocks::metal);
-    public static final RegistryEntry<Block> PANEL_NERO_ALLOY_SLAB = slab("panel_nero_alloy_slab", FAM_PANEL, DecorBlocks::metal);
-    public static final RegistryEntry<Block> PANEL_NERO_ALLOY_STAIRS = stairs("panel_nero_alloy_stairs", PANEL_NERO_ALLOY, FAM_PANEL, DecorBlocks::metal);
-
-    // --- Reinforced glass (translucent; cube + pane + slab) -----------------
-    public static final RegistryEntry<Block> GLASS_PLASMA = cube("glass_plasma_glass", FAM_GLASS, CtmStyle.GLASS, DecorBlocks::glass);
-    public static final RegistryEntry<Block> GLASS_PLASMA_PANE = pane("glass_plasma_glass_pane", FAM_GLASS, DecorBlocks::glass);
-    public static final RegistryEntry<Block> GLASS_PLASMA_SLAB = slab("glass_plasma_glass_slab", FAM_GLASS, CtmStyle.GLASS, DecorBlocks::glass);
-
-    // --- Neon light strips (emissive; cube for now, strip shape in a later pass) ---
-    public static final RegistryEntry<Block> NEON_RED = cube("neon_red", FAM_NEON, CtmStyle.STRIP, DecorBlocks::neon);
-    public static final RegistryEntry<Block> NEON_CYAN = cube("neon_cyan", FAM_NEON, CtmStyle.STRIP, DecorBlocks::neon);
+    /** A hull block used by the {@code /nerodecor gallery} paint row; assigned in {@link #init()}. */
+    public static RegistryEntry<Block> HULL_NERO_ALLOY;
 
     private DecorBlocks() {
     }
 
-    /** Force class-load so all fields register. */
+    /** Register every decor block. Called once from {@code DecorRegistries.init()}. */
     public static void init() {
+        // Hull / structural: cube + slab + stairs + wall per material.
+        for (String m : STRUCT_MATERIALS) {
+            RegistryEntry<Block> cube = cube("hull_" + m, FAM_HULL, DecorBlocks::metal);
+            slab("hull_" + m + "_slab", FAM_HULL, DecorBlocks::metal);
+            stairs("hull_" + m + "_stairs", cube, FAM_HULL, DecorBlocks::metal);
+            wall("hull_" + m + "_wall", FAM_HULL, DecorBlocks::metal);
+            if ("nero_alloy".equals(m)) {
+                HULL_NERO_ALLOY = cube;
+            }
+        }
+        // Industrial panels: cube + slab + stairs per material.
+        for (String m : STRUCT_MATERIALS) {
+            RegistryEntry<Block> cube = cube("panel_" + m, FAM_PANEL, DecorBlocks::metal);
+            slab("panel_" + m + "_slab", FAM_PANEL, DecorBlocks::metal);
+            stairs("panel_" + m + "_stairs", cube, FAM_PANEL, DecorBlocks::metal);
+        }
+        // Reinforced glass: cube + pane + slab per tint (no stairs, so no base-cube capture needed).
+        for (String f : GLASS_FINISHES) {
+            cube("glass_" + f, FAM_GLASS, CtmStyle.GLASS, DecorBlocks::glass);
+            pane("glass_" + f + "_pane", FAM_GLASS, DecorBlocks::glass);
+            slab("glass_" + f + "_slab", FAM_GLASS, CtmStyle.GLASS, DecorBlocks::glass);
+        }
+        // Neon light strips: one per colour.
+        for (String c : NEON_COLOURS) {
+            cube("neon_" + c, FAM_NEON, CtmStyle.STRIP, DecorBlocks::neon);
+        }
+    }
+
+    /** Every registered block instance — for client colour/render registration. */
+    public static Block[] allBlocks() {
+        return ALL.stream().map(RegistryEntry::get).toArray(Block[]::new);
     }
 
     // --- property presets ---------------------------------------------------

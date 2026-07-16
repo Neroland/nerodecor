@@ -4,9 +4,7 @@
     "###"
   ],
   "key": {
-    "#": {
-      "item": "nerodecor:glass_plasma_glass"
-    }
+    "#": "nerodecor:glass_plasma_glass"
   },
   "result": {
     "id": "nerodecor:glass_plasma_glass_slab",

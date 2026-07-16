@@ -6,9 +6,7 @@
     "###"
   ],
   "key": {
-    "#": {
-      "item": "nerodecor:hull_starsteel"
-    }
+    "#": "nerodecor:hull_starsteel"
   },
   "result": {
     "id": "nerodecor:hull_starsteel_stairs",

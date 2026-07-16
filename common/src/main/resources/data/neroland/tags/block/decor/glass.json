@@ -2,6 +2,30 @@
   "replace": false,
   "values": [
     {
+      "id": "nerodecor:glass_cyan",
+      "required": false
+    },
+    {
+      "id": "nerodecor:glass_cyan_pane",
+      "required": false
+    },
+    {
+      "id": "nerodecor:glass_cyan_slab",
+      "required": false
+    },
+    {
+      "id": "nerodecor:glass_light_blue",
+      "required": false
+    },
+    {
+      "id": "nerodecor:glass_light_blue_pane",
+      "required": false
+    },
+    {
+      "id": "nerodecor:glass_light_blue_slab",
+      "required": false
+    },
+    {
       "id": "nerodecor:glass_plasma_glass",
       "required": false
     },

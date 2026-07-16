@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MMM"
+  ],
+  "key": {
+    "M": "nerolandcore:void_crystal_shard"
+  },
+  "result": {
+    "id": "nerodecor:panel_void_crystal",
+    "count": 3
+  }
+}

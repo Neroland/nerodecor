@@ -5,9 +5,7 @@
     "MM"
   ],
   "key": {
-    "M": {
-      "item": "nerolandcore:plasma_glass_block"
-    }
+    "M": "nerolandcore:plasma_glass_block"
   },
   "result": {
     "id": "nerodecor:glass_plasma_glass",

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "nerodecor:hull_nero_alloy",
+  "result": {
+    "id": "nerodecor:hull_nero_alloy_wall",
+    "count": 1
+  }
+}

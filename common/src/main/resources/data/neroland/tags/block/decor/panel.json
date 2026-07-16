@@ -12,6 +12,30 @@
     {
       "id": "nerodecor:panel_nero_alloy_stairs",
       "required": false
+    },
+    {
+      "id": "nerodecor:panel_starsteel",
+      "required": false
+    },
+    {
+      "id": "nerodecor:panel_starsteel_slab",
+      "required": false
+    },
+    {
+      "id": "nerodecor:panel_starsteel_stairs",
+      "required": false
+    },
+    {
+      "id": "nerodecor:panel_void_crystal",
+      "required": false
+    },
+    {
+      "id": "nerodecor:panel_void_crystal_slab",
+      "required": false
+    },
+    {
+      "id": "nerodecor:panel_void_crystal_stairs",
+      "required": false
     }
   ]
 }

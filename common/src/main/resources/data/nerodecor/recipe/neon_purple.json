@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "minecraft:glowstone_dust",
+    "minecraft:purple_dye"
+  ],
+  "result": {
+    "id": "nerodecor:neon_purple",
+    "count": 2
+  }
+}

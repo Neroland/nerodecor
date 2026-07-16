@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "nerodecor:hull_void_crystal",
+  "result": {
+    "id": "nerodecor:hull_void_crystal_slab",
+    "count": 2
+  }
+}

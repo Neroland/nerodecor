@@ -48,11 +48,16 @@ MANIFEST = os.path.join(HERE, "gen_textures.manifest.json")
 
 # --- Spec: which families use which finishes. Grow this as blocks are added (Stages E-H). ---
 # kind: "material" finishes are opaque; "glass" is translucent; emissive families also emit a mask.
+# Finish sets — keep in LOCKSTEP with tools/gen_resources.py + registry/DecorBlocks.java.
+_STRUCT = ["nero_alloy", "starsteel", "void_crystal"]
+_GLASS = ["plasma_glass", "cyan", "light_blue"]
+_NEON = ["red", "orange", "yellow", "lime", "green", "cyan",
+         "light_blue", "blue", "purple", "magenta", "pink", "white"]
 SPEC = {
-    "hull":  {"finishes": ["nero_alloy", "starsteel"], "emissive": False, "translucent": False, "animated": True},
-    "panel": {"finishes": ["nero_alloy"],              "emissive": False, "translucent": False, "animated": True},
-    "neon":  {"finishes": ["red", "cyan"],             "emissive": True,  "translucent": False, "animated": True},
-    "glass": {"finishes": ["plasma_glass"],            "emissive": True,  "translucent": True,  "animated": True},
+    "hull":  {"finishes": _STRUCT, "emissive": False, "translucent": False, "animated": True},
+    "panel": {"finishes": _STRUCT, "emissive": False, "translucent": False, "animated": True},
+    "neon":  {"finishes": _NEON,   "emissive": True,  "translucent": False, "animated": True},
+    "glass": {"finishes": _GLASS,  "emissive": True,  "translucent": True,  "animated": True},
 }
 
 # Subtle glow pulse: a slow down-up ramp, interpolated so it reads as a gentle breathing glow.

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "nerodecor:glass_cyan",
+  "result": {
+    "id": "nerodecor:glass_cyan_slab",
+    "count": 2
+  }
+}

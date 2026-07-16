@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "nerodecor:glass_plasma_glass",
+  "result": {
+    "id": "nerodecor:glass_plasma_glass_slab",
+    "count": 2
+  }
+}

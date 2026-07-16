@@ -19,28 +19,42 @@ RES = os.path.join(REPO, "common", "src", "main", "resources")
 NS = "nerodecor"
 
 # name, kind, texture (base cube texture id path), family, recipe-material (Core ingot / vanilla)
-SPEC = [
-    ("hull_nero_alloy",        "cube",  "hull_nero_alloy",  "hull",  "nerolandcore:nero_alloy_ingot"),
-    ("hull_nero_alloy_slab",   "slab",  "hull_nero_alloy",  "hull",  None),
-    ("hull_nero_alloy_stairs", "stairs","hull_nero_alloy",  "hull",  None),
-    ("hull_nero_alloy_wall",   "wall",  "hull_nero_alloy",  "hull",  None),
-    ("hull_starsteel",         "cube",  "hull_starsteel",   "hull",  "nerolandcore:starsteel_ingot"),
-    ("hull_starsteel_slab",    "slab",  "hull_starsteel",   "hull",  None),
-    ("hull_starsteel_stairs",  "stairs","hull_starsteel",   "hull",  None),
-    ("hull_starsteel_wall",    "wall",  "hull_starsteel",   "hull",  None),
-    ("panel_nero_alloy",       "cube",  "panel_nero_alloy", "panel", "nerolandcore:nero_alloy_ingot"),
-    ("panel_nero_alloy_slab",  "slab",  "panel_nero_alloy", "panel", None),
-    ("panel_nero_alloy_stairs","stairs","panel_nero_alloy", "panel", None),
-    ("glass_plasma_glass",     "cube",  "glass_plasma_glass","glass", "nerolandcore:plasma_glass_block"),
-    ("glass_plasma_glass_pane","pane",  "glass_plasma_glass","glass", None),
-    ("glass_plasma_glass_slab","slab",  "glass_plasma_glass","glass", None),
-    ("neon_red",               "cube",  "neon_red",         "neon",  "red"),
-    ("neon_cyan",              "cube",  "neon_cyan",        "neon",  "cyan"),
-]
+# Finish sets — keep in LOCKSTEP with tools/gen_textures.py + registry/DecorBlocks.java.
+STRUCT = ["nero_alloy", "starsteel", "void_crystal"]
+GLASS_FIN = ["plasma_glass", "cyan", "light_blue"]
+NEON = ["red", "orange", "yellow", "lime", "green", "cyan",
+        "light_blue", "blue", "purple", "magenta", "pink", "white"]
+STRUCT_MAT = {"nero_alloy": "nerolandcore:nero_alloy_ingot",
+              "starsteel": "nerolandcore:starsteel_ingot",
+              "void_crystal": "nerolandcore:void_crystal_shard"}
+GLASS_MAT = {"plasma_glass": "nerolandcore:plasma_glass_block",
+             "cyan": "minecraft:cyan_stained_glass",
+             "light_blue": "minecraft:light_blue_stained_glass"}
 
-CUBE_OF = {"hull_nero_alloy": "hull_nero_alloy", "hull_starsteel": "hull_starsteel",
-           "panel_nero_alloy": "panel_nero_alloy", "glass_plasma_glass": "glass_plasma_glass",
-           "neon_red": "neon_red", "neon_cyan": "neon_cyan"}
+
+def _build_spec():
+    # (name, kind, cube-texture, family, recipe-material)
+    s = []
+    for m in STRUCT:
+        s.append(("hull_%s" % m, "cube", "hull_%s" % m, "hull", STRUCT_MAT[m]))
+        s.append(("hull_%s_slab" % m, "slab", "hull_%s" % m, "hull", None))
+        s.append(("hull_%s_stairs" % m, "stairs", "hull_%s" % m, "hull", None))
+        s.append(("hull_%s_wall" % m, "wall", "hull_%s" % m, "hull", None))
+    for m in STRUCT:
+        s.append(("panel_%s" % m, "cube", "panel_%s" % m, "panel", STRUCT_MAT[m]))
+        s.append(("panel_%s_slab" % m, "slab", "panel_%s" % m, "panel", None))
+        s.append(("panel_%s_stairs" % m, "stairs", "panel_%s" % m, "panel", None))
+    for f in GLASS_FIN:
+        s.append(("glass_%s" % f, "cube", "glass_%s" % f, "glass", GLASS_MAT[f]))
+        s.append(("glass_%s_pane" % f, "pane", "glass_%s" % f, "glass", None))
+        s.append(("glass_%s_slab" % f, "slab", "glass_%s" % f, "glass", None))
+    for c in NEON:
+        s.append(("neon_%s" % c, "cube", "neon_%s" % c, "neon", c))
+    return s
+
+
+SPEC = _build_spec()
+CUBE_OF = {t: name for (name, kind, t, fam, mat) in SPEC if kind == "cube"}
 
 files = {}          # relative path -> dict (written as JSON)
 lang = {}
@@ -68,7 +82,12 @@ def render_type(family):
 # --- per-kind emitters --------------------------------------------------------
 def emit_cube(name, t, fam):
     files["assets/%s/blockstates/%s.json" % (NS, name)] = {"variants": {"": {"model": "%s:block/%s" % (NS, name)}}}
-    model = {"parent": "minecraft:block/cube_all", "textures": {"all": tex(t)}}
+    # A full cube whose faces carry tintindex 0, so the DecorColorTintSource can paint it
+    # (vanilla cube_all has no tintindex). NATURAL colour = white = the base texture unchanged.
+    faces = {face: {"uv": [0, 0, 16, 16], "texture": "#all", "tintindex": 0, "cullface": face}
+             for face in ("north", "east", "south", "west", "up", "down")}
+    model = {"textures": {"particle": tex(t), "all": tex(t)},
+             "elements": [{"from": [0, 0, 0], "to": [16, 16, 16], "faces": faces}]}
     rt = render_type(fam)
     if rt:
         model["render_type"] = rt
@@ -223,47 +242,51 @@ def pane_blockstate(name):
 
 
 # --- recipes ------------------------------------------------------------------
+STONECUT_COUNT = {"slab": 2, "stairs": 1, "wall": 1}
+
+
 def emit_recipes():
     for name, kind, t, fam, mat in SPEC:
         if kind == "cube" and mat:
             files["data/%s/recipe/%s.json" % (NS, name)] = cube_recipe(name, fam, mat)
-        elif kind == "slab":
-            files["data/%s/recipe/%s.json" % (NS, name)] = shape_recipe(name, CUBE_OF[t], "slab")
-        elif kind == "stairs":
-            files["data/%s/recipe/%s.json" % (NS, name)] = shape_recipe(name, CUBE_OF[t], "stairs")
-        elif kind == "wall":
-            files["data/%s/recipe/%s.json" % (NS, name)] = shape_recipe(name, CUBE_OF[t], "wall")
-        elif kind == "pane":
-            files["data/%s/recipe/%s.json" % (NS, name)] = shape_recipe(name, CUBE_OF[t], "pane")
+        elif kind in ("slab", "stairs", "wall", "pane"):
+            files["data/%s/recipe/%s.json" % (NS, name)] = shape_recipe(name, CUBE_OF[t], kind)
+            # Also a stonecutter route from the base cube (the decor-mod convenience).
+            if kind in STONECUT_COUNT:
+                files["data/%s/recipe/%s_from_stonecutting.json" % (NS, name)] = {
+                    "type": "minecraft:stonecutting",
+                    "ingredient": block_id(CUBE_OF[t]),
+                    "result": {"id": block_id(name), "count": STONECUT_COUNT[kind]}}
 
 
 def cube_recipe(name, fam, mat):
+    # 26.x: an ingredient is the item-id STRING (or #tag), NOT {"item": ...} (removed in 1.21.2).
     if fam == "neon":  # glowstone dust + dye -> neon
         return {"type": "minecraft:crafting_shapeless",
-                "ingredients": [{"item": "minecraft:glowstone_dust"}, {"item": "minecraft:%s_dye" % mat}],
+                "ingredients": ["minecraft:glowstone_dust", "minecraft:%s_dye" % mat],
                 "result": {"id": block_id(name), "count": 2}}
     if fam == "panel":  # 3-in-a-row -> 3 panels (distinct from hull's 2x2)
         return {"type": "minecraft:crafting_shaped", "pattern": ["MMM"],
-                "key": {"M": {"item": mat}}, "result": {"id": block_id(name), "count": 3}}
+                "key": {"M": mat}, "result": {"id": block_id(name), "count": 3}}
     # hull / glass: 2x2 -> 4
     return {"type": "minecraft:crafting_shaped", "pattern": ["MM", "MM"],
-            "key": {"M": {"item": mat}}, "result": {"id": block_id(name), "count": 4}}
+            "key": {"M": mat}, "result": {"id": block_id(name), "count": 4}}
 
 
 def shape_recipe(name, cube, kind):
-    src = block_id(cube)
+    src = block_id(cube)  # 26.x: ingredient is the item-id string, not {"item": ...}
     if kind == "slab":
         return {"type": "minecraft:crafting_shaped", "pattern": ["###"],
-                "key": {"#": {"item": src}}, "result": {"id": block_id(name), "count": 6}}
+                "key": {"#": src}, "result": {"id": block_id(name), "count": 6}}
     if kind == "stairs":
         return {"type": "minecraft:crafting_shaped", "pattern": ["#  ", "## ", "###"],
-                "key": {"#": {"item": src}}, "result": {"id": block_id(name), "count": 4}}
+                "key": {"#": src}, "result": {"id": block_id(name), "count": 4}}
     if kind == "wall":
         return {"type": "minecraft:crafting_shaped", "pattern": ["###", "###"],
-                "key": {"#": {"item": src}}, "result": {"id": block_id(name), "count": 6}}
+                "key": {"#": src}, "result": {"id": block_id(name), "count": 6}}
     # pane
     return {"type": "minecraft:crafting_shaped", "pattern": ["###", "###"],
-            "key": {"#": {"item": src}}, "result": {"id": block_id(name), "count": 16}}
+            "key": {"#": src}, "result": {"id": block_id(name), "count": 16}}
 
 
 # --- drive --------------------------------------------------------------------

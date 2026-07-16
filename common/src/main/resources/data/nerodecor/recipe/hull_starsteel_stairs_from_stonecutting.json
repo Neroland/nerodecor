@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "nerodecor:hull_starsteel",
+  "result": {
+    "id": "nerodecor:hull_starsteel_stairs",
+    "count": 1
+  }
+}

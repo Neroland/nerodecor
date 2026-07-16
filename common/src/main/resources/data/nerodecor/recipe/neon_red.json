@@ -1,12 +1,8 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    {
-      "item": "minecraft:glowstone_dust"
-    },
-    {
-      "item": "minecraft:red_dye"
-    }
+    "minecraft:glowstone_dust",
+    "minecraft:red_dye"
   ],
   "result": {
     "id": "nerodecor:neon_red",

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MM",
+    "MM"
+  ],
+  "key": {
+    "M": "minecraft:cyan_stained_glass"
+  },
+  "result": {
+    "id": "nerodecor:glass_cyan",
+    "count": 4
+  }
+}

@@ -4,9 +4,7 @@
     "###"
   ],
   "key": {
-    "#": {
-      "item": "nerodecor:panel_nero_alloy"
-    }
+    "#": "nerodecor:panel_nero_alloy"
   },
   "result": {
     "id": "nerodecor:panel_nero_alloy_slab",

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "nerodecor:block/panel_void_crystal",
+    "top": "nerodecor:block/panel_void_crystal",
+    "side": "nerodecor:block/panel_void_crystal"
+  }
+}

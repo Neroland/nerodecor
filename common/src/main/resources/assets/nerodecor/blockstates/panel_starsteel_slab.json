@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "nerodecor:block/panel_starsteel_slab"
+    },
+    "type=top": {
+      "model": "nerodecor:block/panel_starsteel_slab_top"
+    },
+    "type=double": {
+      "model": "nerodecor:block/panel_starsteel"
+    }
+  }
+}

@@ -5,9 +5,7 @@
     "###"
   ],
   "key": {
-    "#": {
-      "item": "nerodecor:hull_nero_alloy"
-    }
+    "#": "nerodecor:hull_nero_alloy"
   },
   "result": {
     "id": "nerodecor:hull_nero_alloy_wall",

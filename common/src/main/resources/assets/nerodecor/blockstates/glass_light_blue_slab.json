@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "nerodecor:block/glass_light_blue_slab"
+    },
+    "type=top": {
+      "model": "nerodecor:block/glass_light_blue_slab_top"
+    },
+    "type=double": {
+      "model": "nerodecor:block/glass_light_blue"
+    }
+  }
+}

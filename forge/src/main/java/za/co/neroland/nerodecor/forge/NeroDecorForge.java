@@ -27,6 +27,7 @@ public final class NeroDecorForge {
         RegisterCommandsEvent.BUS.addListener(event -> NeroDecorCommands.register(event.getDispatcher()));
         if (FMLEnvironment.dist == Dist.CLIENT) {
             NeroDecorClient.initClient();
+            ForgeClientSetup.init();
         }
     }
 }

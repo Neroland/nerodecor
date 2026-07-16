@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "nerodecor:block/panel_starsteel",
+    "top": "nerodecor:block/panel_starsteel",
+    "side": "nerodecor:block/panel_starsteel"
+  }
+}

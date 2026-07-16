@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MMM"
+  ],
+  "key": {
+    "M": "nerolandcore:starsteel_ingot"
+  },
+  "result": {
+    "id": "nerodecor:panel_starsteel",
+    "count": 3
+  }
+}

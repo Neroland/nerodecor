@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MM",
+    "MM"
+  ],
+  "key": {
+    "M": "minecraft:light_blue_stained_glass"
+  },
+  "result": {
+    "id": "nerodecor:glass_light_blue",
+    "count": 4
+  }
+}

@@ -5,9 +5,7 @@
     "MM"
   ],
   "key": {
-    "M": {
-      "item": "nerolandcore:starsteel_ingot"
-    }
+    "M": "nerolandcore:starsteel_ingot"
   },
   "result": {
     "id": "nerodecor:hull_starsteel",

@@ -2,11 +2,51 @@
   "replace": false,
   "values": [
     {
+      "id": "nerodecor:neon_blue",
+      "required": false
+    },
+    {
       "id": "nerodecor:neon_cyan",
       "required": false
     },
     {
+      "id": "nerodecor:neon_green",
+      "required": false
+    },
+    {
+      "id": "nerodecor:neon_light_blue",
+      "required": false
+    },
+    {
+      "id": "nerodecor:neon_lime",
+      "required": false
+    },
+    {
+      "id": "nerodecor:neon_magenta",
+      "required": false
+    },
+    {
+      "id": "nerodecor:neon_orange",
+      "required": false
+    },
+    {
+      "id": "nerodecor:neon_pink",
+      "required": false
+    },
+    {
+      "id": "nerodecor:neon_purple",
+      "required": false
+    },
+    {
       "id": "nerodecor:neon_red",
+      "required": false
+    },
+    {
+      "id": "nerodecor:neon_white",
+      "required": false
+    },
+    {
+      "id": "nerodecor:neon_yellow",
       "required": false
     }
   ]

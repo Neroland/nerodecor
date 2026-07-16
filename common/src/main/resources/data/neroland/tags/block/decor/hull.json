@@ -32,6 +32,22 @@
     {
       "id": "nerodecor:hull_starsteel_wall",
       "required": false
+    },
+    {
+      "id": "nerodecor:hull_void_crystal",
+      "required": false
+    },
+    {
+      "id": "nerodecor:hull_void_crystal_slab",
+      "required": false
+    },
+    {
+      "id": "nerodecor:hull_void_crystal_stairs",
+      "required": false
+    },
+    {
+      "id": "nerodecor:hull_void_crystal_wall",
+      "required": false
     }
   ]
 }
