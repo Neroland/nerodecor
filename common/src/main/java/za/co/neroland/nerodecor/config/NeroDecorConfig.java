@@ -33,6 +33,16 @@ public final class NeroDecorConfig {
             "emissiveRendering", true, false,
             "Render neon/holo/rack glow layers fullbright (emissive). Disable on low-end clients.");
 
+    // --- Telemetry (opt-out, no personal data) ------------------------------
+
+    /** Anonymous NeroDecor-only crash reporting (Sentry, EU). Opt out with false. */
+    public static final ConfigValue<Boolean> TELEMETRY_ENABLED = SCHEMA.bool(
+            "telemetryEnabled", true, false,
+            "Send anonymous, NeroDecor-only crash reports (Sentry, EU servers): stack trace, "
+                    + "mod/MC/loader/OS/Java versions, your other installed mods, and this mod's config; no IP, "
+                    + "username, UUID, world data or chat; file paths are scrubbed of your account name. "
+                    + "Set false to opt out (takes effect on restart).");
+
     private NeroDecorConfig() {
     }
 
@@ -49,5 +59,10 @@ public final class NeroDecorConfig {
     /** Whether emissive rendering is currently enabled. */
     public static boolean emissiveRenderingEnabled() {
         return EMISSIVE_RENDERING.get();
+    }
+
+    /** Whether anonymous crash telemetry is enabled (opt-out, default on). */
+    public static boolean isTelemetryEnabled() {
+        return TELEMETRY_ENABLED.get();
     }
 }

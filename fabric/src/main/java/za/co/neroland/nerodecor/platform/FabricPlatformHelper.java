@@ -34,4 +34,12 @@ public final class FabricPlatformHelper implements IPlatformHelper {
                 .map(c -> c.getMetadata().getVersion().getFriendlyString())
                 .orElse("unknown");
     }
+
+    @Override
+    public java.util.List<String> getLoadedModIds() {
+        return FabricLoader.getInstance().getAllMods().stream()
+                .map(m -> m.getMetadata().getId() + " " + m.getMetadata().getVersion().getFriendlyString())
+                .sorted()
+                .toList();
+    }
 }

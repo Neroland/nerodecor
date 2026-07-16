@@ -12,6 +12,7 @@ import za.co.neroland.nerodecor.NeroDecorCommon;
 import za.co.neroland.nerodecor.client.NeroDecorClient;
 import za.co.neroland.nerodecor.command.NeroDecorCommands;
 import za.co.neroland.nerodecor.registry.NeoForgeRegistrationFactory;
+import za.co.neroland.nerodecor.telemetry.NeroDecorTelemetry;
 
 /** NeoForge entry point for NeroDecor. */
 @Mod(NeroDecorCommon.MOD_ID)
@@ -21,6 +22,8 @@ public final class NeroDecorNeoForge {
         NeroDecorCommon.LOGGER.info("[NeroDecor] NeoForge bootstrap");
         // Common init builds the DeferredRegisters via the RegistrationProvider seam...
         NeroDecorCommon.init();
+        // Anonymous, NeroDecor-only crash reporting (opt-out via config; off if opted out).
+        NeroDecorTelemetry.init();
         // ...then attach every collected register to the mod event bus.
         NeoForgeRegistrationFactory.registerAll(modEventBus);
         // Showcase command (/nerodecor gallery) on the game bus.

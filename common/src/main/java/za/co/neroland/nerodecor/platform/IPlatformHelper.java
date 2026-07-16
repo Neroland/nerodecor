@@ -23,4 +23,10 @@ public interface IPlatformHelper {
 
     /** This mod's version string, or "unknown" if unavailable. */
     String getModVersion();
+
+    /**
+     * The ids + versions of every loaded mod ("modid version"), sorted, for crash mod-conflict
+     * triage in telemetry. Public manifest strings only — no personal data.
+     */
+    java.util.List<String> getLoadedModIds();
 }

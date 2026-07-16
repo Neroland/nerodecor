@@ -35,4 +35,12 @@ public final class NeoForgePlatformHelper implements IPlatformHelper {
                 .map(c -> c.getModInfo().getVersion().toString())
                 .orElse("unknown");
     }
+
+    @Override
+    public java.util.List<String> getLoadedModIds() {
+        return ModList.get().getMods().stream()
+                .map(m -> m.getModId() + " " + m.getVersion())
+                .sorted()
+                .toList();
+    }
 }

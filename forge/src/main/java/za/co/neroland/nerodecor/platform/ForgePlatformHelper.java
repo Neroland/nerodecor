@@ -35,4 +35,12 @@ public final class ForgePlatformHelper implements IPlatformHelper {
                 .map(c -> c.getModInfo().getVersion().toString())
                 .orElse("unknown");
     }
+
+    @Override
+    public java.util.List<String> getLoadedModIds() {
+        return ModList.getMods().stream()
+                .map(m -> m.getModId() + " " + m.getVersion())
+                .sorted()
+                .toList();
+    }
 }
