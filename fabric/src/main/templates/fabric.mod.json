@@ -6,6 +6,7 @@
   "description": "NeroDecor - multiloader build (Fabric).",
   "authors": ["${mod_authors}"],
   "license": "${mod_license}",
+  "icon": "nerodecor_logo.png",
   "accessWidener": "nerodecor.accesswidener",
   "environment": "*",
   "entrypoints": {

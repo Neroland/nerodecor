@@ -49,11 +49,17 @@ MANIFEST = os.path.join(HERE, "gen_textures.manifest.json")
 # --- Spec: which families use which finishes. Grow this as blocks are added (Stages E-H). ---
 # kind: "material" finishes are opaque; "glass" is translucent; emissive families also emit a mask.
 SPEC = {
-    "hull":  {"finishes": ["nero_alloy", "starsteel"], "emissive": False, "translucent": False},
-    "panel": {"finishes": ["nero_alloy"],              "emissive": False, "translucent": False},
-    "neon":  {"finishes": ["red", "cyan"],             "emissive": True,  "translucent": False},
-    "glass": {"finishes": ["plasma_glass"],            "emissive": True,  "translucent": True},
+    "hull":  {"finishes": ["nero_alloy", "starsteel"], "emissive": False, "translucent": False, "animated": True},
+    "panel": {"finishes": ["nero_alloy"],              "emissive": False, "translucent": False, "animated": True},
+    "neon":  {"finishes": ["red", "cyan"],             "emissive": True,  "translucent": False, "animated": True},
+    "glass": {"finishes": ["plasma_glass"],            "emissive": True,  "translucent": True,  "animated": True},
 }
+
+# Subtle glow pulse: a slow down-up ramp, interpolated so it reads as a gentle breathing glow.
+ANIM_PULSES = [1.0, 0.86, 0.72, 0.86]
+ANIM_MCMETA = json.dumps(
+    {"animation": {"interpolate": True, "frametime": 6, "frames": list(range(len(ANIM_PULSES)))}},
+    indent=2) + "\n"
 
 
 def det(*parts):
@@ -82,45 +88,80 @@ def load_palette():
 
 
 # --- Layer painters -----------------------------------------------------------------
-def _plate(base, family, finish, borders):
-    """A 16x16 plate of `base`, optional inset border on the given sides {t,b,l,r}, and family detail."""
-    dark = shade(base, 0.62)
-    mid = shade(base, 0.85)
-    hi = shade(base, 1.18)
-    img = Image.new("RGBA", (S, S), base + (255,))
+BODY = (15, 19, 27)      # near-black navy body (black+blue theme)
+BODY_HI = (30, 37, 50)
+BODY_LO = (9, 11, 17)
+SEAM = (7, 9, 14)
+
+
+def _plate(base, family, finish, borders, pulse=1.0):
+    """A 16x16 dark (black+blue) plate; the finish colour `base` drives the glowing accents.
+    `pulse` (0..1.x) scales glow brightness for animated frames."""
+    acc = shade(base, 1.05 * pulse)
+    hi_acc = shade(base, 1.35 * pulse)
+    glow = shade(base, 1.75 * pulse)
+    img = Image.new("RGBA", (S, S), BODY + (255,))
     px = img.load()
-    # subtle deterministic dither so large surfaces aren't dead-flat
+    # subtle deterministic dither so large dark surfaces aren't dead-flat
     for y in range(S):
         for x in range(S):
-            if det(family, finish, x, y) > 0.90:
-                px[x, y] = mid + (255,)
+            if det(family, finish, x, y) > 0.92:
+                px[x, y] = BODY_HI + (255,)
     if family == "hull":
-        # corner rivets + a horizontal seam
-        for (rx, ry) in [(2, 2), (S - 3, 2), (2, S - 3), (S - 3, S - 3)]:
-            px[rx, ry] = dark + (255,)
-            px[rx - 1, ry - 1] = hi + (255,)
-        for x in range(S):
-            px[x, S // 2] = shade(base, 0.72) + (255,)
+        # dark ship plating: recessed panel grid (top/left grooves tile seamlessly), corner
+        # bolts, and a glowing tech accent line.
+        for i in range(S):
+            px[i, 0] = SEAM + (255,)
+            px[i, 1] = BODY_HI + (255,)
+            px[0, i] = SEAM + (255,)
+            px[1, i] = BODY_HI + (255,)
+        for (bx, by) in [(3, 3), (S - 4, 3), (3, S - 4), (S - 4, S - 4)]:
+            px[bx, by] = SEAM + (255,)
+            px[bx + 1, by + 1] = acc + (255,)
+        for x in range(3, S - 2):
+            px[x, S // 2] = glow + (255,)
+            px[x, S // 2 + 1] = hi_acc + (255,)
     elif family == "panel":
-        # vent slats
-        for sy in (4, 8, 12):
-            for x in range(3, S - 3):
-                px[x, sy] = dark + (255,)
-                px[x, sy - 1] = hi + (255,)
+        # dark tech louvers with accent-lit edges + a glowing status node.
+        for i in range(S):
+            px[i, 0] = SEAM + (255,)
+            px[0, i] = SEAM + (255,)
+        for lx in (5, 9, 13):
+            for y in range(3, S - 2):
+                px[lx, y] = BODY_LO + (255,)
+                px[lx - 1, y] = hi_acc + (255,)
+        for (gx, gy) in [(2, 2), (3, 2), (2, 3), (3, 3)]:
+            px[gx, gy] = glow + (255,)
     elif family == "neon":
-        # dark housing with a bright core bar (the glow lives in the emissive mask)
+        # dark housing with a hot, saturated glowing core bar.
         for y in range(S):
             for x in range(S):
-                px[x, y] = shade(base, 0.28) + (255,)
+                px[x, y] = BODY_LO + (255,)
+        for y in range(4, 12):
+            for x in range(S):
+                px[x, y] = acc + (255,)
         for y in range(6, 10):
             for x in range(S):
-                px[x, y] = hi + (255,)
+                px[x, y] = glow + (255,)
+        for x in range(S):
+            px[x, 7] = shade(base, 2.0 * pulse) + (255,)
+            px[x, 8] = shade(base, 2.0 * pulse) + (255,)
     elif family == "glass":
+        # dark tinted reinforced glazing: translucent navy body, glowing frame + faint grid.
         for y in range(S):
             for x in range(S):
-                px[x, y] = mid + (70,)
-    # borders (CTM edge/corner drawing)
-    edge = shade(base, 0.5) + (255 if family != "glass" else 190,)
+                px[x, y] = (BODY[0], BODY[1], BODY[2], 92)
+        for step in range(0, S, 4):
+            for j in range(S):
+                px[step, j] = acc + (70,)
+                px[j, step] = acc + (70,)
+        for i in range(S):
+            px[i, 0] = glow + (205,)
+            px[i, S - 1] = glow + (205,)
+            px[0, i] = glow + (205,)
+            px[S - 1, i] = glow + (205,)
+    # CTM edge/corner drawing (dark seams)
+    edge = SEAM + (255 if family != "glass" else 185,)
     if "t" in borders:
         for x in range(S):
             px[x, 0] = edge
@@ -163,9 +204,9 @@ def emissive_mask(base, family, finish):
     """Additive glow layer: rgb = finish colour, alpha = glow intensity where it should bloom."""
     img = Image.new("RGBA", (S, S), (0, 0, 0, 0))
     px = img.load()
-    glow = shade(base, 1.4)
+    glow = shade(base, 1.7)
     if family == "neon":
-        for y in range(6, 10):
+        for y in range(5, 11):
             for x in range(S):
                 px[x, y] = glow + (255,)
     else:  # glass / crystalline — faint whole-surface bloom
@@ -200,17 +241,30 @@ def png_bytes(img):
     return buf.getvalue()
 
 
+def animated_strip(base, family, finish):
+    """A vertical strip of frames whose glow subtly pulses (the body is identical per frame)."""
+    strip = Image.new("RGBA", (S, S * len(ANIM_PULSES)), (0, 0, 0, 0))
+    for i, pulse in enumerate(ANIM_PULSES):
+        strip.paste(_plate(base, family, finish, set(), pulse=pulse), (0, i * S))
+    return strip
+
+
 def expected_outputs(palette):
-    """Ordered map of relative-path -> PNG bytes for the whole current spec."""
+    """Ordered map of relative-path -> file bytes (PNG or .mcmeta) for the whole current spec."""
     out = {}
     for family in sorted(SPEC):
         spec = SPEC[family]
+        animate = spec.get("animated", False)
         for finish in sorted(spec["finishes"]):
             if finish not in palette:
                 raise SystemExit("gen_textures: finish '%s' (family %s) not in palette.json" % (finish, family))
             base = palette[finish]["rgb"]
             key = "%s_%s" % (family, finish)
-            out["block/%s.png" % key] = png_bytes(base_tile(base, family, finish))
+            if animate:
+                out["block/%s.png" % key] = png_bytes(animated_strip(base, family, finish))
+                out["block/%s.png.mcmeta" % key] = ANIM_MCMETA.encode("utf-8")
+            else:
+                out["block/%s.png" % key] = png_bytes(base_tile(base, family, finish))
             out["block/%s_ctm.png" % key] = png_bytes(ctm_atlas(base, family, finish))
             out["item/%s.png" % key] = png_bytes(item_icon(base, family, finish))
             if spec["emissive"]:

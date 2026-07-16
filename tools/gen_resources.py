@@ -46,6 +46,7 @@ files = {}          # relative path -> dict (written as JSON)
 lang = {}
 mineable = []
 decor_tags = {}     # family -> [block ids]
+walls = []          # wall block ids — need #minecraft:walls to connect to each other
 
 
 def tex(t):
@@ -112,6 +113,7 @@ def emit_wall(name, t, fam):
     files["assets/%s/models/block/%s_inventory.json" % (NS, name)] = {"parent": "minecraft:block/wall_inventory", "textures": textures}
     files["assets/%s/models/item/%s.json" % (NS, name)] = {"parent": "%s:block/%s_inventory" % (NS, name)}
     loot_self(name)
+    walls.append(block_id(name))
     tag_common(name, fam)
 
 
@@ -269,10 +271,17 @@ def main():
     emit = {"cube": emit_cube, "slab": emit_slab, "stairs": emit_stairs, "wall": emit_wall, "pane": emit_pane}
     for name, kind, t, fam, _mat in SPEC:
         emit[kind](name, t, fam)
+        # 1.21.4+/26.x: every item needs a client-item file at assets/<ns>/items/<id>.json
+        # pointing at its model, or the item icon renders as the missing texture.
+        files["assets/%s/items/%s.json" % (NS, name)] = {
+            "model": {"type": "minecraft:model", "model": "%s:item/%s" % (NS, name)}}
     emit_recipes()
 
     # aggregate tags
     files["data/minecraft/tags/block/mineable/pickaxe.json"] = {"replace": False, "values": sorted(mineable)}
+    # Walls only connect to neighbours in #minecraft:walls (vanilla WallBlock.connectsTo).
+    if walls:
+        files["data/minecraft/tags/block/walls.json"] = {"replace": False, "values": sorted(walls)}
     for fam, ids in decor_tags.items():
         files["data/neroland/tags/block/decor/%s.json" % fam] = {"replace": False,
             "values": [{"id": i, "required": False} for i in sorted(ids)]}
