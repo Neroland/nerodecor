@@ -5,6 +5,17 @@ All notable changes to **NeroDecor** are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.0-beta.1] - 2026-09-24
+
+EMI compatibility. No gameplay, id, tag or config change.
+
+### Added
+
+- **EMI support.** Every NeroDecor recipe uses a vanilla recipe type, which EMI shows on its own, so
+  nothing needed a plugin. The build now compiles against the community EMI Unofficial Port (Unstable),
+  the only EMI build for Minecraft 26.x, and dev clients load it with `-PwithEmi` (default runs stay
+  JEI-only). EMI stays optional.
+
 ## [0.2.0-beta.1] - 2026-09-20
 
 Minecraft **26.3** support. No gameplay, id, tag or config change.
