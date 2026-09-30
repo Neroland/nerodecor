@@ -1,8 +1,8 @@
 # NeroDecor
 
-> Part of the [Neroland](../neroland-mc-ecosystem) sci-fi Minecraft mod ecosystem, built on **Neroland Core**.
+> Part of the Neroland sci-fi Minecraft mod ecosystem, built on **Neroland Core**.
 
-**Status:** beta — version `0.1.0-beta.1`. First decorative content set (hull/panel, glass, and neon families with shape variants, connected textures, paint recolouring). See [`CHANGELOG.md`](CHANGELOG.md).
+**Status:** beta — version `0.4.0-beta.1`. Hull/panel, glass and neon families with shape variants, connected textures and paint recolouring, plus the **Luminous collection**: 17 glowing, animated, connected blocks with subtle ambient effects and sounds. See [`CHANGELOG.md`](CHANGELOG.md).
 
 ## Build targets
 

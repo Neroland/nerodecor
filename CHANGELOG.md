@@ -5,10 +5,11 @@ All notable changes to **NeroDecor** are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.4.0-beta.1] - 2026-10-01
 
 The **Luminous collection** — NeroDecor's signature set. See the wiki page
-`wiki/Luminous-Collection.md`.
+`wiki/Luminous-Collection.md`. No existing block id, tag or config key changes; existing worlds
+load unchanged.
 
 ### Added
 
@@ -41,6 +42,8 @@ The **Luminous collection** — NeroDecor's signature set. See the wiki page
 - The paint tint source is now registered only for blocks with the `COLOR` property
   (`DecorBlocks.paintableBlocks()`); the Luminous blocks keep their fixed finishes.
 - `./gradlew genAssets` now also runs `gen_luminous.py` and `gen_sounds.py`.
+- Docs: new wiki page `Luminous-Collection.md`, a Luminous section in `MODELS.md`, and the README
+  and wiki index updated to 0.4.0; both now link only within this repository.
 
 ## [0.3.0-beta.1] - 2026-09-24
 

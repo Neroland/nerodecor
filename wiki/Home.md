@@ -3,9 +3,9 @@
 Player- and contributor-facing documentation for **NeroDecor**, part of the Neroland ecosystem.
 Built on **Neroland Core**.
 
-> **Status:** beta — version `0.1.0-beta.1`. The first decorative content set has landed
-> (hull/panel, glass, and neon families with shape variants, connected textures and paint
-> recolouring). Pages will grow as features land. Keep this wiki updated alongside code changes
+> **Status:** beta — version `0.4.0-beta.1`. Hull/panel, glass and neon families with shape
+> variants, connected textures and paint recolouring, plus the Luminous collection (0.4.0).
+> Pages will grow as features land. Keep this wiki updated alongside code changes
 > (see [`../AGENTS.md`](../AGENTS.md) / [`../CLAUDE.md`](../CLAUDE.md)).
 
 ## Contents
