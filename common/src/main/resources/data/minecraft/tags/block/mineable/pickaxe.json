@@ -1,6 +1,13 @@
 {
   "replace": false,
   "values": [
+    "nerodecor:aurora_glass",
+    "nerodecor:capacitor_bank",
+    "nerodecor:circuit_plating",
+    "nerodecor:circuit_plating_slab",
+    "nerodecor:crystal_lattice",
+    "nerodecor:data_stream_panel",
+    "nerodecor:fusion_lamp",
     "nerodecor:glass_cyan",
     "nerodecor:glass_cyan_pane",
     "nerodecor:glass_cyan_slab",
@@ -10,6 +17,8 @@
     "nerodecor:glass_plasma_glass",
     "nerodecor:glass_plasma_glass_pane",
     "nerodecor:glass_plasma_glass_slab",
+    "nerodecor:holo_grid_floor",
+    "nerodecor:holo_grid_floor_slab",
     "nerodecor:hull_nero_alloy",
     "nerodecor:hull_nero_alloy_slab",
     "nerodecor:hull_nero_alloy_stairs",
@@ -22,6 +31,9 @@
     "nerodecor:hull_void_crystal_slab",
     "nerodecor:hull_void_crystal_stairs",
     "nerodecor:hull_void_crystal_wall",
+    "nerodecor:ion_vent",
+    "nerodecor:lumen_panel",
+    "nerodecor:lumen_panel_slab",
     "nerodecor:neon_blue",
     "nerodecor:neon_cyan",
     "nerodecor:neon_green",
@@ -42,6 +54,11 @@
     "nerodecor:panel_starsteel_stairs",
     "nerodecor:panel_void_crystal",
     "nerodecor:panel_void_crystal_slab",
-    "nerodecor:panel_void_crystal_stairs"
+    "nerodecor:panel_void_crystal_stairs",
+    "nerodecor:plasma_conduit",
+    "nerodecor:starfield_panel",
+    "nerodecor:starsteel_pillar",
+    "nerodecor:void_rift",
+    "nerodecor:xeno_bloom"
   ]
 }

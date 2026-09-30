@@ -88,9 +88,19 @@ public final class DecorBlocks {
         }
     }
 
-    /** Every registered block instance — for client colour/render registration. */
+    /** Every registered block instance. */
     public static Block[] allBlocks() {
         return ALL.stream().map(RegistryEntry::get).toArray(Block[]::new);
+    }
+
+    /**
+     * The blocks that carry the paintable {@code COLOR} property — the ones the paint tint source
+     * is registered for. The Luminous collection has its own fixed finishes and is left out.
+     */
+    public static Block[] paintableBlocks() {
+        return ALL.stream().map(RegistryEntry::get)
+                .filter(b -> b.defaultBlockState().hasProperty(za.co.neroland.nerodecor.content.DecorProperties.COLOR))
+                .toArray(Block[]::new);
     }
 
     // --- property presets ---------------------------------------------------
@@ -143,7 +153,7 @@ public final class DecorBlocks {
         return BlockBehaviour.Properties.of().setId(key);
     }
 
-    private static RegistryEntry<Block> track(RegistryEntry<Block> entry) {
+    static RegistryEntry<Block> track(RegistryEntry<Block> entry) {
         ALL.add(entry);
         return entry;
     }

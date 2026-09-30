@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "nerodecor:circuit_plating",
+  "result": {
+    "id": "nerodecor:circuit_plating_slab",
+    "count": 2
+  }
+}

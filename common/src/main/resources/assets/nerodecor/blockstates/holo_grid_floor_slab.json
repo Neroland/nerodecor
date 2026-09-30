@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "nerodecor:block/holo_grid_floor_slab"
+    },
+    "type=top": {
+      "model": "nerodecor:block/holo_grid_floor_slab_top"
+    },
+    "type=double": {
+      "model": "nerodecor:block/holo_grid_floor_inventory"
+    }
+  }
+}

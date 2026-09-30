@@ -1,0 +1,1060 @@
+{
+  "multipart": [
+    {
+      "when": {
+        "up": "true",
+        "down": "true",
+        "east": "true",
+        "west": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_north_f0"
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "true",
+        "east": "true",
+        "west": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_north_f1"
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "true",
+        "east": "false",
+        "west": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_north_f2"
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "true",
+        "east": "false",
+        "west": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_north_f3"
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "false",
+        "east": "true",
+        "west": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_north_f4"
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "false",
+        "east": "true",
+        "west": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_north_f5"
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "false",
+        "east": "false",
+        "west": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_north_f6"
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "false",
+        "east": "false",
+        "west": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_north_f7"
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "true",
+        "east": "true",
+        "west": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_north_f8"
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "true",
+        "east": "true",
+        "west": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_north_f9"
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "true",
+        "east": "false",
+        "west": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_north_f10"
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "true",
+        "east": "false",
+        "west": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_north_f11"
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "false",
+        "east": "true",
+        "west": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_north_f12"
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "false",
+        "east": "true",
+        "west": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_north_f13"
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "false",
+        "east": "false",
+        "west": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_north_f14"
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "false",
+        "east": "false",
+        "west": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_north_f15"
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "true",
+        "south": "true",
+        "north": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_east_f0"
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "true",
+        "south": "true",
+        "north": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_east_f1"
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "true",
+        "south": "false",
+        "north": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_east_f2"
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "true",
+        "south": "false",
+        "north": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_east_f3"
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "false",
+        "south": "true",
+        "north": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_east_f4"
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "false",
+        "south": "true",
+        "north": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_east_f5"
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "false",
+        "south": "false",
+        "north": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_east_f6"
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "false",
+        "south": "false",
+        "north": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_east_f7"
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "true",
+        "south": "true",
+        "north": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_east_f8"
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "true",
+        "south": "true",
+        "north": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_east_f9"
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "true",
+        "south": "false",
+        "north": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_east_f10"
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "true",
+        "south": "false",
+        "north": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_east_f11"
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "false",
+        "south": "true",
+        "north": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_east_f12"
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "false",
+        "south": "true",
+        "north": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_east_f13"
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "false",
+        "south": "false",
+        "north": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_east_f14"
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "false",
+        "south": "false",
+        "north": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_east_f15"
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "true",
+        "west": "true",
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_south_f0"
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "true",
+        "west": "true",
+        "east": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_south_f1"
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "true",
+        "west": "false",
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_south_f2"
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "true",
+        "west": "false",
+        "east": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_south_f3"
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "false",
+        "west": "true",
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_south_f4"
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "false",
+        "west": "true",
+        "east": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_south_f5"
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "false",
+        "west": "false",
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_south_f6"
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "false",
+        "west": "false",
+        "east": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_south_f7"
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "true",
+        "west": "true",
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_south_f8"
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "true",
+        "west": "true",
+        "east": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_south_f9"
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "true",
+        "west": "false",
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_south_f10"
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "true",
+        "west": "false",
+        "east": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_south_f11"
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "false",
+        "west": "true",
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_south_f12"
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "false",
+        "west": "true",
+        "east": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_south_f13"
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "false",
+        "west": "false",
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_south_f14"
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "false",
+        "west": "false",
+        "east": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_south_f15"
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "true",
+        "north": "true",
+        "south": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_west_f0"
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "true",
+        "north": "true",
+        "south": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_west_f1"
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "true",
+        "north": "false",
+        "south": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_west_f2"
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "true",
+        "north": "false",
+        "south": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_west_f3"
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "false",
+        "north": "true",
+        "south": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_west_f4"
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "false",
+        "north": "true",
+        "south": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_west_f5"
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "false",
+        "north": "false",
+        "south": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_west_f6"
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "false",
+        "north": "false",
+        "south": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_west_f7"
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "true",
+        "north": "true",
+        "south": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_west_f8"
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "true",
+        "north": "true",
+        "south": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_west_f9"
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "true",
+        "north": "false",
+        "south": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_west_f10"
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "true",
+        "north": "false",
+        "south": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_west_f11"
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "false",
+        "north": "true",
+        "south": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_west_f12"
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "false",
+        "north": "true",
+        "south": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_west_f13"
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "false",
+        "north": "false",
+        "south": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_west_f14"
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "false",
+        "north": "false",
+        "south": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_west_f15"
+      }
+    },
+    {
+      "when": {
+        "north": "true",
+        "south": "true",
+        "west": "true",
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_up_f0"
+      }
+    },
+    {
+      "when": {
+        "north": "true",
+        "south": "true",
+        "west": "true",
+        "east": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_up_f1"
+      }
+    },
+    {
+      "when": {
+        "north": "true",
+        "south": "true",
+        "west": "false",
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_up_f2"
+      }
+    },
+    {
+      "when": {
+        "north": "true",
+        "south": "true",
+        "west": "false",
+        "east": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_up_f3"
+      }
+    },
+    {
+      "when": {
+        "north": "true",
+        "south": "false",
+        "west": "true",
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_up_f4"
+      }
+    },
+    {
+      "when": {
+        "north": "true",
+        "south": "false",
+        "west": "true",
+        "east": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_up_f5"
+      }
+    },
+    {
+      "when": {
+        "north": "true",
+        "south": "false",
+        "west": "false",
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_up_f6"
+      }
+    },
+    {
+      "when": {
+        "north": "true",
+        "south": "false",
+        "west": "false",
+        "east": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_up_f7"
+      }
+    },
+    {
+      "when": {
+        "north": "false",
+        "south": "true",
+        "west": "true",
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_up_f8"
+      }
+    },
+    {
+      "when": {
+        "north": "false",
+        "south": "true",
+        "west": "true",
+        "east": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_up_f9"
+      }
+    },
+    {
+      "when": {
+        "north": "false",
+        "south": "true",
+        "west": "false",
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_up_f10"
+      }
+    },
+    {
+      "when": {
+        "north": "false",
+        "south": "true",
+        "west": "false",
+        "east": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_up_f11"
+      }
+    },
+    {
+      "when": {
+        "north": "false",
+        "south": "false",
+        "west": "true",
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_up_f12"
+      }
+    },
+    {
+      "when": {
+        "north": "false",
+        "south": "false",
+        "west": "true",
+        "east": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_up_f13"
+      }
+    },
+    {
+      "when": {
+        "north": "false",
+        "south": "false",
+        "west": "false",
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_up_f14"
+      }
+    },
+    {
+      "when": {
+        "north": "false",
+        "south": "false",
+        "west": "false",
+        "east": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_up_f15"
+      }
+    },
+    {
+      "when": {
+        "south": "true",
+        "north": "true",
+        "west": "true",
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_down_f0"
+      }
+    },
+    {
+      "when": {
+        "south": "true",
+        "north": "true",
+        "west": "true",
+        "east": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_down_f1"
+      }
+    },
+    {
+      "when": {
+        "south": "true",
+        "north": "true",
+        "west": "false",
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_down_f2"
+      }
+    },
+    {
+      "when": {
+        "south": "true",
+        "north": "true",
+        "west": "false",
+        "east": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_down_f3"
+      }
+    },
+    {
+      "when": {
+        "south": "true",
+        "north": "false",
+        "west": "true",
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_down_f4"
+      }
+    },
+    {
+      "when": {
+        "south": "true",
+        "north": "false",
+        "west": "true",
+        "east": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_down_f5"
+      }
+    },
+    {
+      "when": {
+        "south": "true",
+        "north": "false",
+        "west": "false",
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_down_f6"
+      }
+    },
+    {
+      "when": {
+        "south": "true",
+        "north": "false",
+        "west": "false",
+        "east": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_down_f7"
+      }
+    },
+    {
+      "when": {
+        "south": "false",
+        "north": "true",
+        "west": "true",
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_down_f8"
+      }
+    },
+    {
+      "when": {
+        "south": "false",
+        "north": "true",
+        "west": "true",
+        "east": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_down_f9"
+      }
+    },
+    {
+      "when": {
+        "south": "false",
+        "north": "true",
+        "west": "false",
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_down_f10"
+      }
+    },
+    {
+      "when": {
+        "south": "false",
+        "north": "true",
+        "west": "false",
+        "east": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_down_f11"
+      }
+    },
+    {
+      "when": {
+        "south": "false",
+        "north": "false",
+        "west": "true",
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_down_f12"
+      }
+    },
+    {
+      "when": {
+        "south": "false",
+        "north": "false",
+        "west": "true",
+        "east": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_down_f13"
+      }
+    },
+    {
+      "when": {
+        "south": "false",
+        "north": "false",
+        "west": "false",
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_down_f14"
+      }
+    },
+    {
+      "when": {
+        "south": "false",
+        "north": "false",
+        "west": "false",
+        "east": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/data_stream_panel_down_f15"
+      }
+    }
+  ]
+}

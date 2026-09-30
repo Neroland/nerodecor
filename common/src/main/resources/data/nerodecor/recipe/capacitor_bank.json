@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SRS",
+    "SGS",
+    "SRS"
+  ],
+  "key": {
+    "S": "nerodecor:panel_starsteel",
+    "R": "minecraft:redstone",
+    "G": "nerolandcore:plasma_glass_block"
+  },
+  "result": {
+    "id": "nerodecor:capacitor_bank",
+    "count": 2
+  }
+}

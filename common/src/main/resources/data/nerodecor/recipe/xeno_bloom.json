@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "minecraft:cobbled_deepslate",
+    "minecraft:cobbled_deepslate",
+    "minecraft:cobbled_deepslate",
+    "minecraft:cobbled_deepslate",
+    "minecraft:glow_berries"
+  ],
+  "result": {
+    "id": "nerodecor:xeno_bloom",
+    "count": 4
+  }
+}

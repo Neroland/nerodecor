@@ -11,7 +11,9 @@ public final class DecorRegistries {
     }
 
     public static void init() {
+        ModSounds.init();
         DecorBlocks.init();
+        LuminousBlocks.init();
         ModDataComponents.init();
         ModItems.init();
         ModItems.addToCreativeTab();

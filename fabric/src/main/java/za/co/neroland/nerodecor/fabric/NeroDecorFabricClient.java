@@ -17,6 +17,6 @@ public final class NeroDecorFabricClient implements ClientModInitializer {
     public void onInitializeClient() {
         NeroDecorCommon.LOGGER.info("[NeroDecor] Fabric client bootstrap");
         NeroDecorClient.initClient();
-        BlockColorRegistry.register(List.of(DecorColorTintSource.INSTANCE), DecorBlocks.allBlocks());
+        BlockColorRegistry.register(List.of(DecorColorTintSource.INSTANCE), DecorBlocks.paintableBlocks());
     }
 }

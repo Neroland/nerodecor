@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "nerodecor:lumen_panel",
+  "result": {
+    "id": "nerodecor:lumen_panel_slab",
+    "count": 2
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " S ",
+    "SLS",
+    " S "
+  ],
+  "key": {
+    "S": "nerodecor:panel_starsteel",
+    "L": "minecraft:redstone_lamp"
+  },
+  "result": {
+    "id": "nerodecor:fusion_lamp",
+    "count": 1
+  }
+}

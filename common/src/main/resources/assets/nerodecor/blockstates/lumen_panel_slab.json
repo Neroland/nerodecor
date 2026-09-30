@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "nerodecor:block/lumen_panel_slab"
+    },
+    "type=top": {
+      "model": "nerodecor:block/lumen_panel_slab_top"
+    },
+    "type=double": {
+      "model": "nerodecor:block/lumen_panel_inventory"
+    }
+  }
+}

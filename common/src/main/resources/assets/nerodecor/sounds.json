@@ -1,0 +1,64 @@
+{
+  "block.capacitor_bank.charge": {
+    "subtitle": "subtitles.nerodecor.block.capacitor_bank.charge",
+    "sounds": [
+      "nerodecor:block/capacitor_charge"
+    ]
+  },
+  "block.circuit.chirp": {
+    "subtitle": "subtitles.nerodecor.block.circuit.chirp",
+    "sounds": [
+      "nerodecor:block/circuit_chirp1",
+      "nerodecor:block/circuit_chirp2",
+      "nerodecor:block/circuit_chirp3"
+    ]
+  },
+  "block.crystal_lattice.chime": {
+    "subtitle": "subtitles.nerodecor.block.crystal_lattice.chime",
+    "sounds": [
+      "nerodecor:block/crystal_chime1",
+      "nerodecor:block/crystal_chime2",
+      "nerodecor:block/crystal_chime3"
+    ]
+  },
+  "block.fusion_lamp.hum": {
+    "subtitle": "subtitles.nerodecor.block.fusion_lamp.hum",
+    "sounds": [
+      "nerodecor:block/lamp_hum"
+    ]
+  },
+  "block.fusion_lamp.power_off": {
+    "subtitle": "subtitles.nerodecor.block.fusion_lamp.power_off",
+    "sounds": [
+      "nerodecor:block/lamp_power_off"
+    ]
+  },
+  "block.fusion_lamp.power_on": {
+    "subtitle": "subtitles.nerodecor.block.fusion_lamp.power_on",
+    "sounds": [
+      "nerodecor:block/lamp_power_on"
+    ]
+  },
+  "block.ion_vent.hiss": {
+    "subtitle": "subtitles.nerodecor.block.ion_vent.hiss",
+    "sounds": [
+      "nerodecor:block/vent_hiss1",
+      "nerodecor:block/vent_hiss2"
+    ]
+  },
+  "block.plasma_conduit.crackle": {
+    "subtitle": "subtitles.nerodecor.block.plasma_conduit.crackle",
+    "sounds": [
+      "nerodecor:block/conduit_crackle1",
+      "nerodecor:block/conduit_crackle2",
+      "nerodecor:block/conduit_crackle3"
+    ]
+  },
+  "block.void_rift.hum": {
+    "subtitle": "subtitles.nerodecor.block.void_rift.hum",
+    "sounds": [
+      "nerodecor:block/void_hum1",
+      "nerodecor:block/void_hum2"
+    ]
+  }
+}

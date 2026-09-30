@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "nerodecor:block/circuit_plating_slab"
+    },
+    "type=top": {
+      "model": "nerodecor:block/circuit_plating_slab_top"
+    },
+    "type=double": {
+      "model": "nerodecor:block/circuit_plating_inventory"
+    }
+  }
+}

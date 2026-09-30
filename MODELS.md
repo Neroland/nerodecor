@@ -107,3 +107,29 @@ palette manifest, into `common/src/main/resources/assets/nerodecor/textures/`:
 3. Run `python tools/gen_textures.py --multiloader`, then `--check` to confirm clean.
 4. Keep the CTM atlas layout in step with `CtmPiece`; the renderer reads
    `[FILL, EDGE, OUTER_CORNER, INNER_CORNER]` from the 2×2 atlas.
+
+## Luminous collection (0.4.0)
+
+The signature set uses a lighter-weight connected-texture technique than the CTM solver:
+**model-conditioned blockstates with baked face variants**. `ConnectedGlowBlock` keeps six
+booleans (same block on that side) up to date in `updateShape`. The multipart blockstate has one
+part per face per combination of that face's four in-plane neighbours (6 x 16 parts); each part is
+a single full-size face using `<name>_f<mask>.png`, where the mask bits (8 top, 4 bottom, 2 left,
+1 right, in texture space) say which edges carry the bezel. `FACE_EDGES` in `gen_resources.py`
+maps texture edges to world directions for each face under vanilla auto-UV.
+
+Pillars work the same way along one axis: `pos_link` / `neg_link` select a model whose side faces
+use `<name>_side_v_c<t><b>` or `_side_h_c<l><r>` with the end collar baked in.
+
+**Never draw the frame or collar as a separate partial quad over the face.** A 2px strip quad has
+different vertices from the face under it, so its interpolated depth does not match exactly and
+the two z-fight (smeared, flickering edges in game). Every quad on a given plane here is full size
+with identical vertices.
+
+Glow is a second, full-size, coplanar cutout element with `"light_emission": 15` and
+`"shade": false` sampling a `_glow` texture whose alpha is only 0 or 255. Glow variants are cleared
+under the baked bezel/collar so they never paint over it. Light-field blocks (lumen panel, aurora
+glass) put `light_emission` on the base element instead.
+
+Textures come from `tools/gen_luminous.py` (own manifest, `--check`, `--preview sheet.png`);
+sounds from `tools/gen_sounds.py`; JSON from the `LUMINOUS` spec in `tools/gen_resources.py`.

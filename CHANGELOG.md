@@ -5,6 +5,43 @@ All notable changes to **NeroDecor** are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+The **Luminous collection** — NeroDecor's signature set. See the wiki page
+`wiki/Luminous-Collection.md`.
+
+### Added
+
+- **17 new blocks** (59 total, well inside ADR-001's 200 cap): Circuit Plating, Holo-Grid Floor,
+  Starfield Panel, Data Stream Panel, Aurora Glass, Lumen Panel, Void Rift, Void Crystal Lattice,
+  Capacitor Bank, Xenobloom, Ion Vent, Plasma Conduit, Starsteel Pillar and Fusion Lamp, plus slabs
+  of Circuit Plating, Holo-Grid Floor and Lumen Panel. All model-only: no block entities, no ticking.
+- **Glow at night** via a cutout emissive model overlay (`"light_emission": 15`) so only the lit
+  details glow (traces, stars, plasma, fractures, spores), not the whole block.
+- **Model-conditioned connected textures** for the six surface blocks: six connection booleans pick,
+  per face, one of 16 texture variants with the bezel baked in on the unconnected edges, so walls,
+  floors and ceilings read as one panel. Pillars link along their axis and lose their inner
+  collars. Pure vanilla JSON on every loader, and no coplanar overlay quads (no z-fighting).
+- **Fusion Lamp**: a redstone lamp with power-up / power-down tones and a quiet hum while lit.
+- **Ambient effects** (`content/fx/AmbientFx`) from `animateTick`: star motes, void-rift portal
+  specks, conduit sparks, crystal glints, rising spores, vent wisps, lamp motes.
+- **Nine sound events** with 17 synthesised sounds (`tools/gen_sounds.py`, no samples): circuit
+  chirps, void hum, plasma crackle, crystal chimes, lamp power on/off/hum, vent hiss, capacitor
+  charge. Each sound has a shared cooldown so large builds stay quiet. Subtitles included.
+- **Config** (client-local, default on): `ambientParticles`, `ambientSounds`.
+- **Gallery**: `/nerodecor gallery` adds a Luminous row: 3×3 walls for the connected surfaces, linked
+  pillar columns, a lit Fusion Lamp and plinths for the rest.
+- Recipes for every new block (vanilla and Core ingredients, no gates) and stonecutter routes for
+  the slabs and the Starsteel Pillar. New `neroland:decor/luminous` block tag.
+- Tools: `tools/gen_luminous.py` (deterministic textures with `--check` and `--preview`) and
+  `tools/gen_sounds.py` (needs ffmpeg with libvorbis; skips gracefully without it).
+
+### Changed
+
+- The paint tint source is now registered only for blocks with the `COLOR` property
+  (`DecorBlocks.paintableBlocks()`); the Luminous blocks keep their fixed finishes.
+- `./gradlew genAssets` now also runs `gen_luminous.py` and `gen_sounds.py`.
+
 ## [0.3.0-beta.1] - 2026-09-24
 
 EMI compatibility. No gameplay, id, tag or config change.

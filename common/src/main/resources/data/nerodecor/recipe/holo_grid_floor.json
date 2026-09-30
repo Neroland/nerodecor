@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "OOO",
+    "OCO",
+    "OOO"
+  ],
+  "key": {
+    "O": "nerodecor:panel_starsteel",
+    "C": "minecraft:prismarine_crystals"
+  },
+  "result": {
+    "id": "nerodecor:holo_grid_floor",
+    "count": 8
+  }
+}

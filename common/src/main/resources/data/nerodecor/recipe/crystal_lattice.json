@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "VA",
+    "AV"
+  ],
+  "key": {
+    "V": "nerolandcore:void_crystal_shard",
+    "A": "minecraft:amethyst_shard"
+  },
+  "result": {
+    "id": "nerodecor:crystal_lattice",
+    "count": 4
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "OOO",
+    "OCO",
+    "OOO"
+  ],
+  "key": {
+    "O": "nerodecor:glass_plasma_glass",
+    "C": "minecraft:amethyst_shard"
+  },
+  "result": {
+    "id": "nerodecor:aurora_glass",
+    "count": 8
+  }
+}

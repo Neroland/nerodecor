@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "H",
+    "H"
+  ],
+  "key": {
+    "H": "nerodecor:hull_starsteel"
+  },
+  "result": {
+    "id": "nerodecor:starsteel_pillar",
+    "count": 2
+  }
+}

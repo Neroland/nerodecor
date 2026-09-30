@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": "nerodecor:circuit_plating"
+  },
+  "result": {
+    "id": "nerodecor:circuit_plating_slab",
+    "count": 6
+  }
+}

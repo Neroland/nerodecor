@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": "nerodecor:holo_grid_floor"
+  },
+  "result": {
+    "id": "nerodecor:holo_grid_floor_slab",
+    "count": 6
+  }
+}

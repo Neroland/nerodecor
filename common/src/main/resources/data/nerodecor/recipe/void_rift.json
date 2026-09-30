@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "nerolandcore:void_crystal_shard",
+    "nerolandcore:void_crystal_shard",
+    "minecraft:ender_pearl",
+    "minecraft:obsidian"
+  ],
+  "result": {
+    "id": "nerodecor:void_rift",
+    "count": 2
+  }
+}

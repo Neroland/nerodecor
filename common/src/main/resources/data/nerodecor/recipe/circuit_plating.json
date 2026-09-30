@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "OOO",
+    "OCO",
+    "OOO"
+  ],
+  "key": {
+    "O": "nerodecor:hull_nero_alloy",
+    "C": "minecraft:redstone"
+  },
+  "result": {
+    "id": "nerodecor:circuit_plating",
+    "count": 8
+  }
+}

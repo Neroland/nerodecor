@@ -1,0 +1,73 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "nerodecor:aurora_glass",
+      "required": false
+    },
+    {
+      "id": "nerodecor:capacitor_bank",
+      "required": false
+    },
+    {
+      "id": "nerodecor:circuit_plating",
+      "required": false
+    },
+    {
+      "id": "nerodecor:circuit_plating_slab",
+      "required": false
+    },
+    {
+      "id": "nerodecor:crystal_lattice",
+      "required": false
+    },
+    {
+      "id": "nerodecor:data_stream_panel",
+      "required": false
+    },
+    {
+      "id": "nerodecor:fusion_lamp",
+      "required": false
+    },
+    {
+      "id": "nerodecor:holo_grid_floor",
+      "required": false
+    },
+    {
+      "id": "nerodecor:holo_grid_floor_slab",
+      "required": false
+    },
+    {
+      "id": "nerodecor:ion_vent",
+      "required": false
+    },
+    {
+      "id": "nerodecor:lumen_panel",
+      "required": false
+    },
+    {
+      "id": "nerodecor:lumen_panel_slab",
+      "required": false
+    },
+    {
+      "id": "nerodecor:plasma_conduit",
+      "required": false
+    },
+    {
+      "id": "nerodecor:starfield_panel",
+      "required": false
+    },
+    {
+      "id": "nerodecor:starsteel_pillar",
+      "required": false
+    },
+    {
+      "id": "nerodecor:void_rift",
+      "required": false
+    },
+    {
+      "id": "nerodecor:xeno_bloom",
+      "required": false
+    }
+  ]
+}

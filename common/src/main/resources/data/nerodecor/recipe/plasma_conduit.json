@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "S",
+    "G",
+    "S"
+  ],
+  "key": {
+    "S": "nerolandcore:starsteel_ingot",
+    "G": "nerolandcore:plasma_glass_block"
+  },
+  "result": {
+    "id": "nerodecor:plasma_conduit",
+    "count": 4
+  }
+}

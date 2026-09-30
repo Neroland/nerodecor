@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "OOO",
+    "OCO",
+    "OOO"
+  ],
+  "key": {
+    "O": "minecraft:glass",
+    "C": "minecraft:glowstone"
+  },
+  "result": {
+    "id": "nerodecor:lumen_panel",
+    "count": 8
+  }
+}

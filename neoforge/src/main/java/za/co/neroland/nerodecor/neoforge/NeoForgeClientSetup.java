@@ -16,6 +16,6 @@ public final class NeoForgeClientSetup {
 
     public static void init(IEventBus modEventBus) {
         modEventBus.addListener((RegisterColorHandlersEvent.BlockTintSources event) ->
-                event.register(List.of(DecorColorTintSource.INSTANCE), DecorBlocks.allBlocks()));
+                event.register(List.of(DecorColorTintSource.INSTANCE), DecorBlocks.paintableBlocks()));
     }
 }

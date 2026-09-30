@@ -1,0 +1,40 @@
+{
+  "variants": {
+    "axis=y,neg_link=false,pos_link=false": {
+      "model": "nerodecor:block/plasma_conduit_y_c11"
+    },
+    "axis=y,neg_link=true,pos_link=false": {
+      "model": "nerodecor:block/plasma_conduit_y_c10"
+    },
+    "axis=y,neg_link=false,pos_link=true": {
+      "model": "nerodecor:block/plasma_conduit_y_c01"
+    },
+    "axis=y,neg_link=true,pos_link=true": {
+      "model": "nerodecor:block/plasma_conduit_y_c00"
+    },
+    "axis=x,neg_link=false,pos_link=false": {
+      "model": "nerodecor:block/plasma_conduit_x_c11"
+    },
+    "axis=x,neg_link=true,pos_link=false": {
+      "model": "nerodecor:block/plasma_conduit_x_c10"
+    },
+    "axis=x,neg_link=false,pos_link=true": {
+      "model": "nerodecor:block/plasma_conduit_x_c01"
+    },
+    "axis=x,neg_link=true,pos_link=true": {
+      "model": "nerodecor:block/plasma_conduit_x_c00"
+    },
+    "axis=z,neg_link=false,pos_link=false": {
+      "model": "nerodecor:block/plasma_conduit_z_c11"
+    },
+    "axis=z,neg_link=true,pos_link=false": {
+      "model": "nerodecor:block/plasma_conduit_z_c10"
+    },
+    "axis=z,neg_link=false,pos_link=true": {
+      "model": "nerodecor:block/plasma_conduit_z_c01"
+    },
+    "axis=z,neg_link=true,pos_link=true": {
+      "model": "nerodecor:block/plasma_conduit_z_c00"
+    }
+  }
+}

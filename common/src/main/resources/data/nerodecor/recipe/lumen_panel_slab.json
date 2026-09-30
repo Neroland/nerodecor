@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": "nerodecor:lumen_panel"
+  },
+  "result": {
+    "id": "nerodecor:lumen_panel_slab",
+    "count": 6
+  }
+}

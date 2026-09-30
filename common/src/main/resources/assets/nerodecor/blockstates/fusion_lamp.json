@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "nerodecor:block/fusion_lamp"
+    },
+    "lit=true": {
+      "model": "nerodecor:block/fusion_lamp_on"
+    }
+  }
+}

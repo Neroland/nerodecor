@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "OOO",
+    "OCO",
+    "OOO"
+  ],
+  "key": {
+    "O": "nerodecor:hull_void_crystal",
+    "C": "minecraft:glowstone_dust"
+  },
+  "result": {
+    "id": "nerodecor:starfield_panel",
+    "count": 8
+  }
+}

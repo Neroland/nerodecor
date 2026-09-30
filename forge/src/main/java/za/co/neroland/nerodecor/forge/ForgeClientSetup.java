@@ -15,6 +15,6 @@ public final class ForgeClientSetup {
 
     public static void init() {
         RegisterColorHandlersEvent.Block.BUS.addListener(event ->
-                event.register(List.of(DecorColorTintSource.INSTANCE), DecorBlocks.allBlocks()));
+                event.register(List.of(DecorColorTintSource.INSTANCE), DecorBlocks.paintableBlocks()));
     }
 }

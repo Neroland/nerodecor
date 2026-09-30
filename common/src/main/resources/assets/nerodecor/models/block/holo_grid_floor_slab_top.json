@@ -1,0 +1,85 @@
+{
+  "textures": {
+    "particle": "nerodecor:block/holo_grid_floor",
+    "all": "nerodecor:block/holo_grid_floor",
+    "glow": "nerodecor:block/holo_grid_floor_glow"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        8,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "faces": {
+        "north": {
+          "texture": "#all",
+          "cullface": "north"
+        },
+        "east": {
+          "texture": "#all",
+          "cullface": "east"
+        },
+        "south": {
+          "texture": "#all",
+          "cullface": "south"
+        },
+        "west": {
+          "texture": "#all",
+          "cullface": "west"
+        },
+        "up": {
+          "texture": "#all",
+          "cullface": "up"
+        },
+        "down": {
+          "texture": "#all"
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        8,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "shade": false,
+      "light_emission": 15,
+      "faces": {
+        "north": {
+          "texture": "#glow",
+          "cullface": "north"
+        },
+        "east": {
+          "texture": "#glow",
+          "cullface": "east"
+        },
+        "south": {
+          "texture": "#glow",
+          "cullface": "south"
+        },
+        "west": {
+          "texture": "#glow",
+          "cullface": "west"
+        },
+        "up": {
+          "texture": "#glow",
+          "cullface": "up"
+        },
+        "down": {
+          "texture": "#glow"
+        }
+      }
+    }
+  ]
+}
