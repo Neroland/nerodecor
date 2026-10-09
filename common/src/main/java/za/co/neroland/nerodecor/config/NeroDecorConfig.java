@@ -56,7 +56,7 @@ public final class NeroDecorConfig {
             "Send anonymous, NeroDecor-only crash reports (Sentry, EU servers): stack trace, "
                     + "mod/MC/loader/OS/Java versions, your other installed mods, and this mod's config; no IP, "
                     + "username, UUID, world data or chat; file paths are scrubbed of your account name. "
-                    + "Set false to opt out (takes effect on restart).");
+                    + "On by default; set false to opt out (takes effect on restart). See PRIVACY.md.");
 
     private NeroDecorConfig() {
     }

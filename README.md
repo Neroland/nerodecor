@@ -32,7 +32,16 @@ The build is the repo root, with a flattened cross-loader structure driven by St
 
 See [`AGENTS.md`](AGENTS.md) / [`CLAUDE.md`](CLAUDE.md) for agent and contributor context.
 
-## Planning docs
+## Privacy
 
-Design, feature and dependency docs for this mod live in the umbrella repo under
-[`../neroland-mc-ecosystem/nerodecor`](../neroland-mc-ecosystem/nerodecor).
+NeroDecor stores **no personal data**. It ships anonymous, NeroDecor-only crash reporting via
+Sentry (EU servers) that is **on by default** and **opt-out**: set `telemetryEnabled=false` in
+`config/nerodecor.properties` to switch it off. Reports carry a stack trace plus version strings
+and the loaded-mod list — never IPs, usernames, UUIDs or world data. Full disclosure:
+[`PRIVACY.md`](PRIVACY.md).
+
+## Docs
+
+- [`CHANGELOG.md`](CHANGELOG.md) — release history
+- [`wiki/`](wiki/Home.md) — player-facing documentation
+- [`PRIVACY.md`](PRIVACY.md) — privacy & crash-telemetry disclosure (POPIA / GDPR)

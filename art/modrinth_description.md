@@ -37,7 +37,9 @@ Built on **Neroland Core**, so its colour/material palette, `c:` tags, creative-
 
 ## Privacy (POPIA / GDPR)
 
-NeroDecor stores **no personal data** — its blocks are cosmetic and carry no power, inventory, or player-keyed state. Any optional crash telemetry is **anonymous and opt-out**, carrying only version strings (mod / MC / loader / OS / Java) — never IPs, usernames, UUIDs or world data.
+NeroDecor stores **no personal data** — its blocks are cosmetic and carry no power, inventory, or player-keyed state.
+
+> **Telemetry notice:** NeroDecor sends anonymous error reports (stack trace + mod/game versions only — never IPs, usernames, UUIDs, or world data) to the developers via Sentry (EU servers) so crashes can be fixed. On by default — opt out any time by setting `telemetryEnabled = false` in `config/nerodecor.properties`. Full details: [PRIVACY.md](https://github.com/Neroland/nerodecor/blob/main/PRIVACY.md).
 
 ## Why it fits the ecosystem
 
