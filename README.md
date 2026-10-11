@@ -2,7 +2,7 @@
 
 > Part of the Neroland sci-fi Minecraft mod ecosystem, built on **Neroland Core**.
 
-**Status:** beta — version `0.4.0-beta.1`. Hull/panel, glass and neon families with shape variants, connected textures and paint recolouring, plus the **Luminous collection**: 17 glowing, animated, connected blocks with subtle ambient effects and sounds. See [`CHANGELOG.md`](CHANGELOG.md).
+**Status:** beta — version `0.4.1-beta.1`. Hull/panel, glass and neon families with shape variants, connected textures and paint recolouring, plus the **Luminous collection**: 17 glowing, animated, connected blocks with subtle ambient effects and sounds. See [`CHANGELOG.md`](CHANGELOG.md).
 
 ## Build targets
 

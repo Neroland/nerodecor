@@ -5,6 +5,18 @@ All notable changes to **NeroDecor** are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.4.1-beta.1] - 2026-10-11
+
+Data-only release. No block, item or config changes; existing worlds load unchanged.
+
+### Added
+
+- **Item tags mirroring the block tags**: `neroland:decor/glass`, `decor/hull`, `decor/luminous`,
+  `decor/neon` and `decor/panel` now exist as item tags too (`"replace": false`, every entry
+  `"required": false`), listing the same block items. Mods that key on item tags (pricing, filters,
+  sorting) can now cover a whole family at once, including blocks added later. Painted variants share
+  their block's item id, so they are covered by the same tag.
+
 ## [0.4.0-beta.1] - 2026-10-01
 
 The **Luminous collection** — NeroDecor's signature set. See the wiki page
