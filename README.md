@@ -2,7 +2,7 @@
 
 > Part of the Neroland sci-fi Minecraft mod ecosystem, built on **Neroland Core**.
 
-**Status:** beta — version `0.4.1-beta.1`. Hull/panel, glass and neon families with shape variants, connected textures and paint recolouring, plus the **Luminous collection**: 17 glowing, animated, connected blocks with subtle ambient effects and sounds. See [`CHANGELOG.md`](CHANGELOG.md).
+**Status:** beta — version `0.5.0-beta.1`. Hull/panel, glass and neon families with shape variants, connected textures and paint recolouring, plus the **Luminous collection**: 17 glowing, animated, connected blocks with subtle ambient effects and sounds. See [`CHANGELOG.md`](CHANGELOG.md).
 
 ## Build targets
 
@@ -31,6 +31,14 @@ The build is the repo root, with a flattened cross-loader structure driven by St
 ```
 
 See [`AGENTS.md`](AGENTS.md) / [`CLAUDE.md`](CLAUDE.md) for agent and contributor context.
+
+## Quests
+
+NeroDecor ships a **NeroQuests** quest pack: the chapter **Architect** (`nerodecor:architect`, 11
+quests) walks a builder through the neon, panel, hull and glass families and the Luminous
+collection, ending in the *Master Architect* capstone. It appears in the quest book only when
+NeroQuests is installed; without it the pack is inert data in the jar. NeroQuests is **optional** —
+NeroDecor has no dependency on it. See [`wiki/Architect-Quests.md`](wiki/Architect-Quests.md).
 
 ## Privacy
 

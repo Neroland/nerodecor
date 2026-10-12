@@ -1,0 +1,32 @@
+{
+  "title": "quest.nerodecor.architect.power_aesthetic.title",
+  "description": "quest.nerodecor.architect.power_aesthetic.desc",
+  "icon": "nerodecor:fusion_lamp",
+  "prerequisites": [
+    "nerodecor:architect/starsteel_frame",
+    "nerodecor:architect/circuitry"
+  ],
+  "objectives": [
+    {
+      "type": "neroquests:craft_item",
+      "item": "nerodecor:fusion_lamp",
+      "count": 1
+    },
+    {
+      "type": "neroquests:craft_item",
+      "item": "nerodecor:capacitor_bank",
+      "count": 2
+    }
+  ],
+  "rewards": [
+    {
+      "type": "neroquests:xp",
+      "amount": 80
+    },
+    {
+      "type": "neroquests:currency",
+      "amount": 75
+    }
+  ],
+  "scope": "player"
+}

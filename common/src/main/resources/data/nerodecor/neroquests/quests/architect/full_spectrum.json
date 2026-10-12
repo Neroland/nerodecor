@@ -1,0 +1,81 @@
+{
+  "title": "quest.nerodecor.architect.full_spectrum.title",
+  "description": "quest.nerodecor.architect.full_spectrum.desc",
+  "icon": "nerodecor:neon_magenta",
+  "prerequisites": [
+    "nerodecor:architect/first_light"
+  ],
+  "objectives": [
+    {
+      "type": "neroquests:collect_item",
+      "item": "nerodecor:neon_white",
+      "count": 1
+    },
+    {
+      "type": "neroquests:collect_item",
+      "item": "nerodecor:neon_red",
+      "count": 1
+    },
+    {
+      "type": "neroquests:collect_item",
+      "item": "nerodecor:neon_orange",
+      "count": 1
+    },
+    {
+      "type": "neroquests:collect_item",
+      "item": "nerodecor:neon_yellow",
+      "count": 1
+    },
+    {
+      "type": "neroquests:collect_item",
+      "item": "nerodecor:neon_lime",
+      "count": 1
+    },
+    {
+      "type": "neroquests:collect_item",
+      "item": "nerodecor:neon_green",
+      "count": 1
+    },
+    {
+      "type": "neroquests:collect_item",
+      "item": "nerodecor:neon_cyan",
+      "count": 1
+    },
+    {
+      "type": "neroquests:collect_item",
+      "item": "nerodecor:neon_light_blue",
+      "count": 1
+    },
+    {
+      "type": "neroquests:collect_item",
+      "item": "nerodecor:neon_blue",
+      "count": 1
+    },
+    {
+      "type": "neroquests:collect_item",
+      "item": "nerodecor:neon_purple",
+      "count": 1
+    },
+    {
+      "type": "neroquests:collect_item",
+      "item": "nerodecor:neon_magenta",
+      "count": 1
+    },
+    {
+      "type": "neroquests:collect_item",
+      "item": "nerodecor:neon_pink",
+      "count": 1
+    }
+  ],
+  "rewards": [
+    {
+      "type": "neroquests:xp",
+      "amount": 100
+    },
+    {
+      "type": "neroquests:currency",
+      "amount": 100
+    }
+  ],
+  "scope": "player"
+}

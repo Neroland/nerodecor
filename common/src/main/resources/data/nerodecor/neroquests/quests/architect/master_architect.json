@@ -1,0 +1,40 @@
+{
+  "title": "quest.nerodecor.architect.master_architect.title",
+  "description": "quest.nerodecor.architect.master_architect.desc",
+  "icon": "minecraft:sea_lantern",
+  "prerequisites": [
+    "nerodecor:architect/power_aesthetic",
+    "nerodecor:architect/into_the_void",
+    "nerodecor:architect/xeno_garden"
+  ],
+  "objectives": [
+    {
+      "type": "neroquests:quest_complete",
+      "quest": "nerodecor:architect/power_aesthetic"
+    },
+    {
+      "type": "neroquests:quest_complete",
+      "quest": "nerodecor:architect/into_the_void"
+    },
+    {
+      "type": "neroquests:quest_complete",
+      "quest": "nerodecor:architect/xeno_garden"
+    }
+  ],
+  "rewards": [
+    {
+      "type": "neroquests:xp",
+      "amount": 150
+    },
+    {
+      "type": "neroquests:currency",
+      "amount": 200
+    },
+    {
+      "type": "neroquests:item",
+      "item": "minecraft:sea_lantern",
+      "count": 8
+    }
+  ],
+  "scope": "player"
+}

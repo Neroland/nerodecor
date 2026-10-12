@@ -1,0 +1,27 @@
+{
+  "title": "quest.nerodecor.architect.through_the_glass.title",
+  "description": "quest.nerodecor.architect.through_the_glass.desc",
+  "icon": "nerodecor:glass_cyan",
+  "prerequisites": [
+    "nerodecor:architect/hull_plating"
+  ],
+  "objectives": [
+    {
+      "type": "neroquests:craft_item",
+      "tag": "neroland:decor/glass",
+      "count": 8
+    }
+  ],
+  "rewards": [
+    {
+      "type": "neroquests:xp",
+      "amount": 50
+    },
+    {
+      "type": "neroquests:item",
+      "item": "minecraft:glass",
+      "count": 16
+    }
+  ],
+  "scope": "player"
+}

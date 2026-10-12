@@ -5,6 +5,26 @@ All notable changes to **NeroDecor** are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+## [0.5.0-beta.1] - 2026-10-11
+
+Data-only release. No block, item or config changes; existing worlds load unchanged. Still requires
+Neroland Core 1.13.0 or later (no new Core APIs are used).
+
+### Added
+
+- **NeroQuests quest pack**: ships the chapter `nerodecor:architect` "Architect" — 11 player-scope
+  quests that appear in the quest book when NeroQuests is installed and stay inert otherwise.
+  NeroDecor gains **no dependency** on NeroQuests: the pack is JSON under
+  `data/nerodecor/neroquests/` plus `chapter.`/`quest.` lang keys. Four tag quests (First Light,
+  Hull Plating, Clean Lines, Through the Glass) craft over the `neroland:decor/{neon,panel,hull,glass}`
+  item tags added in 0.4.1; the rest are named Luminous crafts (Starsteel Frame, Circuitry, Power
+  Aesthetic, Into the Void, Xeno Garden), the twelve-colour neon collection (Full Spectrum) and the
+  Master Architect capstone. Rewards are XP, credits and plain vanilla items only — no gates, hooks
+  or code; nothing new is stored about a player by this mod.
+- Wiki page `Architect-Quests.md` listing the chapter, and a Quests section in the README.
+
 ## [0.4.1-beta.1] - 2026-10-11
 
 Data-only release. No block, item or config changes; existing worlds load unchanged.

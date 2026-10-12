@@ -1,0 +1,26 @@
+{
+  "title": "quest.nerodecor.architect.clean_lines.title",
+  "description": "quest.nerodecor.architect.clean_lines.desc",
+  "icon": "nerodecor:panel_nero_alloy",
+  "prerequisites": [
+    "nerodecor:architect/first_light"
+  ],
+  "objectives": [
+    {
+      "type": "neroquests:craft_item",
+      "tag": "neroland:decor/panel",
+      "count": 16
+    }
+  ],
+  "rewards": [
+    {
+      "type": "neroquests:xp",
+      "amount": 40
+    },
+    {
+      "type": "neroquests:currency",
+      "amount": 30
+    }
+  ],
+  "scope": "player"
+}

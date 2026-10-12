@@ -1,0 +1,61 @@
+{
+  "title": "chapter.nerodecor.architect.title",
+  "icon": "nerodecor:fusion_lamp",
+  "quests": [
+    {
+      "quest": "nerodecor:architect/first_light",
+      "x": 0,
+      "y": 2
+    },
+    {
+      "quest": "nerodecor:architect/hull_plating",
+      "x": 2,
+      "y": 1
+    },
+    {
+      "quest": "nerodecor:architect/clean_lines",
+      "x": 2,
+      "y": 3
+    },
+    {
+      "quest": "nerodecor:architect/through_the_glass",
+      "x": 4,
+      "y": 0
+    },
+    {
+      "quest": "nerodecor:architect/starsteel_frame",
+      "x": 4,
+      "y": 2
+    },
+    {
+      "quest": "nerodecor:architect/circuitry",
+      "x": 4,
+      "y": 4
+    },
+    {
+      "quest": "nerodecor:architect/power_aesthetic",
+      "x": 6,
+      "y": 3
+    },
+    {
+      "quest": "nerodecor:architect/into_the_void",
+      "x": 6,
+      "y": 1
+    },
+    {
+      "quest": "nerodecor:architect/xeno_garden",
+      "x": 6,
+      "y": 5
+    },
+    {
+      "quest": "nerodecor:architect/full_spectrum",
+      "x": 8,
+      "y": 0
+    },
+    {
+      "quest": "nerodecor:architect/master_architect",
+      "x": 8,
+      "y": 3
+    }
+  ]
+}

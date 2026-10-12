@@ -1,0 +1,24 @@
+{
+  "title": "quest.nerodecor.architect.first_light.title",
+  "description": "quest.nerodecor.architect.first_light.desc",
+  "icon": "nerodecor:neon_cyan",
+  "objectives": [
+    {
+      "type": "neroquests:craft_item",
+      "tag": "neroland:decor/neon",
+      "count": 8
+    }
+  ],
+  "rewards": [
+    {
+      "type": "neroquests:xp",
+      "amount": 20
+    },
+    {
+      "type": "neroquests:item",
+      "item": "minecraft:glowstone_dust",
+      "count": 8
+    }
+  ],
+  "scope": "player"
+}

@@ -1,0 +1,26 @@
+{
+  "title": "quest.nerodecor.architect.starsteel_frame.title",
+  "description": "quest.nerodecor.architect.starsteel_frame.desc",
+  "icon": "nerodecor:starsteel_pillar",
+  "prerequisites": [
+    "nerodecor:architect/hull_plating"
+  ],
+  "objectives": [
+    {
+      "type": "neroquests:craft_item",
+      "item": "nerodecor:starsteel_pillar",
+      "count": 4
+    }
+  ],
+  "rewards": [
+    {
+      "type": "neroquests:xp",
+      "amount": 50
+    },
+    {
+      "type": "neroquests:currency",
+      "amount": 40
+    }
+  ],
+  "scope": "player"
+}

@@ -1,0 +1,32 @@
+{
+  "title": "quest.nerodecor.architect.xeno_garden.title",
+  "description": "quest.nerodecor.architect.xeno_garden.desc",
+  "icon": "nerodecor:xeno_bloom",
+  "prerequisites": [
+    "nerodecor:architect/circuitry"
+  ],
+  "objectives": [
+    {
+      "type": "neroquests:craft_item",
+      "item": "nerodecor:xeno_bloom",
+      "count": 4
+    },
+    {
+      "type": "neroquests:craft_item",
+      "item": "nerodecor:aurora_glass",
+      "count": 4
+    }
+  ],
+  "rewards": [
+    {
+      "type": "neroquests:xp",
+      "amount": 80
+    },
+    {
+      "type": "neroquests:item",
+      "item": "minecraft:bone_meal",
+      "count": 16
+    }
+  ],
+  "scope": "player"
+}
