@@ -101,14 +101,14 @@ repositories {
 
 dependencies {
     implementation minecraft.dependency("net.minecraftforge:forge:${forgeVersion}")
-    annotationProcessor 'net.minecraftforge:eventbus-validator:7.0.5'
+    annotationProcessor 'net.minecraftforge:eventbus-validator:7.0.6'
 
     // Neroland Core — the ONLY hard dependency. Plain maven artifact (not minecraft.dependency-wrapped);
     // resolved from mavenLocal() locally or the NerolandCoreGitHubPackages repo in CI (nerolandcore-forge-<mc>).
     // Core loads BEFORE NeroDecor (see mods.toml dependency, ordering = AFTER).
     implementation "za.co.neroland.nerolandcore:nerolandcore-forge-${mc}:${nerolandcoreVersion}"
 
-    implementation 'io.sentry:sentry:8.45.0'
+    implementation 'io.sentry:sentry:8.60.0'
     jarJar(group: 'io.sentry', name: 'sentry', version: '8.45.0')
 
     // JEI common API only; Forge 26.x loader artifacts are not yet published on the pinned JEI lines.
