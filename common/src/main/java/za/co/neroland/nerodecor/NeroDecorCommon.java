@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import za.co.neroland.nerodecor.config.NeroDecorConfig;
+import za.co.neroland.nerodecor.link.NeroDecorLinkModule;
 import za.co.neroland.nerodecor.registry.DecorRegistries;
 
 /**
@@ -29,5 +30,10 @@ public final class NeroDecorCommon {
 
         // Register the decor blocks, block items, data components, and creative-tab contents.
         DecorRegistries.init();
+
+        // LAST: publish the palette + block catalogue to companion clients through Core's link
+        // registry, after the blocks that catalogue describes have been declared. Read-only, and
+        // wrapped internally so a link failure can never take the mod down.
+        NeroDecorLinkModule.init();
     }
 }

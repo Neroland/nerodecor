@@ -8,8 +8,29 @@ GDPR (EU) and POPIA (South Africa).
 
 ## Player data
 
-NeroDecor stores **no personal data**. Its blocks are cosmetic and carry no power, inventory or
-player-keyed state.
+NeroDecor stores **no personal data** and **no player-attributable game data of any kind**. Its
+blocks are cosmetic and carry no power, inventory or player-keyed state.
+
+A block's paint colour is *world* state — a `COLOR` blockstate property, mirrored onto the item
+stack through the `nerodecor:color` data component — and it records nothing about who applied it,
+when, or from where. There is no owner field, no placement history, no attribution table, no
+per-player statistics and no saved data of the mod's own. NeroDecor is consequently **not**
+registered with Neroland Core's shared data-erasure hook, because there is nothing for an erasure
+request to erase.
+
+### NeroLink companion module
+
+The read-only **NeroLink companion module** (`enableLinkModule`, default on, server-authoritative)
+publishes the shared Neroland palette and the list of registered NeroDecor blocks — registry ids,
+hex colours and enum names, identical for every requester and already visible to anyone who opens
+the creative tab. The requesting player's id is used for nothing beyond a null check, the module
+has no actions, and it publishes no events. It only serves data through the separate NeroLink
+bridge mod, if a server installs it; NeroDecor itself opens no network connection for it. Set
+`enableLinkModule=false` to leave it unregistered. See the
+[Link Module wiki page](https://github.com/Neroland/nerodecor/blob/main/wiki/Link-Module.md).
+
+Apart from that public catalogue, the only data NeroDecor ever sends anywhere is the error
+reporting described below.
 
 ## What is collected (error reporting)
 
@@ -35,11 +56,14 @@ session and is **not** linked to any other session, to your account, or to your 
 ## What is NOT collected
 
 - **No IP address** is stored (`sendDefaultPii` is disabled; Sentry discards the sender IP).
-- **No username, player UUID, or machine/host name.**
-- **No world data, chat, coordinates, inventories, or gameplay analytics** of any kind.
+- **No username, player UUID, or machine/host name** (`attachServerName` is disabled and the
+  server name is cleared from every event before it is sent).
+- **No world data, chat, coordinates, inventories, block positions, paint choices, or gameplay
+  analytics** of any kind.
 - **No advertising or tracking identifiers** — there is no persistent ID linking reports from
   the same player or machine.
-- Errors caused by other mods or by Minecraft itself are filtered out and never sent.
+- Errors caused by other mods or by Minecraft itself are filtered out and never sent: an event
+  whose stack trace does not name NeroDecor's own package is dropped before sending.
 
 Reports are also de-duplicated and hard-capped at 10 events per game session.
 
@@ -76,7 +100,9 @@ Sentry acts as a data processor; see the [Sentry privacy policy](https://sentry.
 
 ## Changes to this policy
 
-If a future version of NeroDecor ever collects additional data, this page will be updated
+If a future version of NeroDecor ever collects additional data — including if the mod ever
+starts storing player-attributable game data, which would also mean registering it with Neroland
+Core's shared data-erasure hook — this page will be updated
 **before** that version is released, the change will be called out in the changelog, and the
 same opt-out (`telemetryEnabled = false`) will continue to cover everything the mod sends. The
 policy shipped alongside a given mod version describes exactly what that version does.

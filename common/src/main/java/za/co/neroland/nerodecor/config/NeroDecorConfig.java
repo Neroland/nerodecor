@@ -48,6 +48,20 @@ public final class NeroDecorConfig {
                     + "crystal chimes, conduit crackle, vent hiss, lamp hum). Client-side only; each sound is "
                     + "rate-limited so large builds stay quiet.");
 
+    // --- NeroLink companion module (server-authoritative) --------------------
+
+    /**
+     * Kill-switch for the read-only NeroLink catalogue module. With it off NeroDecor registers nothing
+     * with Core's link registry and a companion client simply reports the mod as absent; the blocks
+     * themselves are unaffected either way. Server-authoritative, because whether a server exposes a
+     * mod to companion clients is the server's call — unlike the render toggles above.
+     */
+    public static final ConfigValue<Boolean> LINK_MODULE_ENABLED = SCHEMA.bool(
+            "enableLinkModule", true, true,
+            "Publish the NeroDecor palette and block catalogue to companion clients through Neroland "
+                    + "Core's link API. Read-only public content data — no player data is involved. "
+                    + "Set false to leave the module unregistered.");
+
     // --- Telemetry (opt-out, no personal data) ------------------------------
 
     /** Anonymous NeroDecor-only crash reporting (Sentry, EU). Opt out with false. */
@@ -84,6 +98,11 @@ public final class NeroDecorConfig {
     /** Whether Luminous blocks may play their ambient sounds. */
     public static boolean ambientSoundsEnabled() {
         return AMBIENT_SOUNDS.get();
+    }
+
+    /** Whether the read-only NeroLink catalogue module is registered (server-authoritative). */
+    public static boolean linkModuleEnabled() {
+        return LINK_MODULE_ENABLED.get();
     }
 
     /** Whether anonymous crash telemetry is enabled (opt-out, default on). */

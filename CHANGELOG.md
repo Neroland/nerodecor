@@ -7,6 +7,44 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- **Block and loot drops work as intended on Minecraft 26.3** (NeoForge, Fabric and Forge). Minecraft
+  26.3 changed the loot-table file format and silently ignores the old one, so conditions and drop
+  modifiers (explosion survival, door/slab block-state checks, drop counts, random chances) were skipped.
+  The 26.3 builds now ship every loot table in the new format. 26.1.2 and 26.2 were not affected.
+
+### Added
+
+- **NeroLink companion module** — NeroDecor now registers a read-only module with Neroland Core's
+  link API, closing the loop on the Core palette/decor contracts it already consumes. Two catalogue
+  sections, both searchable via `q` and capped at 512 rows:
+  - **`palette`** — Core's shared palette export (finish id, name, sRGB value and `#RRGGBB` string,
+    channels, emissive flag and light level, source material tag) plus NeroDecor's own paint
+    vocabulary, the 16 accents and `NATURAL` of `DecorColor`. Reports
+    `finishes_registered_by_mod: 0` explicitly, since NeroDecor consumes the palette rather than
+    contributing to it.
+  - **`blocks`** — every registered block in registration order, the Luminous collection included,
+    with its shape (cube/slab/stairs/wall/pane/pillar), collection (`decor` or `luminous`),
+    paintable and emissive flags and translation key, plus CTM family and connected-texture style
+    for the paintable families.
+  - **No actions and no events, deliberately.** Everything NeroDecor can change is a block in the
+    world, and nothing about a decor block is worth a push notification. The module registers a
+    snapshot provider only, so companion clients see it as read-only.
+- New config key **`enableLinkModule`** (default `true`, server-authoritative): off = the module is
+  never registered and a companion client reports NeroDecor as absent.
+- Documented in the new [Link Module](wiki/Link-Module.md) wiki page, linked from the wiki index.
+
+### Changed
+
+- **`PRIVACY.md`** now also covers the link module and states plainly that NeroDecor stores **no
+  player-attributable game data** — a block's paint colour is world state and records nobody — which
+  is why the mod is not registered with Core's data-erasure hook.
+
+_Not included:_ Core's **display surface** API is deliberately not wired up yet. A display surface
+needs somewhere to store what was pushed to it, and NeroDecor still ships no block entities —
+holograms, signs, panels and racks arrive with those, and the surfaces come with them.
+
 ## [0.5.0-beta.1] - 2026-10-11
 
 Data-only release. No block, item or config changes; existing worlds load unchanged. Still requires

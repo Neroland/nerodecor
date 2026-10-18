@@ -52,4 +52,5 @@ and the loaded-mod list — never IPs, usernames, UUIDs or world data. Full disc
 
 - [`CHANGELOG.md`](CHANGELOG.md) — release history
 - [`wiki/`](wiki/Home.md) — player-facing documentation
+- [`wiki/Link-Module.md`](wiki/Link-Module.md) — the read-only NeroLink companion catalogue (public block and palette data only)
 - [`PRIVACY.md`](PRIVACY.md) — privacy & crash-telemetry disclosure (POPIA / GDPR)

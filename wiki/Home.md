@@ -15,6 +15,8 @@ Built on **Neroland Core**.
   and more).
 - [Architect Quests](Architect-Quests.md) — the optional NeroQuests chapter: 11 crafting and collection
   quests across every NeroDecor family.
+- [Companion Link Module](Link-Module.md) — the read-only palette and block catalogue a NeroLink
+  companion client can browse, and why it has no actions and no events.
 
 Add one page per block, item, machine, or system as it is built, and link it here. Keep this page as
 the index.
@@ -22,3 +24,5 @@ the index.
 ## See also
 
 - [Build & contributor context](../AGENTS.md)
+- [Privacy & telemetry](https://github.com/Neroland/nerodecor/blob/main/PRIVACY.md) — what the
+  opt-out crash reporting sends, and why the mod stores no player data
