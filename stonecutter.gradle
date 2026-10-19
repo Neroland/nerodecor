@@ -53,6 +53,16 @@ subprojects {
             }
             content { includeGroup 'za.co.neroland.nerolandcore' }
         }
+        // NeroLink bridge (dev-run only, see nerolink_version in gradle.properties). Same auth as Core.
+        maven {
+            name = 'NeroLinkGitHubPackages'
+            url = 'https://maven.pkg.github.com/Neroland/nerolink'
+            credentials {
+                username = providers.gradleProperty('gpr.user').orElse(providers.environmentVariable('GITHUB_ACTOR')).getOrNull()
+                password = providers.gradleProperty('gpr.key').orElse(providers.environmentVariable('GITHUB_TOKEN')).getOrNull()
+            }
+            content { includeGroup 'za.co.neroland.nerolink' }
+        }
         mavenCentral()
         maven { url 'https://maven.fabricmc.net/' }
         maven { url 'https://maven.neoforged.net/releases/' }

@@ -50,7 +50,7 @@ NeroDecor stores **no personal data** — its blocks are cosmetic and carry no p
 
 ## Requirements & compatibility
 
-- **Requires [Neroland Core](https://modrinth.com/mod/nerolandcore)** — install it alongside NeroDecor (it loads first); NeroDecor draws its palette, creative tabs, config and progression rules from Core.
+- **Requires [Neroland Core](https://modrinth.com/mod/nerolandcore)** — install it alongside NeroDecor (it loads first); NeroDecor draws its palette, config and progression rules from Core.
 - Conventional `c:` tags mediate all external compatibility, so Create, AE2, Mekanism, Ad Astra and Energized Power share NeroDecor's material palette as the 26.x ecosystem fills in — no hard dependency on any of them.
 - **Modpacks are allowed and encouraged** — any platform, no need to ask. Use the official files and credit *NeroDecor by Neroland* with links to the [CurseForge page](https://www.curseforge.com/minecraft/mc-mods/nerodecor) and the [GitHub repository](https://github.com/Neroland/nerodecor). Full terms: [LICENSE](https://github.com/Neroland/nerodecor/blob/main/LICENSE).
 

@@ -13,6 +13,8 @@ def mc = stonecutter.current.version
 def forgeVersion = project.findProperty("forge_version_${mc}")
 def jeiVersion = project.findProperty("jei_version_${mc}")
 def emiFile = project.findProperty("emi_file_neoforge_${mc}")
+// NeroLink bridge for dev runs only (never compiled against or published; skipped in CI and with -PnoNeroLink).
+def nerolinkVersion = (System.getenv('CI') || project.hasProperty('noNeroLink')) ? null : project.findProperty('nerolink_version')
 def nerolandcoreVersion = project.findProperty('nerolandcore_version')
 
 if (!forgeVersion) {
@@ -107,6 +109,12 @@ dependencies {
     // resolved from mavenLocal() locally or the NerolandCoreGitHubPackages repo in CI (nerolandcore-forge-<mc>).
     // Core loads BEFORE NeroDecor (see mods.toml dependency, ordering = AFTER).
     implementation "za.co.neroland.nerolandcore:nerolandcore-forge-${mc}:${nerolandcoreVersion}"
+
+    // NeroLink bridge in the dev client/server, so the companion app can pair with a dev world and read
+    // NeroDecor's link module. runtimeOnly: NeroDecor never references NeroLink classes.
+    if (nerolinkVersion) {
+        runtimeOnly "za.co.neroland.nerolink:nerolink-forge-${mc}:${nerolinkVersion}"
+    }
 
     implementation 'io.sentry:sentry:8.60.0'
     jarJar(group: 'io.sentry', name: 'sentry', version: '8.45.0')

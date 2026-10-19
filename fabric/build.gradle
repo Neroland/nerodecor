@@ -12,6 +12,8 @@ def mc = stonecutter.current.version
 def fabricApi = project.findProperty("fabric_api_version_${mc}")
 def jeiVersion = project.findProperty("jei_version_${mc}")
 def emiFile = project.findProperty("emi_file_fabric_${mc}")
+// NeroLink bridge for dev runs only (never compiled against or published; skipped in CI and with -PnoNeroLink).
+def nerolinkVersion = (System.getenv('CI') || project.hasProperty('noNeroLink')) ? null : project.findProperty('nerolink_version')
 def nerolandcoreVersion = project.findProperty('nerolandcore_version')
 
 // This node's projectDir is <loader>/versions/<v>; the authoritative loader source +
@@ -71,6 +73,12 @@ dependencies {
     // fabric.mod.json. Resolved from mavenLocal() locally or GitHub Packages in CI. Core loads BEFORE
     // NeroDecor (see fabric.mod.json depends).
     implementation "za.co.neroland.nerolandcore:nerolandcore-fabric-${mc}:${nerolandcoreVersion}"
+
+    // NeroLink bridge in the dev client/server, so the companion app can pair with a dev world and read
+    // NeroDecor's link module. runtimeOnly: NeroDecor never references NeroLink classes.
+    if (nerolinkVersion) {
+        runtimeOnly "za.co.neroland.nerolink:nerolink-fabric-${mc}:${nerolinkVersion}"
+    }
 
     // Sentry SDK (telemetry/NeroDecorTelemetry): compile against it + embed it as a jar-in-jar so the
     // shipped Fabric jar carries it. Counterpart to the NeoForge JarJar bundling.

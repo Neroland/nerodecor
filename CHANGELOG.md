@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- **NeroDecor now has its own creative tab.** Its blocks no longer appear in Core's "Neroland Decor"
+  tab; they are listed in a dedicated NeroDecor tab in the same order.
+
 ### Fixed
 
 - **Block and loot drops work as intended on Minecraft 26.3** (NeoForge, Fabric and Forge). Minecraft

@@ -3,7 +3,7 @@ package za.co.neroland.nerodecor.registry;
 /**
  * Aggregates NeroDecor's cross-loader registrations, called once from
  * {@code NeroDecorCommon.init()}. Order matters on the eager (Fabric) loader: blocks before
- * their block items; the creative-tab contribution runs last.
+ * their block items; the creative tab registers last.
  */
 public final class DecorRegistries {
 
@@ -16,6 +16,6 @@ public final class DecorRegistries {
         LuminousBlocks.init();
         ModDataComponents.init();
         ModItems.init();
-        ModItems.addToCreativeTab();
+        ModCreativeTab.init();
     }
 }
