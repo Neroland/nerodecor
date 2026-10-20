@@ -7,17 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Changed
+## [0.6.0-beta.1] - 2026-10-20
 
-- **NeroDecor now has its own creative tab.** Its blocks no longer appear in Core's "Neroland Decor"
-  tab; they are listed in a dedicated NeroDecor tab in the same order.
-
-### Fixed
-
-- **Block and loot drops work as intended on Minecraft 26.3** (NeoForge, Fabric and Forge). Minecraft
-  26.3 changed the loot-table file format and silently ignores the old one, so conditions and drop
-  modifiers (explosion survival, door/slab block-state checks, drop counts, random chances) were skipped.
-  The 26.3 builds now ship every loot table in the new format. 26.1.2 and 26.2 were not affected.
+Adds a read-only NeroLink companion module, gives NeroDecor its own creative tab and fixes drops on
+Minecraft 26.3. Existing worlds load unchanged. **Now requires Neroland Core 1.15.0 or later** (was
+1.13.0).
 
 ### Added
 
@@ -39,12 +33,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - New config key **`enableLinkModule`** (default `true`, server-authoritative): off = the module is
   never registered and a companion client reports NeroDecor as absent.
 - Documented in the new [Link Module](wiki/Link-Module.md) wiki page, linked from the wiki index.
+- **Item highlights**: every NeroDecor block is now in Neroland Core's `neroland:highlight/materials`
+  item tag, so its inventory slot gets Core's materials border like other Nero building materials.
 
 ### Changed
 
+- **NeroDecor now has its own creative tab.** Its blocks no longer appear in Core's "Neroland Decor"
+  tab; they are listed in a dedicated NeroDecor tab in the same order.
 - **`PRIVACY.md`** now also covers the link module and states plainly that NeroDecor stores **no
   player-attributable game data** — a block's paint colour is world state and records nobody — which
   is why the mod is not registered with Core's data-erasure hook.
+
+### Fixed
+
+- **Block and loot drops work as intended on Minecraft 26.3** (NeoForge, Fabric and Forge). Minecraft
+  26.3 changed the loot-table file format and silently ignores the old one, so conditions and drop
+  modifiers (explosion survival, door/slab block-state checks, drop counts, random chances) were skipped.
+  The 26.3 builds now ship every loot table in the new format. 26.1.2 and 26.2 were not affected.
 
 _Not included:_ Core's **display surface** API is deliberately not wired up yet. A display surface
 needs somewhere to store what was pushed to it, and NeroDecor still ships no block entities —
