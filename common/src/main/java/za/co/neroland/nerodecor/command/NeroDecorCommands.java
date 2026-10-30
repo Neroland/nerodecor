@@ -80,7 +80,11 @@ public final class NeroDecorCommands {
             source.sendFailure(Component.literal("The NeroDecor gallery is creative-only."));
             return 0;
         }
+        //? if >=1.21.6 {
         ServerLevel level = player.level();
+        //?} else {
+        /*ServerLevel level = player.serverLevel();
+        *///?}
         BlockPos origin = player.blockPosition();
         List<Block> blocks = decorBlocks();
         int cols = Math.max(1, (int) Math.ceil(Math.sqrt(blocks.size())));
@@ -122,7 +126,11 @@ public final class NeroDecorCommands {
             source.sendFailure(Component.literal("Run this as a player."));
             return 0;
         }
+        //? if >=1.21.6 {
         ServerLevel level = player.level();
+        //?} else {
+        /*ServerLevel level = player.serverLevel();
+        *///?}
         BlockPos origin = player.blockPosition();
         List<Block> blocks = decorBlocks();
         int cols = Math.max(1, (int) Math.ceil(Math.sqrt(blocks.size())));

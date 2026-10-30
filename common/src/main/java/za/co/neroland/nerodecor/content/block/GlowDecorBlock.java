@@ -48,10 +48,17 @@ public class GlowDecorBlock extends Block {
         return glassy ? 1.0F : super.getShadeBrightness(state, level, pos);
     }
 
+    //? if >=1.21.2 {
     @Override
     protected boolean propagatesSkylightDown(BlockState state) {
         return glassy || super.propagatesSkylightDown(state);
     }
+    //?} else {
+    /*@Override
+    protected boolean propagatesSkylightDown(BlockState state, BlockGetter level, BlockPos pos) {
+        return glassy || super.propagatesSkylightDown(state, level, pos);
+    }
+    *///?}
 
     @Override
     protected VoxelShape getVisualShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {

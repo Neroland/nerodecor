@@ -26,7 +26,7 @@ def emiFile = project.findProperty("emi_file_fabric_${mc}")
 // NeroLink bridge for dev runs only (never compiled against or published; skipped in CI and with -PnoNeroLink).
 // NeroLink has no 1.21.x builds, so those cells skip it.
 def nerolinkVersion = (obfuscated || System.getenv('CI') || project.hasProperty('noNeroLink')) ? null : project.findProperty('nerolink_version')
-def nerolandcoreVersion = project.findProperty("nerolandcore_version_${mc}") ?: project.findProperty('nerolandcore_version')
+def nerolandcoreVersion = project.findProperty('nerolandcore_version')
 
 // This node's projectDir is <loader>/versions/<v>; the authoritative loader source +
 // resources live in the BRANCH root (fabric/). Resolve branch-root paths via the parent.

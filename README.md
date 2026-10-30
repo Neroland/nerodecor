@@ -2,13 +2,13 @@
 
 > Part of the Neroland sci-fi Minecraft mod ecosystem, built on **Neroland Core**.
 
-**Status:** beta — version `0.6.0-beta.1`. Hull/panel, glass and neon families with shape variants, connected textures and paint recolouring, plus the **Luminous collection**: 17 glowing, animated, connected blocks with subtle ambient effects and sounds. See [`CHANGELOG.md`](CHANGELOG.md).
+**Status:** beta — version `0.7.0-beta.1`. Hull/panel, glass and neon families with shape variants, connected textures and paint recolouring, plus the **Luminous collection**: 17 glowing, animated, connected blocks with subtle ambient effects and sounds. See [`CHANGELOG.md`](CHANGELOG.md).
 
 ## Build targets
 
-- **Minecraft:** 26.1.2, 26.2 and 26.3
-- **Loaders:** NeoForge, MinecraftForge/Forge, Fabric (the "9 cells")
-- **Java:** 25
+- **Minecraft:** 1.21.1, 1.21.4, 1.21.5, 1.21.8 (also 1.21.7), 1.21.10 (also 1.21.9), 1.21.11, 26.1.2, 26.2 and 26.3
+- **Loaders:** NeoForge, MinecraftForge/Forge, Fabric (the "27 cells")
+- **Java:** 21 for the 1.21.x builds, 25 for 26.x
 - Mod id: `nerodecor` · package `za.co.neroland.nerodecor`
 
 ## Layout
@@ -27,8 +27,11 @@ The build is the repo root, with a flattened cross-loader structure driven by St
 ./gradlew :fabric:26.2:build          # one cell
 ./gradlew :neoforge:26.1.2:build :neoforge:26.2:build :neoforge:26.3:build \
           :forge:26.1.2:build :forge:26.2:build :forge:26.3:build \
-          :fabric:26.1.2:build :fabric:26.2:build :fabric:26.3:build   # all nine
+          :fabric:26.1.2:build :fabric:26.2:build :fabric:26.3:build   # the 26.x cells
 ```
+
+The 1.21.x cells are `:<loader>:1.21.1`, `:1.21.4`, `:1.21.5`, `:1.21.8`, `:1.21.10` and `:1.21.11`
+(see `mc_versions` in `gradle.properties`; `.github/workflows/publish.yml` lists all 27).
 
 See [`AGENTS.md`](AGENTS.md) / [`CLAUDE.md`](CLAUDE.md) for agent and contributor context.
 

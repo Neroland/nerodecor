@@ -16,7 +16,11 @@ public final class NeoForgePlatformHelper implements IPlatformHelper {
 
     @Override
     public boolean isDevelopmentEnvironment() {
+        //? if >=1.21.9 {
         return !FMLEnvironment.isProduction();
+        //?} else {
+        /*return !FMLEnvironment.production;
+        *///?}
     }
 
     @Override
@@ -26,7 +30,11 @@ public final class NeoForgePlatformHelper implements IPlatformHelper {
 
     @Override
     public boolean isClient() {
+        //? if >=1.21.9 {
         return FMLEnvironment.getDist() == Dist.CLIENT;
+        //?} else {
+        /*return FMLEnvironment.dist == Dist.CLIENT;
+        *///?}
     }
 
     @Override

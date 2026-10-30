@@ -18,7 +18,7 @@ def emiFile = project.findProperty("emi_file_neoforge_${mc}")
 // NeroLink bridge for dev runs only (never compiled against or published; skipped in CI and with -PnoNeroLink).
 // NeroLink has no 1.21.x builds, so those cells skip it.
 def nerolinkVersion = (mc.startsWith('1.') || System.getenv('CI') || project.hasProperty('noNeroLink')) ? null : project.findProperty('nerolink_version')
-def nerolandcoreVersion = project.findProperty("nerolandcore_version_${mc}") ?: project.findProperty('nerolandcore_version')
+def nerolandcoreVersion = project.findProperty('nerolandcore_version')
 // Minecraft range: 1.21.x cells are bounded to their API line (gradle.properties); 26.x keep [mc,).
 def mcCeiling = project.findProperty("mc_ceiling_${mc}")
 def mcFloor = project.findProperty("mc_floor_${mc}") ?: mc

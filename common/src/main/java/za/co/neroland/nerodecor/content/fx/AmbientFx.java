@@ -55,7 +55,12 @@ public final class AmbientFx {
 
     private static final Map<SoundEvent, Long> LAST_PLAYED = new HashMap<>();
     private static final double FACE = 0.5625D;
+    //? if >=1.21.2 {
     private static final ParticleOptions LILAC_GLINT = new DustParticleOptions(0xC8A6FF, 0.7F);
+    //?} else {
+    /*private static final ParticleOptions LILAC_GLINT =
+            new DustParticleOptions(new org.joml.Vector3f(0xC8 / 255F, 0xA6 / 255F, 0xFF / 255F), 0.7F);
+    *///?}
 
     private final Motes motes;
     private final int moteOdds;
@@ -128,7 +133,11 @@ public final class AmbientFx {
             }
             case VENT_PLUME -> {
                 BlockPos above = pos.above();
+                //? if >=1.21.2 {
                 if (!level.getBlockState(above).isSolidRender()) {
+                //?} else {
+                /*if (!level.getBlockState(above).isSolidRender(level, above)) {
+                *///?}
                     double x = pos.getX() + 0.2D + random.nextDouble() * 0.6D;
                     double z = pos.getZ() + 0.2D + random.nextDouble() * 0.6D;
                     level.addParticle(ParticleTypes.WHITE_SMOKE, x, pos.getY() + 1.02D, z,
@@ -159,7 +168,11 @@ public final class AmbientFx {
     @Nullable
     private static Direction exposedFace(Level level, BlockPos pos, RandomSource random) {
         Direction d = Direction.getRandom(random);
+        //? if >=1.21.2 {
         return level.getBlockState(pos.relative(d)).isSolidRender() ? null : d;
+        //?} else {
+        /*return level.getBlockState(pos.relative(d)).isSolidRender(level, pos.relative(d)) ? null : d;
+        *///?}
     }
 
     private static void faceParticle(Level level, BlockPos pos, Direction d, RandomSource random,

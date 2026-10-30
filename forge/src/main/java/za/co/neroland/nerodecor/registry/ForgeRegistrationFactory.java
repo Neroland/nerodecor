@@ -8,7 +8,11 @@ import java.util.function.Supplier;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
+//? if >=1.21.6 {
 import net.minecraftforge.eventbus.api.bus.BusGroup;
+//?} else {
+/*import net.minecraftforge.eventbus.api.IEventBus;
+*///?}
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -17,7 +21,11 @@ public final class ForgeRegistrationFactory implements RegistrationProvider.Fact
 
     private static final List<DeferredRegister<?>> REGISTERS = new ArrayList<>();
 
+    //? if >=1.21.6 {
     public static void registerAll(BusGroup modBusGroup) {
+    //?} else {
+    /*public static void registerAll(IEventBus modBusGroup) {
+    *///?}
         REGISTERS.forEach(register -> register.register(modBusGroup));
     }
 

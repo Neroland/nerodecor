@@ -143,6 +143,26 @@ subprojects {
             def outDir = node.file(outRel)
             // Mechanical renames that apply to this node (see legacyRenames below), in order.
             def renames = rootProject.ext.legacyRenames.findAll { sc.eval(sc.current.version, '<' + it.below) }
+            // Preprocess one shared source tree (//? blocks + mechanical renames) into a node-local copy.
+            def processTree = { File srcRoot, String dstRel ->
+                def dstRoot = node.file(dstRel)
+                node.delete(dstRoot)
+                srcRoot.eachFileRecurse(groovy.io.FileType.FILES) { f ->
+                    def rel = srcRoot.toPath().relativize(f.toPath()).toString().replace('\\', '/')
+                    def dst = new File(dstRoot, rel)
+                    if (f.name.endsWith('.java') && f.getText('UTF-8').contains('//?')) {
+                        sc.process(f, "${dstRel}/${rel}")
+                    } else {
+                        dst.parentFile.mkdirs()
+                        dst.bytes = f.bytes
+                    }
+                    if (f.name.endsWith('.java') && !renames.isEmpty()) {
+                        def text = dst.getText('UTF-8')
+                        renames.each { r -> text = text.replaceAll(r.from, r.to) }
+                        dst.setText(text, 'UTF-8')
+                    }
+                }
+            }
             def processCommon = node.tasks.register('stonecutterProcessCommon') {
                 group = 'stonecutter'
                 description = 'Preprocesses the shared common/ Java source for this Minecraft version.'
@@ -151,22 +171,7 @@ subprojects {
                 inputs.property('renames', renames.collect { "${it.from}->${it.to}" }.join('|'))
                 outputs.dir(outDir)
                 doLast {
-                    node.delete(outDir)
-                    raw.eachFileRecurse(groovy.io.FileType.FILES) { f ->
-                        def rel = raw.toPath().relativize(f.toPath()).toString().replace('\\', '/')
-                        def dst = new File(outDir, rel)
-                        if (f.name.endsWith('.java') && f.getText('UTF-8').contains('//?')) {
-                            sc.process(f, "${outRel}/${rel}")
-                        } else {
-                            dst.parentFile.mkdirs()
-                            dst.bytes = f.bytes
-                        }
-                        if (f.name.endsWith('.java') && !renames.isEmpty()) {
-                            def text = dst.getText('UTF-8')
-                            renames.each { r -> text = text.replaceAll(r.from, r.to) }
-                            dst.setText(text, 'UTF-8')
-                        }
-                    }
+                    processTree(raw, outRel)
                 }
             }
             // The loader src/ trees are preprocessed by Stonecutter's own stonecutterGenerate task; apply the same
@@ -196,6 +201,32 @@ subprojects {
                     return node.files(outDir).builtBy(processCommon)
                 }
                 return scGenerate != null ? node.files(it).builtBy(scGenerate) : it
+            }
+            // The shared unit tests (common/src/test/java, wired into a node's test source set by its loader
+            // build script) are written against the same 26.x source state, so they get the same treatment.
+            def rawTest = new File("${rootProject.projectDir}/common/src/test/java").canonicalFile
+            def testSet = node.sourceSets.findByName('test')
+            if (testSet != null && rawTest.isDirectory() && testSet.java.srcDirs.any { it.canonicalFile == rawTest }) {
+                def testOutRel = 'build/generated/stonecutter-common/test-java'
+                def processCommonTest = node.tasks.register('stonecutterProcessCommonTest') {
+                    group = 'stonecutter'
+                    description = 'Preprocesses the shared common/ unit-test source for this Minecraft version.'
+                    inputs.dir(rawTest)
+                    inputs.property('mc', sc.current.version)
+                    inputs.property('renames', renames.collect { "${it.from}->${it.to}" }.join('|'))
+                    outputs.dir(node.file(testOutRel))
+                    doLast {
+                        processTree(rawTest, testOutRel)
+                    }
+                }
+                // As for main: keep Stonecutter's own generated test dir wired to the task that produces it.
+                def scGenerateTest = node.tasks.findByName('stonecutterGenerateTest')
+                testSet.java.srcDirs = testSet.java.srcDirs.collect {
+                    if (it.canonicalFile == rawTest) {
+                        return node.files(node.file(testOutRel)).builtBy(processCommonTest)
+                    }
+                    return scGenerateTest != null ? node.files(it).builtBy(scGenerateTest) : it
+                }
             }
         }
     }

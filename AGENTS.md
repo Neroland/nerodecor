@@ -9,9 +9,11 @@
   shared content under `common/` and wire it through each loader entry point.
 - Mod id: **`nerodecor`** (matches the registry namespace + every loader manifest). Package root:
   `za.co.neroland.nerodecor`. Author: **Neroland**.
-- Version: **0.6.0-beta.1**.
-- Targets **MC 26.1.2, 26.2 AND 26.3** on **NeoForge, MinecraftForge/Forge, and Fabric** → the **"9 cells"**.
-  **Java 25.** Mappings = official Mojang names (26.x ships de-obfuscated; no Parchment).
+- Version: **0.7.0-beta.1**.
+- Targets **MC 1.21.1, 1.21.4, 1.21.5, 1.21.8, 1.21.10, 1.21.11, 26.1.2, 26.2 AND 26.3** on **NeoForge,
+  MinecraftForge/Forge, and Fabric** → **27 cells**. Source is written for 26.x; older lines use `//?` blocks and
+  the `legacyRenames` list in `stonecutter.gradle`. **Java 25** for 26.x, **Java 21** for 1.21.x. Mappings =
+  official Mojang names (26.x ships de-obfuscated; 1.21.x Fabric uses Loom's Mojang mappings; no Parchment).
 
 ## Working rules
 

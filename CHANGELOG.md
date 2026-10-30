@@ -7,20 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.7.0-beta.1] - 2026-10-30
+## [0.7.0-beta.2] - 2026-10-30
 
-Starts NeroDecor's Minecraft 1.21.x builds and fixes recipe-book unlocks. Existing worlds load
-unchanged. **The 1.21.x builds require Neroland Core 1.17.0 or later**, the first Core release with
-1.21.x builds. The 26.x builds still require Core 1.15.0 or later.
+Adds Minecraft 1.21.x builds next to the 26.x ones and fixes recipe-book unlocks. Existing worlds load
+unchanged. **Now requires Neroland Core 1.17.0 or later** (was 1.15.0).
 
 ### Added
 
-- **Minecraft 1.21.x builds (in progress).** NeroDecor is being set up to build for Minecraft 1.21.1,
-  1.21.4, 1.21.5, 1.21.8 (also runs on 1.21.7), 1.21.10 (also runs on 1.21.9) and 1.21.11 on NeoForge,
-  Fabric and Forge, next to the 26.x jars. Block paint tints, the connected glow and pillar blocks
-  and the Fusion Lamp's redstone handling have versions for the older Minecraft APIs, and on 1.21.1
-  recipes are converted to that version's format at build time. The 1.21.x builds need Neroland Core
-  with 1.21.x support. They do not compile yet, and nothing changes on 26.x.
+- **Minecraft 1.21.x builds.** NeroDecor now also builds for Minecraft 1.21.1, 1.21.4, 1.21.5, 1.21.8 (also
+  runs on 1.21.7), 1.21.10 (also runs on 1.21.9) and 1.21.11, on NeoForge, Fabric and Forge, next to the 26.1.2,
+  26.2 and 26.3 jars. The 1.21.x jars need Java 21. Every block, paint tint, connected texture, ambient effect
+  and the `/nerodecor gallery` command is available on every version; nothing is left out. On 1.21.1, recipes
+  are converted to that version's format when the mod is built. Nothing changes on 26.x. The 1.21.x builds
+  have not been tested in a live game yet.
+
+### Changed
+
+- Now requires Neroland Core 1.17.0 or later, the first Core release with Minecraft 1.21.x builds. This applies
+  to every build, 26.x included.
 
 ### Fixed
 

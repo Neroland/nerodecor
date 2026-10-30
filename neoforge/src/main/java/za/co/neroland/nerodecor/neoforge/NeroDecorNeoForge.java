@@ -29,7 +29,11 @@ public final class NeroDecorNeoForge {
         // Showcase command (/nerodecor gallery) on the game bus.
         NeoForge.EVENT_BUS.addListener((RegisterCommandsEvent event) ->
                 NeroDecorCommands.register(event.getDispatcher()));
+        //? if >=1.21.9 {
         if (FMLEnvironment.getDist() == Dist.CLIENT) {
+        //?} else {
+        /*if (FMLEnvironment.dist == Dist.CLIENT) {
+        *///?}
             NeroDecorClient.initClient();
             NeoForgeClientSetup.init(modEventBus);
         }
