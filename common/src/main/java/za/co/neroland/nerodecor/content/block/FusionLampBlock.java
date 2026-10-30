@@ -16,7 +16,9 @@ import net.minecraft.world.level.block.RedstoneTorchBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+//? if >=1.21.2 {
 import net.minecraft.world.level.redstone.Orientation;
+//?}
 
 import za.co.neroland.nerodecor.content.fx.AmbientFx;
 
@@ -48,9 +50,16 @@ public class FusionLampBlock extends Block {
         return defaultBlockState().setValue(LIT, context.getLevel().hasNeighborSignal(context.getClickedPos()));
     }
 
+    // 1.21.2 replaced the neighbour position argument with a redstone Orientation.
+    //? if >=1.21.2 {
     @Override
     protected void neighborChanged(BlockState state, Level level, BlockPos pos, Block block,
                                    @Nullable Orientation orientation, boolean movedByPiston) {
+    //?} else {
+    /*@Override
+    protected void neighborChanged(BlockState state, Level level, BlockPos pos, Block block,
+                                   BlockPos neighbourPos, boolean movedByPiston) {
+    *///?}
         if (level.isClientSide()) {
             return;
         }

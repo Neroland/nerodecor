@@ -15,7 +15,12 @@ public final class NeoForgeClientSetup {
     }
 
     public static void init(IEventBus modEventBus) {
+        //? if >=26.1 {
         modEventBus.addListener((RegisterColorHandlersEvent.BlockTintSources event) ->
                 event.register(List.of(DecorColorTintSource.INSTANCE), DecorBlocks.paintableBlocks()));
+        //?} else {
+        /*modEventBus.addListener((RegisterColorHandlersEvent.Block event) ->
+                event.register(DecorColorTintSource.INSTANCE, DecorBlocks.paintableBlocks()));
+        *///?}
     }
 }

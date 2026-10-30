@@ -2,7 +2,13 @@ package za.co.neroland.nerodecor.client;
 
 import java.util.Set;
 
+//? if >=26.1 {
 import net.minecraft.client.color.block.BlockTintSource;
+//?} else {
+/*import net.minecraft.client.color.block.BlockColor;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.BlockAndTintGetter;
+*///?}
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.Property;
 
@@ -19,14 +25,21 @@ import za.co.neroland.nerodecor.content.DecorProperties;
  * <p>Client-only (the {@link BlockTintSource} type is client), so it is referenced only from
  * the loader client entry points and never loaded on a dedicated server.
  */
+// Before 26.1 block tints are a BlockColor (state + world position + tint index) rather than a BlockTintSource.
+//? if >=26.1 {
 public final class DecorColorTintSource implements BlockTintSource {
+//?} else {
+/*public final class DecorColorTintSource implements BlockColor {
+*///?}
 
     public static final DecorColorTintSource INSTANCE = new DecorColorTintSource();
 
     private DecorColorTintSource() {
     }
 
+    //? if >=26.1 {
     @Override
+    //?}
     public int color(BlockState state) {
         if (state.hasProperty(DecorProperties.COLOR)) {
             return state.getValue(DecorProperties.COLOR).tint();
@@ -34,8 +47,15 @@ public final class DecorColorTintSource implements BlockTintSource {
         return 0xFFFFFF;
     }
 
+    //? if >=26.1 {
     @Override
     public Set<Property<?>> relevantProperties() {
         return Set.of(DecorProperties.COLOR);
     }
+    //?} else {
+    /*@Override
+    public int getColor(BlockState state, BlockAndTintGetter level, BlockPos pos, int tintIndex) {
+        return color(state);
+    }
+    *///?}
 }

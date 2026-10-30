@@ -8,7 +8,11 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
+//? if >=1.21.2 {
 import net.minecraft.world.level.ScheduledTickAccess;
+//?} else {
+/*import net.minecraft.world.level.LevelAccessor;
+*///?}
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.PipeBlock;
@@ -64,10 +68,17 @@ public class ConnectedGlowBlock extends GlowDecorBlock {
         return state;
     }
 
+    // 1.21.2 reordered updateShape and added the tick-access + random arguments.
+    //? if >=1.21.2 {
     @Override
     protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess ticks, BlockPos pos,
                                      Direction directionToNeighbour, BlockPos neighbourPos, BlockState neighbourState,
                                      RandomSource random) {
+    //?} else {
+    /*@Override
+    protected BlockState updateShape(BlockState state, Direction directionToNeighbour, BlockState neighbourState,
+                                     LevelAccessor level, BlockPos pos, BlockPos neighbourPos) {
+    *///?}
         return state.setValue(BY_DIRECTION.get(directionToNeighbour), connectsTo(neighbourState));
     }
 

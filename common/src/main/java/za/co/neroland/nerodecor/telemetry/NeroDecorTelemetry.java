@@ -98,7 +98,7 @@ public final class NeroDecorTelemetry {
             options.setEnableUncaughtExceptionHandler(true);
             // Manual session lifecycle (started below, ended on shutdown); random per launch, not linked.
             options.setEnableAutoSessionTracking(false);
-            options.setBeforeSend((event, hint) -> filterAndScrub(event));
+            options.setBeforeSend((event, hint) -> ForeignMixinFailure.matches(event) ? null : filterAndScrub(event));
         });
         Sentry.configureScope(scope -> {
             scope.setTag("loader", Services.PLATFORM.getPlatformName().toLowerCase(Locale.ROOT));

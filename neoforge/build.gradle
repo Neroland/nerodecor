@@ -16,8 +16,12 @@ def neoVersion = project.findProperty("neo_version_${mc}")
 def jeiVersion = project.findProperty("jei_version_${mc}")
 def emiFile = project.findProperty("emi_file_neoforge_${mc}")
 // NeroLink bridge for dev runs only (never compiled against or published; skipped in CI and with -PnoNeroLink).
-def nerolinkVersion = (System.getenv('CI') || project.hasProperty('noNeroLink')) ? null : project.findProperty('nerolink_version')
-def nerolandcoreVersion = project.findProperty('nerolandcore_version')
+// NeroLink has no 1.21.x builds, so those cells skip it.
+def nerolinkVersion = (mc.startsWith('1.') || System.getenv('CI') || project.hasProperty('noNeroLink')) ? null : project.findProperty('nerolink_version')
+def nerolandcoreVersion = project.findProperty("nerolandcore_version_${mc}") ?: project.findProperty('nerolandcore_version')
+// Minecraft range: 1.21.x cells are bounded to their API line (gradle.properties); 26.x keep [mc,).
+def mcCeiling = project.findProperty("mc_ceiling_${mc}")
+def mcFloor = project.findProperty("mc_floor_${mc}") ?: mc
 
 // This node's projectDir is <loader>/versions/<v>; the authoritative loader source +
 // templates live in the BRANCH root (neoforge/). Resolve branch-root paths via the parent.
@@ -122,7 +126,7 @@ def generateModMetadata = tasks.register('generateModMetadata', ProcessResources
         mod_authors            : rootProject.mod_authors,
         mod_license            : rootProject.mod_license,
         mod_logo_entry         : modLogoEntry,
-        minecraft_version_range: "[${mc},)",
+        minecraft_version_range: mcCeiling ? "[${mcFloor},${mcCeiling})" : "[${mc},)",
         // Floor the required Core range at the compiled version (never a broad [1.0,2.0)) so the loader
         // refuses to run against a Core too old to have the APIs NeroDecor references.
         nerolandcore_version_range: "[${nerolandcoreVersion},2.0)",
@@ -203,7 +207,7 @@ tasks.register('ecjCheck', JavaExec) {
                 .join(File.pathSeparator)
         def srcDirs = sourceSets.main.java.srcDirs.findAll { it.exists() }.collect { it.absolutePath }
         args = [
-                '--release', '25',
+                '--release', "${project.javaRelease}",
                 '-proc:none',
                 '-d', 'none',
                 '-properties', rootProject.file('tools/ecj.prefs').absolutePath,
