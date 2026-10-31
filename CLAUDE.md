@@ -1,5 +1,7 @@
 # Project context for AI coding agents — nerodecor
 
+> Modrinth is temporarily being removed from the upload and is no longer being referenced. Avoid making references to modrinth.
+
 > This and `AGENTS.md` are kept identical; update both together.
 
 ## The mod
@@ -9,7 +11,7 @@
   shared content under `common/` and wire it through each loader entry point.
 - Mod id: **`nerodecor`** (matches the registry namespace + every loader manifest). Package root:
   `za.co.neroland.nerodecor`. Author: **Neroland**.
-- Version: **0.7.0-beta.1**.
+- Version: **0.7.1-beta.2**.
 - Targets **MC 1.21.1, 1.21.4, 1.21.5, 1.21.8, 1.21.10, 1.21.11, 26.1.2, 26.2 AND 26.3** on **NeoForge,
   MinecraftForge/Forge, and Fabric** → **27 cells**. Source is written for 26.x; older lines use `//?` blocks and
   the `legacyRenames` list in `stonecutter.gradle`. **Java 25** for 26.x, **Java 21** for 1.21.x. Mappings =
