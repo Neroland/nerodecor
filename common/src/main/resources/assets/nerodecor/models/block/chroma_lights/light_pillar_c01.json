@@ -1,0 +1,74 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "nerodecor:block/chroma_lights/light_pillar_c11",
+    "t": "nerodecor:block/chroma_lights/light_pillar_c01",
+    "g": "nerodecor:block/chroma_lights/light_pillar_glow_c01",
+    "e": "nerodecor:block/chroma_lights/light_pillar_end"
+  },
+  "elements": [
+    {
+      "from": [
+        4,
+        0,
+        4
+      ],
+      "to": [
+        12,
+        16,
+        12
+      ],
+      "faces": {
+        "north": {
+          "texture": "#t"
+        },
+        "east": {
+          "texture": "#t"
+        },
+        "south": {
+          "texture": "#t"
+        },
+        "west": {
+          "texture": "#t"
+        },
+        "down": {
+          "texture": "#e",
+          "cullface": "down"
+        }
+      }
+    },
+    {
+      "from": [
+        4,
+        0,
+        4
+      ],
+      "to": [
+        12,
+        16,
+        12
+      ],
+      "shade": false,
+      "light_emission": 15,
+      "faces": {
+        "north": {
+          "texture": "#g",
+          "tintindex": 0
+        },
+        "east": {
+          "texture": "#g",
+          "tintindex": 0
+        },
+        "south": {
+          "texture": "#g",
+          "tintindex": 0
+        },
+        "west": {
+          "texture": "#g",
+          "tintindex": 0
+        }
+      }
+    }
+  ],
+  "render_type": "minecraft:cutout"
+}

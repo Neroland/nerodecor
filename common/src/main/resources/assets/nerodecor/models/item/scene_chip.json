@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "nerodecor:item/chroma_core/scene_chip",
+    "layer1": "nerodecor:item/chroma_core/scene_chip_stripe"
+  }
+}

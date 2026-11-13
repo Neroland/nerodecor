@@ -1,0 +1,259 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "nerodecor:block/chroma_lights/neon_tube",
+    "t": "nerodecor:block/chroma_lights/neon_tube_c01",
+    "g": "nerodecor:block/chroma_lights/neon_tube_glow_c01",
+    "tt": "nerodecor:block/chroma_lights/neon_tube_c01_t",
+    "gt": "nerodecor:block/chroma_lights/neon_tube_glow_c01_t"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        1,
+        7
+      ],
+      "to": [
+        16,
+        3,
+        9
+      ],
+      "faces": {
+        "up": {
+          "texture": "#t",
+          "uv": [
+            0,
+            4,
+            16,
+            6
+          ]
+        },
+        "south": {
+          "texture": "#t",
+          "uv": [
+            0,
+            7,
+            16,
+            9
+          ]
+        },
+        "north": {
+          "texture": "#t",
+          "uv": [
+            16,
+            7,
+            0,
+            9
+          ]
+        },
+        "down": {
+          "texture": "#t",
+          "uv": [
+            0,
+            10,
+            16,
+            12
+          ]
+        },
+        "west": {
+          "texture": "#t",
+          "uv": [
+            0,
+            7,
+            2,
+            9
+          ],
+          "cullface": "west"
+        },
+        "east": {
+          "texture": "#t",
+          "uv": [
+            14,
+            7,
+            16,
+            9
+          ],
+          "cullface": "east"
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        1,
+        7
+      ],
+      "to": [
+        16,
+        3,
+        9
+      ],
+      "shade": false,
+      "light_emission": 15,
+      "faces": {
+        "up": {
+          "texture": "#g",
+          "uv": [
+            0,
+            4,
+            16,
+            6
+          ],
+          "tintindex": 0
+        },
+        "south": {
+          "texture": "#g",
+          "uv": [
+            0,
+            7,
+            16,
+            9
+          ],
+          "tintindex": 0
+        },
+        "north": {
+          "texture": "#g",
+          "uv": [
+            16,
+            7,
+            0,
+            9
+          ],
+          "tintindex": 0
+        },
+        "down": {
+          "texture": "#g",
+          "uv": [
+            0,
+            10,
+            16,
+            12
+          ],
+          "tintindex": 0
+        }
+      }
+    },
+    {
+      "from": [
+        3,
+        0,
+        7
+      ],
+      "to": [
+        5,
+        1,
+        9
+      ],
+      "faces": {
+        "north": {
+          "texture": "#t",
+          "uv": [
+            3,
+            13,
+            5,
+            14
+          ]
+        },
+        "east": {
+          "texture": "#t",
+          "uv": [
+            3,
+            13,
+            5,
+            14
+          ]
+        },
+        "south": {
+          "texture": "#t",
+          "uv": [
+            3,
+            13,
+            5,
+            14
+          ]
+        },
+        "west": {
+          "texture": "#t",
+          "uv": [
+            3,
+            13,
+            5,
+            14
+          ]
+        },
+        "down": {
+          "texture": "#t",
+          "uv": [
+            3,
+            13,
+            5,
+            14
+          ],
+          "cullface": "down"
+        }
+      }
+    },
+    {
+      "from": [
+        11,
+        0,
+        7
+      ],
+      "to": [
+        13,
+        1,
+        9
+      ],
+      "faces": {
+        "north": {
+          "texture": "#t",
+          "uv": [
+            3,
+            13,
+            5,
+            14
+          ]
+        },
+        "east": {
+          "texture": "#t",
+          "uv": [
+            3,
+            13,
+            5,
+            14
+          ]
+        },
+        "south": {
+          "texture": "#t",
+          "uv": [
+            3,
+            13,
+            5,
+            14
+          ]
+        },
+        "west": {
+          "texture": "#t",
+          "uv": [
+            3,
+            13,
+            5,
+            14
+          ]
+        },
+        "down": {
+          "texture": "#t",
+          "uv": [
+            3,
+            13,
+            5,
+            14
+          ],
+          "cullface": "down"
+        }
+      }
+    }
+  ],
+  "render_type": "minecraft:cutout"
+}

@@ -1,0 +1,106 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "nerodecor:block/chroma_lights/light_strip",
+    "bar": "nerodecor:block/chroma_lights/light_strip_c10",
+    "glow": "nerodecor:block/chroma_lights/light_strip_glow_c10"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        7
+      ],
+      "to": [
+        16,
+        1,
+        9
+      ],
+      "faces": {
+        "up": {
+          "texture": "#bar",
+          "uv": [
+            0,
+            7,
+            16,
+            9
+          ]
+        },
+        "north": {
+          "texture": "#bar",
+          "uv": [
+            16,
+            6,
+            0,
+            7
+          ]
+        },
+        "south": {
+          "texture": "#bar",
+          "uv": [
+            0,
+            9,
+            16,
+            10
+          ]
+        },
+        "west": {
+          "texture": "#bar",
+          "uv": [
+            0,
+            7,
+            2,
+            8
+          ]
+        },
+        "east": {
+          "texture": "#bar",
+          "uv": [
+            14,
+            7,
+            16,
+            8
+          ]
+        },
+        "down": {
+          "texture": "#bar",
+          "uv": [
+            0,
+            7,
+            16,
+            9
+          ],
+          "cullface": "down"
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        0,
+        7
+      ],
+      "to": [
+        16,
+        1,
+        9
+      ],
+      "shade": false,
+      "light_emission": 15,
+      "faces": {
+        "up": {
+          "texture": "#glow",
+          "uv": [
+            0,
+            7,
+            16,
+            9
+          ],
+          "tintindex": 0
+        }
+      }
+    }
+  ],
+  "render_type": "minecraft:cutout"
+}

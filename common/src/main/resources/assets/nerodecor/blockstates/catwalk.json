@@ -1,0 +1,58 @@
+{
+  "variants": {
+    "east=false,north=false,south=false,west=false": {
+      "model": "nerodecor:block/gantry/catwalk_c0"
+    },
+    "east=false,north=false,south=false,west=true": {
+      "model": "nerodecor:block/gantry/catwalk_c1"
+    },
+    "east=false,north=false,south=true,west=false": {
+      "model": "nerodecor:block/gantry/catwalk_c2"
+    },
+    "east=false,north=false,south=true,west=true": {
+      "model": "nerodecor:block/gantry/catwalk_c3"
+    },
+    "east=true,north=false,south=false,west=false": {
+      "model": "nerodecor:block/gantry/catwalk_c4"
+    },
+    "east=true,north=false,south=false,west=true": {
+      "model": "nerodecor:block/gantry/catwalk_c5"
+    },
+    "east=true,north=false,south=true,west=false": {
+      "model": "nerodecor:block/gantry/catwalk_c6"
+    },
+    "east=true,north=false,south=true,west=true": {
+      "model": "nerodecor:block/gantry/catwalk_c7"
+    },
+    "east=false,north=true,south=false,west=false": {
+      "model": "nerodecor:block/gantry/catwalk_c8"
+    },
+    "east=false,north=true,south=false,west=true": {
+      "model": "nerodecor:block/gantry/catwalk_c9"
+    },
+    "east=false,north=true,south=true,west=false": {
+      "model": "nerodecor:block/gantry/catwalk_c10"
+    },
+    "east=false,north=true,south=true,west=true": {
+      "model": "nerodecor:block/gantry/catwalk_c11"
+    },
+    "east=true,north=true,south=false,west=false": {
+      "model": "nerodecor:block/gantry/catwalk_c12"
+    },
+    "east=true,north=true,south=false,west=true": {
+      "model": "nerodecor:block/gantry/catwalk_c13"
+    },
+    "east=true,north=true,south=true,west=false": {
+      "model": "nerodecor:block/gantry/catwalk_c14"
+    },
+    "east=true,north=true,south=true,west=true": [
+      {
+        "model": "nerodecor:block/gantry/catwalk_c15",
+        "weight": 3
+      },
+      {
+        "model": "nerodecor:block/gantry/catwalk_c15_b"
+      }
+    ]
+  }
+}

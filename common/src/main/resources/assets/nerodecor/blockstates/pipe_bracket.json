@@ -1,0 +1,58 @@
+{
+  "variants": {
+    "axis=x,face=north": {
+      "model": "nerodecor:block/greebles/pipe_bracket",
+      "x": 90,
+      "y": 180
+    },
+    "axis=y,face=north": {
+      "model": "nerodecor:block/greebles/pipe_bracket_z",
+      "x": 90,
+      "y": 180
+    },
+    "axis=y,face=east": {
+      "model": "nerodecor:block/greebles/pipe_bracket_z",
+      "x": 90,
+      "y": 270
+    },
+    "axis=z,face=east": {
+      "model": "nerodecor:block/greebles/pipe_bracket",
+      "x": 90,
+      "y": 270
+    },
+    "axis=x,face=south": {
+      "model": "nerodecor:block/greebles/pipe_bracket",
+      "x": 90
+    },
+    "axis=y,face=south": {
+      "model": "nerodecor:block/greebles/pipe_bracket_z",
+      "x": 90
+    },
+    "axis=y,face=west": {
+      "model": "nerodecor:block/greebles/pipe_bracket_z",
+      "x": 90,
+      "y": 90
+    },
+    "axis=z,face=west": {
+      "model": "nerodecor:block/greebles/pipe_bracket",
+      "x": 90,
+      "y": 90
+    },
+    "axis=x,face=down": {
+      "model": "nerodecor:block/greebles/pipe_bracket"
+    },
+    "axis=z,face=down": {
+      "model": "nerodecor:block/greebles/pipe_bracket",
+      "y": 90
+    },
+    "axis=x,face=up": {
+      "model": "nerodecor:block/greebles/pipe_bracket",
+      "x": 180
+    },
+    "axis=z,face=up": {
+      "model": "nerodecor:block/greebles/pipe_bracket",
+      "x": 180,
+      "y": 90
+    }
+  }
+}

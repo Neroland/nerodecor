@@ -1,0 +1,87 @@
+{
+  "variants": {
+    "facing=north,neg_link=false,pos_link=false": {
+      "model": "nerodecor:block/gantry/gantry_ladder_c11"
+    },
+    "facing=north,neg_link=true,pos_link=false": {
+      "model": "nerodecor:block/gantry/gantry_ladder_c10"
+    },
+    "facing=north,neg_link=false,pos_link=true": {
+      "model": "nerodecor:block/gantry/gantry_ladder_c01"
+    },
+    "facing=north,neg_link=true,pos_link=true": [
+      {
+        "model": "nerodecor:block/gantry/gantry_ladder_c00"
+      },
+      {
+        "model": "nerodecor:block/gantry/gantry_ladder_c00_b"
+      }
+    ],
+    "facing=east,neg_link=false,pos_link=false": {
+      "model": "nerodecor:block/gantry/gantry_ladder_c11",
+      "y": 90
+    },
+    "facing=east,neg_link=true,pos_link=false": {
+      "model": "nerodecor:block/gantry/gantry_ladder_c10",
+      "y": 90
+    },
+    "facing=east,neg_link=false,pos_link=true": {
+      "model": "nerodecor:block/gantry/gantry_ladder_c01",
+      "y": 90
+    },
+    "facing=east,neg_link=true,pos_link=true": [
+      {
+        "model": "nerodecor:block/gantry/gantry_ladder_c00",
+        "y": 90
+      },
+      {
+        "model": "nerodecor:block/gantry/gantry_ladder_c00_b",
+        "y": 90
+      }
+    ],
+    "facing=south,neg_link=false,pos_link=false": {
+      "model": "nerodecor:block/gantry/gantry_ladder_c11",
+      "y": 180
+    },
+    "facing=south,neg_link=true,pos_link=false": {
+      "model": "nerodecor:block/gantry/gantry_ladder_c10",
+      "y": 180
+    },
+    "facing=south,neg_link=false,pos_link=true": {
+      "model": "nerodecor:block/gantry/gantry_ladder_c01",
+      "y": 180
+    },
+    "facing=south,neg_link=true,pos_link=true": [
+      {
+        "model": "nerodecor:block/gantry/gantry_ladder_c00",
+        "y": 180
+      },
+      {
+        "model": "nerodecor:block/gantry/gantry_ladder_c00_b",
+        "y": 180
+      }
+    ],
+    "facing=west,neg_link=false,pos_link=false": {
+      "model": "nerodecor:block/gantry/gantry_ladder_c11",
+      "y": 270
+    },
+    "facing=west,neg_link=true,pos_link=false": {
+      "model": "nerodecor:block/gantry/gantry_ladder_c10",
+      "y": 270
+    },
+    "facing=west,neg_link=false,pos_link=true": {
+      "model": "nerodecor:block/gantry/gantry_ladder_c01",
+      "y": 270
+    },
+    "facing=west,neg_link=true,pos_link=true": [
+      {
+        "model": "nerodecor:block/gantry/gantry_ladder_c00",
+        "y": 270
+      },
+      {
+        "model": "nerodecor:block/gantry/gantry_ladder_c00_b",
+        "y": 270
+      }
+    ]
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "nerodecor:block/conduits/coolant_tube",
+    "end": "nerodecor:block/conduits/decor_pipe_end",
+    "gh": "nerodecor:block/conduits/coolant_tube_glow",
+    "h": "nerodecor:block/conduits/coolant_tube"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        5,
+        5
+      ],
+      "to": [
+        5,
+        11,
+        11
+      ],
+      "faces": {
+        "north": {
+          "texture": "#h",
+          "uv": [
+            5,
+            5,
+            0,
+            11
+          ],
+          "tintindex": 0
+        },
+        "south": {
+          "texture": "#h",
+          "uv": [
+            0,
+            5,
+            5,
+            11
+          ],
+          "tintindex": 0
+        },
+        "down": {
+          "texture": "#h",
+          "uv": [
+            0,
+            5,
+            5,
+            11
+          ],
+          "tintindex": 0
+        },
+        "up": {
+          "texture": "#h",
+          "uv": [
+            0,
+            5,
+            5,
+            11
+          ],
+          "tintindex": 0
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        5,
+        5
+      ],
+      "to": [
+        5,
+        11,
+        11
+      ],
+      "faces": {
+        "west": {
+          "texture": "#end",
+          "uv": [
+            5,
+            5,
+            11,
+            11
+          ],
+          "cullface": "west"
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        5,
+        5
+      ],
+      "to": [
+        5,
+        11,
+        11
+      ],
+      "shade": false,
+      "light_emission": 15,
+      "faces": {
+        "north": {
+          "texture": "#gh",
+          "uv": [
+            5,
+            5,
+            0,
+            11
+          ],
+          "tintindex": 0
+        },
+        "south": {
+          "texture": "#gh",
+          "uv": [
+            0,
+            5,
+            5,
+            11
+          ],
+          "tintindex": 0
+        },
+        "down": {
+          "texture": "#gh",
+          "uv": [
+            0,
+            5,
+            5,
+            11
+          ],
+          "tintindex": 0
+        },
+        "up": {
+          "texture": "#gh",
+          "uv": [
+            0,
+            5,
+            5,
+            11
+          ],
+          "tintindex": 0
+        }
+      }
+    }
+  ],
+  "render_type": "minecraft:cutout"
+}

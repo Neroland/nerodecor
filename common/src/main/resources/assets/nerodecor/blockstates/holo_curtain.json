@@ -1,0 +1,404 @@
+{
+  "multipart": [
+    {
+      "when": {
+        "axis": "x",
+        "up": "true",
+        "down": "true",
+        "west": "true",
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/holo/holo_curtain_f0"
+      }
+    },
+    {
+      "when": {
+        "axis": "x",
+        "up": "true",
+        "down": "true",
+        "west": "true",
+        "east": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/holo/holo_curtain_f1"
+      }
+    },
+    {
+      "when": {
+        "axis": "x",
+        "up": "true",
+        "down": "true",
+        "west": "false",
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/holo/holo_curtain_f2"
+      }
+    },
+    {
+      "when": {
+        "axis": "x",
+        "up": "true",
+        "down": "true",
+        "west": "false",
+        "east": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/holo/holo_curtain_f3"
+      }
+    },
+    {
+      "when": {
+        "axis": "x",
+        "up": "true",
+        "down": "false",
+        "west": "true",
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/holo/holo_curtain_f4"
+      }
+    },
+    {
+      "when": {
+        "axis": "x",
+        "up": "true",
+        "down": "false",
+        "west": "true",
+        "east": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/holo/holo_curtain_f5"
+      }
+    },
+    {
+      "when": {
+        "axis": "x",
+        "up": "true",
+        "down": "false",
+        "west": "false",
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/holo/holo_curtain_f6"
+      }
+    },
+    {
+      "when": {
+        "axis": "x",
+        "up": "true",
+        "down": "false",
+        "west": "false",
+        "east": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/holo/holo_curtain_f7"
+      }
+    },
+    {
+      "when": {
+        "axis": "x",
+        "up": "false",
+        "down": "true",
+        "west": "true",
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/holo/holo_curtain_f8"
+      }
+    },
+    {
+      "when": {
+        "axis": "x",
+        "up": "false",
+        "down": "true",
+        "west": "true",
+        "east": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/holo/holo_curtain_f9"
+      }
+    },
+    {
+      "when": {
+        "axis": "x",
+        "up": "false",
+        "down": "true",
+        "west": "false",
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/holo/holo_curtain_f10"
+      }
+    },
+    {
+      "when": {
+        "axis": "x",
+        "up": "false",
+        "down": "true",
+        "west": "false",
+        "east": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/holo/holo_curtain_f11"
+      }
+    },
+    {
+      "when": {
+        "axis": "x",
+        "up": "false",
+        "down": "false",
+        "west": "true",
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/holo/holo_curtain_f12"
+      }
+    },
+    {
+      "when": {
+        "axis": "x",
+        "up": "false",
+        "down": "false",
+        "west": "true",
+        "east": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/holo/holo_curtain_f13"
+      }
+    },
+    {
+      "when": {
+        "axis": "x",
+        "up": "false",
+        "down": "false",
+        "west": "false",
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/holo/holo_curtain_f14"
+      }
+    },
+    {
+      "when": {
+        "axis": "x",
+        "up": "false",
+        "down": "false",
+        "west": "false",
+        "east": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/holo/holo_curtain_f15"
+      }
+    },
+    {
+      "when": {
+        "axis": "z",
+        "up": "true",
+        "down": "true",
+        "north": "true",
+        "south": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/holo/holo_curtain_f0",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "axis": "z",
+        "up": "true",
+        "down": "true",
+        "north": "true",
+        "south": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/holo/holo_curtain_f1",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "axis": "z",
+        "up": "true",
+        "down": "true",
+        "north": "false",
+        "south": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/holo/holo_curtain_f2",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "axis": "z",
+        "up": "true",
+        "down": "true",
+        "north": "false",
+        "south": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/holo/holo_curtain_f3",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "axis": "z",
+        "up": "true",
+        "down": "false",
+        "north": "true",
+        "south": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/holo/holo_curtain_f4",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "axis": "z",
+        "up": "true",
+        "down": "false",
+        "north": "true",
+        "south": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/holo/holo_curtain_f5",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "axis": "z",
+        "up": "true",
+        "down": "false",
+        "north": "false",
+        "south": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/holo/holo_curtain_f6",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "axis": "z",
+        "up": "true",
+        "down": "false",
+        "north": "false",
+        "south": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/holo/holo_curtain_f7",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "axis": "z",
+        "up": "false",
+        "down": "true",
+        "north": "true",
+        "south": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/holo/holo_curtain_f8",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "axis": "z",
+        "up": "false",
+        "down": "true",
+        "north": "true",
+        "south": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/holo/holo_curtain_f9",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "axis": "z",
+        "up": "false",
+        "down": "true",
+        "north": "false",
+        "south": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/holo/holo_curtain_f10",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "axis": "z",
+        "up": "false",
+        "down": "true",
+        "north": "false",
+        "south": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/holo/holo_curtain_f11",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "axis": "z",
+        "up": "false",
+        "down": "false",
+        "north": "true",
+        "south": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/holo/holo_curtain_f12",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "axis": "z",
+        "up": "false",
+        "down": "false",
+        "north": "true",
+        "south": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/holo/holo_curtain_f13",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "axis": "z",
+        "up": "false",
+        "down": "false",
+        "north": "false",
+        "south": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/holo/holo_curtain_f14",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "axis": "z",
+        "up": "false",
+        "down": "false",
+        "north": "false",
+        "south": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/holo/holo_curtain_f15",
+        "y": 90
+      }
+    }
+  ]
+}

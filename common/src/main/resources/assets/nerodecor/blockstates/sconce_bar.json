@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=north,vertical=true": {
+      "model": "nerodecor:block/chroma_lights/sconce_bar"
+    },
+    "facing=north,vertical=false": {
+      "model": "nerodecor:block/chroma_lights/sconce_bar_h"
+    },
+    "facing=east,vertical=true": {
+      "model": "nerodecor:block/chroma_lights/sconce_bar",
+      "y": 90
+    },
+    "facing=east,vertical=false": {
+      "model": "nerodecor:block/chroma_lights/sconce_bar_h",
+      "y": 90
+    },
+    "facing=south,vertical=true": {
+      "model": "nerodecor:block/chroma_lights/sconce_bar",
+      "y": 180
+    },
+    "facing=south,vertical=false": {
+      "model": "nerodecor:block/chroma_lights/sconce_bar_h",
+      "y": 180
+    },
+    "facing=west,vertical=true": {
+      "model": "nerodecor:block/chroma_lights/sconce_bar",
+      "y": 270
+    },
+    "facing=west,vertical=false": {
+      "model": "nerodecor:block/chroma_lights/sconce_bar_h",
+      "y": 270
+    }
+  }
+}

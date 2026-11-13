@@ -1,0 +1,164 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "nerodecor:block/greebles/maintenance_panel",
+    "face": "nerodecor:block/greebles/maintenance_panel",
+    "glow": "nerodecor:block/greebles/maintenance_panel_glow"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        2
+      ],
+      "faces": {
+        "south": {
+          "texture": "#face",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "north": {
+          "texture": "#face",
+          "uv": [
+            16,
+            0,
+            0,
+            16
+          ],
+          "cullface": "north"
+        },
+        "up": {
+          "texture": "#face",
+          "uv": [
+            0,
+            0,
+            16,
+            1.0
+          ]
+        },
+        "down": {
+          "texture": "#face",
+          "uv": [
+            0,
+            15.0,
+            16,
+            16
+          ]
+        },
+        "west": {
+          "texture": "#face",
+          "uv": [
+            0,
+            0,
+            1.0,
+            16
+          ]
+        },
+        "east": {
+          "texture": "#face",
+          "uv": [
+            15.0,
+            0,
+            16,
+            16
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        2,
+        2,
+        2
+      ],
+      "to": [
+        14,
+        14,
+        3
+      ],
+      "faces": {
+        "south": {
+          "texture": "#face",
+          "uv": [
+            2,
+            2,
+            14,
+            14
+          ]
+        },
+        "up": {
+          "texture": "#face",
+          "uv": [
+            2,
+            2,
+            14,
+            3.0
+          ]
+        },
+        "down": {
+          "texture": "#face",
+          "uv": [
+            2,
+            13.0,
+            14,
+            14
+          ]
+        },
+        "west": {
+          "texture": "#face",
+          "uv": [
+            2,
+            2,
+            3.0,
+            14
+          ]
+        },
+        "east": {
+          "texture": "#face",
+          "uv": [
+            13.0,
+            2,
+            14,
+            14
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        2,
+        2,
+        2
+      ],
+      "to": [
+        14,
+        14,
+        3
+      ],
+      "shade": false,
+      "light_emission": 15,
+      "faces": {
+        "south": {
+          "texture": "#glow",
+          "uv": [
+            2,
+            2,
+            14,
+            14
+          ]
+        }
+      }
+    }
+  ],
+  "render_type": "minecraft:cutout"
+}

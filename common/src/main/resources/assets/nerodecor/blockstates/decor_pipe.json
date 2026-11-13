@@ -1,0 +1,569 @@
+{
+  "multipart": [
+    {
+      "when": {
+        "north": "false",
+        "south": "false",
+        "west": "false",
+        "east": "false",
+        "down": "false",
+        "up": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/conduits/decor_pipe"
+      }
+    },
+    {
+      "when": {
+        "north": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/conduits/decor_pipe_arm_north"
+      }
+    },
+    {
+      "when": {
+        "OR": [
+          {
+            "north": "false",
+            "down": "false",
+            "up": "false",
+            "west": "true"
+          },
+          {
+            "north": "false",
+            "down": "false",
+            "up": "false",
+            "east": "true"
+          }
+        ]
+      },
+      "apply": {
+        "model": "nerodecor:block/conduits/decor_pipe_core_north_x"
+      }
+    },
+    {
+      "when": {
+        "OR": [
+          {
+            "north": "false",
+            "west": "false",
+            "east": "false",
+            "down": "true"
+          },
+          {
+            "north": "false",
+            "west": "false",
+            "east": "false",
+            "up": "true"
+          }
+        ]
+      },
+      "apply": {
+        "model": "nerodecor:block/conduits/decor_pipe_core_north_y"
+      }
+    },
+    {
+      "when": {
+        "OR": [
+          {
+            "north": "false",
+            "west": "true",
+            "down": "true"
+          },
+          {
+            "north": "false",
+            "west": "true",
+            "up": "true"
+          },
+          {
+            "north": "false",
+            "east": "true",
+            "down": "true"
+          },
+          {
+            "north": "false",
+            "east": "true",
+            "up": "true"
+          }
+        ]
+      },
+      "apply": {
+        "model": "nerodecor:block/conduits/decor_pipe_joint_north"
+      }
+    },
+    {
+      "when": {
+        "north": "false",
+        "south": "true",
+        "west": "false",
+        "east": "false",
+        "down": "false",
+        "up": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/conduits/decor_pipe_end_north"
+      }
+    },
+    {
+      "when": {
+        "south": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/conduits/decor_pipe_arm_south"
+      }
+    },
+    {
+      "when": {
+        "OR": [
+          {
+            "south": "false",
+            "down": "false",
+            "up": "false",
+            "west": "true"
+          },
+          {
+            "south": "false",
+            "down": "false",
+            "up": "false",
+            "east": "true"
+          }
+        ]
+      },
+      "apply": {
+        "model": "nerodecor:block/conduits/decor_pipe_core_south_x"
+      }
+    },
+    {
+      "when": {
+        "OR": [
+          {
+            "south": "false",
+            "west": "false",
+            "east": "false",
+            "down": "true"
+          },
+          {
+            "south": "false",
+            "west": "false",
+            "east": "false",
+            "up": "true"
+          }
+        ]
+      },
+      "apply": {
+        "model": "nerodecor:block/conduits/decor_pipe_core_south_y"
+      }
+    },
+    {
+      "when": {
+        "OR": [
+          {
+            "south": "false",
+            "west": "true",
+            "down": "true"
+          },
+          {
+            "south": "false",
+            "west": "true",
+            "up": "true"
+          },
+          {
+            "south": "false",
+            "east": "true",
+            "down": "true"
+          },
+          {
+            "south": "false",
+            "east": "true",
+            "up": "true"
+          }
+        ]
+      },
+      "apply": {
+        "model": "nerodecor:block/conduits/decor_pipe_joint_south"
+      }
+    },
+    {
+      "when": {
+        "north": "true",
+        "south": "false",
+        "west": "false",
+        "east": "false",
+        "down": "false",
+        "up": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/conduits/decor_pipe_end_south"
+      }
+    },
+    {
+      "when": {
+        "west": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/conduits/decor_pipe_arm_west"
+      }
+    },
+    {
+      "when": {
+        "OR": [
+          {
+            "west": "false",
+            "north": "false",
+            "south": "false",
+            "down": "true"
+          },
+          {
+            "west": "false",
+            "north": "false",
+            "south": "false",
+            "up": "true"
+          }
+        ]
+      },
+      "apply": {
+        "model": "nerodecor:block/conduits/decor_pipe_core_west_y"
+      }
+    },
+    {
+      "when": {
+        "OR": [
+          {
+            "west": "false",
+            "down": "false",
+            "up": "false",
+            "north": "true"
+          },
+          {
+            "west": "false",
+            "down": "false",
+            "up": "false",
+            "south": "true"
+          }
+        ]
+      },
+      "apply": {
+        "model": "nerodecor:block/conduits/decor_pipe_core_west_z"
+      }
+    },
+    {
+      "when": {
+        "OR": [
+          {
+            "west": "false",
+            "down": "true",
+            "north": "true"
+          },
+          {
+            "west": "false",
+            "down": "true",
+            "south": "true"
+          },
+          {
+            "west": "false",
+            "up": "true",
+            "north": "true"
+          },
+          {
+            "west": "false",
+            "up": "true",
+            "south": "true"
+          }
+        ]
+      },
+      "apply": {
+        "model": "nerodecor:block/conduits/decor_pipe_joint_west"
+      }
+    },
+    {
+      "when": {
+        "north": "false",
+        "south": "false",
+        "west": "false",
+        "east": "true",
+        "down": "false",
+        "up": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/conduits/decor_pipe_end_west"
+      }
+    },
+    {
+      "when": {
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/conduits/decor_pipe_arm_east"
+      }
+    },
+    {
+      "when": {
+        "OR": [
+          {
+            "east": "false",
+            "north": "false",
+            "south": "false",
+            "down": "true"
+          },
+          {
+            "east": "false",
+            "north": "false",
+            "south": "false",
+            "up": "true"
+          }
+        ]
+      },
+      "apply": {
+        "model": "nerodecor:block/conduits/decor_pipe_core_east_y"
+      }
+    },
+    {
+      "when": {
+        "OR": [
+          {
+            "east": "false",
+            "down": "false",
+            "up": "false",
+            "north": "true"
+          },
+          {
+            "east": "false",
+            "down": "false",
+            "up": "false",
+            "south": "true"
+          }
+        ]
+      },
+      "apply": {
+        "model": "nerodecor:block/conduits/decor_pipe_core_east_z"
+      }
+    },
+    {
+      "when": {
+        "OR": [
+          {
+            "east": "false",
+            "down": "true",
+            "north": "true"
+          },
+          {
+            "east": "false",
+            "down": "true",
+            "south": "true"
+          },
+          {
+            "east": "false",
+            "up": "true",
+            "north": "true"
+          },
+          {
+            "east": "false",
+            "up": "true",
+            "south": "true"
+          }
+        ]
+      },
+      "apply": {
+        "model": "nerodecor:block/conduits/decor_pipe_joint_east"
+      }
+    },
+    {
+      "when": {
+        "north": "false",
+        "south": "false",
+        "west": "true",
+        "east": "false",
+        "down": "false",
+        "up": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/conduits/decor_pipe_end_east"
+      }
+    },
+    {
+      "when": {
+        "down": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/conduits/decor_pipe_arm_down"
+      }
+    },
+    {
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "north": "false",
+            "south": "false",
+            "west": "true"
+          },
+          {
+            "down": "false",
+            "north": "false",
+            "south": "false",
+            "east": "true"
+          }
+        ]
+      },
+      "apply": {
+        "model": "nerodecor:block/conduits/decor_pipe_core_down_x"
+      }
+    },
+    {
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "west": "false",
+            "east": "false",
+            "north": "true"
+          },
+          {
+            "down": "false",
+            "west": "false",
+            "east": "false",
+            "south": "true"
+          }
+        ]
+      },
+      "apply": {
+        "model": "nerodecor:block/conduits/decor_pipe_core_down_z"
+      }
+    },
+    {
+      "when": {
+        "OR": [
+          {
+            "down": "false",
+            "west": "true",
+            "north": "true"
+          },
+          {
+            "down": "false",
+            "west": "true",
+            "south": "true"
+          },
+          {
+            "down": "false",
+            "east": "true",
+            "north": "true"
+          },
+          {
+            "down": "false",
+            "east": "true",
+            "south": "true"
+          }
+        ]
+      },
+      "apply": {
+        "model": "nerodecor:block/conduits/decor_pipe_joint_down"
+      }
+    },
+    {
+      "when": {
+        "north": "false",
+        "south": "false",
+        "west": "false",
+        "east": "false",
+        "down": "false",
+        "up": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/conduits/decor_pipe_end_down"
+      }
+    },
+    {
+      "when": {
+        "up": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/conduits/decor_pipe_arm_up"
+      }
+    },
+    {
+      "when": {
+        "OR": [
+          {
+            "up": "false",
+            "north": "false",
+            "south": "false",
+            "west": "true"
+          },
+          {
+            "up": "false",
+            "north": "false",
+            "south": "false",
+            "east": "true"
+          }
+        ]
+      },
+      "apply": {
+        "model": "nerodecor:block/conduits/decor_pipe_core_up_x"
+      }
+    },
+    {
+      "when": {
+        "OR": [
+          {
+            "up": "false",
+            "west": "false",
+            "east": "false",
+            "north": "true"
+          },
+          {
+            "up": "false",
+            "west": "false",
+            "east": "false",
+            "south": "true"
+          }
+        ]
+      },
+      "apply": {
+        "model": "nerodecor:block/conduits/decor_pipe_core_up_z"
+      }
+    },
+    {
+      "when": {
+        "OR": [
+          {
+            "up": "false",
+            "west": "true",
+            "north": "true"
+          },
+          {
+            "up": "false",
+            "west": "true",
+            "south": "true"
+          },
+          {
+            "up": "false",
+            "east": "true",
+            "north": "true"
+          },
+          {
+            "up": "false",
+            "east": "true",
+            "south": "true"
+          }
+        ]
+      },
+      "apply": {
+        "model": "nerodecor:block/conduits/decor_pipe_joint_up"
+      }
+    },
+    {
+      "when": {
+        "north": "false",
+        "south": "false",
+        "west": "false",
+        "east": "false",
+        "down": "true",
+        "up": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/conduits/decor_pipe_end_up"
+      }
+    }
+  ]
+}

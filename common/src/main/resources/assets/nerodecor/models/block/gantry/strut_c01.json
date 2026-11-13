@@ -1,0 +1,129 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "nerodecor:block/gantry/strut",
+    "post": "nerodecor:block/gantry/strut",
+    "flange": "nerodecor:block/gantry/strut_flange"
+  },
+  "elements": [
+    {
+      "from": [
+        6,
+        2,
+        6
+      ],
+      "to": [
+        10,
+        16,
+        10
+      ],
+      "faces": {
+        "north": {
+          "texture": "#post",
+          "uv": [
+            6,
+            0,
+            10,
+            14
+          ]
+        },
+        "east": {
+          "texture": "#post",
+          "uv": [
+            6,
+            0,
+            10,
+            14
+          ]
+        },
+        "south": {
+          "texture": "#post",
+          "uv": [
+            6,
+            0,
+            10,
+            14
+          ]
+        },
+        "west": {
+          "texture": "#post",
+          "uv": [
+            6,
+            0,
+            10,
+            14
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        4,
+        0,
+        4
+      ],
+      "to": [
+        12,
+        2,
+        12
+      ],
+      "faces": {
+        "up": {
+          "texture": "#flange",
+          "uv": [
+            4,
+            4,
+            12,
+            12
+          ]
+        },
+        "down": {
+          "texture": "#flange",
+          "uv": [
+            4,
+            4,
+            12,
+            12
+          ],
+          "cullface": "down"
+        },
+        "north": {
+          "texture": "#flange",
+          "uv": [
+            4,
+            0,
+            12,
+            2
+          ]
+        },
+        "east": {
+          "texture": "#flange",
+          "uv": [
+            4,
+            0,
+            12,
+            2
+          ]
+        },
+        "south": {
+          "texture": "#flange",
+          "uv": [
+            4,
+            0,
+            12,
+            2
+          ]
+        },
+        "west": {
+          "texture": "#flange",
+          "uv": [
+            4,
+            0,
+            12,
+            2
+          ]
+        }
+      }
+    }
+  ]
+}

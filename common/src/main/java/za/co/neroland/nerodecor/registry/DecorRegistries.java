@@ -14,8 +14,10 @@ public final class DecorRegistries {
         ModSounds.init();
         DecorBlocks.init();
         LuminousBlocks.init();
+        ChromaContent.initBlocks();
         ModDataComponents.init();
         ModItems.init();
+        ChromaContent.initItems();
         ModCreativeTab.init();
     }
 }

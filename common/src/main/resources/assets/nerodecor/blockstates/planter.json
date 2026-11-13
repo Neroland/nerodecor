@@ -1,0 +1,164 @@
+{
+  "multipart": [
+    {
+      "when": {
+        "axis": "x",
+        "pos_link": "false",
+        "neg_link": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/lab_habitat/planter_c11"
+      }
+    },
+    {
+      "when": {
+        "axis": "x",
+        "pos_link": "false",
+        "neg_link": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/lab_habitat/planter_c10"
+      }
+    },
+    {
+      "when": {
+        "axis": "x",
+        "pos_link": "true",
+        "neg_link": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/lab_habitat/planter_c01"
+      }
+    },
+    {
+      "when": {
+        "axis": "x",
+        "pos_link": "true",
+        "neg_link": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/lab_habitat/planter_c00"
+      }
+    },
+    {
+      "when": {
+        "axis": "x",
+        "plant": "0"
+      },
+      "apply": {
+        "model": "nerodecor:block/lab_habitat/planter_plant0"
+      }
+    },
+    {
+      "when": {
+        "axis": "x",
+        "plant": "1"
+      },
+      "apply": {
+        "model": "nerodecor:block/lab_habitat/planter_plant1"
+      }
+    },
+    {
+      "when": {
+        "axis": "x",
+        "plant": "2"
+      },
+      "apply": {
+        "model": "nerodecor:block/lab_habitat/planter_plant2"
+      }
+    },
+    {
+      "when": {
+        "axis": "x",
+        "plant": "3"
+      },
+      "apply": {
+        "model": "nerodecor:block/lab_habitat/planter_plant3"
+      }
+    },
+    {
+      "when": {
+        "axis": "z",
+        "pos_link": "false",
+        "neg_link": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/lab_habitat/planter_c11",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "axis": "z",
+        "pos_link": "false",
+        "neg_link": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/lab_habitat/planter_c10",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "axis": "z",
+        "pos_link": "true",
+        "neg_link": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/lab_habitat/planter_c01",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "axis": "z",
+        "pos_link": "true",
+        "neg_link": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/lab_habitat/planter_c00",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "axis": "z",
+        "plant": "0"
+      },
+      "apply": {
+        "model": "nerodecor:block/lab_habitat/planter_plant0",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "axis": "z",
+        "plant": "1"
+      },
+      "apply": {
+        "model": "nerodecor:block/lab_habitat/planter_plant1",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "axis": "z",
+        "plant": "2"
+      },
+      "apply": {
+        "model": "nerodecor:block/lab_habitat/planter_plant2",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "axis": "z",
+        "plant": "3"
+      },
+      "apply": {
+        "model": "nerodecor:block/lab_habitat/planter_plant3",
+        "y": 90
+      }
+    }
+  ]
+}

@@ -1,0 +1,210 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "nerodecor:block/bulkhead/door_status_light",
+    "base": "nerodecor:block/bulkhead/door_status_light",
+    "glow": "nerodecor:block/bulkhead/door_status_light_glow"
+  },
+  "elements": [
+    {
+      "from": [
+        4,
+        0,
+        6
+      ],
+      "to": [
+        12,
+        1,
+        10
+      ],
+      "faces": {
+        "up": {
+          "texture": "#base",
+          "uv": [
+            4,
+            6,
+            12,
+            10
+          ]
+        },
+        "down": {
+          "texture": "#base",
+          "uv": [
+            4,
+            6,
+            12,
+            10
+          ],
+          "cullface": "down"
+        },
+        "north": {
+          "texture": "#base",
+          "uv": [
+            4,
+            12,
+            12,
+            13
+          ]
+        },
+        "south": {
+          "texture": "#base",
+          "uv": [
+            4,
+            12,
+            12,
+            13
+          ]
+        },
+        "east": {
+          "texture": "#base",
+          "uv": [
+            4,
+            12,
+            8,
+            13
+          ]
+        },
+        "west": {
+          "texture": "#base",
+          "uv": [
+            4,
+            12,
+            8,
+            13
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        5,
+        1,
+        7
+      ],
+      "to": [
+        11,
+        2,
+        9
+      ],
+      "faces": {
+        "up": {
+          "texture": "#base",
+          "uv": [
+            5,
+            7,
+            11,
+            9
+          ],
+          "tintindex": 0
+        },
+        "north": {
+          "texture": "#base",
+          "uv": [
+            5,
+            14,
+            11,
+            15
+          ],
+          "tintindex": 0
+        },
+        "south": {
+          "texture": "#base",
+          "uv": [
+            5,
+            14,
+            11,
+            15
+          ],
+          "tintindex": 0
+        },
+        "east": {
+          "texture": "#base",
+          "uv": [
+            5,
+            14,
+            7,
+            15
+          ],
+          "tintindex": 0
+        },
+        "west": {
+          "texture": "#base",
+          "uv": [
+            5,
+            14,
+            7,
+            15
+          ],
+          "tintindex": 0
+        }
+      }
+    },
+    {
+      "from": [
+        5,
+        1,
+        7
+      ],
+      "to": [
+        11,
+        2,
+        9
+      ],
+      "shade": false,
+      "light_emission": 15,
+      "faces": {
+        "up": {
+          "texture": "#glow",
+          "uv": [
+            5,
+            7,
+            11,
+            9
+          ],
+          "tintindex": 0
+        },
+        "north": {
+          "texture": "#glow",
+          "uv": [
+            5,
+            14,
+            11,
+            15
+          ],
+          "tintindex": 0
+        },
+        "south": {
+          "texture": "#glow",
+          "uv": [
+            5,
+            14,
+            11,
+            15
+          ],
+          "tintindex": 0
+        },
+        "east": {
+          "texture": "#glow",
+          "uv": [
+            5,
+            14,
+            7,
+            15
+          ],
+          "tintindex": 0
+        },
+        "west": {
+          "texture": "#glow",
+          "uv": [
+            5,
+            14,
+            7,
+            15
+          ],
+          "tintindex": 0
+        }
+      }
+    }
+  ],
+  "render_type": "minecraft:cutout"
+}

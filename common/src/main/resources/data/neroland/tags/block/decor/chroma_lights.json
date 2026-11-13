@@ -1,0 +1,53 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "nerodecor:cage_lamp",
+      "required": false
+    },
+    {
+      "id": "nerodecor:ceiling_coffer",
+      "required": false
+    },
+    {
+      "id": "nerodecor:edge_trim",
+      "required": false
+    },
+    {
+      "id": "nerodecor:floor_tile",
+      "required": false
+    },
+    {
+      "id": "nerodecor:floor_tile_slab",
+      "required": false
+    },
+    {
+      "id": "nerodecor:halo_ring",
+      "required": false
+    },
+    {
+      "id": "nerodecor:light_pane",
+      "required": false
+    },
+    {
+      "id": "nerodecor:light_pillar",
+      "required": false
+    },
+    {
+      "id": "nerodecor:light_strip",
+      "required": false
+    },
+    {
+      "id": "nerodecor:neon_tube",
+      "required": false
+    },
+    {
+      "id": "nerodecor:sconce_bar",
+      "required": false
+    },
+    {
+      "id": "nerodecor:step_light",
+      "required": false
+    }
+  ]
+}

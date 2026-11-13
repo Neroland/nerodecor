@@ -1,0 +1,101 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "nerodecor:cindara_ash_tile",
+      "required": false
+    },
+    {
+      "id": "nerodecor:cindara_ember_basalt",
+      "required": false
+    },
+    {
+      "id": "nerodecor:cindara_slag_brick",
+      "required": false
+    },
+    {
+      "id": "nerodecor:glacira_bubble_ice",
+      "required": false
+    },
+    {
+      "id": "nerodecor:glacira_cryo_fin",
+      "required": false
+    },
+    {
+      "id": "nerodecor:glacira_frost_plate",
+      "required": false
+    },
+    {
+      "id": "nerodecor:glacira_snow_brick",
+      "required": false
+    },
+    {
+      "id": "nerodecor:greenxertz_hive_comb",
+      "required": false
+    },
+    {
+      "id": "nerodecor:greenxertz_spore_tile",
+      "required": false
+    },
+    {
+      "id": "nerodecor:greenxertz_woven_chitin",
+      "required": false
+    },
+    {
+      "id": "nerodecor:luna_bead_glass",
+      "required": false
+    },
+    {
+      "id": "nerodecor:luna_bootprint_tile",
+      "required": false
+    },
+    {
+      "id": "nerodecor:luna_mare_column",
+      "required": false
+    },
+    {
+      "id": "nerodecor:luna_regolith_brick",
+      "required": false
+    },
+    {
+      "id": "nerodecor:mars_dust_drift_tile",
+      "required": false
+    },
+    {
+      "id": "nerodecor:mars_rust_plate",
+      "required": false
+    },
+    {
+      "id": "nerodecor:mars_spherule_stone",
+      "required": false
+    },
+    {
+      "id": "nerodecor:mars_wind_strata_brick",
+      "required": false
+    },
+    {
+      "id": "nerodecor:nyxara_faceted_crystal",
+      "required": false
+    },
+    {
+      "id": "nerodecor:nyxara_geode_block",
+      "required": false
+    },
+    {
+      "id": "nerodecor:nyxara_shard_mosaic",
+      "required": false
+    },
+    {
+      "id": "nerodecor:station_plating",
+      "required": false
+    },
+    {
+      "id": "nerodecor:station_thermal_blanket",
+      "required": false
+    },
+    {
+      "id": "nerodecor:station_tread_plate",
+      "required": false
+    }
+  ]
+}

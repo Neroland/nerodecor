@@ -1,0 +1,156 @@
+{
+  "variants": {
+    "facing=north,left=false,right=false": [
+      {
+        "model": "nerodecor:block/command/patch_panel_a_f3"
+      },
+      {
+        "model": "nerodecor:block/command/patch_panel_b_f3"
+      }
+    ],
+    "facing=north,left=false,right=true": [
+      {
+        "model": "nerodecor:block/command/patch_panel_a_f2"
+      },
+      {
+        "model": "nerodecor:block/command/patch_panel_b_f2"
+      }
+    ],
+    "facing=north,left=true,right=false": [
+      {
+        "model": "nerodecor:block/command/patch_panel_a_f1"
+      },
+      {
+        "model": "nerodecor:block/command/patch_panel_b_f1"
+      }
+    ],
+    "facing=north,left=true,right=true": [
+      {
+        "model": "nerodecor:block/command/patch_panel_a_f0"
+      },
+      {
+        "model": "nerodecor:block/command/patch_panel_b_f0"
+      }
+    ],
+    "facing=east,left=false,right=false": [
+      {
+        "model": "nerodecor:block/command/patch_panel_a_f3",
+        "y": 90
+      },
+      {
+        "model": "nerodecor:block/command/patch_panel_b_f3",
+        "y": 90
+      }
+    ],
+    "facing=east,left=false,right=true": [
+      {
+        "model": "nerodecor:block/command/patch_panel_a_f2",
+        "y": 90
+      },
+      {
+        "model": "nerodecor:block/command/patch_panel_b_f2",
+        "y": 90
+      }
+    ],
+    "facing=east,left=true,right=false": [
+      {
+        "model": "nerodecor:block/command/patch_panel_a_f1",
+        "y": 90
+      },
+      {
+        "model": "nerodecor:block/command/patch_panel_b_f1",
+        "y": 90
+      }
+    ],
+    "facing=east,left=true,right=true": [
+      {
+        "model": "nerodecor:block/command/patch_panel_a_f0",
+        "y": 90
+      },
+      {
+        "model": "nerodecor:block/command/patch_panel_b_f0",
+        "y": 90
+      }
+    ],
+    "facing=south,left=false,right=false": [
+      {
+        "model": "nerodecor:block/command/patch_panel_a_f3",
+        "y": 180
+      },
+      {
+        "model": "nerodecor:block/command/patch_panel_b_f3",
+        "y": 180
+      }
+    ],
+    "facing=south,left=false,right=true": [
+      {
+        "model": "nerodecor:block/command/patch_panel_a_f2",
+        "y": 180
+      },
+      {
+        "model": "nerodecor:block/command/patch_panel_b_f2",
+        "y": 180
+      }
+    ],
+    "facing=south,left=true,right=false": [
+      {
+        "model": "nerodecor:block/command/patch_panel_a_f1",
+        "y": 180
+      },
+      {
+        "model": "nerodecor:block/command/patch_panel_b_f1",
+        "y": 180
+      }
+    ],
+    "facing=south,left=true,right=true": [
+      {
+        "model": "nerodecor:block/command/patch_panel_a_f0",
+        "y": 180
+      },
+      {
+        "model": "nerodecor:block/command/patch_panel_b_f0",
+        "y": 180
+      }
+    ],
+    "facing=west,left=false,right=false": [
+      {
+        "model": "nerodecor:block/command/patch_panel_a_f3",
+        "y": 270
+      },
+      {
+        "model": "nerodecor:block/command/patch_panel_b_f3",
+        "y": 270
+      }
+    ],
+    "facing=west,left=false,right=true": [
+      {
+        "model": "nerodecor:block/command/patch_panel_a_f2",
+        "y": 270
+      },
+      {
+        "model": "nerodecor:block/command/patch_panel_b_f2",
+        "y": 270
+      }
+    ],
+    "facing=west,left=true,right=false": [
+      {
+        "model": "nerodecor:block/command/patch_panel_a_f1",
+        "y": 270
+      },
+      {
+        "model": "nerodecor:block/command/patch_panel_b_f1",
+        "y": 270
+      }
+    ],
+    "facing=west,left=true,right=true": [
+      {
+        "model": "nerodecor:block/command/patch_panel_a_f0",
+        "y": 270
+      },
+      {
+        "model": "nerodecor:block/command/patch_panel_b_f0",
+        "y": 270
+      }
+    ]
+  }
+}

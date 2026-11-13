@@ -1,0 +1,49 @@
+{
+  "variants": {
+    "facing=north,shape=left": {
+      "model": "nerodecor:block/ancients/arch_lintel_left"
+    },
+    "facing=north,shape=mid": {
+      "model": "nerodecor:block/ancients/arch_lintel_mid"
+    },
+    "facing=north,shape=right": {
+      "model": "nerodecor:block/ancients/arch_lintel_right"
+    },
+    "facing=east,shape=left": {
+      "model": "nerodecor:block/ancients/arch_lintel_left",
+      "y": 90
+    },
+    "facing=east,shape=mid": {
+      "model": "nerodecor:block/ancients/arch_lintel_mid",
+      "y": 90
+    },
+    "facing=east,shape=right": {
+      "model": "nerodecor:block/ancients/arch_lintel_right",
+      "y": 90
+    },
+    "facing=south,shape=left": {
+      "model": "nerodecor:block/ancients/arch_lintel_left",
+      "y": 180
+    },
+    "facing=south,shape=mid": {
+      "model": "nerodecor:block/ancients/arch_lintel_mid",
+      "y": 180
+    },
+    "facing=south,shape=right": {
+      "model": "nerodecor:block/ancients/arch_lintel_right",
+      "y": 180
+    },
+    "facing=west,shape=left": {
+      "model": "nerodecor:block/ancients/arch_lintel_left",
+      "y": 270
+    },
+    "facing=west,shape=mid": {
+      "model": "nerodecor:block/ancients/arch_lintel_mid",
+      "y": 270
+    },
+    "facing=west,shape=right": {
+      "model": "nerodecor:block/ancients/arch_lintel_right",
+      "y": 270
+    }
+  }
+}

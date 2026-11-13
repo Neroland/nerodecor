@@ -13,7 +13,12 @@ Design rule: these are *ambience*, not alerts. Soft attacks, no harsh transients
 Additive by default: an existing .ogg is kept (Vorbis encoders are not byte-stable across ffmpeg
 builds, so regenerating would churn the repo). Use --force to rebuild everything.
 
-Usage: python tools/gen_sounds.py [--multiloader] [--force]
+--check re-encodes every sound to a temp dir and compares it with the committed .ogg, ignoring only
+the Ogg stream serial number and page CRCs (ffmpeg picks a random serial per encode). It writes
+nothing and exits 1 on a missing, different or orphan .ogg. A different ffmpeg/libvorbis build
+than the one that encoded the committed files will report every sound as different.
+
+Usage: python tools/gen_sounds.py [--multiloader] [--force] [--check]
 Needs ffmpeg with libvorbis on PATH; skips gracefully without it.
 """
 import argparse
@@ -254,14 +259,63 @@ def write_wav(path, sig):
         w.writeframes(b"".join(struct.pack("<h", int(max(-1.0, min(1.0, v)) * 32767)) for v in sig))
 
 
+def encode(ffmpeg, wav, ogg):
+    subprocess.run([ffmpeg, "-y", "-loglevel", "error", "-i", wav, "-map_metadata", "-1",
+                    "-c:a", "libvorbis", "-q:a", "4", "-ac", "1", ogg], check=True)
+
+
+def ogg_canonical(data):
+    """Ogg bytes with each page's stream serial (bytes 14-17) and CRC (22-25) zeroed."""
+    out = bytearray(data)
+    pos = 0
+    while pos + 27 <= len(out) and out[pos:pos + 4] == b"OggS":
+        out[pos + 14:pos + 18] = b"\0\0\0\0"
+        out[pos + 22:pos + 26] = b"\0\0\0\0"
+        nseg = out[pos + 26]
+        pos += 27 + nseg + sum(out[pos + 27:pos + 27 + nseg])
+    return bytes(out)
+
+
+def check(ffmpeg):
+    problems = []
+    on_disk = {n[:-4] for n in os.listdir(OUT) if n.endswith(".ogg")} if os.path.isdir(OUT) else set()
+    problems += ["orphan (not generated): %s.ogg" % n for n in sorted(on_disk - set(SOUNDS))]
+    with tempfile.TemporaryDirectory() as tmp:
+        for name, fn in sorted(SOUNDS.items()):
+            ogg = os.path.join(OUT, name + ".ogg")
+            if not os.path.exists(ogg):
+                problems.append("missing: %s.ogg" % name)
+                continue
+            if not ffmpeg:
+                continue
+            wav = os.path.join(tmp, "s.wav")
+            fresh = os.path.join(tmp, "s.ogg")
+            write_wav(wav, fn())
+            encode(ffmpeg, wav, fresh)
+            with open(ogg, "rb") as a, open(fresh, "rb") as b:
+                if ogg_canonical(a.read()) != ogg_canonical(b.read()):
+                    problems.append("different: %s.ogg" % name)
+    if problems:
+        print("gen_sounds --check: DRIFT")
+        for p in problems:
+            print("  " + p)
+        return 1
+    print("gen_sounds --check: clean (%d sounds%s)" % (
+        len(SOUNDS), "" if ffmpeg else "; ffmpeg not on PATH, content not compared"))
+    return 0
+
+
 def main():
     ap = argparse.ArgumentParser(description="NeroDecor ambient sound synthesiser.")
     ap.add_argument("--multiloader", action="store_true", help="target the flattened common module (default)")
     ap.add_argument("--force", action="store_true", help="re-encode every sound even if it exists")
     ap.add_argument("--wav", metavar="DIR", help="also keep the WAV renders in DIR (for auditioning)")
+    ap.add_argument("--check", action="store_true", help="compare with the committed .ogg files; write nothing")
     args = ap.parse_args()
 
     ffmpeg = shutil.which("ffmpeg")
+    if args.check:
+        return check(ffmpeg)
     if not ffmpeg:
         print("gen_sounds: ffmpeg not on PATH; skipping (existing .ogg files are kept).")
         return
@@ -275,8 +329,7 @@ def main():
             wav = os.path.join(args.wav or tmp, name + ".wav")
             os.makedirs(os.path.dirname(wav), exist_ok=True)
             write_wav(wav, fn())
-            subprocess.run([ffmpeg, "-y", "-loglevel", "error", "-i", wav, "-map_metadata", "-1",
-                            "-c:a", "libvorbis", "-q:a", "4", "-ac", "1", ogg], check=True)
+            encode(ffmpeg, wav, ogg)
             written += 1
     print("gen_sounds: %d sounds (%d encoded)" % (len(SOUNDS), written))
 

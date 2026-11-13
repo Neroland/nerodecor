@@ -1,0 +1,78 @@
+{
+  "multipart": [
+    {
+      "when": {
+        "axis": "x"
+      },
+      "apply": {
+        "model": "nerodecor:block/conduits/pipe_valve_body"
+      }
+    },
+    {
+      "when": {
+        "axis": "x"
+      },
+      "apply": {
+        "model": "nerodecor:block/conduits/decor_pipe_arm_west"
+      }
+    },
+    {
+      "when": {
+        "axis": "x"
+      },
+      "apply": {
+        "model": "nerodecor:block/conduits/decor_pipe_arm_east"
+      }
+    },
+    {
+      "when": {
+        "axis": "y"
+      },
+      "apply": {
+        "model": "nerodecor:block/conduits/pipe_valve_body",
+        "x": 270
+      }
+    },
+    {
+      "when": {
+        "axis": "y"
+      },
+      "apply": {
+        "model": "nerodecor:block/conduits/decor_pipe_arm_down"
+      }
+    },
+    {
+      "when": {
+        "axis": "y"
+      },
+      "apply": {
+        "model": "nerodecor:block/conduits/decor_pipe_arm_up"
+      }
+    },
+    {
+      "when": {
+        "axis": "z"
+      },
+      "apply": {
+        "model": "nerodecor:block/conduits/pipe_valve_body",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "axis": "z"
+      },
+      "apply": {
+        "model": "nerodecor:block/conduits/decor_pipe_arm_north"
+      }
+    },
+    {
+      "when": {
+        "axis": "z"
+      },
+      "apply": {
+        "model": "nerodecor:block/conduits/decor_pipe_arm_south"
+      }
+    }
+  ]
+}

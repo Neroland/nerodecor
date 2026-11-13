@@ -1,0 +1,56 @@
+{
+  "variants": {
+    "face=down,open=false": {
+      "model": "nerodecor:block/bulkhead/iris_hatch"
+    },
+    "face=down,open=true": {
+      "model": "nerodecor:block/bulkhead/iris_hatch_open"
+    },
+    "face=up,open=false": {
+      "model": "nerodecor:block/bulkhead/iris_hatch",
+      "x": 180
+    },
+    "face=up,open=true": {
+      "model": "nerodecor:block/bulkhead/iris_hatch_open",
+      "x": 180
+    },
+    "face=north,open=false": {
+      "model": "nerodecor:block/bulkhead/iris_hatch",
+      "x": 270
+    },
+    "face=north,open=true": {
+      "model": "nerodecor:block/bulkhead/iris_hatch_open",
+      "x": 270
+    },
+    "face=south,open=false": {
+      "model": "nerodecor:block/bulkhead/iris_hatch",
+      "x": 270,
+      "y": 180
+    },
+    "face=south,open=true": {
+      "model": "nerodecor:block/bulkhead/iris_hatch_open",
+      "x": 270,
+      "y": 180
+    },
+    "face=west,open=false": {
+      "model": "nerodecor:block/bulkhead/iris_hatch",
+      "x": 270,
+      "y": 270
+    },
+    "face=west,open=true": {
+      "model": "nerodecor:block/bulkhead/iris_hatch_open",
+      "x": 270,
+      "y": 270
+    },
+    "face=east,open=false": {
+      "model": "nerodecor:block/bulkhead/iris_hatch",
+      "x": 270,
+      "y": 90
+    },
+    "face=east,open=true": {
+      "model": "nerodecor:block/bulkhead/iris_hatch_open",
+      "x": 270,
+      "y": 90
+    }
+  }
+}

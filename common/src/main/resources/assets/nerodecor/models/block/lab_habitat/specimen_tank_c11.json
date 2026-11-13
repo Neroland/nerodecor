@@ -1,0 +1,814 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "nerodecor:block/lab_habitat/specimen_tank_cap",
+    "specimen_tank_cap": "nerodecor:block/lab_habitat/specimen_tank_cap",
+    "specimen_tank_lid": "nerodecor:block/lab_habitat/specimen_tank_lid",
+    "specimen_tank_fluid_c11": "nerodecor:block/lab_habitat/specimen_tank_fluid_c11",
+    "specimen_tank_fluid_glow_c11": "nerodecor:block/lab_habitat/specimen_tank_fluid_glow_c11",
+    "specimen_tank_surface": "nerodecor:block/lab_habitat/specimen_tank_surface",
+    "specimen_tank_cap_glow": "nerodecor:block/lab_habitat/specimen_tank_cap_glow",
+    "specimen_tank_glass": "nerodecor:block/lab_habitat/specimen_tank_glass"
+  },
+  "elements": [
+    {
+      "from": [
+        1,
+        0,
+        1
+      ],
+      "to": [
+        15,
+        2,
+        15
+      ],
+      "faces": {
+        "north": {
+          "texture": "#specimen_tank_cap",
+          "uv": [
+            1,
+            14,
+            15,
+            16
+          ]
+        },
+        "south": {
+          "texture": "#specimen_tank_cap",
+          "uv": [
+            1,
+            14,
+            15,
+            16
+          ]
+        },
+        "west": {
+          "texture": "#specimen_tank_cap",
+          "uv": [
+            1,
+            14,
+            15,
+            16
+          ]
+        },
+        "east": {
+          "texture": "#specimen_tank_cap",
+          "uv": [
+            1,
+            14,
+            15,
+            16
+          ]
+        },
+        "up": {
+          "texture": "#specimen_tank_lid",
+          "uv": [
+            1,
+            1,
+            15,
+            15
+          ]
+        },
+        "down": {
+          "texture": "#specimen_tank_lid",
+          "uv": [
+            1,
+            1,
+            15,
+            15
+          ],
+          "cullface": "down"
+        }
+      }
+    },
+    {
+      "from": [
+        2,
+        2,
+        2
+      ],
+      "to": [
+        14,
+        3,
+        14
+      ],
+      "faces": {
+        "north": {
+          "texture": "#specimen_tank_cap",
+          "uv": [
+            2,
+            13,
+            14,
+            14
+          ]
+        },
+        "south": {
+          "texture": "#specimen_tank_cap",
+          "uv": [
+            2,
+            13,
+            14,
+            14
+          ]
+        },
+        "west": {
+          "texture": "#specimen_tank_cap",
+          "uv": [
+            2,
+            13,
+            14,
+            14
+          ]
+        },
+        "east": {
+          "texture": "#specimen_tank_cap",
+          "uv": [
+            2,
+            13,
+            14,
+            14
+          ]
+        },
+        "up": {
+          "texture": "#specimen_tank_lid",
+          "uv": [
+            2,
+            2,
+            14,
+            14
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        2,
+        13,
+        2
+      ],
+      "to": [
+        14,
+        14,
+        14
+      ],
+      "faces": {
+        "north": {
+          "texture": "#specimen_tank_cap",
+          "uv": [
+            2,
+            2,
+            14,
+            3
+          ]
+        },
+        "south": {
+          "texture": "#specimen_tank_cap",
+          "uv": [
+            2,
+            2,
+            14,
+            3
+          ]
+        },
+        "west": {
+          "texture": "#specimen_tank_cap",
+          "uv": [
+            2,
+            2,
+            14,
+            3
+          ]
+        },
+        "east": {
+          "texture": "#specimen_tank_cap",
+          "uv": [
+            2,
+            2,
+            14,
+            3
+          ]
+        },
+        "down": {
+          "texture": "#specimen_tank_lid",
+          "uv": [
+            2,
+            2,
+            14,
+            14
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        1,
+        14,
+        1
+      ],
+      "to": [
+        15,
+        16,
+        15
+      ],
+      "faces": {
+        "north": {
+          "texture": "#specimen_tank_cap",
+          "uv": [
+            1,
+            0,
+            15,
+            2
+          ]
+        },
+        "south": {
+          "texture": "#specimen_tank_cap",
+          "uv": [
+            1,
+            0,
+            15,
+            2
+          ]
+        },
+        "west": {
+          "texture": "#specimen_tank_cap",
+          "uv": [
+            1,
+            0,
+            15,
+            2
+          ]
+        },
+        "east": {
+          "texture": "#specimen_tank_cap",
+          "uv": [
+            1,
+            0,
+            15,
+            2
+          ]
+        },
+        "up": {
+          "texture": "#specimen_tank_lid",
+          "uv": [
+            1,
+            1,
+            15,
+            15
+          ],
+          "cullface": "up"
+        },
+        "down": {
+          "texture": "#specimen_tank_lid",
+          "uv": [
+            1,
+            1,
+            15,
+            15
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        6,
+        3,
+        3
+      ],
+      "to": [
+        10,
+        12,
+        13
+      ],
+      "faces": {
+        "north": {
+          "texture": "#specimen_tank_fluid_c11",
+          "uv": [
+            0,
+            4,
+            4,
+            13
+          ],
+          "tintindex": 0
+        },
+        "south": {
+          "texture": "#specimen_tank_fluid_c11",
+          "uv": [
+            0,
+            4,
+            4,
+            13
+          ],
+          "tintindex": 0
+        }
+      }
+    },
+    {
+      "from": [
+        3,
+        3,
+        6
+      ],
+      "to": [
+        13,
+        12,
+        10
+      ],
+      "faces": {
+        "west": {
+          "texture": "#specimen_tank_fluid_c11",
+          "uv": [
+            4,
+            4,
+            8,
+            13
+          ],
+          "tintindex": 0
+        },
+        "east": {
+          "texture": "#specimen_tank_fluid_c11",
+          "uv": [
+            4,
+            4,
+            8,
+            13
+          ],
+          "tintindex": 0
+        }
+      }
+    },
+    {
+      "from": [
+        3,
+        3,
+        6
+      ],
+      "to": [
+        13,
+        12,
+        10
+      ],
+      "rotation": {
+        "origin": [
+          8,
+          8,
+          8
+        ],
+        "axis": "y",
+        "angle": 45
+      },
+      "faces": {
+        "west": {
+          "texture": "#specimen_tank_fluid_c11",
+          "uv": [
+            8,
+            4,
+            12,
+            13
+          ],
+          "tintindex": 0
+        },
+        "east": {
+          "texture": "#specimen_tank_fluid_c11",
+          "uv": [
+            12,
+            4,
+            16,
+            13
+          ],
+          "tintindex": 0
+        }
+      }
+    },
+    {
+      "from": [
+        3,
+        3,
+        6
+      ],
+      "to": [
+        13,
+        12,
+        10
+      ],
+      "rotation": {
+        "origin": [
+          8,
+          8,
+          8
+        ],
+        "axis": "y",
+        "angle": -45
+      },
+      "faces": {
+        "west": {
+          "texture": "#specimen_tank_fluid_c11",
+          "uv": [
+            12,
+            4,
+            16,
+            13
+          ],
+          "tintindex": 0
+        },
+        "east": {
+          "texture": "#specimen_tank_fluid_c11",
+          "uv": [
+            8,
+            4,
+            12,
+            13
+          ],
+          "tintindex": 0
+        }
+      }
+    },
+    {
+      "from": [
+        6,
+        3,
+        3
+      ],
+      "to": [
+        10,
+        12,
+        13
+      ],
+      "shade": false,
+      "light_emission": 15,
+      "faces": {
+        "north": {
+          "texture": "#specimen_tank_fluid_glow_c11",
+          "uv": [
+            0,
+            4,
+            4,
+            13
+          ],
+          "tintindex": 0
+        },
+        "south": {
+          "texture": "#specimen_tank_fluid_glow_c11",
+          "uv": [
+            0,
+            4,
+            4,
+            13
+          ],
+          "tintindex": 0
+        }
+      }
+    },
+    {
+      "from": [
+        3,
+        3,
+        6
+      ],
+      "to": [
+        13,
+        12,
+        10
+      ],
+      "shade": false,
+      "light_emission": 15,
+      "faces": {
+        "west": {
+          "texture": "#specimen_tank_fluid_glow_c11",
+          "uv": [
+            4,
+            4,
+            8,
+            13
+          ],
+          "tintindex": 0
+        },
+        "east": {
+          "texture": "#specimen_tank_fluid_glow_c11",
+          "uv": [
+            4,
+            4,
+            8,
+            13
+          ],
+          "tintindex": 0
+        }
+      }
+    },
+    {
+      "from": [
+        3,
+        3,
+        6
+      ],
+      "to": [
+        13,
+        12,
+        10
+      ],
+      "rotation": {
+        "origin": [
+          8,
+          8,
+          8
+        ],
+        "axis": "y",
+        "angle": 45
+      },
+      "shade": false,
+      "light_emission": 15,
+      "faces": {
+        "west": {
+          "texture": "#specimen_tank_fluid_glow_c11",
+          "uv": [
+            8,
+            4,
+            12,
+            13
+          ],
+          "tintindex": 0
+        },
+        "east": {
+          "texture": "#specimen_tank_fluid_glow_c11",
+          "uv": [
+            12,
+            4,
+            16,
+            13
+          ],
+          "tintindex": 0
+        }
+      }
+    },
+    {
+      "from": [
+        3,
+        3,
+        6
+      ],
+      "to": [
+        13,
+        12,
+        10
+      ],
+      "rotation": {
+        "origin": [
+          8,
+          8,
+          8
+        ],
+        "axis": "y",
+        "angle": -45
+      },
+      "shade": false,
+      "light_emission": 15,
+      "faces": {
+        "west": {
+          "texture": "#specimen_tank_fluid_glow_c11",
+          "uv": [
+            12,
+            4,
+            16,
+            13
+          ],
+          "tintindex": 0
+        },
+        "east": {
+          "texture": "#specimen_tank_fluid_glow_c11",
+          "uv": [
+            8,
+            4,
+            12,
+            13
+          ],
+          "tintindex": 0
+        }
+      }
+    },
+    {
+      "from": [
+        4.5,
+        11,
+        4.5
+      ],
+      "to": [
+        11.5,
+        12,
+        11.5
+      ],
+      "faces": {
+        "up": {
+          "texture": "#specimen_tank_surface",
+          "uv": [
+            4.5,
+            4.5,
+            11.5,
+            11.5
+          ],
+          "tintindex": 0
+        }
+      }
+    },
+    {
+      "from": [
+        2,
+        2,
+        2
+      ],
+      "to": [
+        14,
+        3,
+        14
+      ],
+      "shade": false,
+      "light_emission": 15,
+      "faces": {
+        "north": {
+          "texture": "#specimen_tank_cap_glow",
+          "uv": [
+            2,
+            13,
+            14,
+            14
+          ],
+          "tintindex": 0
+        },
+        "south": {
+          "texture": "#specimen_tank_cap_glow",
+          "uv": [
+            2,
+            13,
+            14,
+            14
+          ],
+          "tintindex": 0
+        },
+        "west": {
+          "texture": "#specimen_tank_cap_glow",
+          "uv": [
+            2,
+            13,
+            14,
+            14
+          ],
+          "tintindex": 0
+        },
+        "east": {
+          "texture": "#specimen_tank_cap_glow",
+          "uv": [
+            2,
+            13,
+            14,
+            14
+          ],
+          "tintindex": 0
+        }
+      }
+    },
+    {
+      "from": [
+        5.5,
+        3,
+        2
+      ],
+      "to": [
+        10.5,
+        13,
+        14
+      ],
+      "faces": {
+        "north": {
+          "texture": "#specimen_tank_glass",
+          "uv": [
+            0,
+            3,
+            5,
+            13
+          ]
+        },
+        "south": {
+          "texture": "#specimen_tank_glass",
+          "uv": [
+            5,
+            3,
+            10,
+            13
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        2,
+        3,
+        5.5
+      ],
+      "to": [
+        14,
+        13,
+        10.5
+      ],
+      "faces": {
+        "west": {
+          "texture": "#specimen_tank_glass",
+          "uv": [
+            0,
+            3,
+            5,
+            13
+          ]
+        },
+        "east": {
+          "texture": "#specimen_tank_glass",
+          "uv": [
+            5,
+            3,
+            10,
+            13
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        2,
+        3,
+        5.5
+      ],
+      "to": [
+        14,
+        13,
+        10.5
+      ],
+      "rotation": {
+        "origin": [
+          8,
+          8,
+          8
+        ],
+        "axis": "y",
+        "angle": 45
+      },
+      "faces": {
+        "west": {
+          "texture": "#specimen_tank_glass",
+          "uv": [
+            0,
+            3,
+            5,
+            13
+          ]
+        },
+        "east": {
+          "texture": "#specimen_tank_glass",
+          "uv": [
+            10,
+            3,
+            15,
+            13
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        2,
+        3,
+        5.5
+      ],
+      "to": [
+        14,
+        13,
+        10.5
+      ],
+      "rotation": {
+        "origin": [
+          8,
+          8,
+          8
+        ],
+        "axis": "y",
+        "angle": -45
+      },
+      "faces": {
+        "west": {
+          "texture": "#specimen_tank_glass",
+          "uv": [
+            10,
+            3,
+            15,
+            13
+          ]
+        },
+        "east": {
+          "texture": "#specimen_tank_glass",
+          "uv": [
+            5,
+            3,
+            10,
+            13
+          ]
+        }
+      }
+    }
+  ],
+  "render_type": "minecraft:cutout"
+}

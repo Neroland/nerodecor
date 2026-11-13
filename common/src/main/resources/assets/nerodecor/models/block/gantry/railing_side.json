@@ -1,0 +1,93 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "nerodecor:block/gantry/railing_post",
+    "rail": "nerodecor:block/gantry/railing",
+    "post": "nerodecor:block/gantry/railing_post"
+  },
+  "elements": [
+    {
+      "from": [
+        7,
+        13,
+        0
+      ],
+      "to": [
+        9,
+        15,
+        8
+      ],
+      "faces": {
+        "up": {
+          "texture": "#post",
+          "uv": [
+            4,
+            4,
+            6,
+            12
+          ]
+        },
+        "down": {
+          "texture": "#post",
+          "uv": [
+            6,
+            4,
+            8,
+            12
+          ]
+        },
+        "east": {
+          "texture": "#rail",
+          "uv": [
+            0,
+            1,
+            8,
+            3
+          ]
+        },
+        "west": {
+          "texture": "#rail",
+          "uv": [
+            8,
+            1,
+            0,
+            3
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        7.5,
+        0,
+        0
+      ],
+      "to": [
+        8.5,
+        13,
+        8
+      ],
+      "faces": {
+        "east": {
+          "texture": "#rail",
+          "uv": [
+            0,
+            3,
+            8,
+            16
+          ]
+        },
+        "west": {
+          "texture": "#rail",
+          "uv": [
+            8,
+            3,
+            0,
+            16
+          ]
+        }
+      }
+    }
+  ],
+  "render_type": "minecraft:cutout"
+}

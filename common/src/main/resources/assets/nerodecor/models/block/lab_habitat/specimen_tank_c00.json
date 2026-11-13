@@ -1,0 +1,474 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "nerodecor:block/lab_habitat/specimen_tank_cap",
+    "specimen_tank_fluid_c00": "nerodecor:block/lab_habitat/specimen_tank_fluid_c00",
+    "specimen_tank_fluid_glow_c00": "nerodecor:block/lab_habitat/specimen_tank_fluid_glow_c00",
+    "specimen_tank_glass": "nerodecor:block/lab_habitat/specimen_tank_glass"
+  },
+  "elements": [
+    {
+      "from": [
+        6,
+        0,
+        3
+      ],
+      "to": [
+        10,
+        16,
+        13
+      ],
+      "faces": {
+        "north": {
+          "texture": "#specimen_tank_fluid_c00",
+          "uv": [
+            0,
+            0,
+            4,
+            16
+          ],
+          "tintindex": 0
+        },
+        "south": {
+          "texture": "#specimen_tank_fluid_c00",
+          "uv": [
+            0,
+            0,
+            4,
+            16
+          ],
+          "tintindex": 0
+        }
+      }
+    },
+    {
+      "from": [
+        3,
+        0,
+        6
+      ],
+      "to": [
+        13,
+        16,
+        10
+      ],
+      "faces": {
+        "west": {
+          "texture": "#specimen_tank_fluid_c00",
+          "uv": [
+            4,
+            0,
+            8,
+            16
+          ],
+          "tintindex": 0
+        },
+        "east": {
+          "texture": "#specimen_tank_fluid_c00",
+          "uv": [
+            4,
+            0,
+            8,
+            16
+          ],
+          "tintindex": 0
+        }
+      }
+    },
+    {
+      "from": [
+        3,
+        0,
+        6
+      ],
+      "to": [
+        13,
+        16,
+        10
+      ],
+      "rotation": {
+        "origin": [
+          8,
+          8,
+          8
+        ],
+        "axis": "y",
+        "angle": 45
+      },
+      "faces": {
+        "west": {
+          "texture": "#specimen_tank_fluid_c00",
+          "uv": [
+            8,
+            0,
+            12,
+            16
+          ],
+          "tintindex": 0
+        },
+        "east": {
+          "texture": "#specimen_tank_fluid_c00",
+          "uv": [
+            12,
+            0,
+            16,
+            16
+          ],
+          "tintindex": 0
+        }
+      }
+    },
+    {
+      "from": [
+        3,
+        0,
+        6
+      ],
+      "to": [
+        13,
+        16,
+        10
+      ],
+      "rotation": {
+        "origin": [
+          8,
+          8,
+          8
+        ],
+        "axis": "y",
+        "angle": -45
+      },
+      "faces": {
+        "west": {
+          "texture": "#specimen_tank_fluid_c00",
+          "uv": [
+            12,
+            0,
+            16,
+            16
+          ],
+          "tintindex": 0
+        },
+        "east": {
+          "texture": "#specimen_tank_fluid_c00",
+          "uv": [
+            8,
+            0,
+            12,
+            16
+          ],
+          "tintindex": 0
+        }
+      }
+    },
+    {
+      "from": [
+        6,
+        0,
+        3
+      ],
+      "to": [
+        10,
+        16,
+        13
+      ],
+      "shade": false,
+      "light_emission": 15,
+      "faces": {
+        "north": {
+          "texture": "#specimen_tank_fluid_glow_c00",
+          "uv": [
+            0,
+            0,
+            4,
+            16
+          ],
+          "tintindex": 0
+        },
+        "south": {
+          "texture": "#specimen_tank_fluid_glow_c00",
+          "uv": [
+            0,
+            0,
+            4,
+            16
+          ],
+          "tintindex": 0
+        }
+      }
+    },
+    {
+      "from": [
+        3,
+        0,
+        6
+      ],
+      "to": [
+        13,
+        16,
+        10
+      ],
+      "shade": false,
+      "light_emission": 15,
+      "faces": {
+        "west": {
+          "texture": "#specimen_tank_fluid_glow_c00",
+          "uv": [
+            4,
+            0,
+            8,
+            16
+          ],
+          "tintindex": 0
+        },
+        "east": {
+          "texture": "#specimen_tank_fluid_glow_c00",
+          "uv": [
+            4,
+            0,
+            8,
+            16
+          ],
+          "tintindex": 0
+        }
+      }
+    },
+    {
+      "from": [
+        3,
+        0,
+        6
+      ],
+      "to": [
+        13,
+        16,
+        10
+      ],
+      "rotation": {
+        "origin": [
+          8,
+          8,
+          8
+        ],
+        "axis": "y",
+        "angle": 45
+      },
+      "shade": false,
+      "light_emission": 15,
+      "faces": {
+        "west": {
+          "texture": "#specimen_tank_fluid_glow_c00",
+          "uv": [
+            8,
+            0,
+            12,
+            16
+          ],
+          "tintindex": 0
+        },
+        "east": {
+          "texture": "#specimen_tank_fluid_glow_c00",
+          "uv": [
+            12,
+            0,
+            16,
+            16
+          ],
+          "tintindex": 0
+        }
+      }
+    },
+    {
+      "from": [
+        3,
+        0,
+        6
+      ],
+      "to": [
+        13,
+        16,
+        10
+      ],
+      "rotation": {
+        "origin": [
+          8,
+          8,
+          8
+        ],
+        "axis": "y",
+        "angle": -45
+      },
+      "shade": false,
+      "light_emission": 15,
+      "faces": {
+        "west": {
+          "texture": "#specimen_tank_fluid_glow_c00",
+          "uv": [
+            12,
+            0,
+            16,
+            16
+          ],
+          "tintindex": 0
+        },
+        "east": {
+          "texture": "#specimen_tank_fluid_glow_c00",
+          "uv": [
+            8,
+            0,
+            12,
+            16
+          ],
+          "tintindex": 0
+        }
+      }
+    },
+    {
+      "from": [
+        5.5,
+        0,
+        2
+      ],
+      "to": [
+        10.5,
+        16,
+        14
+      ],
+      "faces": {
+        "north": {
+          "texture": "#specimen_tank_glass",
+          "uv": [
+            0,
+            0,
+            5,
+            16
+          ]
+        },
+        "south": {
+          "texture": "#specimen_tank_glass",
+          "uv": [
+            5,
+            0,
+            10,
+            16
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        2,
+        0,
+        5.5
+      ],
+      "to": [
+        14,
+        16,
+        10.5
+      ],
+      "faces": {
+        "west": {
+          "texture": "#specimen_tank_glass",
+          "uv": [
+            0,
+            0,
+            5,
+            16
+          ]
+        },
+        "east": {
+          "texture": "#specimen_tank_glass",
+          "uv": [
+            5,
+            0,
+            10,
+            16
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        2,
+        0,
+        5.5
+      ],
+      "to": [
+        14,
+        16,
+        10.5
+      ],
+      "rotation": {
+        "origin": [
+          8,
+          8,
+          8
+        ],
+        "axis": "y",
+        "angle": 45
+      },
+      "faces": {
+        "west": {
+          "texture": "#specimen_tank_glass",
+          "uv": [
+            0,
+            0,
+            5,
+            16
+          ]
+        },
+        "east": {
+          "texture": "#specimen_tank_glass",
+          "uv": [
+            10,
+            0,
+            15,
+            16
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        2,
+        0,
+        5.5
+      ],
+      "to": [
+        14,
+        16,
+        10.5
+      ],
+      "rotation": {
+        "origin": [
+          8,
+          8,
+          8
+        ],
+        "axis": "y",
+        "angle": -45
+      },
+      "faces": {
+        "west": {
+          "texture": "#specimen_tank_glass",
+          "uv": [
+            10,
+            0,
+            15,
+            16
+          ]
+        },
+        "east": {
+          "texture": "#specimen_tank_glass",
+          "uv": [
+            5,
+            0,
+            10,
+            16
+          ]
+        }
+      }
+    }
+  ],
+  "render_type": "minecraft:cutout"
+}

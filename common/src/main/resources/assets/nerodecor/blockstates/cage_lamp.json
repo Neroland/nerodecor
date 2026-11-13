@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "face=down": {
+      "model": "nerodecor:block/chroma_lights/cage_lamp"
+    },
+    "face=up": {
+      "model": "nerodecor:block/chroma_lights/cage_lamp",
+      "x": 180
+    },
+    "face=north": {
+      "model": "nerodecor:block/chroma_lights/cage_lamp",
+      "x": 90,
+      "y": 180
+    },
+    "face=south": {
+      "model": "nerodecor:block/chroma_lights/cage_lamp",
+      "x": 90
+    },
+    "face=west": {
+      "model": "nerodecor:block/chroma_lights/cage_lamp",
+      "x": 90,
+      "y": 90
+    },
+    "face=east": {
+      "model": "nerodecor:block/chroma_lights/cage_lamp",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

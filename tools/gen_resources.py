@@ -8,10 +8,12 @@ runtime datagen). Deterministic + idempotent: re-running rewrites byte-stable fi
 The SPEC below mirrors registry/DecorBlocks.java — keep them in lockstep. Textures come from
 tools/gen_textures.py; models here reference nerodecor:block/<texture>.
 
-Usage: python tools/gen_resources.py   (or ./gradlew genAssets)
+Usage: python tools/gen_resources.py [--check]   (or ./gradlew genAssets)
+       --check writes nothing and exits 1 on any new / stale / orphan file.
 """
 import json
 import os
+import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(HERE)
@@ -58,6 +60,121 @@ CUBE_OF = {t: name for (name, kind, t, fam, mat) in SPEC if kind == "cube"}
 
 files = {}          # relative path -> dict (written as JSON)
 lang = {}
+
+# Hand-written strings that ride along in en_us.json. LANG_HEAD sits above the generated block keys;
+# QUEST_LANG (the NeroQuests "Architect" chapter whose data lives in data/nerodecor/neroquests/) is
+# appended after a blank line, in authored order. English is the source; other languages via Weblate.
+# Chroma (0.8.0) chat/action-bar messages follow the tab title; block and item names for the hub,
+# linker and other collection items come from tools/collections via collections.aggregate().
+LANG_HEAD = [
+    ("itemGroup.%s" % NS, "NeroDecor"),
+    ("message.nerodecor.chroma.ok",
+     "Linked."),
+    ("message.nerodecor.chroma.already_linked",
+     "Already linked to this hub."),
+    ("message.nerodecor.chroma.disabled",
+     "Chroma is disabled on this server."),
+    ("message.nerodecor.chroma.inactive",
+     "That hub is not placed."),
+    ("message.nerodecor.chroma.no_network",
+     "No Chroma network here."),
+    ("message.nerodecor.chroma.no_permission",
+     "You are not trusted for that on this hub."),
+    ("message.nerodecor.chroma.protected",
+     "That block is protected."),
+    ("message.nerodecor.chroma.not_capable",
+     "That block cannot be controlled by a hub."),
+    ("message.nerodecor.chroma.out_of_volume",
+     "That block is outside the hub's volume."),
+    ("message.nerodecor.chroma.volume_too_large",
+     "A hub volume is at most 64 blocks on each side."),
+    ("message.nerodecor.chroma.claimed_by_other_hub",
+     "That block already belongs to another hub."),
+    ("message.nerodecor.chroma.block_cap",
+     "This hub controls as many blocks as it can."),
+    ("message.nerodecor.chroma.hub_cap",
+     "You own as many hubs as allowed."),
+    ("message.nerodecor.chroma.zone_cap",
+     "This hub has as many zones as allowed."),
+    ("message.nerodecor.chroma.bad_zone",
+     "Unknown zone."),
+    ("message.nerodecor.chroma.bad_name",
+     "Invalid name."),
+    ("message.nerodecor.chroma.bad_channel",
+     "Channels run from 0 to 15."),
+    ("message.nerodecor.chroma.not_linked",
+     "Unlinked."),
+    ("message.nerodecor.chroma.selection_too_large",
+     "That selection is too large."),
+    ("message.nerodecor.chroma.rate_limited",
+     "Slow down: too many Chroma edits."),
+    ("message.nerodecor.chroma.selection",
+     "Linked %s blocks (%s skipped)."),
+    ("message.nerodecor.chroma.status",
+     "Chroma Hub: %s blocks, %s zones."),
+    ("message.nerodecor.chroma.auto_adopt.on",
+     "Auto-adopt on: blocks you place in range join this hub."),
+    ("message.nerodecor.chroma.auto_adopt.off",
+     "Auto-adopt off."),
+    ("message.nerodecor.chroma.linker.bound",
+     "Linker bound to this hub."),
+    ("message.nerodecor.chroma.linker.unbound",
+     "Use the linker on a Chroma Hub first."),
+    ("message.nerodecor.chroma.linker.corner",
+     "First corner set. Use on the opposite corner."),
+    ("message.nerodecor.chroma.linker.mode_box",
+     "Box mode: mark two corners."),
+    ("message.nerodecor.chroma.linker.mode_single",
+     "Single mode: click blocks to link or unlink."),
+]
+QUEST_LANG = [
+    ("chapter.nerodecor.architect.title",
+     "Architect"),
+    ("quest.nerodecor.architect.first_light.title",
+     "First Light"),
+    ("quest.nerodecor.architect.first_light.desc",
+     "Eight neon blocks, any colour. A base can be functional and still glow - this is where it starts to look like somewhere people live."),
+    ("quest.nerodecor.architect.hull_plating.title",
+     "Hull Plating"),
+    ("quest.nerodecor.architect.hull_plating.desc",
+     "Sixteen pieces of hull - blocks, slabs, stairs or walls, in any alloy. The same plating that skins a starship makes a handsome workshop."),
+    ("quest.nerodecor.architect.clean_lines.title",
+     "Clean Lines"),
+    ("quest.nerodecor.architect.clean_lines.desc",
+     "Sixteen panels in any finish. Flat, even, ordered - the quiet backdrop that lets everything else on the wall stand out."),
+    ("quest.nerodecor.architect.through_the_glass.title",
+     "Through the Glass"),
+    ("quest.nerodecor.architect.through_the_glass.desc",
+     "Eight pieces of tinted glass. Give the hull a window and the view becomes part of the design."),
+    ("quest.nerodecor.architect.starsteel_frame.title",
+     "Starsteel Frame"),
+    ("quest.nerodecor.architect.starsteel_frame.desc",
+     "Four starsteel pillars. Every grand hall needs a skeleton, and these carry the look of a station bulkhead."),
+    ("quest.nerodecor.architect.circuitry.title",
+     "Circuitry"),
+    ("quest.nerodecor.architect.circuitry.desc",
+     "Circuit plating for the walls and a holo-grid underfoot. A control room that looks like a control room."),
+    ("quest.nerodecor.architect.power_aesthetic.title",
+     "Power Aesthetic"),
+    ("quest.nerodecor.architect.power_aesthetic.desc",
+     "A fusion lamp and a pair of capacitor banks. Nothing here generates a single watt, and nobody visiting will ever believe that."),
+    ("quest.nerodecor.architect.into_the_void.title",
+     "Into the Void"),
+    ("quest.nerodecor.architect.into_the_void.desc",
+     "Void rifts and a crystal lattice. A little deep space, hung on the wall where you can admire it safely."),
+    ("quest.nerodecor.architect.xeno_garden.title",
+     "Xeno Garden"),
+    ("quest.nerodecor.architect.xeno_garden.desc",
+     "Xeno blooms under aurora glass. An alien garden is proof that a base can be a home, not just a factory."),
+    ("quest.nerodecor.architect.full_spectrum.title",
+     "Full Spectrum"),
+    ("quest.nerodecor.architect.full_spectrum.desc",
+     "Hold one neon block of every colour - all twelve. A complete palette, ready for whatever you build next."),
+    ("quest.nerodecor.architect.master_architect.title",
+     "Master Architect"),
+    ("quest.nerodecor.architect.master_architect.desc",
+     "Power, void and garden: you have built with every family NeroDecor has to offer. Whatever stands on your land now, it was designed."),
+]
 mineable = []
 decor_tags = {}     # family -> [block ids]
 walls = []          # wall block ids — need #minecraft:walls to connect to each other
@@ -682,6 +799,15 @@ def main():
     emit_recipes()
     emit_luminous()
 
+    # The tools/collections layer: gen_collections.py owns those blocks' own files; their shared
+    # entries (lang, mineable, neroland:decor/<family>) are merged here so these files keep one owner.
+    global COLLECTIONS
+    COLLECTIONS = collections_aggregate("--check" in sys.argv[1:])
+    lang.update(COLLECTIONS["lang"])
+    mineable.extend(COLLECTIONS["mineable"])
+    for fam, ids in COLLECTIONS["decor"].items():
+        decor_tags.setdefault(fam, []).extend(ids)
+
     # aggregate tags
     files["data/minecraft/tags/block/mineable/pickaxe.json"] = {"replace": False, "values": sorted(mineable)}
     # Walls only connect to neighbours in #minecraft:walls (vanilla WallBlock.connectsTo).
@@ -692,17 +818,83 @@ def main():
             "values": [{"id": i, "required": False} for i in sorted(ids)]}
 
     # lang
-    files["assets/%s/lang/en_us.json" % NS] = dict(sorted(lang.items()))
+    files[LANG_FILE] = dict(LANG_HEAD + sorted(lang.items()))
 
+    out = {rel: render(rel, obj) for rel, obj in files.items()}
+    if "--check" in sys.argv[1:]:
+        sys.exit(check(out))
     n = 0
-    for rel, obj in sorted(files.items()):
+    for rel, text in sorted(out.items()):
         path = os.path.join(RES, rel)
         os.makedirs(os.path.dirname(path), exist_ok=True)
         with open(path, "w", encoding="utf-8", newline="\n") as fh:
-            json.dump(obj, fh, indent=2, sort_keys=False)
-            fh.write("\n")
+            fh.write(text)
         n += 1
     print("gen_resources: wrote %d JSON files for %d blocks" % (n, len(SPEC) + len(LUMINOUS)))
+
+
+LANG_FILE = "assets/%s/lang/en_us.json" % NS
+
+COLLECTIONS = {"lang": {}, "mineable": [], "decor": {}, "owned": set()}
+
+
+def collections_aggregate(strict):
+    """Entries from tools/collections (loaded as `nerodecor_collections`, never as the stdlib name).
+    strict on --check; otherwise a collection that fails to load is skipped with a warning."""
+    import importlib.util
+    pkg = sys.modules.get("nerodecor_collections")
+    if pkg is None:
+        d = os.path.join(HERE, "collections")
+        spec = importlib.util.spec_from_file_location("nerodecor_collections", os.path.join(d, "__init__.py"),
+                                                      submodule_search_locations=[d])
+        pkg = importlib.util.module_from_spec(spec)
+        sys.modules["nerodecor_collections"] = pkg
+        spec.loader.exec_module(pkg)
+    return pkg.aggregate(strict=strict)
+
+
+# Every file under these roots is owned by this harness: --check flags anything here it does not emit.
+OWNED_DIRS = ["assets/%s/blockstates" % NS, "assets/%s/models" % NS, "assets/%s/items" % NS,
+              "data/%s/loot_table" % NS, "data/%s/recipe" % NS,
+              "data/minecraft/tags/block", "data/neroland/tags/block"]
+OWNED_FILES = [LANG_FILE, "assets/%s/sounds.json" % NS]
+
+
+def render(rel, obj):
+    text = json.dumps(obj, indent=2, sort_keys=False) + "\n"
+    if rel == LANG_FILE and QUEST_LANG:
+        tail = ",\n".join("  %s: %s" % (json.dumps(k), json.dumps(v)) for k, v in QUEST_LANG)
+        text = text[:-len("\n}\n")] + ",\n\n" + tail + "\n}\n"
+    return text
+
+
+def check(out):
+    """Compare every output with the committed file (CRLF folded to LF: a Windows checkout under
+    text=auto has CRLF in the working tree, git stores LF). Writes nothing; 1 on any drift."""
+    problems = []
+    for rel, text in sorted(out.items()):
+        path = os.path.join(RES, rel)
+        if not os.path.exists(path):
+            problems.append("new: " + rel)
+            continue
+        with open(path, "rb") as fh:
+            disk = fh.read().replace(b"\r\n", b"\n")
+        if disk != text.encode("utf-8"):
+            problems.append("stale: " + rel)
+    owned = set(OWNED_FILES)
+    for d in OWNED_DIRS:
+        for root, _dirs, names in os.walk(os.path.join(RES, d)):
+            for n in names:
+                owned.add(os.path.relpath(os.path.join(root, n), RES).replace(os.sep, "/"))
+    problems += ["orphan (not generated): " + r for r in sorted(owned - set(out) - COLLECTIONS["owned"])
+                 if os.path.exists(os.path.join(RES, r))]
+    if problems:
+        print("gen_resources --check: DRIFT")
+        for p in problems:
+            print("  " + p)
+        return 1
+    print("gen_resources --check: clean (%d outputs)" % len(out))
+    return 0
 
 
 if __name__ == "__main__":

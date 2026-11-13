@@ -1,0 +1,106 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "nerodecor:block/ancients/glyph_strip",
+    "bar": "nerodecor:block/ancients/glyph_strip_c00",
+    "glow": "nerodecor:block/ancients/glyph_strip_glow_c00"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        6
+      ],
+      "to": [
+        16,
+        1,
+        10
+      ],
+      "faces": {
+        "up": {
+          "texture": "#bar",
+          "uv": [
+            0,
+            6,
+            16,
+            10
+          ]
+        },
+        "north": {
+          "texture": "#bar",
+          "uv": [
+            16,
+            5,
+            0,
+            6
+          ]
+        },
+        "south": {
+          "texture": "#bar",
+          "uv": [
+            0,
+            10,
+            16,
+            11
+          ]
+        },
+        "west": {
+          "texture": "#bar",
+          "uv": [
+            0,
+            6,
+            0.5,
+            10
+          ]
+        },
+        "east": {
+          "texture": "#bar",
+          "uv": [
+            15.5,
+            6,
+            16,
+            10
+          ]
+        },
+        "down": {
+          "texture": "#bar",
+          "uv": [
+            0,
+            6,
+            16,
+            10
+          ],
+          "cullface": "down"
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        0,
+        6
+      ],
+      "to": [
+        16,
+        1,
+        10
+      ],
+      "shade": false,
+      "light_emission": 15,
+      "faces": {
+        "up": {
+          "texture": "#glow",
+          "uv": [
+            0,
+            6,
+            16,
+            10
+          ],
+          "tintindex": 0
+        }
+      }
+    }
+  ],
+  "render_type": "minecraft:cutout"
+}

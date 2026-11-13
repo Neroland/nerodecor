@@ -27,7 +27,11 @@ public final class ModCreativeTab {
                     .icon(() -> ModItems.BLOCK_ITEMS.isEmpty()
                             ? ItemStack.EMPTY
                             : new ItemStack(ModItems.BLOCK_ITEMS.get(0).get()))
-                    .displayItems((params, output) -> ModItems.BLOCK_ITEMS.forEach(item -> output.accept(item.get())))
+                    .displayItems((params, output) -> {
+                        ModItems.BLOCK_ITEMS.forEach(item -> output.accept(item.get()));
+                        output.accept(ChromaContent.HUB_ITEM.get());
+                        output.accept(ChromaContent.LINKER.get());
+                    })
                     .build());
 
     private ModCreativeTab() {

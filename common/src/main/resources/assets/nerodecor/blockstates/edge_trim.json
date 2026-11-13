@@ -1,0 +1,412 @@
+{
+  "variants": {
+    "facing=north,half=bottom,neg_link=false,pos_link=false,shape=straight": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_c11"
+    },
+    "facing=north,half=bottom,neg_link=true,pos_link=false,shape=straight": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_c10"
+    },
+    "facing=north,half=bottom,neg_link=false,pos_link=true,shape=straight": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_c01"
+    },
+    "facing=north,half=bottom,neg_link=true,pos_link=true,shape=straight": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_c00"
+    },
+    "facing=north,half=bottom,neg_link=false,pos_link=false,shape=inner": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_inner"
+    },
+    "facing=north,half=bottom,neg_link=true,pos_link=false,shape=inner": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_inner"
+    },
+    "facing=north,half=bottom,neg_link=false,pos_link=true,shape=inner": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_inner"
+    },
+    "facing=north,half=bottom,neg_link=true,pos_link=true,shape=inner": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_inner"
+    },
+    "facing=north,half=bottom,neg_link=false,pos_link=false,shape=outer": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_outer"
+    },
+    "facing=north,half=bottom,neg_link=true,pos_link=false,shape=outer": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_outer"
+    },
+    "facing=north,half=bottom,neg_link=false,pos_link=true,shape=outer": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_outer"
+    },
+    "facing=north,half=bottom,neg_link=true,pos_link=true,shape=outer": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_outer"
+    },
+    "facing=north,half=top,neg_link=false,pos_link=false,shape=straight": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_c11",
+      "x": 180,
+      "y": 180
+    },
+    "facing=north,half=top,neg_link=true,pos_link=false,shape=straight": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_c01",
+      "x": 180,
+      "y": 180
+    },
+    "facing=north,half=top,neg_link=false,pos_link=true,shape=straight": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_c10",
+      "x": 180,
+      "y": 180
+    },
+    "facing=north,half=top,neg_link=true,pos_link=true,shape=straight": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_c00",
+      "x": 180,
+      "y": 180
+    },
+    "facing=north,half=top,neg_link=false,pos_link=false,shape=inner": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_inner",
+      "x": 180,
+      "y": 90
+    },
+    "facing=north,half=top,neg_link=true,pos_link=false,shape=inner": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_inner",
+      "x": 180,
+      "y": 90
+    },
+    "facing=north,half=top,neg_link=false,pos_link=true,shape=inner": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_inner",
+      "x": 180,
+      "y": 90
+    },
+    "facing=north,half=top,neg_link=true,pos_link=true,shape=inner": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_inner",
+      "x": 180,
+      "y": 90
+    },
+    "facing=north,half=top,neg_link=false,pos_link=false,shape=outer": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_outer",
+      "x": 180,
+      "y": 90
+    },
+    "facing=north,half=top,neg_link=true,pos_link=false,shape=outer": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_outer",
+      "x": 180,
+      "y": 90
+    },
+    "facing=north,half=top,neg_link=false,pos_link=true,shape=outer": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_outer",
+      "x": 180,
+      "y": 90
+    },
+    "facing=north,half=top,neg_link=true,pos_link=true,shape=outer": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_outer",
+      "x": 180,
+      "y": 90
+    },
+    "facing=east,half=bottom,neg_link=false,pos_link=false,shape=straight": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_c11",
+      "y": 90
+    },
+    "facing=east,half=bottom,neg_link=true,pos_link=false,shape=straight": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_c10",
+      "y": 90
+    },
+    "facing=east,half=bottom,neg_link=false,pos_link=true,shape=straight": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_c01",
+      "y": 90
+    },
+    "facing=east,half=bottom,neg_link=true,pos_link=true,shape=straight": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_c00",
+      "y": 90
+    },
+    "facing=east,half=bottom,neg_link=false,pos_link=false,shape=inner": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_inner",
+      "y": 90
+    },
+    "facing=east,half=bottom,neg_link=true,pos_link=false,shape=inner": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_inner",
+      "y": 90
+    },
+    "facing=east,half=bottom,neg_link=false,pos_link=true,shape=inner": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_inner",
+      "y": 90
+    },
+    "facing=east,half=bottom,neg_link=true,pos_link=true,shape=inner": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_inner",
+      "y": 90
+    },
+    "facing=east,half=bottom,neg_link=false,pos_link=false,shape=outer": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_outer",
+      "y": 90
+    },
+    "facing=east,half=bottom,neg_link=true,pos_link=false,shape=outer": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_outer",
+      "y": 90
+    },
+    "facing=east,half=bottom,neg_link=false,pos_link=true,shape=outer": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_outer",
+      "y": 90
+    },
+    "facing=east,half=bottom,neg_link=true,pos_link=true,shape=outer": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_outer",
+      "y": 90
+    },
+    "facing=east,half=top,neg_link=false,pos_link=false,shape=straight": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_c11",
+      "x": 180,
+      "y": 270
+    },
+    "facing=east,half=top,neg_link=true,pos_link=false,shape=straight": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_c01",
+      "x": 180,
+      "y": 270
+    },
+    "facing=east,half=top,neg_link=false,pos_link=true,shape=straight": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_c10",
+      "x": 180,
+      "y": 270
+    },
+    "facing=east,half=top,neg_link=true,pos_link=true,shape=straight": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_c00",
+      "x": 180,
+      "y": 270
+    },
+    "facing=east,half=top,neg_link=false,pos_link=false,shape=inner": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_inner",
+      "x": 180,
+      "y": 180
+    },
+    "facing=east,half=top,neg_link=true,pos_link=false,shape=inner": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_inner",
+      "x": 180,
+      "y": 180
+    },
+    "facing=east,half=top,neg_link=false,pos_link=true,shape=inner": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_inner",
+      "x": 180,
+      "y": 180
+    },
+    "facing=east,half=top,neg_link=true,pos_link=true,shape=inner": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_inner",
+      "x": 180,
+      "y": 180
+    },
+    "facing=east,half=top,neg_link=false,pos_link=false,shape=outer": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_outer",
+      "x": 180,
+      "y": 180
+    },
+    "facing=east,half=top,neg_link=true,pos_link=false,shape=outer": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_outer",
+      "x": 180,
+      "y": 180
+    },
+    "facing=east,half=top,neg_link=false,pos_link=true,shape=outer": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_outer",
+      "x": 180,
+      "y": 180
+    },
+    "facing=east,half=top,neg_link=true,pos_link=true,shape=outer": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_outer",
+      "x": 180,
+      "y": 180
+    },
+    "facing=south,half=bottom,neg_link=false,pos_link=false,shape=straight": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_c11",
+      "y": 180
+    },
+    "facing=south,half=bottom,neg_link=true,pos_link=false,shape=straight": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_c01",
+      "y": 180
+    },
+    "facing=south,half=bottom,neg_link=false,pos_link=true,shape=straight": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_c10",
+      "y": 180
+    },
+    "facing=south,half=bottom,neg_link=true,pos_link=true,shape=straight": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_c00",
+      "y": 180
+    },
+    "facing=south,half=bottom,neg_link=false,pos_link=false,shape=inner": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_inner",
+      "y": 180
+    },
+    "facing=south,half=bottom,neg_link=true,pos_link=false,shape=inner": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_inner",
+      "y": 180
+    },
+    "facing=south,half=bottom,neg_link=false,pos_link=true,shape=inner": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_inner",
+      "y": 180
+    },
+    "facing=south,half=bottom,neg_link=true,pos_link=true,shape=inner": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_inner",
+      "y": 180
+    },
+    "facing=south,half=bottom,neg_link=false,pos_link=false,shape=outer": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_outer",
+      "y": 180
+    },
+    "facing=south,half=bottom,neg_link=true,pos_link=false,shape=outer": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_outer",
+      "y": 180
+    },
+    "facing=south,half=bottom,neg_link=false,pos_link=true,shape=outer": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_outer",
+      "y": 180
+    },
+    "facing=south,half=bottom,neg_link=true,pos_link=true,shape=outer": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_outer",
+      "y": 180
+    },
+    "facing=south,half=top,neg_link=false,pos_link=false,shape=straight": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_c11",
+      "x": 180
+    },
+    "facing=south,half=top,neg_link=true,pos_link=false,shape=straight": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_c10",
+      "x": 180
+    },
+    "facing=south,half=top,neg_link=false,pos_link=true,shape=straight": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_c01",
+      "x": 180
+    },
+    "facing=south,half=top,neg_link=true,pos_link=true,shape=straight": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_c00",
+      "x": 180
+    },
+    "facing=south,half=top,neg_link=false,pos_link=false,shape=inner": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_inner",
+      "x": 180,
+      "y": 270
+    },
+    "facing=south,half=top,neg_link=true,pos_link=false,shape=inner": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_inner",
+      "x": 180,
+      "y": 270
+    },
+    "facing=south,half=top,neg_link=false,pos_link=true,shape=inner": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_inner",
+      "x": 180,
+      "y": 270
+    },
+    "facing=south,half=top,neg_link=true,pos_link=true,shape=inner": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_inner",
+      "x": 180,
+      "y": 270
+    },
+    "facing=south,half=top,neg_link=false,pos_link=false,shape=outer": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_outer",
+      "x": 180,
+      "y": 270
+    },
+    "facing=south,half=top,neg_link=true,pos_link=false,shape=outer": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_outer",
+      "x": 180,
+      "y": 270
+    },
+    "facing=south,half=top,neg_link=false,pos_link=true,shape=outer": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_outer",
+      "x": 180,
+      "y": 270
+    },
+    "facing=south,half=top,neg_link=true,pos_link=true,shape=outer": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_outer",
+      "x": 180,
+      "y": 270
+    },
+    "facing=west,half=bottom,neg_link=false,pos_link=false,shape=straight": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_c11",
+      "y": 270
+    },
+    "facing=west,half=bottom,neg_link=true,pos_link=false,shape=straight": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_c01",
+      "y": 270
+    },
+    "facing=west,half=bottom,neg_link=false,pos_link=true,shape=straight": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_c10",
+      "y": 270
+    },
+    "facing=west,half=bottom,neg_link=true,pos_link=true,shape=straight": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_c00",
+      "y": 270
+    },
+    "facing=west,half=bottom,neg_link=false,pos_link=false,shape=inner": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_inner",
+      "y": 270
+    },
+    "facing=west,half=bottom,neg_link=true,pos_link=false,shape=inner": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_inner",
+      "y": 270
+    },
+    "facing=west,half=bottom,neg_link=false,pos_link=true,shape=inner": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_inner",
+      "y": 270
+    },
+    "facing=west,half=bottom,neg_link=true,pos_link=true,shape=inner": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_inner",
+      "y": 270
+    },
+    "facing=west,half=bottom,neg_link=false,pos_link=false,shape=outer": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_outer",
+      "y": 270
+    },
+    "facing=west,half=bottom,neg_link=true,pos_link=false,shape=outer": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_outer",
+      "y": 270
+    },
+    "facing=west,half=bottom,neg_link=false,pos_link=true,shape=outer": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_outer",
+      "y": 270
+    },
+    "facing=west,half=bottom,neg_link=true,pos_link=true,shape=outer": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_outer",
+      "y": 270
+    },
+    "facing=west,half=top,neg_link=false,pos_link=false,shape=straight": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_c11",
+      "x": 180,
+      "y": 90
+    },
+    "facing=west,half=top,neg_link=true,pos_link=false,shape=straight": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_c10",
+      "x": 180,
+      "y": 90
+    },
+    "facing=west,half=top,neg_link=false,pos_link=true,shape=straight": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_c01",
+      "x": 180,
+      "y": 90
+    },
+    "facing=west,half=top,neg_link=true,pos_link=true,shape=straight": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_c00",
+      "x": 180,
+      "y": 90
+    },
+    "facing=west,half=top,neg_link=false,pos_link=false,shape=inner": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_inner",
+      "x": 180
+    },
+    "facing=west,half=top,neg_link=true,pos_link=false,shape=inner": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_inner",
+      "x": 180
+    },
+    "facing=west,half=top,neg_link=false,pos_link=true,shape=inner": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_inner",
+      "x": 180
+    },
+    "facing=west,half=top,neg_link=true,pos_link=true,shape=inner": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_inner",
+      "x": 180
+    },
+    "facing=west,half=top,neg_link=false,pos_link=false,shape=outer": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_outer",
+      "x": 180
+    },
+    "facing=west,half=top,neg_link=true,pos_link=false,shape=outer": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_outer",
+      "x": 180
+    },
+    "facing=west,half=top,neg_link=false,pos_link=true,shape=outer": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_outer",
+      "x": 180
+    },
+    "facing=west,half=top,neg_link=true,pos_link=true,shape=outer": {
+      "model": "nerodecor:block/chroma_lights/edge_trim_outer",
+      "x": 180
+    }
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "nerodecor:block/conduits/coolant_tube",
+    "end": "nerodecor:block/conduits/decor_pipe_end",
+    "gh": "nerodecor:block/conduits/coolant_tube_glow",
+    "gv": "nerodecor:block/conduits/coolant_tube_glow_v",
+    "h": "nerodecor:block/conduits/coolant_tube",
+    "v": "nerodecor:block/conduits/coolant_tube_v"
+  },
+  "elements": [
+    {
+      "from": [
+        5,
+        5,
+        11
+      ],
+      "to": [
+        11,
+        11,
+        16
+      ],
+      "faces": {
+        "west": {
+          "texture": "#h",
+          "uv": [
+            11,
+            5,
+            16,
+            11
+          ],
+          "tintindex": 0
+        },
+        "east": {
+          "texture": "#h",
+          "uv": [
+            16,
+            5,
+            11,
+            11
+          ],
+          "tintindex": 0
+        },
+        "down": {
+          "texture": "#v",
+          "uv": [
+            5,
+            16,
+            11,
+            11
+          ],
+          "tintindex": 0
+        },
+        "up": {
+          "texture": "#v",
+          "uv": [
+            5,
+            11,
+            11,
+            16
+          ],
+          "tintindex": 0
+        }
+      }
+    },
+    {
+      "from": [
+        5,
+        5,
+        11
+      ],
+      "to": [
+        11,
+        11,
+        16
+      ],
+      "faces": {
+        "south": {
+          "texture": "#end",
+          "uv": [
+            5,
+            5,
+            11,
+            11
+          ],
+          "cullface": "south"
+        }
+      }
+    },
+    {
+      "from": [
+        5,
+        5,
+        11
+      ],
+      "to": [
+        11,
+        11,
+        16
+      ],
+      "shade": false,
+      "light_emission": 15,
+      "faces": {
+        "west": {
+          "texture": "#gh",
+          "uv": [
+            11,
+            5,
+            16,
+            11
+          ],
+          "tintindex": 0
+        },
+        "east": {
+          "texture": "#gh",
+          "uv": [
+            16,
+            5,
+            11,
+            11
+          ],
+          "tintindex": 0
+        },
+        "down": {
+          "texture": "#gv",
+          "uv": [
+            5,
+            16,
+            11,
+            11
+          ],
+          "tintindex": 0
+        },
+        "up": {
+          "texture": "#gv",
+          "uv": [
+            5,
+            11,
+            11,
+            16
+          ],
+          "tintindex": 0
+        }
+      }
+    }
+  ],
+  "render_type": "minecraft:cutout"
+}

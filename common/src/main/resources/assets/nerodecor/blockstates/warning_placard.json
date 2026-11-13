@@ -1,0 +1,188 @@
+{
+  "variants": {
+    "face=north,symbol=caution": {
+      "model": "nerodecor:block/greebles/warning_placard_caution"
+    },
+    "face=north,symbol=voltage": {
+      "model": "nerodecor:block/greebles/warning_placard_voltage"
+    },
+    "face=north,symbol=radiation": {
+      "model": "nerodecor:block/greebles/warning_placard_radiation"
+    },
+    "face=north,symbol=flammable": {
+      "model": "nerodecor:block/greebles/warning_placard_flammable"
+    },
+    "face=north,symbol=cryo": {
+      "model": "nerodecor:block/greebles/warning_placard_cryo"
+    },
+    "face=north,symbol=suit": {
+      "model": "nerodecor:block/greebles/warning_placard_suit"
+    },
+    "face=north,symbol=no_entry": {
+      "model": "nerodecor:block/greebles/warning_placard_no_entry"
+    },
+    "face=north,symbol=oxygen": {
+      "model": "nerodecor:block/greebles/warning_placard_oxygen"
+    },
+    "face=east,symbol=caution": {
+      "model": "nerodecor:block/greebles/warning_placard_caution",
+      "y": 90
+    },
+    "face=east,symbol=voltage": {
+      "model": "nerodecor:block/greebles/warning_placard_voltage",
+      "y": 90
+    },
+    "face=east,symbol=radiation": {
+      "model": "nerodecor:block/greebles/warning_placard_radiation",
+      "y": 90
+    },
+    "face=east,symbol=flammable": {
+      "model": "nerodecor:block/greebles/warning_placard_flammable",
+      "y": 90
+    },
+    "face=east,symbol=cryo": {
+      "model": "nerodecor:block/greebles/warning_placard_cryo",
+      "y": 90
+    },
+    "face=east,symbol=suit": {
+      "model": "nerodecor:block/greebles/warning_placard_suit",
+      "y": 90
+    },
+    "face=east,symbol=no_entry": {
+      "model": "nerodecor:block/greebles/warning_placard_no_entry",
+      "y": 90
+    },
+    "face=east,symbol=oxygen": {
+      "model": "nerodecor:block/greebles/warning_placard_oxygen",
+      "y": 90
+    },
+    "face=south,symbol=caution": {
+      "model": "nerodecor:block/greebles/warning_placard_caution",
+      "y": 180
+    },
+    "face=south,symbol=voltage": {
+      "model": "nerodecor:block/greebles/warning_placard_voltage",
+      "y": 180
+    },
+    "face=south,symbol=radiation": {
+      "model": "nerodecor:block/greebles/warning_placard_radiation",
+      "y": 180
+    },
+    "face=south,symbol=flammable": {
+      "model": "nerodecor:block/greebles/warning_placard_flammable",
+      "y": 180
+    },
+    "face=south,symbol=cryo": {
+      "model": "nerodecor:block/greebles/warning_placard_cryo",
+      "y": 180
+    },
+    "face=south,symbol=suit": {
+      "model": "nerodecor:block/greebles/warning_placard_suit",
+      "y": 180
+    },
+    "face=south,symbol=no_entry": {
+      "model": "nerodecor:block/greebles/warning_placard_no_entry",
+      "y": 180
+    },
+    "face=south,symbol=oxygen": {
+      "model": "nerodecor:block/greebles/warning_placard_oxygen",
+      "y": 180
+    },
+    "face=west,symbol=caution": {
+      "model": "nerodecor:block/greebles/warning_placard_caution",
+      "y": 270
+    },
+    "face=west,symbol=voltage": {
+      "model": "nerodecor:block/greebles/warning_placard_voltage",
+      "y": 270
+    },
+    "face=west,symbol=radiation": {
+      "model": "nerodecor:block/greebles/warning_placard_radiation",
+      "y": 270
+    },
+    "face=west,symbol=flammable": {
+      "model": "nerodecor:block/greebles/warning_placard_flammable",
+      "y": 270
+    },
+    "face=west,symbol=cryo": {
+      "model": "nerodecor:block/greebles/warning_placard_cryo",
+      "y": 270
+    },
+    "face=west,symbol=suit": {
+      "model": "nerodecor:block/greebles/warning_placard_suit",
+      "y": 270
+    },
+    "face=west,symbol=no_entry": {
+      "model": "nerodecor:block/greebles/warning_placard_no_entry",
+      "y": 270
+    },
+    "face=west,symbol=oxygen": {
+      "model": "nerodecor:block/greebles/warning_placard_oxygen",
+      "y": 270
+    },
+    "face=down,symbol=caution": {
+      "model": "nerodecor:block/greebles/warning_placard_caution",
+      "x": 90
+    },
+    "face=down,symbol=voltage": {
+      "model": "nerodecor:block/greebles/warning_placard_voltage",
+      "x": 90
+    },
+    "face=down,symbol=radiation": {
+      "model": "nerodecor:block/greebles/warning_placard_radiation",
+      "x": 90
+    },
+    "face=down,symbol=flammable": {
+      "model": "nerodecor:block/greebles/warning_placard_flammable",
+      "x": 90
+    },
+    "face=down,symbol=cryo": {
+      "model": "nerodecor:block/greebles/warning_placard_cryo",
+      "x": 90
+    },
+    "face=down,symbol=suit": {
+      "model": "nerodecor:block/greebles/warning_placard_suit",
+      "x": 90
+    },
+    "face=down,symbol=no_entry": {
+      "model": "nerodecor:block/greebles/warning_placard_no_entry",
+      "x": 90
+    },
+    "face=down,symbol=oxygen": {
+      "model": "nerodecor:block/greebles/warning_placard_oxygen",
+      "x": 90
+    },
+    "face=up,symbol=caution": {
+      "model": "nerodecor:block/greebles/warning_placard_caution",
+      "x": 270
+    },
+    "face=up,symbol=voltage": {
+      "model": "nerodecor:block/greebles/warning_placard_voltage",
+      "x": 270
+    },
+    "face=up,symbol=radiation": {
+      "model": "nerodecor:block/greebles/warning_placard_radiation",
+      "x": 270
+    },
+    "face=up,symbol=flammable": {
+      "model": "nerodecor:block/greebles/warning_placard_flammable",
+      "x": 270
+    },
+    "face=up,symbol=cryo": {
+      "model": "nerodecor:block/greebles/warning_placard_cryo",
+      "x": 270
+    },
+    "face=up,symbol=suit": {
+      "model": "nerodecor:block/greebles/warning_placard_suit",
+      "x": 270
+    },
+    "face=up,symbol=no_entry": {
+      "model": "nerodecor:block/greebles/warning_placard_no_entry",
+      "x": 270
+    },
+    "face=up,symbol=oxygen": {
+      "model": "nerodecor:block/greebles/warning_placard_oxygen",
+      "x": 270
+    }
+  }
+}

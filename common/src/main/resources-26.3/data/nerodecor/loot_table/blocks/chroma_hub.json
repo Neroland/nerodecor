@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "condition": {
+        "type": "minecraft:survives_explosion"
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "modifier": [
+            {
+              "type": "minecraft:copy_components",
+              "include": [
+                "nerodecor:chroma_network"
+              ],
+              "source": "block_entity"
+            }
+          ],
+          "name": "nerodecor:chroma_hub"
+        }
+      ],
+      "rolls": 1
+    }
+  ]
+}

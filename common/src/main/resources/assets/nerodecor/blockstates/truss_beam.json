@@ -1,0 +1,75 @@
+{
+  "variants": {
+    "axis=x,neg_link=false,pos_link=false": {
+      "model": "nerodecor:block/gantry/truss_beam_c11",
+      "x": 90,
+      "y": 90
+    },
+    "axis=x,neg_link=true,pos_link=false": {
+      "model": "nerodecor:block/gantry/truss_beam_c10",
+      "x": 90,
+      "y": 90
+    },
+    "axis=x,neg_link=false,pos_link=true": {
+      "model": "nerodecor:block/gantry/truss_beam_c01",
+      "x": 90,
+      "y": 90
+    },
+    "axis=x,neg_link=true,pos_link=true": [
+      {
+        "model": "nerodecor:block/gantry/truss_beam_c00",
+        "x": 90,
+        "y": 90
+      },
+      {
+        "model": "nerodecor:block/gantry/truss_beam_c00_b",
+        "x": 90,
+        "y": 90
+      }
+    ],
+    "axis=y,neg_link=false,pos_link=false": {
+      "model": "nerodecor:block/gantry/truss_beam_c11"
+    },
+    "axis=y,neg_link=true,pos_link=false": {
+      "model": "nerodecor:block/gantry/truss_beam_c10"
+    },
+    "axis=y,neg_link=false,pos_link=true": {
+      "model": "nerodecor:block/gantry/truss_beam_c01"
+    },
+    "axis=y,neg_link=true,pos_link=true": [
+      {
+        "model": "nerodecor:block/gantry/truss_beam_c00"
+      },
+      {
+        "model": "nerodecor:block/gantry/truss_beam_c00_b"
+      }
+    ],
+    "axis=z,neg_link=false,pos_link=false": {
+      "model": "nerodecor:block/gantry/truss_beam_c11",
+      "x": 90,
+      "y": 180
+    },
+    "axis=z,neg_link=true,pos_link=false": {
+      "model": "nerodecor:block/gantry/truss_beam_c10",
+      "x": 90,
+      "y": 180
+    },
+    "axis=z,neg_link=false,pos_link=true": {
+      "model": "nerodecor:block/gantry/truss_beam_c01",
+      "x": 90,
+      "y": 180
+    },
+    "axis=z,neg_link=true,pos_link=true": [
+      {
+        "model": "nerodecor:block/gantry/truss_beam_c00",
+        "x": 90,
+        "y": 180
+      },
+      {
+        "model": "nerodecor:block/gantry/truss_beam_c00_b",
+        "x": 90,
+        "y": 180
+      }
+    ]
+  }
+}

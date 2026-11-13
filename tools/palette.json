@@ -24,5 +24,24 @@
     "magenta":    { "rgb": "C74EBD" },
     "pink":       { "rgb": "F38BAA" },
     "brown":      { "rgb": "835432" }
+  },
+  "ramps": {
+    "_comment": "5-step hue-shifted ramps for tools/collections (_kit.ramp(name)); index 0 = occlusion .. 4 = glint. Shadows lean blue-violet, highlights lean warm; no pure grey or black.",
+    "house": {
+      "body":         ["0B0E17", "111724", "1C2434", "2E3A50", "4A5B76"],
+      "nero_alloy":   ["10333F", "1C5A6B", "2E8B9E", "5CB8C2", "A6E4DC"],
+      "starsteel":    ["2C3C56", "5A7594", "9FC4E0", "C8DFEE", "F1F8FB"],
+      "void_crystal": ["1D0D38", "472173", "7A3FB0", "A876D5", "DCB9F2"],
+      "plasma":       ["0B3247", "1A88B0", "3FD0E0", "8EEAEA", "DDFDF4"]
+    },
+    "worlds": {
+      "station":    ["1A2233", "2D3A4F", "4A5B72", "7589A3", "B5C6D9"],
+      "luna":       ["24222E", "48454F", "75717A", "A5A19F", "D9D4C9"],
+      "mars":       ["2A1214", "5A2419", "8E3E22", "C0663A", "E8A26C"],
+      "cindara":    ["1C0B14", "4A1416", "8C2A12", "D9561A", "FFB54A"],
+      "glacira":    ["0F2238", "1E4A6C", "3B7FA4", "79BCD6", "D3F1F6"],
+      "greenxertz": ["0D2220", "1A4A2E", "2F7A3A", "6BB04A", "C6E58C"],
+      "nyxara":     ["130A26", "2B1651", "4D2A86", "8452C0", "C99DEA"]
+    }
   }
 }

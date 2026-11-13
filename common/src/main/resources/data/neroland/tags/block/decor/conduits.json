@@ -1,0 +1,41 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "nerodecor:beam_emitter_prop",
+      "required": false
+    },
+    {
+      "id": "nerodecor:cable_tray",
+      "required": false
+    },
+    {
+      "id": "nerodecor:coolant_tube",
+      "required": false
+    },
+    {
+      "id": "nerodecor:decor_pipe",
+      "required": false
+    },
+    {
+      "id": "nerodecor:duct",
+      "required": false
+    },
+    {
+      "id": "nerodecor:duct_fan",
+      "required": false
+    },
+    {
+      "id": "nerodecor:hanging_cables",
+      "required": false
+    },
+    {
+      "id": "nerodecor:pipe_gauge",
+      "required": false
+    },
+    {
+      "id": "nerodecor:pipe_valve",
+      "required": false
+    }
+  ]
+}

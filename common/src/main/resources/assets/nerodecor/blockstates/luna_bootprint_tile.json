@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "nerodecor:block/seven_worlds/luna_bootprint_tile",
+        "weight": 3
+      },
+      {
+        "model": "nerodecor:block/seven_worlds/luna_bootprint_tile_b",
+        "weight": 3
+      },
+      {
+        "model": "nerodecor:block/seven_worlds/luna_bootprint_tile_l"
+      },
+      {
+        "model": "nerodecor:block/seven_worlds/luna_bootprint_tile_r"
+      }
+    ]
+  }
+}

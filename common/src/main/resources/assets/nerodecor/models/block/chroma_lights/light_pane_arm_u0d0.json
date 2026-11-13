@@ -1,0 +1,76 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "nerodecor:block/chroma_lights/light_pane_f15",
+    "e": "nerodecor:block/chroma_lights/light_pane_edge",
+    "t": "nerodecor:block/chroma_lights/light_pane_f0",
+    "g": "nerodecor:block/chroma_lights/light_pane_glow_f0"
+  },
+  "elements": [
+    {
+      "from": [
+        7,
+        0,
+        0
+      ],
+      "to": [
+        9,
+        16,
+        7
+      ],
+      "faces": {
+        "west": {
+          "texture": "#t"
+        },
+        "east": {
+          "texture": "#t"
+        },
+        "up": {
+          "texture": "#e",
+          "uv": [
+            7,
+            0,
+            9,
+            7
+          ],
+          "cullface": "up"
+        },
+        "down": {
+          "texture": "#e",
+          "uv": [
+            7,
+            0,
+            9,
+            7
+          ],
+          "cullface": "down"
+        }
+      }
+    },
+    {
+      "from": [
+        7,
+        0,
+        0
+      ],
+      "to": [
+        9,
+        16,
+        7
+      ],
+      "shade": false,
+      "light_emission": 15,
+      "faces": {
+        "west": {
+          "texture": "#g",
+          "tintindex": 0
+        },
+        "east": {
+          "texture": "#g",
+          "tintindex": 0
+        }
+      }
+    }
+  ],
+  "render_type": "minecraft:cutout"
+}

@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "nerodecor:block/seven_worlds/mars_rust_plate"
+      },
+      {
+        "model": "nerodecor:block/seven_worlds/mars_rust_plate_v1"
+      },
+      {
+        "model": "nerodecor:block/seven_worlds/mars_rust_plate_v2"
+      }
+    ]
+  }
+}

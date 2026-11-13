@@ -1,0 +1,161 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "nerodecor:block/chroma_lights/sconce_bar",
+    "t": "nerodecor:block/chroma_lights/sconce_bar",
+    "g": "nerodecor:block/chroma_lights/sconce_bar_glow"
+  },
+  "elements": [
+    {
+      "from": [
+        5,
+        2,
+        15
+      ],
+      "to": [
+        11,
+        14,
+        16
+      ],
+      "faces": {
+        "north": {
+          "texture": "#t"
+        },
+        "south": {
+          "texture": "#t",
+          "cullface": "south"
+        },
+        "west": {
+          "texture": "#t",
+          "uv": [
+            4,
+            2,
+            5,
+            14
+          ]
+        },
+        "east": {
+          "texture": "#t",
+          "uv": [
+            4,
+            2,
+            5,
+            14
+          ]
+        },
+        "up": {
+          "texture": "#t",
+          "uv": [
+            5,
+            0,
+            11,
+            1
+          ]
+        },
+        "down": {
+          "texture": "#t",
+          "uv": [
+            5,
+            0,
+            11,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        7,
+        3,
+        13
+      ],
+      "to": [
+        9,
+        13,
+        15
+      ],
+      "faces": {
+        "north": {
+          "texture": "#t"
+        },
+        "west": {
+          "texture": "#t",
+          "uv": [
+            12,
+            3,
+            14,
+            13
+          ]
+        },
+        "east": {
+          "texture": "#t",
+          "uv": [
+            12,
+            3,
+            14,
+            13
+          ]
+        },
+        "up": {
+          "texture": "#t",
+          "uv": [
+            12,
+            0,
+            14,
+            2
+          ]
+        },
+        "down": {
+          "texture": "#t",
+          "uv": [
+            12,
+            0,
+            14,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        7,
+        3,
+        13
+      ],
+      "to": [
+        9,
+        13,
+        15
+      ],
+      "shade": false,
+      "light_emission": 15,
+      "faces": {
+        "north": {
+          "texture": "#g",
+          "tintindex": 0
+        },
+        "west": {
+          "texture": "#g",
+          "uv": [
+            12,
+            3,
+            14,
+            13
+          ],
+          "tintindex": 0
+        },
+        "east": {
+          "texture": "#g",
+          "uv": [
+            12,
+            3,
+            14,
+            13
+          ],
+          "tintindex": 0
+        }
+      }
+    }
+  ],
+  "render_type": "minecraft:cutout"
+}

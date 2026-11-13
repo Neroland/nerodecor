@@ -77,6 +77,8 @@ public final class NeroDecorConfig {
 
     /** Register the schema with Core. Called once from common init. */
     public static void init() {
+        // The chroma.* keys live in their own class; load it so they join the schema before registration.
+        za.co.neroland.nerodecor.chroma.server.ChromaConfig.bootstrap();
         ConfigManager.register(SCHEMA);
     }
 

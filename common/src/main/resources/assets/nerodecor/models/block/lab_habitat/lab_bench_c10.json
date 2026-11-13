@@ -1,0 +1,346 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "nerodecor:block/lab_habitat/lab_bench_side",
+    "lab_bench_top_c10": "nerodecor:block/lab_habitat/lab_bench_top_c10",
+    "lab_bench_shelf": "nerodecor:block/lab_habitat/lab_bench_shelf",
+    "lab_bench_side": "nerodecor:block/lab_habitat/lab_bench_side",
+    "lab_bench_end": "nerodecor:block/lab_habitat/lab_bench_end"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        14,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "faces": {
+        "up": {
+          "texture": "#lab_bench_top_c10",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "cullface": "up"
+        },
+        "down": {
+          "texture": "#lab_bench_shelf",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "north": {
+          "texture": "#lab_bench_side",
+          "uv": [
+            0,
+            0,
+            16,
+            2
+          ],
+          "cullface": "north"
+        },
+        "south": {
+          "texture": "#lab_bench_side",
+          "uv": [
+            0,
+            0,
+            16,
+            2
+          ],
+          "cullface": "south"
+        },
+        "east": {
+          "texture": "#lab_bench_end",
+          "uv": [
+            0,
+            0,
+            16,
+            2
+          ],
+          "cullface": "east"
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        10,
+        1
+      ],
+      "to": [
+        16,
+        14,
+        15
+      ],
+      "faces": {
+        "north": {
+          "texture": "#lab_bench_side",
+          "uv": [
+            0,
+            2,
+            16,
+            6
+          ]
+        },
+        "south": {
+          "texture": "#lab_bench_side",
+          "uv": [
+            0,
+            2,
+            16,
+            6
+          ]
+        },
+        "down": {
+          "texture": "#lab_bench_shelf",
+          "uv": [
+            0,
+            1,
+            16,
+            15
+          ]
+        },
+        "east": {
+          "texture": "#lab_bench_end",
+          "uv": [
+            1,
+            2,
+            15,
+            6
+          ],
+          "cullface": "east"
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        3,
+        2
+      ],
+      "to": [
+        13,
+        5,
+        14
+      ],
+      "faces": {
+        "up": {
+          "texture": "#lab_bench_shelf",
+          "uv": [
+            0,
+            2,
+            13,
+            14
+          ]
+        },
+        "down": {
+          "texture": "#lab_bench_shelf",
+          "uv": [
+            0,
+            2,
+            13,
+            14
+          ]
+        },
+        "north": {
+          "texture": "#lab_bench_side",
+          "uv": [
+            3,
+            11,
+            16,
+            13
+          ]
+        },
+        "south": {
+          "texture": "#lab_bench_side",
+          "uv": [
+            0,
+            11,
+            13,
+            13
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        13,
+        0,
+        1
+      ],
+      "to": [
+        15,
+        10,
+        3
+      ],
+      "faces": {
+        "north": {
+          "texture": "#lab_bench_end",
+          "uv": [
+            1,
+            6,
+            3,
+            16
+          ]
+        },
+        "south": {
+          "texture": "#lab_bench_end",
+          "uv": [
+            13,
+            6,
+            15,
+            16
+          ]
+        },
+        "west": {
+          "texture": "#lab_bench_end",
+          "uv": [
+            1,
+            6,
+            3,
+            16
+          ]
+        },
+        "east": {
+          "texture": "#lab_bench_end",
+          "uv": [
+            13,
+            6,
+            15,
+            16
+          ]
+        },
+        "down": {
+          "texture": "#lab_bench_end",
+          "uv": [
+            13,
+            13,
+            15,
+            15
+          ],
+          "cullface": "down"
+        }
+      }
+    },
+    {
+      "from": [
+        13,
+        0,
+        13
+      ],
+      "to": [
+        15,
+        10,
+        15
+      ],
+      "faces": {
+        "north": {
+          "texture": "#lab_bench_end",
+          "uv": [
+            1,
+            6,
+            3,
+            16
+          ]
+        },
+        "south": {
+          "texture": "#lab_bench_end",
+          "uv": [
+            13,
+            6,
+            15,
+            16
+          ]
+        },
+        "west": {
+          "texture": "#lab_bench_end",
+          "uv": [
+            13,
+            6,
+            15,
+            16
+          ]
+        },
+        "east": {
+          "texture": "#lab_bench_end",
+          "uv": [
+            1,
+            6,
+            3,
+            16
+          ]
+        },
+        "down": {
+          "texture": "#lab_bench_end",
+          "uv": [
+            13,
+            1,
+            15,
+            3
+          ],
+          "cullface": "down"
+        }
+      }
+    },
+    {
+      "from": [
+        13,
+        3,
+        3
+      ],
+      "to": [
+        15,
+        5,
+        13
+      ],
+      "faces": {
+        "west": {
+          "texture": "#lab_bench_end",
+          "uv": [
+            3,
+            11,
+            13,
+            13
+          ]
+        },
+        "east": {
+          "texture": "#lab_bench_end",
+          "uv": [
+            3,
+            11,
+            13,
+            13
+          ]
+        },
+        "up": {
+          "texture": "#lab_bench_shelf",
+          "uv": [
+            13,
+            3,
+            15,
+            13
+          ]
+        },
+        "down": {
+          "texture": "#lab_bench_shelf",
+          "uv": [
+            13,
+            3,
+            15,
+            13
+          ]
+        }
+      }
+    }
+  ]
+}

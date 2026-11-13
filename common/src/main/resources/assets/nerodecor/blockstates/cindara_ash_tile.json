@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "nerodecor:block/seven_worlds/cindara_ash_tile"
+      },
+      {
+        "model": "nerodecor:block/seven_worlds/cindara_ash_tile_v1"
+      },
+      {
+        "model": "nerodecor:block/seven_worlds/cindara_ash_tile_v2"
+      }
+    ]
+  }
+}

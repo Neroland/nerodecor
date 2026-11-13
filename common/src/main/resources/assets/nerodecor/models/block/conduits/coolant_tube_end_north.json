@@ -1,0 +1,193 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "nerodecor:block/conduits/coolant_tube",
+    "end": "nerodecor:block/conduits/decor_pipe_end",
+    "gh": "nerodecor:block/conduits/coolant_tube_glow",
+    "gv": "nerodecor:block/conduits/coolant_tube_glow_v",
+    "h": "nerodecor:block/conduits/coolant_tube",
+    "joint": "nerodecor:block/conduits/coolant_tube_joint",
+    "v": "nerodecor:block/conduits/coolant_tube_v"
+  },
+  "elements": [
+    {
+      "from": [
+        5,
+        5,
+        3
+      ],
+      "to": [
+        11,
+        11,
+        5
+      ],
+      "faces": {
+        "west": {
+          "texture": "#h",
+          "uv": [
+            3,
+            5,
+            5,
+            11
+          ],
+          "tintindex": 0
+        },
+        "east": {
+          "texture": "#h",
+          "uv": [
+            5,
+            5,
+            3,
+            11
+          ],
+          "tintindex": 0
+        },
+        "down": {
+          "texture": "#v",
+          "uv": [
+            5,
+            5,
+            11,
+            3
+          ],
+          "tintindex": 0
+        },
+        "up": {
+          "texture": "#v",
+          "uv": [
+            5,
+            3,
+            11,
+            5
+          ],
+          "tintindex": 0
+        }
+      }
+    },
+    {
+      "from": [
+        5,
+        5,
+        3
+      ],
+      "to": [
+        11,
+        11,
+        5
+      ],
+      "shade": false,
+      "light_emission": 15,
+      "faces": {
+        "west": {
+          "texture": "#gh",
+          "uv": [
+            3,
+            5,
+            5,
+            11
+          ],
+          "tintindex": 0
+        },
+        "east": {
+          "texture": "#gh",
+          "uv": [
+            5,
+            5,
+            3,
+            11
+          ],
+          "tintindex": 0
+        },
+        "down": {
+          "texture": "#gv",
+          "uv": [
+            5,
+            5,
+            11,
+            3
+          ],
+          "tintindex": 0
+        },
+        "up": {
+          "texture": "#gv",
+          "uv": [
+            5,
+            3,
+            11,
+            5
+          ],
+          "tintindex": 0
+        }
+      }
+    },
+    {
+      "from": [
+        4,
+        4,
+        2
+      ],
+      "to": [
+        12,
+        12,
+        3
+      ],
+      "faces": {
+        "north": {
+          "texture": "#end",
+          "uv": [
+            4,
+            4,
+            12,
+            12
+          ]
+        },
+        "south": {
+          "texture": "#end",
+          "uv": [
+            4,
+            4,
+            12,
+            12
+          ]
+        },
+        "west": {
+          "texture": "#joint",
+          "uv": [
+            0,
+            4,
+            1,
+            12
+          ]
+        },
+        "east": {
+          "texture": "#joint",
+          "uv": [
+            0,
+            4,
+            1,
+            12
+          ]
+        },
+        "down": {
+          "texture": "#joint",
+          "uv": [
+            4,
+            0,
+            12,
+            1
+          ]
+        },
+        "up": {
+          "texture": "#joint",
+          "uv": [
+            4,
+            0,
+            12,
+            1
+          ]
+        }
+      }
+    }
+  ],
+  "render_type": "minecraft:cutout"
+}

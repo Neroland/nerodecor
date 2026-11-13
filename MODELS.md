@@ -133,3 +133,55 @@ glass) put `light_emission` on the base element instead.
 
 Textures come from `tools/gen_luminous.py` (own manifest, `--check`, `--preview sheet.png`);
 sounds from `tools/gen_sounds.py`; JSON from the `LUMINOUS` spec in `tools/gen_resources.py`.
+
+## Collection layer (`tools/collections/`, 0.8.0)
+
+New content ships as **collections**: one Python module per collection under `tools/collections/`
+(`chroma_lights`, `bulkhead`, `holo`, `command`, `lab_habitat`, `gantry`, `conduits`, `seven_worlds`,
+`ancients`, `greebles`, `chroma_core`), each owned by one author. `tools/gen_collections.py` turns
+them into committed resources; the painting toolkit is `tools/collections/_kit.py`.
+
+### Adding a block
+
+1. Register the block in Java (same id), then in the collection module add a painter per texture to
+   `TEXTURES` (`id -> fn()` returning a PIL image or a `_kit.Art` animation) and a `_kit.Block` to
+   `BLOCKS`: `id`, `shape` (`cube` / `strip` / `custom`), `connects` (`none` / `mask16` / `strip`),
+   `chroma`, `paintable`, `emissive`, `light`, `block_entity`, `textures` (role -> texture id; the
+   built-in shapes use `all`), and for `custom` a `model(ctx)` returning `{model_name: model_json}`
+   (plus an optional `blockstate(ctx)`; `_kit.facing_variants` covers rotations).
+2. `mask16` needs `<tex>_frame` (use `_kit.bezel_layer`), `strip` needs `<tex>_cap`
+   (`_kit.cap_layer`); emissive blocks need `<tex>_glow`. The kit bakes the per-face variants.
+3. `chroma_lights.py` holds a fully worked `EXAMPLES` block (`light_strip`: face-mounted bar, caps
+   via `pos_link`/`neg_link`, properties `face` + `axis`). Copy it.
+4. Run `python tools/gen_collections.py --only <collection>`, then `--check`. Shared lang and tag
+   entries (`en_us`, `mineable/pickaxe`, `neroland:decor/<family>`) are merged by
+   `gen_resources.py`, which the runner calls for you.
+
+Outputs: `blockstates/<id>.json`, `items/<id>.json` (with the `nerodecor:decor_color` tint only when
+`paintable`), `models/item/<id>.json`, loot table, optional recipe, models under
+`models/block/<collection>/` and textures under `textures/block/<collection>/`. Each collection has
+its own manifest (`tools/collections/<collection>.manifest.json`); `--check` reports new, stale,
+orphan, collision (a path another harness owns) and missing aggregate entries. The mount cannot
+delete files, so an orphan that cannot be removed is reported until you delete it by hand.
+
+### Texture bar (enforced where it can be)
+
+- 16x16; 32x32 only for screens, glyphs and signs. Animation frames all the same size.
+- Colours from 5-step hue-shifted ramps (`_kit.ramp(name)` reads `tools/palette.json`: house ramps
+  plus the seven Nerospace world ramps; `_kit.ramp5(rgb)` derives one). No pure grey or black pixels.
+- Key light top-left: `_kit.bevel` gives a 1px highlight and 1px occlusion.
+- Wear through `_kit.wear` only (at most 8% of pixels, seeded by `hash(id, x, y)`); `_kit.dither` only
+  for large gradients (64 px or more). Nothing random, nothing time-based.
+- Glow layers: alpha 0/255, one accent hue, at most 12% emissive pixels unless `light > 0`. Emissive
+  is always a separate full-size coplanar `_glow` element with `light_emission` and `shade: false`.
+- Animations via `_kit.animate(tid, kind, paint)`: `breathing` 8 frames, `data`/`flow` 16, `flicker`
+  4, with a per-texture frame offset. Glow strips never interpolate.
+- Models: at most 40 elements; every quad full size for its element, and no two same-facing quads on
+  one plane may overlap unless identical (the z-fight rule above). The runner rejects violations.
+
+### Preview
+
+`python tools/gen_collections.py --preview <collection> out.png` renders a contact sheet: every
+texture at 4x with its id, size and animation, and an isometric render of each block's item model
+(BLOCKS and EXAMPLES, tinted light blue where a face is tinted). `--only <collection> --examples
+--out <dir>` does a full dry run into another folder.

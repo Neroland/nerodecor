@@ -1,0 +1,37 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "nerodecor:deck_sign",
+      "required": false
+    },
+    {
+      "id": "nerodecor:floor_arrow",
+      "required": false
+    },
+    {
+      "id": "nerodecor:hazard_stripe",
+      "required": false
+    },
+    {
+      "id": "nerodecor:louvre_vent",
+      "required": false
+    },
+    {
+      "id": "nerodecor:maintenance_panel",
+      "required": false
+    },
+    {
+      "id": "nerodecor:pipe_bracket",
+      "required": false
+    },
+    {
+      "id": "nerodecor:rivet_plate",
+      "required": false
+    },
+    {
+      "id": "nerodecor:warning_placard",
+      "required": false
+    }
+  ]
+}

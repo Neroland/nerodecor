@@ -1,0 +1,237 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "nerodecor:block/lab_habitat/locker_side_c11",
+    "locker_front_c11": "nerodecor:block/lab_habitat/locker_front_c11",
+    "locker_side_c11": "nerodecor:block/lab_habitat/locker_side_c11",
+    "locker_top": "nerodecor:block/lab_habitat/locker_top"
+  },
+  "elements": [
+    {
+      "from": [
+        1,
+        0,
+        2
+      ],
+      "to": [
+        15,
+        2,
+        15
+      ],
+      "faces": {
+        "north": {
+          "texture": "#locker_front_c11",
+          "uv": [
+            1,
+            14,
+            15,
+            16
+          ]
+        },
+        "south": {
+          "texture": "#locker_side_c11",
+          "uv": [
+            1,
+            14,
+            15,
+            16
+          ]
+        },
+        "west": {
+          "texture": "#locker_side_c11",
+          "uv": [
+            2,
+            14,
+            15,
+            16
+          ]
+        },
+        "east": {
+          "texture": "#locker_side_c11",
+          "uv": [
+            14,
+            14,
+            1,
+            16
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        2,
+        1
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "faces": {
+        "north": {
+          "texture": "#locker_front_c11",
+          "uv": [
+            0,
+            0,
+            16,
+            14
+          ]
+        },
+        "south": {
+          "texture": "#locker_side_c11",
+          "uv": [
+            0,
+            0,
+            16,
+            14
+          ],
+          "cullface": "south"
+        },
+        "west": {
+          "texture": "#locker_side_c11",
+          "uv": [
+            1,
+            0,
+            16,
+            14
+          ],
+          "cullface": "west"
+        },
+        "east": {
+          "texture": "#locker_side_c11",
+          "uv": [
+            15,
+            0,
+            0,
+            14
+          ],
+          "cullface": "east"
+        },
+        "up": {
+          "texture": "#locker_top",
+          "uv": [
+            0,
+            1,
+            16,
+            16
+          ],
+          "cullface": "up"
+        },
+        "down": {
+          "texture": "#locker_top",
+          "uv": [
+            0,
+            0,
+            16,
+            15
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        1,
+        2,
+        0
+      ],
+      "to": [
+        8,
+        16,
+        1
+      ],
+      "faces": {
+        "north": {
+          "texture": "#locker_front_c11",
+          "uv": [
+            8,
+            0,
+            15,
+            14
+          ],
+          "cullface": "north"
+        },
+        "west": {
+          "texture": "#locker_side_c11",
+          "uv": [
+            0,
+            0,
+            1,
+            14
+          ]
+        },
+        "up": {
+          "texture": "#locker_top",
+          "uv": [
+            1,
+            0,
+            8,
+            1
+          ],
+          "cullface": "up"
+        },
+        "down": {
+          "texture": "#locker_top",
+          "uv": [
+            1,
+            15,
+            8,
+            16
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        8,
+        2,
+        0
+      ],
+      "to": [
+        15,
+        16,
+        1
+      ],
+      "faces": {
+        "north": {
+          "texture": "#locker_front_c11",
+          "uv": [
+            1,
+            0,
+            8,
+            14
+          ],
+          "cullface": "north"
+        },
+        "east": {
+          "texture": "#locker_side_c11",
+          "uv": [
+            16,
+            0,
+            15,
+            14
+          ]
+        },
+        "up": {
+          "texture": "#locker_top",
+          "uv": [
+            8,
+            0,
+            15,
+            1
+          ],
+          "cullface": "up"
+        },
+        "down": {
+          "texture": "#locker_top",
+          "uv": [
+            8,
+            15,
+            15,
+            16
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "variants": {
+    "east=false,north=false,south=false,type=bottom,west=false": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_bottom_c0"
+    },
+    "east=false,north=false,south=false,type=bottom,west=true": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_bottom_c1"
+    },
+    "east=false,north=false,south=true,type=bottom,west=false": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_bottom_c2"
+    },
+    "east=false,north=false,south=true,type=bottom,west=true": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_bottom_c3"
+    },
+    "east=true,north=false,south=false,type=bottom,west=false": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_bottom_c4"
+    },
+    "east=true,north=false,south=false,type=bottom,west=true": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_bottom_c5"
+    },
+    "east=true,north=false,south=true,type=bottom,west=false": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_bottom_c6"
+    },
+    "east=true,north=false,south=true,type=bottom,west=true": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_bottom_c7"
+    },
+    "east=false,north=true,south=false,type=bottom,west=false": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_bottom_c8"
+    },
+    "east=false,north=true,south=false,type=bottom,west=true": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_bottom_c9"
+    },
+    "east=false,north=true,south=true,type=bottom,west=false": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_bottom_c10"
+    },
+    "east=false,north=true,south=true,type=bottom,west=true": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_bottom_c11"
+    },
+    "east=true,north=true,south=false,type=bottom,west=false": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_bottom_c12"
+    },
+    "east=true,north=true,south=false,type=bottom,west=true": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_bottom_c13"
+    },
+    "east=true,north=true,south=true,type=bottom,west=false": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_bottom_c14"
+    },
+    "east=true,north=true,south=true,type=bottom,west=true": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_bottom_c15"
+    },
+    "east=false,north=false,south=false,type=top,west=false": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_top_c0"
+    },
+    "east=false,north=false,south=false,type=top,west=true": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_top_c1"
+    },
+    "east=false,north=false,south=true,type=top,west=false": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_top_c2"
+    },
+    "east=false,north=false,south=true,type=top,west=true": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_top_c3"
+    },
+    "east=true,north=false,south=false,type=top,west=false": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_top_c4"
+    },
+    "east=true,north=false,south=false,type=top,west=true": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_top_c5"
+    },
+    "east=true,north=false,south=true,type=top,west=false": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_top_c6"
+    },
+    "east=true,north=false,south=true,type=top,west=true": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_top_c7"
+    },
+    "east=false,north=true,south=false,type=top,west=false": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_top_c8"
+    },
+    "east=false,north=true,south=false,type=top,west=true": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_top_c9"
+    },
+    "east=false,north=true,south=true,type=top,west=false": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_top_c10"
+    },
+    "east=false,north=true,south=true,type=top,west=true": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_top_c11"
+    },
+    "east=true,north=true,south=false,type=top,west=false": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_top_c12"
+    },
+    "east=true,north=true,south=false,type=top,west=true": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_top_c13"
+    },
+    "east=true,north=true,south=true,type=top,west=false": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_top_c14"
+    },
+    "east=true,north=true,south=true,type=top,west=true": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_top_c15"
+    },
+    "east=false,north=false,south=false,type=double,west=false": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_double_c0"
+    },
+    "east=false,north=false,south=false,type=double,west=true": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_double_c1"
+    },
+    "east=false,north=false,south=true,type=double,west=false": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_double_c2"
+    },
+    "east=false,north=false,south=true,type=double,west=true": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_double_c3"
+    },
+    "east=true,north=false,south=false,type=double,west=false": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_double_c4"
+    },
+    "east=true,north=false,south=false,type=double,west=true": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_double_c5"
+    },
+    "east=true,north=false,south=true,type=double,west=false": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_double_c6"
+    },
+    "east=true,north=false,south=true,type=double,west=true": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_double_c7"
+    },
+    "east=false,north=true,south=false,type=double,west=false": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_double_c8"
+    },
+    "east=false,north=true,south=false,type=double,west=true": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_double_c9"
+    },
+    "east=false,north=true,south=true,type=double,west=false": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_double_c10"
+    },
+    "east=false,north=true,south=true,type=double,west=true": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_double_c11"
+    },
+    "east=true,north=true,south=false,type=double,west=false": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_double_c12"
+    },
+    "east=true,north=true,south=false,type=double,west=true": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_double_c13"
+    },
+    "east=true,north=true,south=true,type=double,west=false": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_double_c14"
+    },
+    "east=true,north=true,south=true,type=double,west=true": {
+      "model": "nerodecor:block/gantry/floor_grate_slab_double_c15"
+    }
+  }
+}

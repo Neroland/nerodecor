@@ -1,0 +1,124 @@
+{
+  "variants": {
+    "direction=up,facing=south": {
+      "model": "nerodecor:block/holo/arrow_sign_up"
+    },
+    "direction=up,facing=west": {
+      "model": "nerodecor:block/holo/arrow_sign_up",
+      "y": 90
+    },
+    "direction=up,facing=north": {
+      "model": "nerodecor:block/holo/arrow_sign_up",
+      "y": 180
+    },
+    "direction=up,facing=east": {
+      "model": "nerodecor:block/holo/arrow_sign_up",
+      "y": 270
+    },
+    "direction=up_right,facing=south": {
+      "model": "nerodecor:block/holo/arrow_sign_up_right"
+    },
+    "direction=up_right,facing=west": {
+      "model": "nerodecor:block/holo/arrow_sign_up_right",
+      "y": 90
+    },
+    "direction=up_right,facing=north": {
+      "model": "nerodecor:block/holo/arrow_sign_up_right",
+      "y": 180
+    },
+    "direction=up_right,facing=east": {
+      "model": "nerodecor:block/holo/arrow_sign_up_right",
+      "y": 270
+    },
+    "direction=right,facing=south": {
+      "model": "nerodecor:block/holo/arrow_sign_right"
+    },
+    "direction=right,facing=west": {
+      "model": "nerodecor:block/holo/arrow_sign_right",
+      "y": 90
+    },
+    "direction=right,facing=north": {
+      "model": "nerodecor:block/holo/arrow_sign_right",
+      "y": 180
+    },
+    "direction=right,facing=east": {
+      "model": "nerodecor:block/holo/arrow_sign_right",
+      "y": 270
+    },
+    "direction=down_right,facing=south": {
+      "model": "nerodecor:block/holo/arrow_sign_down_right"
+    },
+    "direction=down_right,facing=west": {
+      "model": "nerodecor:block/holo/arrow_sign_down_right",
+      "y": 90
+    },
+    "direction=down_right,facing=north": {
+      "model": "nerodecor:block/holo/arrow_sign_down_right",
+      "y": 180
+    },
+    "direction=down_right,facing=east": {
+      "model": "nerodecor:block/holo/arrow_sign_down_right",
+      "y": 270
+    },
+    "direction=down,facing=south": {
+      "model": "nerodecor:block/holo/arrow_sign_down"
+    },
+    "direction=down,facing=west": {
+      "model": "nerodecor:block/holo/arrow_sign_down",
+      "y": 90
+    },
+    "direction=down,facing=north": {
+      "model": "nerodecor:block/holo/arrow_sign_down",
+      "y": 180
+    },
+    "direction=down,facing=east": {
+      "model": "nerodecor:block/holo/arrow_sign_down",
+      "y": 270
+    },
+    "direction=down_left,facing=south": {
+      "model": "nerodecor:block/holo/arrow_sign_down_left"
+    },
+    "direction=down_left,facing=west": {
+      "model": "nerodecor:block/holo/arrow_sign_down_left",
+      "y": 90
+    },
+    "direction=down_left,facing=north": {
+      "model": "nerodecor:block/holo/arrow_sign_down_left",
+      "y": 180
+    },
+    "direction=down_left,facing=east": {
+      "model": "nerodecor:block/holo/arrow_sign_down_left",
+      "y": 270
+    },
+    "direction=left,facing=south": {
+      "model": "nerodecor:block/holo/arrow_sign_left"
+    },
+    "direction=left,facing=west": {
+      "model": "nerodecor:block/holo/arrow_sign_left",
+      "y": 90
+    },
+    "direction=left,facing=north": {
+      "model": "nerodecor:block/holo/arrow_sign_left",
+      "y": 180
+    },
+    "direction=left,facing=east": {
+      "model": "nerodecor:block/holo/arrow_sign_left",
+      "y": 270
+    },
+    "direction=up_left,facing=south": {
+      "model": "nerodecor:block/holo/arrow_sign_up_left"
+    },
+    "direction=up_left,facing=west": {
+      "model": "nerodecor:block/holo/arrow_sign_up_left",
+      "y": 90
+    },
+    "direction=up_left,facing=north": {
+      "model": "nerodecor:block/holo/arrow_sign_up_left",
+      "y": 180
+    },
+    "direction=up_left,facing=east": {
+      "model": "nerodecor:block/holo/arrow_sign_up_left",
+      "y": 270
+    }
+  }
+}

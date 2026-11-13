@@ -1,0 +1,442 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "nerodecor:block/command/command_console_body",
+    "deck": "nerodecor:block/command/command_console_deck",
+    "deck_glow": "nerodecor:block/command/command_console_deck_glow",
+    "riser": "nerodecor:block/command/command_console_riser",
+    "riser_glow": "nerodecor:block/command/command_console_riser_glow",
+    "body": "nerodecor:block/command/command_console_body",
+    "trim": "nerodecor:block/command/command_trim"
+  },
+  "elements": [
+    {
+      "from": [
+        3,
+        0,
+        3
+      ],
+      "to": [
+        16,
+        2,
+        16
+      ],
+      "faces": {
+        "north": {
+          "texture": "#body",
+          "uv": [
+            0,
+            14,
+            13,
+            16
+          ]
+        },
+        "east": {
+          "texture": "#body",
+          "uv": [
+            0,
+            14,
+            13,
+            16
+          ],
+          "cullface": "east"
+        },
+        "south": {
+          "texture": "#body",
+          "uv": [
+            3,
+            14,
+            16,
+            16
+          ],
+          "cullface": "south"
+        },
+        "west": {
+          "texture": "#body",
+          "uv": [
+            3,
+            14,
+            16,
+            16
+          ]
+        },
+        "down": {
+          "texture": "#body",
+          "uv": [
+            3,
+            0,
+            16,
+            13
+          ],
+          "cullface": "down"
+        }
+      }
+    },
+    {
+      "from": [
+        4,
+        2,
+        4
+      ],
+      "to": [
+        16,
+        6.5,
+        16
+      ],
+      "faces": {
+        "north": {
+          "texture": "#body",
+          "uv": [
+            0,
+            9.5,
+            12,
+            14
+          ]
+        },
+        "east": {
+          "texture": "#body",
+          "uv": [
+            0,
+            9.5,
+            12,
+            14
+          ],
+          "cullface": "east"
+        },
+        "south": {
+          "texture": "#body",
+          "uv": [
+            4,
+            9.5,
+            16,
+            14
+          ],
+          "cullface": "south"
+        },
+        "west": {
+          "texture": "#body",
+          "uv": [
+            4,
+            9.5,
+            16,
+            14
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        1,
+        6.5,
+        1
+      ],
+      "to": [
+        16,
+        8,
+        16
+      ],
+      "faces": {
+        "north": {
+          "texture": "#deck",
+          "uv": [
+            0,
+            12,
+            15,
+            13.5
+          ]
+        },
+        "east": {
+          "texture": "#body",
+          "uv": [
+            0,
+            8,
+            15,
+            9.5
+          ],
+          "cullface": "east"
+        },
+        "south": {
+          "texture": "#body",
+          "uv": [
+            1,
+            8,
+            16,
+            9.5
+          ],
+          "cullface": "south"
+        },
+        "west": {
+          "texture": "#deck",
+          "uv": [
+            0,
+            12,
+            15,
+            13.5
+          ]
+        },
+        "up": {
+          "texture": "#deck",
+          "uv": [
+            0,
+            0,
+            15,
+            11
+          ]
+        },
+        "down": {
+          "texture": "#body",
+          "uv": [
+            1,
+            0,
+            16,
+            15
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        1,
+        6.5,
+        1
+      ],
+      "to": [
+        16,
+        8,
+        16
+      ],
+      "shade": false,
+      "light_emission": 15,
+      "faces": {
+        "up": {
+          "texture": "#deck_glow",
+          "uv": [
+            0,
+            0,
+            15,
+            11
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        5,
+        8,
+        5
+      ],
+      "to": [
+        16,
+        9.5,
+        16
+      ],
+      "faces": {
+        "north": {
+          "texture": "#deck",
+          "uv": [
+            0,
+            12,
+            11,
+            13.5
+          ]
+        },
+        "east": {
+          "texture": "#body",
+          "uv": [
+            0,
+            6.5,
+            11,
+            8
+          ],
+          "cullface": "east"
+        },
+        "south": {
+          "texture": "#body",
+          "uv": [
+            5,
+            6.5,
+            16,
+            8
+          ],
+          "cullface": "south"
+        },
+        "west": {
+          "texture": "#deck",
+          "uv": [
+            0,
+            12,
+            11,
+            13.5
+          ]
+        },
+        "up": {
+          "texture": "#body",
+          "uv": [
+            0,
+            0,
+            11,
+            9
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        9,
+        9.5,
+        9
+      ],
+      "to": [
+        16,
+        11,
+        16
+      ],
+      "faces": {
+        "north": {
+          "texture": "#deck",
+          "uv": [
+            0,
+            12,
+            7,
+            13.5
+          ]
+        },
+        "east": {
+          "texture": "#body",
+          "uv": [
+            0,
+            5,
+            7,
+            6.5
+          ],
+          "cullface": "east"
+        },
+        "south": {
+          "texture": "#body",
+          "uv": [
+            9,
+            5,
+            16,
+            6.5
+          ],
+          "cullface": "south"
+        },
+        "west": {
+          "texture": "#deck",
+          "uv": [
+            0,
+            12,
+            7,
+            13.5
+          ]
+        },
+        "up": {
+          "texture": "#deck",
+          "uv": [
+            0,
+            0,
+            7,
+            7
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        12,
+        11,
+        12
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "faces": {
+        "north": {
+          "texture": "#riser",
+          "uv": [
+            9,
+            0,
+            13,
+            5
+          ]
+        },
+        "east": {
+          "texture": "#body",
+          "uv": [
+            0,
+            0,
+            4,
+            5
+          ],
+          "cullface": "east"
+        },
+        "south": {
+          "texture": "#body",
+          "uv": [
+            12,
+            0,
+            16,
+            5
+          ],
+          "cullface": "south"
+        },
+        "west": {
+          "texture": "#riser",
+          "uv": [
+            9,
+            0,
+            13,
+            5
+          ]
+        },
+        "up": {
+          "texture": "#riser",
+          "uv": [
+            0,
+            12,
+            4,
+            16
+          ],
+          "cullface": "up"
+        }
+      }
+    },
+    {
+      "from": [
+        12,
+        11,
+        12
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "shade": false,
+      "light_emission": 15,
+      "faces": {
+        "north": {
+          "texture": "#riser_glow",
+          "uv": [
+            9,
+            0,
+            13,
+            5
+          ]
+        },
+        "west": {
+          "texture": "#riser_glow",
+          "uv": [
+            9,
+            0,
+            13,
+            5
+          ]
+        }
+      }
+    }
+  ],
+  "render_type": "minecraft:cutout"
+}

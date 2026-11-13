@@ -1,0 +1,1796 @@
+{
+  "multipart": [
+    {
+      "when": {
+        "face": "north",
+        "up": "true",
+        "down": "true",
+        "west": "true",
+        "east": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f0"
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f0"
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "north",
+        "up": "true",
+        "down": "true",
+        "west": "true",
+        "east": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f1"
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f1"
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "north",
+        "up": "true",
+        "down": "true",
+        "west": "false",
+        "east": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f2"
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f2"
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "north",
+        "up": "true",
+        "down": "true",
+        "west": "false",
+        "east": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f3"
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f3"
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "north",
+        "up": "true",
+        "down": "false",
+        "west": "true",
+        "east": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f4"
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f4"
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "north",
+        "up": "true",
+        "down": "false",
+        "west": "true",
+        "east": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f5"
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f5"
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "north",
+        "up": "true",
+        "down": "false",
+        "west": "false",
+        "east": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f6"
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f6"
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "north",
+        "up": "true",
+        "down": "false",
+        "west": "false",
+        "east": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f7"
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f7"
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "north",
+        "up": "false",
+        "down": "true",
+        "west": "true",
+        "east": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f8"
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f8"
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "north",
+        "up": "false",
+        "down": "true",
+        "west": "true",
+        "east": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f9"
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f9"
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "north",
+        "up": "false",
+        "down": "true",
+        "west": "false",
+        "east": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f10"
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f10"
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "north",
+        "up": "false",
+        "down": "true",
+        "west": "false",
+        "east": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f11"
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f11"
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "north",
+        "up": "false",
+        "down": "false",
+        "west": "true",
+        "east": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f12"
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f12"
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "north",
+        "up": "false",
+        "down": "false",
+        "west": "true",
+        "east": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f13"
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f13"
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "north",
+        "up": "false",
+        "down": "false",
+        "west": "false",
+        "east": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f14"
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f14"
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "north",
+        "up": "false",
+        "down": "false",
+        "west": "false",
+        "east": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f15"
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f15"
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "east",
+        "up": "true",
+        "down": "true",
+        "north": "true",
+        "south": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f0",
+          "y": 90
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f0",
+          "y": 90
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "east",
+        "up": "true",
+        "down": "true",
+        "north": "true",
+        "south": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f1",
+          "y": 90
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f1",
+          "y": 90
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "east",
+        "up": "true",
+        "down": "true",
+        "north": "false",
+        "south": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f2",
+          "y": 90
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f2",
+          "y": 90
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "east",
+        "up": "true",
+        "down": "true",
+        "north": "false",
+        "south": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f3",
+          "y": 90
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f3",
+          "y": 90
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "east",
+        "up": "true",
+        "down": "false",
+        "north": "true",
+        "south": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f4",
+          "y": 90
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f4",
+          "y": 90
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "east",
+        "up": "true",
+        "down": "false",
+        "north": "true",
+        "south": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f5",
+          "y": 90
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f5",
+          "y": 90
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "east",
+        "up": "true",
+        "down": "false",
+        "north": "false",
+        "south": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f6",
+          "y": 90
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f6",
+          "y": 90
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "east",
+        "up": "true",
+        "down": "false",
+        "north": "false",
+        "south": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f7",
+          "y": 90
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f7",
+          "y": 90
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "east",
+        "up": "false",
+        "down": "true",
+        "north": "true",
+        "south": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f8",
+          "y": 90
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f8",
+          "y": 90
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "east",
+        "up": "false",
+        "down": "true",
+        "north": "true",
+        "south": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f9",
+          "y": 90
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f9",
+          "y": 90
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "east",
+        "up": "false",
+        "down": "true",
+        "north": "false",
+        "south": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f10",
+          "y": 90
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f10",
+          "y": 90
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "east",
+        "up": "false",
+        "down": "true",
+        "north": "false",
+        "south": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f11",
+          "y": 90
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f11",
+          "y": 90
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "east",
+        "up": "false",
+        "down": "false",
+        "north": "true",
+        "south": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f12",
+          "y": 90
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f12",
+          "y": 90
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "east",
+        "up": "false",
+        "down": "false",
+        "north": "true",
+        "south": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f13",
+          "y": 90
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f13",
+          "y": 90
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "east",
+        "up": "false",
+        "down": "false",
+        "north": "false",
+        "south": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f14",
+          "y": 90
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f14",
+          "y": 90
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "east",
+        "up": "false",
+        "down": "false",
+        "north": "false",
+        "south": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f15",
+          "y": 90
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f15",
+          "y": 90
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "south",
+        "up": "true",
+        "down": "true",
+        "east": "true",
+        "west": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f0",
+          "y": 180
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f0",
+          "y": 180
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "south",
+        "up": "true",
+        "down": "true",
+        "east": "true",
+        "west": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f1",
+          "y": 180
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f1",
+          "y": 180
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "south",
+        "up": "true",
+        "down": "true",
+        "east": "false",
+        "west": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f2",
+          "y": 180
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f2",
+          "y": 180
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "south",
+        "up": "true",
+        "down": "true",
+        "east": "false",
+        "west": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f3",
+          "y": 180
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f3",
+          "y": 180
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "south",
+        "up": "true",
+        "down": "false",
+        "east": "true",
+        "west": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f4",
+          "y": 180
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f4",
+          "y": 180
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "south",
+        "up": "true",
+        "down": "false",
+        "east": "true",
+        "west": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f5",
+          "y": 180
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f5",
+          "y": 180
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "south",
+        "up": "true",
+        "down": "false",
+        "east": "false",
+        "west": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f6",
+          "y": 180
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f6",
+          "y": 180
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "south",
+        "up": "true",
+        "down": "false",
+        "east": "false",
+        "west": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f7",
+          "y": 180
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f7",
+          "y": 180
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "south",
+        "up": "false",
+        "down": "true",
+        "east": "true",
+        "west": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f8",
+          "y": 180
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f8",
+          "y": 180
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "south",
+        "up": "false",
+        "down": "true",
+        "east": "true",
+        "west": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f9",
+          "y": 180
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f9",
+          "y": 180
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "south",
+        "up": "false",
+        "down": "true",
+        "east": "false",
+        "west": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f10",
+          "y": 180
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f10",
+          "y": 180
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "south",
+        "up": "false",
+        "down": "true",
+        "east": "false",
+        "west": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f11",
+          "y": 180
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f11",
+          "y": 180
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "south",
+        "up": "false",
+        "down": "false",
+        "east": "true",
+        "west": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f12",
+          "y": 180
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f12",
+          "y": 180
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "south",
+        "up": "false",
+        "down": "false",
+        "east": "true",
+        "west": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f13",
+          "y": 180
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f13",
+          "y": 180
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "south",
+        "up": "false",
+        "down": "false",
+        "east": "false",
+        "west": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f14",
+          "y": 180
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f14",
+          "y": 180
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "south",
+        "up": "false",
+        "down": "false",
+        "east": "false",
+        "west": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f15",
+          "y": 180
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f15",
+          "y": 180
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "west",
+        "up": "true",
+        "down": "true",
+        "south": "true",
+        "north": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f0",
+          "y": 270
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f0",
+          "y": 270
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "west",
+        "up": "true",
+        "down": "true",
+        "south": "true",
+        "north": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f1",
+          "y": 270
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f1",
+          "y": 270
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "west",
+        "up": "true",
+        "down": "true",
+        "south": "false",
+        "north": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f2",
+          "y": 270
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f2",
+          "y": 270
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "west",
+        "up": "true",
+        "down": "true",
+        "south": "false",
+        "north": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f3",
+          "y": 270
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f3",
+          "y": 270
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "west",
+        "up": "true",
+        "down": "false",
+        "south": "true",
+        "north": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f4",
+          "y": 270
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f4",
+          "y": 270
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "west",
+        "up": "true",
+        "down": "false",
+        "south": "true",
+        "north": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f5",
+          "y": 270
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f5",
+          "y": 270
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "west",
+        "up": "true",
+        "down": "false",
+        "south": "false",
+        "north": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f6",
+          "y": 270
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f6",
+          "y": 270
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "west",
+        "up": "true",
+        "down": "false",
+        "south": "false",
+        "north": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f7",
+          "y": 270
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f7",
+          "y": 270
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "west",
+        "up": "false",
+        "down": "true",
+        "south": "true",
+        "north": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f8",
+          "y": 270
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f8",
+          "y": 270
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "west",
+        "up": "false",
+        "down": "true",
+        "south": "true",
+        "north": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f9",
+          "y": 270
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f9",
+          "y": 270
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "west",
+        "up": "false",
+        "down": "true",
+        "south": "false",
+        "north": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f10",
+          "y": 270
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f10",
+          "y": 270
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "west",
+        "up": "false",
+        "down": "true",
+        "south": "false",
+        "north": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f11",
+          "y": 270
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f11",
+          "y": 270
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "west",
+        "up": "false",
+        "down": "false",
+        "south": "true",
+        "north": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f12",
+          "y": 270
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f12",
+          "y": 270
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "west",
+        "up": "false",
+        "down": "false",
+        "south": "true",
+        "north": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f13",
+          "y": 270
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f13",
+          "y": 270
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "west",
+        "up": "false",
+        "down": "false",
+        "south": "false",
+        "north": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f14",
+          "y": 270
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f14",
+          "y": 270
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "west",
+        "up": "false",
+        "down": "false",
+        "south": "false",
+        "north": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f15",
+          "y": 270
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f15",
+          "y": 270
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "down",
+        "north": "true",
+        "south": "true",
+        "west": "true",
+        "east": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f0",
+          "x": 90
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f0",
+          "x": 90
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "down",
+        "north": "true",
+        "south": "true",
+        "west": "true",
+        "east": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f1",
+          "x": 90
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f1",
+          "x": 90
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "down",
+        "north": "true",
+        "south": "true",
+        "west": "false",
+        "east": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f2",
+          "x": 90
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f2",
+          "x": 90
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "down",
+        "north": "true",
+        "south": "true",
+        "west": "false",
+        "east": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f3",
+          "x": 90
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f3",
+          "x": 90
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "down",
+        "north": "true",
+        "south": "false",
+        "west": "true",
+        "east": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f4",
+          "x": 90
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f4",
+          "x": 90
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "down",
+        "north": "true",
+        "south": "false",
+        "west": "true",
+        "east": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f5",
+          "x": 90
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f5",
+          "x": 90
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "down",
+        "north": "true",
+        "south": "false",
+        "west": "false",
+        "east": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f6",
+          "x": 90
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f6",
+          "x": 90
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "down",
+        "north": "true",
+        "south": "false",
+        "west": "false",
+        "east": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f7",
+          "x": 90
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f7",
+          "x": 90
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "down",
+        "north": "false",
+        "south": "true",
+        "west": "true",
+        "east": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f8",
+          "x": 90
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f8",
+          "x": 90
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "down",
+        "north": "false",
+        "south": "true",
+        "west": "true",
+        "east": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f9",
+          "x": 90
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f9",
+          "x": 90
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "down",
+        "north": "false",
+        "south": "true",
+        "west": "false",
+        "east": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f10",
+          "x": 90
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f10",
+          "x": 90
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "down",
+        "north": "false",
+        "south": "true",
+        "west": "false",
+        "east": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f11",
+          "x": 90
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f11",
+          "x": 90
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "down",
+        "north": "false",
+        "south": "false",
+        "west": "true",
+        "east": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f12",
+          "x": 90
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f12",
+          "x": 90
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "down",
+        "north": "false",
+        "south": "false",
+        "west": "true",
+        "east": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f13",
+          "x": 90
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f13",
+          "x": 90
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "down",
+        "north": "false",
+        "south": "false",
+        "west": "false",
+        "east": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f14",
+          "x": 90
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f14",
+          "x": 90
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "down",
+        "north": "false",
+        "south": "false",
+        "west": "false",
+        "east": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f15",
+          "x": 90
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f15",
+          "x": 90
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "up",
+        "south": "true",
+        "north": "true",
+        "west": "true",
+        "east": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f0",
+          "x": 270
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f0",
+          "x": 270
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "up",
+        "south": "true",
+        "north": "true",
+        "west": "true",
+        "east": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f1",
+          "x": 270
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f1",
+          "x": 270
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "up",
+        "south": "true",
+        "north": "true",
+        "west": "false",
+        "east": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f2",
+          "x": 270
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f2",
+          "x": 270
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "up",
+        "south": "true",
+        "north": "true",
+        "west": "false",
+        "east": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f3",
+          "x": 270
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f3",
+          "x": 270
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "up",
+        "south": "true",
+        "north": "false",
+        "west": "true",
+        "east": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f4",
+          "x": 270
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f4",
+          "x": 270
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "up",
+        "south": "true",
+        "north": "false",
+        "west": "true",
+        "east": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f5",
+          "x": 270
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f5",
+          "x": 270
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "up",
+        "south": "true",
+        "north": "false",
+        "west": "false",
+        "east": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f6",
+          "x": 270
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f6",
+          "x": 270
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "up",
+        "south": "true",
+        "north": "false",
+        "west": "false",
+        "east": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f7",
+          "x": 270
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f7",
+          "x": 270
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "up",
+        "south": "false",
+        "north": "true",
+        "west": "true",
+        "east": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f8",
+          "x": 270
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f8",
+          "x": 270
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "up",
+        "south": "false",
+        "north": "true",
+        "west": "true",
+        "east": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f9",
+          "x": 270
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f9",
+          "x": 270
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "up",
+        "south": "false",
+        "north": "true",
+        "west": "false",
+        "east": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f10",
+          "x": 270
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f10",
+          "x": 270
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "up",
+        "south": "false",
+        "north": "true",
+        "west": "false",
+        "east": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f11",
+          "x": 270
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f11",
+          "x": 270
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "up",
+        "south": "false",
+        "north": "false",
+        "west": "true",
+        "east": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f12",
+          "x": 270
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f12",
+          "x": 270
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "up",
+        "south": "false",
+        "north": "false",
+        "west": "true",
+        "east": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f13",
+          "x": 270
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f13",
+          "x": 270
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "up",
+        "south": "false",
+        "north": "false",
+        "west": "false",
+        "east": "true"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f14",
+          "x": 270
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f14",
+          "x": 270
+        }
+      ]
+    },
+    {
+      "when": {
+        "face": "up",
+        "south": "false",
+        "north": "false",
+        "west": "false",
+        "east": "false"
+      },
+      "apply": [
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_f15",
+          "x": 270
+        },
+        {
+          "model": "nerodecor:block/greebles/rivet_plate_b_f15",
+          "x": 270
+        }
+      ]
+    }
+  ]
+}

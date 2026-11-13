@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "axis=z": {
+      "model": "nerodecor:block/bulkhead/porthole"
+    },
+    "axis=x": {
+      "model": "nerodecor:block/bulkhead/porthole",
+      "y": 90
+    },
+    "axis=y": {
+      "model": "nerodecor:block/bulkhead/porthole",
+      "x": 90
+    }
+  }
+}

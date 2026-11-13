@@ -1,0 +1,48 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "nerodecor:block/chroma_lights/ceiling_coffer_rim",
+    "d": "nerodecor:block/chroma_lights/ceiling_coffer",
+    "g": "nerodecor:block/chroma_lights/ceiling_coffer_glow",
+    "r": "nerodecor:block/chroma_lights/ceiling_coffer_rim"
+  },
+  "elements": [
+    {
+      "from": [
+        14,
+        13,
+        2
+      ],
+      "to": [
+        16,
+        16,
+        14
+      ],
+      "faces": {
+        "down": {
+          "texture": "#r"
+        },
+        "east": {
+          "texture": "#r",
+          "uv": [
+            2,
+            0,
+            14,
+            3
+          ],
+          "cullface": "east"
+        },
+        "west": {
+          "texture": "#r",
+          "uv": [
+            2,
+            0,
+            14,
+            3
+          ]
+        }
+      }
+    }
+  ],
+  "render_type": "minecraft:cutout"
+}

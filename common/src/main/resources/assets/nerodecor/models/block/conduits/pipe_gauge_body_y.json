@@ -1,0 +1,157 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "nerodecor:block/conduits/pipe_gauge",
+    "dial": "nerodecor:block/conduits/pipe_gauge_dial",
+    "end": "nerodecor:block/conduits/decor_pipe_end",
+    "gauge": "nerodecor:block/conduits/pipe_gauge",
+    "gauge_v": "nerodecor:block/conduits/pipe_gauge_v",
+    "glow": "nerodecor:block/conduits/pipe_gauge_dial_glow"
+  },
+  "elements": [
+    {
+      "from": [
+        4,
+        5,
+        4
+      ],
+      "to": [
+        12,
+        11,
+        12
+      ],
+      "faces": {
+        "down": {
+          "texture": "#end",
+          "uv": [
+            4,
+            4,
+            12,
+            12
+          ]
+        },
+        "up": {
+          "texture": "#end",
+          "uv": [
+            4,
+            4,
+            12,
+            12
+          ]
+        },
+        "north": {
+          "texture": "#gauge_v",
+          "uv": [
+            4,
+            5,
+            12,
+            11
+          ]
+        },
+        "west": {
+          "texture": "#gauge_v",
+          "uv": [
+            4,
+            5,
+            12,
+            11
+          ]
+        },
+        "east": {
+          "texture": "#gauge_v",
+          "uv": [
+            4,
+            5,
+            12,
+            11
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        4,
+        4,
+        12
+      ],
+      "to": [
+        12,
+        12,
+        14
+      ],
+      "faces": {
+        "up": {
+          "texture": "#gauge",
+          "uv": [
+            4,
+            12,
+            12,
+            14
+          ]
+        },
+        "down": {
+          "texture": "#gauge",
+          "uv": [
+            4,
+            2,
+            12,
+            4
+          ]
+        },
+        "east": {
+          "texture": "#gauge",
+          "uv": [
+            2,
+            4,
+            4,
+            12
+          ]
+        },
+        "west": {
+          "texture": "#gauge",
+          "uv": [
+            12,
+            4,
+            14,
+            12
+          ]
+        },
+        "south": {
+          "texture": "#dial",
+          "uv": [
+            4,
+            4,
+            12,
+            12
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        4,
+        4,
+        12
+      ],
+      "to": [
+        12,
+        12,
+        14
+      ],
+      "shade": false,
+      "light_emission": 15,
+      "faces": {
+        "south": {
+          "texture": "#glow",
+          "uv": [
+            4,
+            4,
+            12,
+            12
+          ]
+        }
+      }
+    }
+  ],
+  "render_type": "minecraft:cutout"
+}

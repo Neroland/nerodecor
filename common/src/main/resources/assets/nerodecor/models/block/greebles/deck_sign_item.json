@@ -1,0 +1,158 @@
+{
+  "parent": "minecraft:block/block",
+  "gui_light": "front",
+  "display": {
+    "gui": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        0,
+        180,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    "ground": {
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "translation": [
+        0,
+        2,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ]
+    }
+  },
+  "textures": {
+    "particle": "nerodecor:block/greebles/deck_sign_0",
+    "face": "nerodecor:block/greebles/deck_sign_1",
+    "glow": "nerodecor:block/greebles/deck_sign_1_glow"
+  },
+  "elements": [
+    {
+      "from": [
+        2,
+        1,
+        7.5
+      ],
+      "to": [
+        14,
+        15,
+        8.5
+      ],
+      "faces": {
+        "south": {
+          "texture": "#face",
+          "uv": [
+            2,
+            1,
+            14,
+            15
+          ]
+        },
+        "north": {
+          "texture": "#face",
+          "uv": [
+            14,
+            1,
+            2,
+            15
+          ]
+        },
+        "up": {
+          "texture": "#face",
+          "uv": [
+            2,
+            1,
+            14,
+            1.5
+          ]
+        },
+        "down": {
+          "texture": "#face",
+          "uv": [
+            2,
+            14.5,
+            14,
+            15
+          ]
+        },
+        "west": {
+          "texture": "#face",
+          "uv": [
+            2,
+            1,
+            2.5,
+            15
+          ]
+        },
+        "east": {
+          "texture": "#face",
+          "uv": [
+            13.5,
+            1,
+            14,
+            15
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        2,
+        1,
+        7.5
+      ],
+      "to": [
+        14,
+        15,
+        8.5
+      ],
+      "shade": false,
+      "light_emission": 15,
+      "faces": {
+        "south": {
+          "texture": "#glow",
+          "uv": [
+            2,
+            1,
+            14,
+            15
+          ]
+        }
+      }
+    }
+  ],
+  "render_type": "minecraft:cutout"
+}

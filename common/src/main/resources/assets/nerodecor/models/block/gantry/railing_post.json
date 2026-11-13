@@ -1,0 +1,139 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "nerodecor:block/gantry/railing_post",
+    "rail": "nerodecor:block/gantry/railing",
+    "post": "nerodecor:block/gantry/railing_post"
+  },
+  "elements": [
+    {
+      "from": [
+        5.5,
+        0,
+        5.5
+      ],
+      "to": [
+        10.5,
+        1,
+        10.5
+      ],
+      "faces": {
+        "up": {
+          "texture": "#post",
+          "uv": [
+            8,
+            0,
+            13,
+            5
+          ]
+        },
+        "down": {
+          "texture": "#post",
+          "uv": [
+            8,
+            0,
+            13,
+            5
+          ],
+          "cullface": "down"
+        },
+        "north": {
+          "texture": "#post",
+          "uv": [
+            8,
+            6,
+            13,
+            7
+          ]
+        },
+        "east": {
+          "texture": "#post",
+          "uv": [
+            8,
+            6,
+            13,
+            7
+          ]
+        },
+        "south": {
+          "texture": "#post",
+          "uv": [
+            8,
+            6,
+            13,
+            7
+          ]
+        },
+        "west": {
+          "texture": "#post",
+          "uv": [
+            8,
+            6,
+            13,
+            7
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        6.5,
+        1,
+        6.5
+      ],
+      "to": [
+        9.5,
+        16,
+        9.5
+      ],
+      "faces": {
+        "up": {
+          "texture": "#post",
+          "uv": [
+            4,
+            0,
+            7,
+            3
+          ]
+        },
+        "north": {
+          "texture": "#post",
+          "uv": [
+            0,
+            0,
+            3,
+            15
+          ]
+        },
+        "east": {
+          "texture": "#post",
+          "uv": [
+            0,
+            0,
+            3,
+            15
+          ]
+        },
+        "south": {
+          "texture": "#post",
+          "uv": [
+            0,
+            0,
+            3,
+            15
+          ]
+        },
+        "west": {
+          "texture": "#post",
+          "uv": [
+            0,
+            0,
+            3,
+            15
+          ]
+        }
+      }
+    }
+  ],
+  "render_type": "minecraft:cutout"
+}

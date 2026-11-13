@@ -1,0 +1,360 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "nerodecor:block/greebles/maintenance_panel",
+    "face": "nerodecor:block/greebles/maintenance_panel",
+    "open": "nerodecor:block/greebles/maintenance_panel_open",
+    "door": "nerodecor:block/greebles/maintenance_panel_door",
+    "glow": "nerodecor:block/greebles/maintenance_panel_open_glow"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        14,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        2
+      ],
+      "faces": {
+        "south": {
+          "texture": "#open",
+          "uv": [
+            0,
+            0,
+            16,
+            2
+          ]
+        },
+        "north": {
+          "texture": "#open",
+          "uv": [
+            16,
+            0,
+            0,
+            2
+          ],
+          "cullface": "north"
+        },
+        "up": {
+          "texture": "#open",
+          "uv": [
+            0,
+            0,
+            16,
+            1.0
+          ]
+        },
+        "down": {
+          "texture": "#open",
+          "uv": [
+            2,
+            15,
+            14,
+            16
+          ]
+        },
+        "west": {
+          "texture": "#open",
+          "uv": [
+            0,
+            0,
+            1.0,
+            2
+          ]
+        },
+        "east": {
+          "texture": "#open",
+          "uv": [
+            15.0,
+            0,
+            16,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        2,
+        2
+      ],
+      "faces": {
+        "south": {
+          "texture": "#open",
+          "uv": [
+            0,
+            14,
+            16,
+            16
+          ]
+        },
+        "north": {
+          "texture": "#open",
+          "uv": [
+            16,
+            14,
+            0,
+            16
+          ],
+          "cullface": "north"
+        },
+        "up": {
+          "texture": "#open",
+          "uv": [
+            2,
+            0,
+            14,
+            1
+          ]
+        },
+        "down": {
+          "texture": "#open",
+          "uv": [
+            0,
+            15.0,
+            16,
+            16
+          ]
+        },
+        "west": {
+          "texture": "#open",
+          "uv": [
+            0,
+            14,
+            1.0,
+            16
+          ]
+        },
+        "east": {
+          "texture": "#open",
+          "uv": [
+            15.0,
+            14,
+            16,
+            16
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        2,
+        0
+      ],
+      "to": [
+        2,
+        14,
+        2
+      ],
+      "faces": {
+        "south": {
+          "texture": "#open",
+          "uv": [
+            0,
+            2,
+            2,
+            14
+          ]
+        },
+        "north": {
+          "texture": "#open",
+          "uv": [
+            2,
+            2,
+            0,
+            14
+          ],
+          "cullface": "north"
+        },
+        "west": {
+          "texture": "#open",
+          "uv": [
+            0,
+            2,
+            1.0,
+            14
+          ]
+        },
+        "east": {
+          "texture": "#open",
+          "uv": [
+            15,
+            2,
+            16,
+            14
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        14,
+        2,
+        0
+      ],
+      "to": [
+        16,
+        14,
+        2
+      ],
+      "faces": {
+        "south": {
+          "texture": "#open",
+          "uv": [
+            14,
+            2,
+            16,
+            14
+          ]
+        },
+        "north": {
+          "texture": "#open",
+          "uv": [
+            16,
+            2,
+            14,
+            14
+          ],
+          "cullface": "north"
+        },
+        "west": {
+          "texture": "#open",
+          "uv": [
+            0,
+            2,
+            1,
+            14
+          ]
+        },
+        "east": {
+          "texture": "#open",
+          "uv": [
+            15.0,
+            2,
+            16,
+            14
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        2,
+        2,
+        0
+      ],
+      "to": [
+        14,
+        14,
+        0.5
+      ],
+      "faces": {
+        "south": {
+          "texture": "#open",
+          "uv": [
+            2,
+            2,
+            14,
+            14
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        2,
+        2,
+        0
+      ],
+      "to": [
+        14,
+        14,
+        0.5
+      ],
+      "shade": false,
+      "light_emission": 15,
+      "faces": {
+        "south": {
+          "texture": "#glow",
+          "uv": [
+            2,
+            2,
+            14,
+            14
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        1,
+        2,
+        2
+      ],
+      "to": [
+        2,
+        14,
+        14
+      ],
+      "faces": {
+        "east": {
+          "texture": "#door",
+          "uv": [
+            2,
+            2,
+            14,
+            14
+          ]
+        },
+        "west": {
+          "texture": "#face",
+          "uv": [
+            2,
+            2,
+            14,
+            14
+          ]
+        },
+        "south": {
+          "texture": "#face",
+          "uv": [
+            13,
+            2,
+            14,
+            14
+          ]
+        },
+        "up": {
+          "texture": "#face",
+          "uv": [
+            2,
+            2,
+            3,
+            14
+          ]
+        },
+        "down": {
+          "texture": "#face",
+          "uv": [
+            13,
+            2,
+            14,
+            14
+          ]
+        }
+      }
+    }
+  ],
+  "render_type": "minecraft:cutout"
+}

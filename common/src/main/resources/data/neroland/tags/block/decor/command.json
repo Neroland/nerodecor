@@ -1,0 +1,37 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "nerodecor:blinkenlight_panel",
+      "required": false
+    },
+    {
+      "id": "nerodecor:command_console",
+      "required": false
+    },
+    {
+      "id": "nerodecor:drive_rack",
+      "required": false
+    },
+    {
+      "id": "nerodecor:keyboard_shelf",
+      "required": false
+    },
+    {
+      "id": "nerodecor:operator_chair",
+      "required": false
+    },
+    {
+      "id": "nerodecor:patch_panel",
+      "required": false
+    },
+    {
+      "id": "nerodecor:server_rack",
+      "required": false
+    },
+    {
+      "id": "nerodecor:wall_screen",
+      "required": false
+    }
+  ]
+}

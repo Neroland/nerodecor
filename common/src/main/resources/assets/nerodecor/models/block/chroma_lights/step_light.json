@@ -1,0 +1,120 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "nerodecor:block/chroma_lights/step_light",
+    "t": "nerodecor:block/chroma_lights/step_light",
+    "g": "nerodecor:block/chroma_lights/step_light_glow"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        2,
+        3
+      ],
+      "faces": {
+        "up": {
+          "texture": "#t",
+          "uv": [
+            0,
+            0,
+            16,
+            3
+          ]
+        },
+        "north": {
+          "texture": "#t",
+          "uv": [
+            16,
+            5,
+            0,
+            7
+          ],
+          "cullface": "north"
+        },
+        "south": {
+          "texture": "#t",
+          "uv": [
+            0,
+            8,
+            16,
+            10
+          ]
+        },
+        "west": {
+          "texture": "#t",
+          "uv": [
+            0,
+            8,
+            3,
+            10
+          ],
+          "cullface": "west"
+        },
+        "east": {
+          "texture": "#t",
+          "uv": [
+            0,
+            8,
+            3,
+            10
+          ],
+          "cullface": "east"
+        },
+        "down": {
+          "texture": "#t",
+          "uv": [
+            0,
+            12,
+            16,
+            15
+          ],
+          "cullface": "down"
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        2,
+        3
+      ],
+      "shade": false,
+      "light_emission": 15,
+      "faces": {
+        "up": {
+          "texture": "#g",
+          "uv": [
+            0,
+            0,
+            16,
+            3
+          ],
+          "tintindex": 0
+        },
+        "north": {
+          "texture": "#g",
+          "uv": [
+            16,
+            5,
+            0,
+            7
+          ],
+          "cullface": "north",
+          "tintindex": 0
+        }
+      }
+    }
+  ],
+  "render_type": "minecraft:cutout"
+}

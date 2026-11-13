@@ -1,0 +1,160 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "nerodecor:block/lab_habitat/locker_side_c10",
+    "locker_front_c10": "nerodecor:block/lab_habitat/locker_front_c10",
+    "locker_side_c10": "nerodecor:block/lab_habitat/locker_side_c10",
+    "locker_top": "nerodecor:block/lab_habitat/locker_top"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        1
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "faces": {
+        "north": {
+          "texture": "#locker_front_c10",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ]
+        },
+        "south": {
+          "texture": "#locker_side_c10",
+          "uv": [
+            0,
+            0,
+            16,
+            16
+          ],
+          "cullface": "south"
+        },
+        "west": {
+          "texture": "#locker_side_c10",
+          "uv": [
+            1,
+            0,
+            16,
+            16
+          ],
+          "cullface": "west"
+        },
+        "east": {
+          "texture": "#locker_side_c10",
+          "uv": [
+            15,
+            0,
+            0,
+            16
+          ],
+          "cullface": "east"
+        },
+        "up": {
+          "texture": "#locker_top",
+          "uv": [
+            0,
+            1,
+            16,
+            16
+          ],
+          "cullface": "up"
+        }
+      }
+    },
+    {
+      "from": [
+        1,
+        0,
+        0
+      ],
+      "to": [
+        8,
+        16,
+        1
+      ],
+      "faces": {
+        "north": {
+          "texture": "#locker_front_c10",
+          "uv": [
+            8,
+            0,
+            15,
+            16
+          ],
+          "cullface": "north"
+        },
+        "west": {
+          "texture": "#locker_side_c10",
+          "uv": [
+            0,
+            0,
+            1,
+            16
+          ]
+        },
+        "up": {
+          "texture": "#locker_top",
+          "uv": [
+            1,
+            0,
+            8,
+            1
+          ],
+          "cullface": "up"
+        }
+      }
+    },
+    {
+      "from": [
+        8,
+        0,
+        0
+      ],
+      "to": [
+        15,
+        16,
+        1
+      ],
+      "faces": {
+        "north": {
+          "texture": "#locker_front_c10",
+          "uv": [
+            1,
+            0,
+            8,
+            16
+          ],
+          "cullface": "north"
+        },
+        "east": {
+          "texture": "#locker_side_c10",
+          "uv": [
+            16,
+            0,
+            15,
+            16
+          ]
+        },
+        "up": {
+          "texture": "#locker_top",
+          "uv": [
+            8,
+            0,
+            15,
+            1
+          ],
+          "cullface": "up"
+        }
+      }
+    }
+  ]
+}

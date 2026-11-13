@@ -1,0 +1,101 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/ceiling_coffer_plate"
+      }
+    },
+    {
+      "when": {
+        "north": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/ceiling_coffer_edge_north"
+      }
+    },
+    {
+      "when": {
+        "east": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/ceiling_coffer_edge_east"
+      }
+    },
+    {
+      "when": {
+        "south": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/ceiling_coffer_edge_south"
+      }
+    },
+    {
+      "when": {
+        "west": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/ceiling_coffer_edge_west"
+      }
+    },
+    {
+      "when": {
+        "OR": [
+          {
+            "north": "false"
+          },
+          {
+            "west": "false"
+          }
+        ]
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/ceiling_coffer_corner_north_west"
+      }
+    },
+    {
+      "when": {
+        "OR": [
+          {
+            "north": "false"
+          },
+          {
+            "east": "false"
+          }
+        ]
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/ceiling_coffer_corner_north_east"
+      }
+    },
+    {
+      "when": {
+        "OR": [
+          {
+            "south": "false"
+          },
+          {
+            "west": "false"
+          }
+        ]
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/ceiling_coffer_corner_south_west"
+      }
+    },
+    {
+      "when": {
+        "OR": [
+          {
+            "south": "false"
+          },
+          {
+            "east": "false"
+          }
+        ]
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/ceiling_coffer_corner_south_east"
+      }
+    }
+  ]
+}

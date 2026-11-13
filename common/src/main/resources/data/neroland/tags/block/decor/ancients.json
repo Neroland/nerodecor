@@ -1,0 +1,33 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "nerodecor:ancient_brick",
+      "required": false
+    },
+    {
+      "id": "nerodecor:ancient_pillar",
+      "required": false
+    },
+    {
+      "id": "nerodecor:arch_lintel",
+      "required": false
+    },
+    {
+      "id": "nerodecor:cracked_ancient_brick",
+      "required": false
+    },
+    {
+      "id": "nerodecor:dormant_core",
+      "required": false
+    },
+    {
+      "id": "nerodecor:glyph_block",
+      "required": false
+    },
+    {
+      "id": "nerodecor:glyph_strip",
+      "required": false
+    }
+  ]
+}

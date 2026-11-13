@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "nerodecor:block/seven_worlds/glacira_frost_plate"
+      },
+      {
+        "model": "nerodecor:block/seven_worlds/glacira_frost_plate_v1"
+      },
+      {
+        "model": "nerodecor:block/seven_worlds/glacira_frost_plate_v2"
+      }
+    ]
+  }
+}

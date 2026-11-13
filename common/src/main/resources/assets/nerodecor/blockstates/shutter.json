@@ -1,0 +1,60 @@
+{
+  "variants": {
+    "axis=x,neg_link=false,open=false,pos_link=false": {
+      "model": "nerodecor:block/bulkhead/shutter_c11"
+    },
+    "axis=x,neg_link=true,open=false,pos_link=false": {
+      "model": "nerodecor:block/bulkhead/shutter_c10"
+    },
+    "axis=x,neg_link=false,open=false,pos_link=true": {
+      "model": "nerodecor:block/bulkhead/shutter_c01"
+    },
+    "axis=x,neg_link=true,open=false,pos_link=true": {
+      "model": "nerodecor:block/bulkhead/shutter_c00"
+    },
+    "axis=x,neg_link=false,open=true,pos_link=false": {
+      "model": "nerodecor:block/bulkhead/shutter_open_c1"
+    },
+    "axis=x,neg_link=true,open=true,pos_link=false": {
+      "model": "nerodecor:block/bulkhead/shutter_open_c1"
+    },
+    "axis=x,neg_link=false,open=true,pos_link=true": {
+      "model": "nerodecor:block/bulkhead/shutter_open_c0"
+    },
+    "axis=x,neg_link=true,open=true,pos_link=true": {
+      "model": "nerodecor:block/bulkhead/shutter_open_c0"
+    },
+    "axis=z,neg_link=false,open=false,pos_link=false": {
+      "model": "nerodecor:block/bulkhead/shutter_c11",
+      "y": 90
+    },
+    "axis=z,neg_link=true,open=false,pos_link=false": {
+      "model": "nerodecor:block/bulkhead/shutter_c10",
+      "y": 90
+    },
+    "axis=z,neg_link=false,open=false,pos_link=true": {
+      "model": "nerodecor:block/bulkhead/shutter_c01",
+      "y": 90
+    },
+    "axis=z,neg_link=true,open=false,pos_link=true": {
+      "model": "nerodecor:block/bulkhead/shutter_c00",
+      "y": 90
+    },
+    "axis=z,neg_link=false,open=true,pos_link=false": {
+      "model": "nerodecor:block/bulkhead/shutter_open_c1",
+      "y": 90
+    },
+    "axis=z,neg_link=true,open=true,pos_link=false": {
+      "model": "nerodecor:block/bulkhead/shutter_open_c1",
+      "y": 90
+    },
+    "axis=z,neg_link=false,open=true,pos_link=true": {
+      "model": "nerodecor:block/bulkhead/shutter_open_c0",
+      "y": 90
+    },
+    "axis=z,neg_link=true,open=true,pos_link=true": {
+      "model": "nerodecor:block/bulkhead/shutter_open_c0",
+      "y": 90
+    }
+  }
+}

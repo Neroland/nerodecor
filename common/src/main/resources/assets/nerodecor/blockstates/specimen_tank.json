@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "neg_link=false,pos_link=false": {
+      "model": "nerodecor:block/lab_habitat/specimen_tank_c11"
+    },
+    "neg_link=true,pos_link=false": {
+      "model": "nerodecor:block/lab_habitat/specimen_tank_c10"
+    },
+    "neg_link=false,pos_link=true": {
+      "model": "nerodecor:block/lab_habitat/specimen_tank_c01"
+    },
+    "neg_link=true,pos_link=true": {
+      "model": "nerodecor:block/lab_habitat/specimen_tank_c00"
+    }
+  }
+}

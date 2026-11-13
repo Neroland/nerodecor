@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "#neroland:decor/hull",
+    "#neroland:decor/panel",
+    "#neroland:decor/glass",
+    "#neroland:decor/neon",
+    "#neroland:decor/luminous"
+  ]
+}

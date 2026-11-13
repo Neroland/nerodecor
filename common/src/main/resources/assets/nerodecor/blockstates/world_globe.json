@@ -1,0 +1,25 @@
+{
+  "variants": {
+    "world=station": {
+      "model": "nerodecor:block/holo/world_globe_station"
+    },
+    "world=luna": {
+      "model": "nerodecor:block/holo/world_globe_luna"
+    },
+    "world=mars": {
+      "model": "nerodecor:block/holo/world_globe_mars"
+    },
+    "world=cindara": {
+      "model": "nerodecor:block/holo/world_globe_cindara"
+    },
+    "world=glacira": {
+      "model": "nerodecor:block/holo/world_globe_glacira"
+    },
+    "world=greenxertz": {
+      "model": "nerodecor:block/holo/world_globe_greenxertz"
+    },
+    "world=nyxara": {
+      "model": "nerodecor:block/holo/world_globe_nyxara"
+    }
+  }
+}

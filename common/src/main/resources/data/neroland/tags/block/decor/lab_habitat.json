@@ -1,0 +1,37 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "nerodecor:crew_bunk",
+      "required": false
+    },
+    {
+      "id": "nerodecor:fume_hood",
+      "required": false
+    },
+    {
+      "id": "nerodecor:lab_bench",
+      "required": false
+    },
+    {
+      "id": "nerodecor:lab_stool",
+      "required": false
+    },
+    {
+      "id": "nerodecor:locker",
+      "required": false
+    },
+    {
+      "id": "nerodecor:planter",
+      "required": false
+    },
+    {
+      "id": "nerodecor:sample_fridge",
+      "required": false
+    },
+    {
+      "id": "nerodecor:specimen_tank",
+      "required": false
+    }
+  ]
+}

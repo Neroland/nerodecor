@@ -1,0 +1,10 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "nerodecor:block/bulkhead/blast_door_edge",
+    "edge": "nerodecor:block/bulkhead/blast_door_edge",
+    "t4": "nerodecor:block/bulkhead/blast_door_4"
+  },
+  "elements": [],
+  "render_type": "minecraft:cutout"
+}

@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "nerodecor:block/conduits/beam_emitter_prop"
+    },
+    "facing=east": {
+      "model": "nerodecor:block/conduits/beam_emitter_prop",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "nerodecor:block/conduits/beam_emitter_prop",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "nerodecor:block/conduits/beam_emitter_prop",
+      "y": 270
+    },
+    "facing=up": {
+      "model": "nerodecor:block/conduits/beam_emitter_prop",
+      "x": 270
+    },
+    "facing=down": {
+      "model": "nerodecor:block/conduits/beam_emitter_prop",
+      "x": 90
+    }
+  }
+}

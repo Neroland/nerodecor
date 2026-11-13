@@ -1,0 +1,274 @@
+{
+  "variants": {
+    "facing=north,open=false,part=0": {
+      "model": "nerodecor:block/bulkhead/blast_door_0"
+    },
+    "facing=north,open=true,part=0": {
+      "model": "nerodecor:block/bulkhead/blast_door_0_open"
+    },
+    "facing=north,open=false,part=1": {
+      "model": "nerodecor:block/bulkhead/blast_door_1"
+    },
+    "facing=north,open=true,part=1": {
+      "model": "nerodecor:block/bulkhead/blast_door_1_open"
+    },
+    "facing=north,open=false,part=2": {
+      "model": "nerodecor:block/bulkhead/blast_door_2"
+    },
+    "facing=north,open=true,part=2": {
+      "model": "nerodecor:block/bulkhead/blast_door_2_open"
+    },
+    "facing=north,open=false,part=3": {
+      "model": "nerodecor:block/bulkhead/blast_door_3"
+    },
+    "facing=north,open=true,part=3": {
+      "model": "nerodecor:block/bulkhead/blast_door_3_open"
+    },
+    "facing=north,open=false,part=4": {
+      "model": "nerodecor:block/bulkhead/blast_door_4"
+    },
+    "facing=north,open=true,part=4": {
+      "model": "nerodecor:block/bulkhead/blast_door_4_open"
+    },
+    "facing=north,open=false,part=5": {
+      "model": "nerodecor:block/bulkhead/blast_door_5"
+    },
+    "facing=north,open=true,part=5": {
+      "model": "nerodecor:block/bulkhead/blast_door_5_open"
+    },
+    "facing=north,open=false,part=6": {
+      "model": "nerodecor:block/bulkhead/blast_door_6"
+    },
+    "facing=north,open=true,part=6": {
+      "model": "nerodecor:block/bulkhead/blast_door_6_open"
+    },
+    "facing=north,open=false,part=7": {
+      "model": "nerodecor:block/bulkhead/blast_door_7"
+    },
+    "facing=north,open=true,part=7": {
+      "model": "nerodecor:block/bulkhead/blast_door_7_open"
+    },
+    "facing=north,open=false,part=8": {
+      "model": "nerodecor:block/bulkhead/blast_door_8"
+    },
+    "facing=north,open=true,part=8": {
+      "model": "nerodecor:block/bulkhead/blast_door_8_open"
+    },
+    "facing=east,open=false,part=0": {
+      "model": "nerodecor:block/bulkhead/blast_door_0",
+      "y": 90
+    },
+    "facing=east,open=true,part=0": {
+      "model": "nerodecor:block/bulkhead/blast_door_0_open",
+      "y": 90
+    },
+    "facing=east,open=false,part=1": {
+      "model": "nerodecor:block/bulkhead/blast_door_1",
+      "y": 90
+    },
+    "facing=east,open=true,part=1": {
+      "model": "nerodecor:block/bulkhead/blast_door_1_open",
+      "y": 90
+    },
+    "facing=east,open=false,part=2": {
+      "model": "nerodecor:block/bulkhead/blast_door_2",
+      "y": 90
+    },
+    "facing=east,open=true,part=2": {
+      "model": "nerodecor:block/bulkhead/blast_door_2_open",
+      "y": 90
+    },
+    "facing=east,open=false,part=3": {
+      "model": "nerodecor:block/bulkhead/blast_door_3",
+      "y": 90
+    },
+    "facing=east,open=true,part=3": {
+      "model": "nerodecor:block/bulkhead/blast_door_3_open",
+      "y": 90
+    },
+    "facing=east,open=false,part=4": {
+      "model": "nerodecor:block/bulkhead/blast_door_4",
+      "y": 90
+    },
+    "facing=east,open=true,part=4": {
+      "model": "nerodecor:block/bulkhead/blast_door_4_open",
+      "y": 90
+    },
+    "facing=east,open=false,part=5": {
+      "model": "nerodecor:block/bulkhead/blast_door_5",
+      "y": 90
+    },
+    "facing=east,open=true,part=5": {
+      "model": "nerodecor:block/bulkhead/blast_door_5_open",
+      "y": 90
+    },
+    "facing=east,open=false,part=6": {
+      "model": "nerodecor:block/bulkhead/blast_door_6",
+      "y": 90
+    },
+    "facing=east,open=true,part=6": {
+      "model": "nerodecor:block/bulkhead/blast_door_6_open",
+      "y": 90
+    },
+    "facing=east,open=false,part=7": {
+      "model": "nerodecor:block/bulkhead/blast_door_7",
+      "y": 90
+    },
+    "facing=east,open=true,part=7": {
+      "model": "nerodecor:block/bulkhead/blast_door_7_open",
+      "y": 90
+    },
+    "facing=east,open=false,part=8": {
+      "model": "nerodecor:block/bulkhead/blast_door_8",
+      "y": 90
+    },
+    "facing=east,open=true,part=8": {
+      "model": "nerodecor:block/bulkhead/blast_door_8_open",
+      "y": 90
+    },
+    "facing=south,open=false,part=0": {
+      "model": "nerodecor:block/bulkhead/blast_door_0",
+      "y": 180
+    },
+    "facing=south,open=true,part=0": {
+      "model": "nerodecor:block/bulkhead/blast_door_0_open",
+      "y": 180
+    },
+    "facing=south,open=false,part=1": {
+      "model": "nerodecor:block/bulkhead/blast_door_1",
+      "y": 180
+    },
+    "facing=south,open=true,part=1": {
+      "model": "nerodecor:block/bulkhead/blast_door_1_open",
+      "y": 180
+    },
+    "facing=south,open=false,part=2": {
+      "model": "nerodecor:block/bulkhead/blast_door_2",
+      "y": 180
+    },
+    "facing=south,open=true,part=2": {
+      "model": "nerodecor:block/bulkhead/blast_door_2_open",
+      "y": 180
+    },
+    "facing=south,open=false,part=3": {
+      "model": "nerodecor:block/bulkhead/blast_door_3",
+      "y": 180
+    },
+    "facing=south,open=true,part=3": {
+      "model": "nerodecor:block/bulkhead/blast_door_3_open",
+      "y": 180
+    },
+    "facing=south,open=false,part=4": {
+      "model": "nerodecor:block/bulkhead/blast_door_4",
+      "y": 180
+    },
+    "facing=south,open=true,part=4": {
+      "model": "nerodecor:block/bulkhead/blast_door_4_open",
+      "y": 180
+    },
+    "facing=south,open=false,part=5": {
+      "model": "nerodecor:block/bulkhead/blast_door_5",
+      "y": 180
+    },
+    "facing=south,open=true,part=5": {
+      "model": "nerodecor:block/bulkhead/blast_door_5_open",
+      "y": 180
+    },
+    "facing=south,open=false,part=6": {
+      "model": "nerodecor:block/bulkhead/blast_door_6",
+      "y": 180
+    },
+    "facing=south,open=true,part=6": {
+      "model": "nerodecor:block/bulkhead/blast_door_6_open",
+      "y": 180
+    },
+    "facing=south,open=false,part=7": {
+      "model": "nerodecor:block/bulkhead/blast_door_7",
+      "y": 180
+    },
+    "facing=south,open=true,part=7": {
+      "model": "nerodecor:block/bulkhead/blast_door_7_open",
+      "y": 180
+    },
+    "facing=south,open=false,part=8": {
+      "model": "nerodecor:block/bulkhead/blast_door_8",
+      "y": 180
+    },
+    "facing=south,open=true,part=8": {
+      "model": "nerodecor:block/bulkhead/blast_door_8_open",
+      "y": 180
+    },
+    "facing=west,open=false,part=0": {
+      "model": "nerodecor:block/bulkhead/blast_door_0",
+      "y": 270
+    },
+    "facing=west,open=true,part=0": {
+      "model": "nerodecor:block/bulkhead/blast_door_0_open",
+      "y": 270
+    },
+    "facing=west,open=false,part=1": {
+      "model": "nerodecor:block/bulkhead/blast_door_1",
+      "y": 270
+    },
+    "facing=west,open=true,part=1": {
+      "model": "nerodecor:block/bulkhead/blast_door_1_open",
+      "y": 270
+    },
+    "facing=west,open=false,part=2": {
+      "model": "nerodecor:block/bulkhead/blast_door_2",
+      "y": 270
+    },
+    "facing=west,open=true,part=2": {
+      "model": "nerodecor:block/bulkhead/blast_door_2_open",
+      "y": 270
+    },
+    "facing=west,open=false,part=3": {
+      "model": "nerodecor:block/bulkhead/blast_door_3",
+      "y": 270
+    },
+    "facing=west,open=true,part=3": {
+      "model": "nerodecor:block/bulkhead/blast_door_3_open",
+      "y": 270
+    },
+    "facing=west,open=false,part=4": {
+      "model": "nerodecor:block/bulkhead/blast_door_4",
+      "y": 270
+    },
+    "facing=west,open=true,part=4": {
+      "model": "nerodecor:block/bulkhead/blast_door_4_open",
+      "y": 270
+    },
+    "facing=west,open=false,part=5": {
+      "model": "nerodecor:block/bulkhead/blast_door_5",
+      "y": 270
+    },
+    "facing=west,open=true,part=5": {
+      "model": "nerodecor:block/bulkhead/blast_door_5_open",
+      "y": 270
+    },
+    "facing=west,open=false,part=6": {
+      "model": "nerodecor:block/bulkhead/blast_door_6",
+      "y": 270
+    },
+    "facing=west,open=true,part=6": {
+      "model": "nerodecor:block/bulkhead/blast_door_6_open",
+      "y": 270
+    },
+    "facing=west,open=false,part=7": {
+      "model": "nerodecor:block/bulkhead/blast_door_7",
+      "y": 270
+    },
+    "facing=west,open=true,part=7": {
+      "model": "nerodecor:block/bulkhead/blast_door_7_open",
+      "y": 270
+    },
+    "facing=west,open=false,part=8": {
+      "model": "nerodecor:block/bulkhead/blast_door_8",
+      "y": 270
+    },
+    "facing=west,open=true,part=8": {
+      "model": "nerodecor:block/bulkhead/blast_door_8_open",
+      "y": 270
+    }
+  }
+}

@@ -1,0 +1,220 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "nerodecor:block/lab_habitat/planter_end",
+    "planter_soil": "nerodecor:block/lab_habitat/planter_soil",
+    "planter_rim": "nerodecor:block/lab_habitat/planter_rim",
+    "planter_side_c10": "nerodecor:block/lab_habitat/planter_side_c10",
+    "planter_end": "nerodecor:block/lab_habitat/planter_end"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        3
+      ],
+      "to": [
+        15,
+        7,
+        13
+      ],
+      "faces": {
+        "up": {
+          "texture": "#planter_soil",
+          "uv": [
+            0,
+            3,
+            15,
+            13
+          ]
+        },
+        "down": {
+          "texture": "#planter_rim",
+          "uv": [
+            0,
+            3,
+            15,
+            13
+          ],
+          "cullface": "down"
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        0,
+        2
+      ],
+      "to": [
+        16,
+        8,
+        3
+      ],
+      "faces": {
+        "north": {
+          "texture": "#planter_side_c10",
+          "uv": [
+            0,
+            8,
+            16,
+            16
+          ]
+        },
+        "south": {
+          "texture": "#planter_side_c10",
+          "uv": [
+            16,
+            8,
+            0,
+            16
+          ]
+        },
+        "up": {
+          "texture": "#planter_rim",
+          "uv": [
+            0,
+            2,
+            16,
+            3
+          ]
+        },
+        "down": {
+          "texture": "#planter_rim",
+          "uv": [
+            0,
+            13,
+            16,
+            14
+          ],
+          "cullface": "down"
+        },
+        "east": {
+          "texture": "#planter_end",
+          "uv": [
+            13,
+            8,
+            14,
+            16
+          ],
+          "cullface": "east"
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        0,
+        13
+      ],
+      "to": [
+        16,
+        8,
+        14
+      ],
+      "faces": {
+        "north": {
+          "texture": "#planter_side_c10",
+          "uv": [
+            0,
+            8,
+            16,
+            16
+          ]
+        },
+        "south": {
+          "texture": "#planter_side_c10",
+          "uv": [
+            16,
+            8,
+            0,
+            16
+          ]
+        },
+        "up": {
+          "texture": "#planter_rim",
+          "uv": [
+            0,
+            13,
+            16,
+            14
+          ]
+        },
+        "down": {
+          "texture": "#planter_rim",
+          "uv": [
+            0,
+            2,
+            16,
+            3
+          ],
+          "cullface": "down"
+        },
+        "east": {
+          "texture": "#planter_end",
+          "uv": [
+            2,
+            8,
+            3,
+            16
+          ],
+          "cullface": "east"
+        }
+      }
+    },
+    {
+      "from": [
+        15,
+        0,
+        3
+      ],
+      "to": [
+        16,
+        8,
+        13
+      ],
+      "faces": {
+        "east": {
+          "texture": "#planter_end",
+          "uv": [
+            3,
+            8,
+            13,
+            16
+          ],
+          "cullface": "east"
+        },
+        "west": {
+          "texture": "#planter_end",
+          "uv": [
+            3,
+            8,
+            13,
+            16
+          ]
+        },
+        "up": {
+          "texture": "#planter_rim",
+          "uv": [
+            15,
+            3,
+            16,
+            13
+          ]
+        },
+        "down": {
+          "texture": "#planter_rim",
+          "uv": [
+            15,
+            3,
+            16,
+            13
+          ],
+          "cullface": "down"
+        }
+      }
+    }
+  ],
+  "render_type": "minecraft:cutout"
+}

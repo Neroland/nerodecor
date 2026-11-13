@@ -1,0 +1,37 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "nerodecor:arrow_sign",
+      "required": false
+    },
+    {
+      "id": "nerodecor:holo_curtain",
+      "required": false
+    },
+    {
+      "id": "nerodecor:holo_plinth",
+      "required": false
+    },
+    {
+      "id": "nerodecor:holo_projector",
+      "required": false
+    },
+    {
+      "id": "nerodecor:holo_sign",
+      "required": false
+    },
+    {
+      "id": "nerodecor:holo_table",
+      "required": false
+    },
+    {
+      "id": "nerodecor:ticker_strip",
+      "required": false
+    },
+    {
+      "id": "nerodecor:world_globe",
+      "required": false
+    }
+  ]
+}

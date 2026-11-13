@@ -1,0 +1,80 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "nerodecor:block/greebles/hazard_stripe_c00",
+    "bar": "nerodecor:block/greebles/hazard_stripe_edge_c01_t"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        4,
+        1,
+        16
+      ],
+      "faces": {
+        "up": {
+          "texture": "#bar",
+          "uv": [
+            0,
+            0,
+            4,
+            16
+          ]
+        },
+        "down": {
+          "texture": "#bar",
+          "uv": [
+            0,
+            16,
+            4,
+            0
+          ],
+          "cullface": "down"
+        },
+        "west": {
+          "texture": "#bar",
+          "uv": [
+            0,
+            0,
+            1,
+            16
+          ],
+          "rotation": 270
+        },
+        "east": {
+          "texture": "#bar",
+          "uv": [
+            3,
+            0,
+            4,
+            16
+          ],
+          "rotation": 90
+        },
+        "north": {
+          "texture": "#bar",
+          "uv": [
+            1,
+            0,
+            2,
+            1
+          ]
+        },
+        "south": {
+          "texture": "#bar",
+          "uv": [
+            1,
+            15,
+            2,
+            16
+          ]
+        }
+      }
+    }
+  ]
+}

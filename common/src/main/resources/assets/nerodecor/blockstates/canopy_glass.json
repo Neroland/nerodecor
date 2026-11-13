@@ -1,0 +1,140 @@
+{
+  "variants": {
+    "facing=north,half=bottom,neg_link=false,pos_link=false": {
+      "model": "nerodecor:block/bulkhead/canopy_glass_c11"
+    },
+    "facing=north,half=bottom,neg_link=true,pos_link=false": {
+      "model": "nerodecor:block/bulkhead/canopy_glass_c10"
+    },
+    "facing=north,half=bottom,neg_link=false,pos_link=true": {
+      "model": "nerodecor:block/bulkhead/canopy_glass_c01"
+    },
+    "facing=north,half=bottom,neg_link=true,pos_link=true": {
+      "model": "nerodecor:block/bulkhead/canopy_glass_c00"
+    },
+    "facing=north,half=top,neg_link=false,pos_link=false": {
+      "model": "nerodecor:block/bulkhead/canopy_glass_c11",
+      "x": 180
+    },
+    "facing=north,half=top,neg_link=true,pos_link=false": {
+      "model": "nerodecor:block/bulkhead/canopy_glass_c10",
+      "x": 180
+    },
+    "facing=north,half=top,neg_link=false,pos_link=true": {
+      "model": "nerodecor:block/bulkhead/canopy_glass_c01",
+      "x": 180
+    },
+    "facing=north,half=top,neg_link=true,pos_link=true": {
+      "model": "nerodecor:block/bulkhead/canopy_glass_c00",
+      "x": 180
+    },
+    "facing=east,half=bottom,neg_link=false,pos_link=false": {
+      "model": "nerodecor:block/bulkhead/canopy_glass_c11",
+      "y": 90
+    },
+    "facing=east,half=bottom,neg_link=true,pos_link=false": {
+      "model": "nerodecor:block/bulkhead/canopy_glass_c10",
+      "y": 90
+    },
+    "facing=east,half=bottom,neg_link=false,pos_link=true": {
+      "model": "nerodecor:block/bulkhead/canopy_glass_c01",
+      "y": 90
+    },
+    "facing=east,half=bottom,neg_link=true,pos_link=true": {
+      "model": "nerodecor:block/bulkhead/canopy_glass_c00",
+      "y": 90
+    },
+    "facing=east,half=top,neg_link=false,pos_link=false": {
+      "model": "nerodecor:block/bulkhead/canopy_glass_c11",
+      "x": 180,
+      "y": 90
+    },
+    "facing=east,half=top,neg_link=true,pos_link=false": {
+      "model": "nerodecor:block/bulkhead/canopy_glass_c10",
+      "x": 180,
+      "y": 90
+    },
+    "facing=east,half=top,neg_link=false,pos_link=true": {
+      "model": "nerodecor:block/bulkhead/canopy_glass_c01",
+      "x": 180,
+      "y": 90
+    },
+    "facing=east,half=top,neg_link=true,pos_link=true": {
+      "model": "nerodecor:block/bulkhead/canopy_glass_c00",
+      "x": 180,
+      "y": 90
+    },
+    "facing=south,half=bottom,neg_link=false,pos_link=false": {
+      "model": "nerodecor:block/bulkhead/canopy_glass_c11",
+      "y": 180
+    },
+    "facing=south,half=bottom,neg_link=true,pos_link=false": {
+      "model": "nerodecor:block/bulkhead/canopy_glass_c01",
+      "y": 180
+    },
+    "facing=south,half=bottom,neg_link=false,pos_link=true": {
+      "model": "nerodecor:block/bulkhead/canopy_glass_c10",
+      "y": 180
+    },
+    "facing=south,half=bottom,neg_link=true,pos_link=true": {
+      "model": "nerodecor:block/bulkhead/canopy_glass_c00",
+      "y": 180
+    },
+    "facing=south,half=top,neg_link=false,pos_link=false": {
+      "model": "nerodecor:block/bulkhead/canopy_glass_c11",
+      "x": 180,
+      "y": 180
+    },
+    "facing=south,half=top,neg_link=true,pos_link=false": {
+      "model": "nerodecor:block/bulkhead/canopy_glass_c01",
+      "x": 180,
+      "y": 180
+    },
+    "facing=south,half=top,neg_link=false,pos_link=true": {
+      "model": "nerodecor:block/bulkhead/canopy_glass_c10",
+      "x": 180,
+      "y": 180
+    },
+    "facing=south,half=top,neg_link=true,pos_link=true": {
+      "model": "nerodecor:block/bulkhead/canopy_glass_c00",
+      "x": 180,
+      "y": 180
+    },
+    "facing=west,half=bottom,neg_link=false,pos_link=false": {
+      "model": "nerodecor:block/bulkhead/canopy_glass_c11",
+      "y": 270
+    },
+    "facing=west,half=bottom,neg_link=true,pos_link=false": {
+      "model": "nerodecor:block/bulkhead/canopy_glass_c01",
+      "y": 270
+    },
+    "facing=west,half=bottom,neg_link=false,pos_link=true": {
+      "model": "nerodecor:block/bulkhead/canopy_glass_c10",
+      "y": 270
+    },
+    "facing=west,half=bottom,neg_link=true,pos_link=true": {
+      "model": "nerodecor:block/bulkhead/canopy_glass_c00",
+      "y": 270
+    },
+    "facing=west,half=top,neg_link=false,pos_link=false": {
+      "model": "nerodecor:block/bulkhead/canopy_glass_c11",
+      "x": 180,
+      "y": 270
+    },
+    "facing=west,half=top,neg_link=true,pos_link=false": {
+      "model": "nerodecor:block/bulkhead/canopy_glass_c01",
+      "x": 180,
+      "y": 270
+    },
+    "facing=west,half=top,neg_link=false,pos_link=true": {
+      "model": "nerodecor:block/bulkhead/canopy_glass_c10",
+      "x": 180,
+      "y": 270
+    },
+    "facing=west,half=top,neg_link=true,pos_link=true": {
+      "model": "nerodecor:block/bulkhead/canopy_glass_c00",
+      "x": 180,
+      "y": 270
+    }
+  }
+}

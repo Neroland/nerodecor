@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "face=down": {
+      "model": "nerodecor:block/bulkhead/door_status_light"
+    },
+    "face=up": {
+      "model": "nerodecor:block/bulkhead/door_status_light",
+      "x": 180
+    },
+    "face=north": {
+      "model": "nerodecor:block/bulkhead/door_status_light",
+      "x": 270
+    },
+    "face=south": {
+      "model": "nerodecor:block/bulkhead/door_status_light",
+      "x": 270,
+      "y": 180
+    },
+    "face=west": {
+      "model": "nerodecor:block/bulkhead/door_status_light",
+      "x": 270,
+      "y": 270
+    },
+    "face=east": {
+      "model": "nerodecor:block/bulkhead/door_status_light",
+      "x": 270,
+      "y": 90
+    }
+  }
+}

@@ -1,0 +1,836 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_core"
+      }
+    },
+    {
+      "when": {
+        "north": "false",
+        "east": "false",
+        "west": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_cap"
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "true",
+        "north": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_arm_u0d0"
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "true",
+        "north": "false",
+        "east": "true",
+        "west": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_mid_u0d0"
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "true",
+        "north": "false",
+        "east": "false",
+        "west": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_end_l_u0d0"
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "true",
+        "north": "false",
+        "east": "true",
+        "west": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_end_r_u0d0"
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "false",
+        "north": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_arm_u0d1"
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "false",
+        "north": "false",
+        "east": "true",
+        "west": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_mid_u0d1"
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "false",
+        "north": "false",
+        "east": "false",
+        "west": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_end_l_u0d1"
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "false",
+        "north": "false",
+        "east": "true",
+        "west": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_end_r_u0d1"
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "true",
+        "north": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_arm_u1d0"
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "true",
+        "north": "false",
+        "east": "true",
+        "west": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_mid_u1d0"
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "true",
+        "north": "false",
+        "east": "false",
+        "west": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_end_l_u1d0"
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "true",
+        "north": "false",
+        "east": "true",
+        "west": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_end_r_u1d0"
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "false",
+        "north": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_arm_u1d1"
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "false",
+        "north": "false",
+        "east": "true",
+        "west": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_mid_u1d1"
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "false",
+        "north": "false",
+        "east": "false",
+        "west": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_end_l_u1d1"
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "false",
+        "north": "false",
+        "east": "true",
+        "west": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_end_r_u1d1"
+      }
+    },
+    {
+      "when": {
+        "east": "false",
+        "south": "false",
+        "north": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_cap",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "true",
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_arm_u0d0",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "true",
+        "east": "false",
+        "south": "true",
+        "north": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_mid_u0d0",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "true",
+        "east": "false",
+        "south": "false",
+        "north": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_end_l_u0d0",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "true",
+        "east": "false",
+        "south": "true",
+        "north": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_end_r_u0d0",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "false",
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_arm_u0d1",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "false",
+        "east": "false",
+        "south": "true",
+        "north": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_mid_u0d1",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "false",
+        "east": "false",
+        "south": "false",
+        "north": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_end_l_u0d1",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "false",
+        "east": "false",
+        "south": "true",
+        "north": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_end_r_u0d1",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "true",
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_arm_u1d0",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "true",
+        "east": "false",
+        "south": "true",
+        "north": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_mid_u1d0",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "true",
+        "east": "false",
+        "south": "false",
+        "north": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_end_l_u1d0",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "true",
+        "east": "false",
+        "south": "true",
+        "north": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_end_r_u1d0",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "false",
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_arm_u1d1",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "false",
+        "east": "false",
+        "south": "true",
+        "north": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_mid_u1d1",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "false",
+        "east": "false",
+        "south": "false",
+        "north": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_end_l_u1d1",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "false",
+        "east": "false",
+        "south": "true",
+        "north": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_end_r_u1d1",
+        "y": 90
+      }
+    },
+    {
+      "when": {
+        "south": "false",
+        "west": "false",
+        "east": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_cap",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "true",
+        "south": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_arm_u0d0",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "true",
+        "south": "false",
+        "west": "true",
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_mid_u0d0",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "true",
+        "south": "false",
+        "west": "false",
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_end_l_u0d0",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "true",
+        "south": "false",
+        "west": "true",
+        "east": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_end_r_u0d0",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "false",
+        "south": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_arm_u0d1",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "false",
+        "south": "false",
+        "west": "true",
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_mid_u0d1",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "false",
+        "south": "false",
+        "west": "false",
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_end_l_u0d1",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "false",
+        "south": "false",
+        "west": "true",
+        "east": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_end_r_u0d1",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "true",
+        "south": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_arm_u1d0",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "true",
+        "south": "false",
+        "west": "true",
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_mid_u1d0",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "true",
+        "south": "false",
+        "west": "false",
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_end_l_u1d0",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "true",
+        "south": "false",
+        "west": "true",
+        "east": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_end_r_u1d0",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "false",
+        "south": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_arm_u1d1",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "false",
+        "south": "false",
+        "west": "true",
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_mid_u1d1",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "false",
+        "south": "false",
+        "west": "false",
+        "east": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_end_l_u1d1",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "false",
+        "south": "false",
+        "west": "true",
+        "east": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_end_r_u1d1",
+        "y": 180
+      }
+    },
+    {
+      "when": {
+        "west": "false",
+        "north": "false",
+        "south": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_cap",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "true",
+        "west": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_arm_u0d0",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "true",
+        "west": "false",
+        "north": "true",
+        "south": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_mid_u0d0",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "true",
+        "west": "false",
+        "north": "false",
+        "south": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_end_l_u0d0",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "true",
+        "west": "false",
+        "north": "true",
+        "south": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_end_r_u0d0",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "false",
+        "west": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_arm_u0d1",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "false",
+        "west": "false",
+        "north": "true",
+        "south": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_mid_u0d1",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "false",
+        "west": "false",
+        "north": "false",
+        "south": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_end_l_u0d1",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "up": "true",
+        "down": "false",
+        "west": "false",
+        "north": "true",
+        "south": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_end_r_u0d1",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "true",
+        "west": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_arm_u1d0",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "true",
+        "west": "false",
+        "north": "true",
+        "south": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_mid_u1d0",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "true",
+        "west": "false",
+        "north": "false",
+        "south": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_end_l_u1d0",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "true",
+        "west": "false",
+        "north": "true",
+        "south": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_end_r_u1d0",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "false",
+        "west": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_arm_u1d1",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "false",
+        "west": "false",
+        "north": "true",
+        "south": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_mid_u1d1",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "false",
+        "west": "false",
+        "north": "false",
+        "south": "true"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_end_l_u1d1",
+        "y": 270
+      }
+    },
+    {
+      "when": {
+        "up": "false",
+        "down": "false",
+        "west": "false",
+        "north": "true",
+        "south": "false"
+      },
+      "apply": {
+        "model": "nerodecor:block/chroma_lights/light_pane_post_end_r_u1d1",
+        "y": 270
+      }
+    }
+  ]
+}

@@ -1,0 +1,129 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "nerodecor:block/conduits/decor_pipe",
+    "end": "nerodecor:block/conduits/decor_pipe_end",
+    "h": "nerodecor:block/conduits/decor_pipe",
+    "joint": "nerodecor:block/conduits/decor_pipe_joint"
+  },
+  "elements": [
+    {
+      "from": [
+        11,
+        5,
+        5
+      ],
+      "to": [
+        13,
+        11,
+        11
+      ],
+      "faces": {
+        "north": {
+          "texture": "#h",
+          "uv": [
+            13,
+            5,
+            11,
+            11
+          ]
+        },
+        "south": {
+          "texture": "#h",
+          "uv": [
+            11,
+            5,
+            13,
+            11
+          ]
+        },
+        "down": {
+          "texture": "#h",
+          "uv": [
+            11,
+            5,
+            13,
+            11
+          ]
+        },
+        "up": {
+          "texture": "#h",
+          "uv": [
+            11,
+            5,
+            13,
+            11
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        13,
+        4,
+        4
+      ],
+      "to": [
+        14,
+        12,
+        12
+      ],
+      "faces": {
+        "north": {
+          "texture": "#joint",
+          "uv": [
+            0,
+            4,
+            1,
+            12
+          ]
+        },
+        "south": {
+          "texture": "#joint",
+          "uv": [
+            0,
+            4,
+            1,
+            12
+          ]
+        },
+        "west": {
+          "texture": "#end",
+          "uv": [
+            4,
+            4,
+            12,
+            12
+          ]
+        },
+        "east": {
+          "texture": "#end",
+          "uv": [
+            4,
+            4,
+            12,
+            12
+          ]
+        },
+        "down": {
+          "texture": "#joint",
+          "uv": [
+            0,
+            4,
+            1,
+            12
+          ]
+        },
+        "up": {
+          "texture": "#joint",
+          "uv": [
+            0,
+            4,
+            1,
+            12
+          ]
+        }
+      }
+    }
+  ]
+}

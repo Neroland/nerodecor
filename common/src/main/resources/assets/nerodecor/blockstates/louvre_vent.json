@@ -1,0 +1,85 @@
+{
+  "variants": {
+    "face=north": [
+      {
+        "model": "nerodecor:block/greebles/louvre_vent"
+      },
+      {
+        "model": "nerodecor:block/greebles/louvre_vent"
+      },
+      {
+        "model": "nerodecor:block/greebles/louvre_vent_b"
+      }
+    ],
+    "face=east": [
+      {
+        "model": "nerodecor:block/greebles/louvre_vent",
+        "y": 90
+      },
+      {
+        "model": "nerodecor:block/greebles/louvre_vent",
+        "y": 90
+      },
+      {
+        "model": "nerodecor:block/greebles/louvre_vent_b",
+        "y": 90
+      }
+    ],
+    "face=south": [
+      {
+        "model": "nerodecor:block/greebles/louvre_vent",
+        "y": 180
+      },
+      {
+        "model": "nerodecor:block/greebles/louvre_vent",
+        "y": 180
+      },
+      {
+        "model": "nerodecor:block/greebles/louvre_vent_b",
+        "y": 180
+      }
+    ],
+    "face=west": [
+      {
+        "model": "nerodecor:block/greebles/louvre_vent",
+        "y": 270
+      },
+      {
+        "model": "nerodecor:block/greebles/louvre_vent",
+        "y": 270
+      },
+      {
+        "model": "nerodecor:block/greebles/louvre_vent_b",
+        "y": 270
+      }
+    ],
+    "face=down": [
+      {
+        "model": "nerodecor:block/greebles/louvre_vent",
+        "x": 90
+      },
+      {
+        "model": "nerodecor:block/greebles/louvre_vent",
+        "x": 90
+      },
+      {
+        "model": "nerodecor:block/greebles/louvre_vent_b",
+        "x": 90
+      }
+    ],
+    "face=up": [
+      {
+        "model": "nerodecor:block/greebles/louvre_vent",
+        "x": 270
+      },
+      {
+        "model": "nerodecor:block/greebles/louvre_vent",
+        "x": 270
+      },
+      {
+        "model": "nerodecor:block/greebles/louvre_vent_b",
+        "x": 270
+      }
+    ]
+  }
+}

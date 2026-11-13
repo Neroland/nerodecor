@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "nerodecor:block/ancients/cracked_ancient_brick_0"
+      },
+      {
+        "model": "nerodecor:block/ancients/cracked_ancient_brick_1"
+      },
+      {
+        "model": "nerodecor:block/ancients/cracked_ancient_brick_2"
+      }
+    ]
+  }
+}

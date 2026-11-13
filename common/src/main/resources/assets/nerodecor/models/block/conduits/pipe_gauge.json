@@ -1,0 +1,277 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "nerodecor:block/conduits/pipe_gauge",
+    "dial": "nerodecor:block/conduits/pipe_gauge_dial",
+    "end": "nerodecor:block/conduits/decor_pipe_end",
+    "gauge": "nerodecor:block/conduits/pipe_gauge",
+    "glow": "nerodecor:block/conduits/pipe_gauge_dial_glow",
+    "h": "nerodecor:block/conduits/decor_pipe"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        5,
+        5
+      ],
+      "to": [
+        5,
+        11,
+        11
+      ],
+      "faces": {
+        "north": {
+          "texture": "#h",
+          "uv": [
+            5,
+            5,
+            0,
+            11
+          ]
+        },
+        "south": {
+          "texture": "#h",
+          "uv": [
+            0,
+            5,
+            5,
+            11
+          ]
+        },
+        "down": {
+          "texture": "#h",
+          "uv": [
+            0,
+            5,
+            5,
+            11
+          ]
+        },
+        "up": {
+          "texture": "#h",
+          "uv": [
+            0,
+            5,
+            5,
+            11
+          ]
+        },
+        "west": {
+          "texture": "#end",
+          "uv": [
+            5,
+            5,
+            11,
+            11
+          ],
+          "cullface": "west"
+        }
+      }
+    },
+    {
+      "from": [
+        11,
+        5,
+        5
+      ],
+      "to": [
+        16,
+        11,
+        11
+      ],
+      "faces": {
+        "north": {
+          "texture": "#h",
+          "uv": [
+            16,
+            5,
+            11,
+            11
+          ]
+        },
+        "south": {
+          "texture": "#h",
+          "uv": [
+            11,
+            5,
+            16,
+            11
+          ]
+        },
+        "down": {
+          "texture": "#h",
+          "uv": [
+            11,
+            5,
+            16,
+            11
+          ]
+        },
+        "up": {
+          "texture": "#h",
+          "uv": [
+            11,
+            5,
+            16,
+            11
+          ]
+        },
+        "east": {
+          "texture": "#end",
+          "uv": [
+            5,
+            5,
+            11,
+            11
+          ],
+          "cullface": "east"
+        }
+      }
+    },
+    {
+      "from": [
+        5,
+        4,
+        4
+      ],
+      "to": [
+        11,
+        12,
+        12
+      ],
+      "faces": {
+        "west": {
+          "texture": "#end",
+          "uv": [
+            4,
+            4,
+            12,
+            12
+          ]
+        },
+        "east": {
+          "texture": "#end",
+          "uv": [
+            4,
+            4,
+            12,
+            12
+          ]
+        },
+        "north": {
+          "texture": "#gauge",
+          "uv": [
+            5,
+            4,
+            11,
+            12
+          ]
+        },
+        "down": {
+          "texture": "#gauge",
+          "uv": [
+            5,
+            4,
+            11,
+            12
+          ]
+        },
+        "up": {
+          "texture": "#gauge",
+          "uv": [
+            5,
+            4,
+            11,
+            12
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        4,
+        4,
+        12
+      ],
+      "to": [
+        12,
+        12,
+        14
+      ],
+      "faces": {
+        "up": {
+          "texture": "#gauge",
+          "uv": [
+            4,
+            12,
+            12,
+            14
+          ]
+        },
+        "down": {
+          "texture": "#gauge",
+          "uv": [
+            4,
+            2,
+            12,
+            4
+          ]
+        },
+        "east": {
+          "texture": "#gauge",
+          "uv": [
+            2,
+            4,
+            4,
+            12
+          ]
+        },
+        "west": {
+          "texture": "#gauge",
+          "uv": [
+            12,
+            4,
+            14,
+            12
+          ]
+        },
+        "south": {
+          "texture": "#dial",
+          "uv": [
+            4,
+            4,
+            12,
+            12
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        4,
+        4,
+        12
+      ],
+      "to": [
+        12,
+        12,
+        14
+      ],
+      "shade": false,
+      "light_emission": 15,
+      "faces": {
+        "south": {
+          "texture": "#glow",
+          "uv": [
+            4,
+            4,
+            12,
+            12
+          ]
+        }
+      }
+    }
+  ],
+  "render_type": "minecraft:cutout"
+}

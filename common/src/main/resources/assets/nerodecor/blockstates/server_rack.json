@@ -1,0 +1,64 @@
+{
+  "variants": {
+    "down=false,facing=north,up=false": {
+      "model": "nerodecor:block/command/server_rack_f12"
+    },
+    "down=true,facing=north,up=false": {
+      "model": "nerodecor:block/command/server_rack_f8"
+    },
+    "down=false,facing=north,up=true": {
+      "model": "nerodecor:block/command/server_rack_f4"
+    },
+    "down=true,facing=north,up=true": {
+      "model": "nerodecor:block/command/server_rack_f0"
+    },
+    "down=false,facing=east,up=false": {
+      "model": "nerodecor:block/command/server_rack_f12",
+      "y": 90
+    },
+    "down=true,facing=east,up=false": {
+      "model": "nerodecor:block/command/server_rack_f8",
+      "y": 90
+    },
+    "down=false,facing=east,up=true": {
+      "model": "nerodecor:block/command/server_rack_f4",
+      "y": 90
+    },
+    "down=true,facing=east,up=true": {
+      "model": "nerodecor:block/command/server_rack_f0",
+      "y": 90
+    },
+    "down=false,facing=south,up=false": {
+      "model": "nerodecor:block/command/server_rack_f12",
+      "y": 180
+    },
+    "down=true,facing=south,up=false": {
+      "model": "nerodecor:block/command/server_rack_f8",
+      "y": 180
+    },
+    "down=false,facing=south,up=true": {
+      "model": "nerodecor:block/command/server_rack_f4",
+      "y": 180
+    },
+    "down=true,facing=south,up=true": {
+      "model": "nerodecor:block/command/server_rack_f0",
+      "y": 180
+    },
+    "down=false,facing=west,up=false": {
+      "model": "nerodecor:block/command/server_rack_f12",
+      "y": 270
+    },
+    "down=true,facing=west,up=false": {
+      "model": "nerodecor:block/command/server_rack_f8",
+      "y": 270
+    },
+    "down=false,facing=west,up=true": {
+      "model": "nerodecor:block/command/server_rack_f4",
+      "y": 270
+    },
+    "down=true,facing=west,up=true": {
+      "model": "nerodecor:block/command/server_rack_f0",
+      "y": 270
+    }
+  }
+}

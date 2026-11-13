@@ -1,0 +1,53 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "nerodecor:access_pad",
+      "required": false
+    },
+    {
+      "id": "nerodecor:airlock_frame",
+      "required": false
+    },
+    {
+      "id": "nerodecor:blast_door",
+      "required": false
+    },
+    {
+      "id": "nerodecor:canopy_glass",
+      "required": false
+    },
+    {
+      "id": "nerodecor:door_status_light",
+      "required": false
+    },
+    {
+      "id": "nerodecor:iris_hatch",
+      "required": false
+    },
+    {
+      "id": "nerodecor:porthole",
+      "required": false
+    },
+    {
+      "id": "nerodecor:pressure_trapdoor",
+      "required": false
+    },
+    {
+      "id": "nerodecor:shutter",
+      "required": false
+    },
+    {
+      "id": "nerodecor:sliding_door",
+      "required": false
+    },
+    {
+      "id": "nerodecor:smart_glass",
+      "required": false
+    },
+    {
+      "id": "nerodecor:viewport_frame",
+      "required": false
+    }
+  ]
+}

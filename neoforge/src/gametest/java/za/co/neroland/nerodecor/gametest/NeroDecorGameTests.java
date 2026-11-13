@@ -26,6 +26,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import za.co.neroland.nerodecor.NeroDecorCommon;
 import za.co.neroland.nerodecor.content.DecorColor;
 import za.co.neroland.nerodecor.content.DecorProperties;
+import za.co.neroland.nerodecor.registry.ChromaContent;
 import za.co.neroland.nerodecor.registry.DecorBlocks;
 
 /**
@@ -49,6 +50,7 @@ public final class NeroDecorGameTests {
         FUNCTIONS.register("paint_survives_placement", () -> NeroDecorGameTests::paintSurvivesPlacement);
         FUNCTIONS.register("registry_within_cap", () -> NeroDecorGameTests::registryWithinCap);
         FUNCTIONS.register("fixture_071_loads", () -> NeroDecorGameTests::fixture071Loads);
+        ChromaGameTests.register(FUNCTIONS);
     }
 
     public NeroDecorGameTests(IEventBus modEventBus) {
@@ -81,8 +83,9 @@ public final class NeroDecorGameTests {
         long registered = BuiltInRegistries.BLOCK.keySet().stream()
                 .filter(id -> NeroDecorCommon.MOD_ID.equals(id.getNamespace()))
                 .count();
-        helper.assertTrue(registered == DecorBlocks.ALL.size(),
-                "registered " + registered + " != DecorBlocks.ALL " + DecorBlocks.ALL.size());
+        int expected = DecorBlocks.ALL.size() + ChromaContent.blockCount();
+        helper.assertTrue(registered == expected,
+                "registered " + registered + " != DecorBlocks.ALL + chroma " + expected);
         helper.assertTrue(registered <= REGISTRY_CAP, "registry " + registered + " exceeds cap " + REGISTRY_CAP);
         helper.succeed();
     }

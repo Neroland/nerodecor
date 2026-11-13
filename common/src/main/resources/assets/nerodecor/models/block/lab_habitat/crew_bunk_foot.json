@@ -1,0 +1,252 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "nerodecor:block/lab_habitat/crew_bunk_end_foot",
+    "crew_bunk_end_foot": "nerodecor:block/lab_habitat/crew_bunk_end_foot",
+    "crew_bunk_side_foot": "nerodecor:block/lab_habitat/crew_bunk_side_foot",
+    "crew_bunk_foot_bed": "nerodecor:block/lab_habitat/crew_bunk_foot_bed",
+    "crew_bunk_roof": "nerodecor:block/lab_habitat/crew_bunk_roof"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        14
+      ],
+      "to": [
+        16,
+        10,
+        16
+      ],
+      "faces": {
+        "south": {
+          "texture": "#crew_bunk_end_foot",
+          "uv": [
+            0,
+            6,
+            16,
+            16
+          ],
+          "cullface": "south"
+        },
+        "north": {
+          "texture": "#crew_bunk_end_foot",
+          "uv": [
+            0,
+            6,
+            16,
+            16
+          ]
+        },
+        "west": {
+          "texture": "#crew_bunk_side_foot",
+          "uv": [
+            14,
+            6,
+            16,
+            16
+          ],
+          "cullface": "west"
+        },
+        "east": {
+          "texture": "#crew_bunk_side_foot",
+          "uv": [
+            2,
+            6,
+            0,
+            16
+          ],
+          "cullface": "east"
+        },
+        "up": {
+          "texture": "#crew_bunk_foot_bed",
+          "uv": [
+            0,
+            14,
+            16,
+            16
+          ]
+        },
+        "down": {
+          "texture": "#crew_bunk_roof",
+          "uv": [
+            0,
+            0,
+            16,
+            2
+          ],
+          "cullface": "down"
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        2,
+        0
+      ],
+      "to": [
+        16,
+        5,
+        14
+      ],
+      "faces": {
+        "west": {
+          "texture": "#crew_bunk_side_foot",
+          "uv": [
+            0,
+            11,
+            14,
+            14
+          ],
+          "cullface": "west"
+        },
+        "east": {
+          "texture": "#crew_bunk_side_foot",
+          "uv": [
+            16,
+            11,
+            2,
+            14
+          ],
+          "cullface": "east"
+        },
+        "down": {
+          "texture": "#crew_bunk_roof",
+          "uv": [
+            0,
+            2,
+            16,
+            16
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        5,
+        0
+      ],
+      "to": [
+        1,
+        7,
+        14
+      ],
+      "faces": {
+        "west": {
+          "texture": "#crew_bunk_side_foot",
+          "uv": [
+            0,
+            9,
+            14,
+            11
+          ],
+          "cullface": "west"
+        },
+        "east": {
+          "texture": "#crew_bunk_side_foot",
+          "uv": [
+            16,
+            9,
+            2,
+            11
+          ]
+        },
+        "up": {
+          "texture": "#crew_bunk_foot_bed",
+          "uv": [
+            0,
+            0,
+            1,
+            14
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        15,
+        5,
+        0
+      ],
+      "to": [
+        16,
+        7,
+        14
+      ],
+      "faces": {
+        "east": {
+          "texture": "#crew_bunk_side_foot",
+          "uv": [
+            16,
+            9,
+            2,
+            11
+          ],
+          "cullface": "east"
+        },
+        "west": {
+          "texture": "#crew_bunk_side_foot",
+          "uv": [
+            0,
+            9,
+            14,
+            11
+          ]
+        },
+        "up": {
+          "texture": "#crew_bunk_foot_bed",
+          "uv": [
+            15,
+            0,
+            16,
+            14
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        1,
+        5,
+        0
+      ],
+      "to": [
+        15,
+        9,
+        14
+      ],
+      "faces": {
+        "up": {
+          "texture": "#crew_bunk_foot_bed",
+          "uv": [
+            1,
+            0,
+            15,
+            14
+          ]
+        },
+        "west": {
+          "texture": "#crew_bunk_side_foot",
+          "uv": [
+            0,
+            7,
+            14,
+            11
+          ]
+        },
+        "east": {
+          "texture": "#crew_bunk_side_foot",
+          "uv": [
+            16,
+            7,
+            2,
+            11
+          ]
+        }
+      }
+    }
+  ]
+}

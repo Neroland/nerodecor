@@ -1,0 +1,107 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "nerodecor:block/bulkhead/access_pad",
+    "pad": "nerodecor:block/bulkhead/access_pad",
+    "glow": "nerodecor:block/bulkhead/access_pad_glow"
+  },
+  "elements": [
+    {
+      "from": [
+        4,
+        0,
+        3
+      ],
+      "to": [
+        12,
+        1,
+        13
+      ],
+      "faces": {
+        "up": {
+          "texture": "#pad",
+          "uv": [
+            0,
+            0,
+            8,
+            10
+          ]
+        },
+        "down": {
+          "texture": "#pad",
+          "uv": [
+            8,
+            0,
+            16,
+            10
+          ],
+          "cullface": "down"
+        },
+        "north": {
+          "texture": "#pad",
+          "uv": [
+            0,
+            11,
+            8,
+            11.5
+          ]
+        },
+        "south": {
+          "texture": "#pad",
+          "uv": [
+            0,
+            11.5,
+            8,
+            12
+          ]
+        },
+        "east": {
+          "texture": "#pad",
+          "uv": [
+            0,
+            11.5,
+            10,
+            12
+          ],
+          "rotation": 90
+        },
+        "west": {
+          "texture": "#pad",
+          "uv": [
+            0,
+            11,
+            10,
+            11.5
+          ],
+          "rotation": 90
+        }
+      }
+    },
+    {
+      "from": [
+        4,
+        0,
+        3
+      ],
+      "to": [
+        12,
+        1,
+        13
+      ],
+      "shade": false,
+      "light_emission": 15,
+      "faces": {
+        "up": {
+          "texture": "#glow",
+          "uv": [
+            0,
+            0,
+            8,
+            10
+          ]
+        }
+      }
+    }
+  ],
+  "render_type": "minecraft:cutout"
+}

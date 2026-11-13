@@ -31,6 +31,9 @@ public final class NeroDecorCommon {
         // Register the decor blocks, block items, data components, and creative-tab contents.
         DecorRegistries.init();
 
+        // Chroma hub networks: register the per-player erasure hook with Core (POPIA/GDPR).
+        za.co.neroland.nerodecor.chroma.server.ChromaNetworks.init();
+
         // LAST: publish the palette + block catalogue to companion clients through Core's link
         // registry, after the blocks that catalogue describes have been declared. Read-only, and
         // wrapped internally so a link failure can never take the mod down.

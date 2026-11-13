@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=south": {
+      "model": "nerodecor:block/holo/holo_sign"
+    },
+    "facing=west": {
+      "model": "nerodecor:block/holo/holo_sign",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "nerodecor:block/holo/holo_sign",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "nerodecor:block/holo/holo_sign",
+      "y": 270
+    }
+  }
+}

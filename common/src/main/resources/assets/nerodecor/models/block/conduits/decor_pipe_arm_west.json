@@ -1,0 +1,70 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "nerodecor:block/conduits/decor_pipe",
+    "end": "nerodecor:block/conduits/decor_pipe_end",
+    "h": "nerodecor:block/conduits/decor_pipe"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        5,
+        5
+      ],
+      "to": [
+        5,
+        11,
+        11
+      ],
+      "faces": {
+        "north": {
+          "texture": "#h",
+          "uv": [
+            5,
+            5,
+            0,
+            11
+          ]
+        },
+        "south": {
+          "texture": "#h",
+          "uv": [
+            0,
+            5,
+            5,
+            11
+          ]
+        },
+        "down": {
+          "texture": "#h",
+          "uv": [
+            0,
+            5,
+            5,
+            11
+          ]
+        },
+        "up": {
+          "texture": "#h",
+          "uv": [
+            0,
+            5,
+            5,
+            11
+          ]
+        },
+        "west": {
+          "texture": "#end",
+          "uv": [
+            5,
+            5,
+            11,
+            11
+          ],
+          "cullface": "west"
+        }
+      }
+    }
+  ]
+}

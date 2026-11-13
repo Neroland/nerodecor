@@ -966,6 +966,15 @@ def preview(path):
     print("preview:", path, [n for n, _ in cells])
 
 
+def read_disk(rel):
+    """Bytes of a committed output. Text outputs (.mcmeta) are compared with CRLF folded to LF:
+    the harness writes LF and git stores LF, but a Windows checkout (text=auto + autocrlf) puts
+    CRLF in the working tree, which is not drift."""
+    with open(os.path.join(RES, rel), "rb") as fh:
+        data = fh.read()
+    return data if rel.endswith(".png") else data.replace(b"\r\n", b"\n")
+
+
 def main():
     ap = argparse.ArgumentParser(description="NeroDecor Luminous-collection texture generator.")
     ap.add_argument("--multiloader", action="store_true", help="target the flattened common module (default)")
@@ -987,7 +996,7 @@ def main():
     for rel, data in sorted(expected.items()):
         digest = hashlib.sha256(data).hexdigest()
         try:
-            disk = hashlib.sha256(open(os.path.join(RES, rel), "rb").read()).hexdigest()
+            disk = hashlib.sha256(read_disk(rel)).hexdigest()
         except OSError:
             disk = None
         if disk != digest or manifest.get(rel) != digest:

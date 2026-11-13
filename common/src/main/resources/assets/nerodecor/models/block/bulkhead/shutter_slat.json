@@ -1,0 +1,59 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "nerodecor:block/bulkhead/shutter_slat",
+    "slat": "nerodecor:block/bulkhead/shutter_slat"
+  },
+  "elements": [
+    {
+      "from": [
+        1,
+        0,
+        7
+      ],
+      "to": [
+        15,
+        4,
+        9
+      ],
+      "faces": {
+        "north": {
+          "texture": "#slat",
+          "uv": [
+            1,
+            0,
+            15,
+            4
+          ]
+        },
+        "south": {
+          "texture": "#slat",
+          "uv": [
+            1,
+            0,
+            15,
+            4
+          ]
+        },
+        "up": {
+          "texture": "#slat",
+          "uv": [
+            0,
+            4,
+            14,
+            6
+          ]
+        },
+        "down": {
+          "texture": "#slat",
+          "uv": [
+            0,
+            4,
+            14,
+            6
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "nerodecor:chroma_cube",
+      "required": false
+    },
+    {
+      "id": "nerodecor:chroma_hub",
+      "required": false
+    }
+  ]
+}

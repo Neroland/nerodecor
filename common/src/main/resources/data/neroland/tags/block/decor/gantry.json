@@ -1,0 +1,37 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "nerodecor:catwalk",
+      "required": false
+    },
+    {
+      "id": "nerodecor:catwalk_stairs",
+      "required": false
+    },
+    {
+      "id": "nerodecor:floor_grate",
+      "required": false
+    },
+    {
+      "id": "nerodecor:floor_grate_slab",
+      "required": false
+    },
+    {
+      "id": "nerodecor:gantry_ladder",
+      "required": false
+    },
+    {
+      "id": "nerodecor:railing",
+      "required": false
+    },
+    {
+      "id": "nerodecor:strut",
+      "required": false
+    },
+    {
+      "id": "nerodecor:truss_beam",
+      "required": false
+    }
+  ]
+}

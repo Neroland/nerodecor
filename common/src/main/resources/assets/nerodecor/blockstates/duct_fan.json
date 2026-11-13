@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "nerodecor:block/conduits/duct_fan"
+    },
+    "facing=east": {
+      "model": "nerodecor:block/conduits/duct_fan",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "nerodecor:block/conduits/duct_fan",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "nerodecor:block/conduits/duct_fan",
+      "y": 270
+    },
+    "facing=up": {
+      "model": "nerodecor:block/conduits/duct_fan",
+      "x": 270
+    },
+    "facing=down": {
+      "model": "nerodecor:block/conduits/duct_fan",
+      "x": 90
+    }
+  }
+}

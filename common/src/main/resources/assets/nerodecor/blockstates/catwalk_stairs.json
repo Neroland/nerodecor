@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "nerodecor:block/gantry/catwalk_stairs"
+    },
+    "facing=east": {
+      "model": "nerodecor:block/gantry/catwalk_stairs",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "nerodecor:block/gantry/catwalk_stairs",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "nerodecor:block/gantry/catwalk_stairs",
+      "y": 270
+    }
+  }
+}

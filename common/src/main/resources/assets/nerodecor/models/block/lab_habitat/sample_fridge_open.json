@@ -1,0 +1,801 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "nerodecor:block/lab_habitat/sample_fridge_side",
+    "sample_fridge_front": "nerodecor:block/lab_habitat/sample_fridge_front",
+    "sample_fridge_back": "nerodecor:block/lab_habitat/sample_fridge_back",
+    "sample_fridge_side": "nerodecor:block/lab_habitat/sample_fridge_side",
+    "sample_fridge_top": "nerodecor:block/lab_habitat/sample_fridge_top",
+    "sample_fridge_inner": "nerodecor:block/lab_habitat/sample_fridge_inner",
+    "sample_fridge_rack": "nerodecor:block/lab_habitat/sample_fridge_rack",
+    "sample_fridge_door_in": "nerodecor:block/lab_habitat/sample_fridge_door_in",
+    "sample_fridge_inner_glow": "nerodecor:block/lab_habitat/sample_fridge_inner_glow",
+    "sample_fridge_rack_glow": "nerodecor:block/lab_habitat/sample_fridge_rack_glow"
+  },
+  "elements": [
+    {
+      "from": [
+        1,
+        0,
+        2
+      ],
+      "to": [
+        15,
+        2,
+        16
+      ],
+      "faces": {
+        "north": {
+          "texture": "#sample_fridge_front",
+          "uv": [
+            1,
+            14,
+            15,
+            16
+          ]
+        },
+        "south": {
+          "texture": "#sample_fridge_back",
+          "uv": [
+            1,
+            14,
+            15,
+            16
+          ],
+          "cullface": "south"
+        },
+        "west": {
+          "texture": "#sample_fridge_side",
+          "uv": [
+            2,
+            14,
+            16,
+            16
+          ]
+        },
+        "east": {
+          "texture": "#sample_fridge_side",
+          "uv": [
+            14,
+            14,
+            0,
+            16
+          ]
+        },
+        "down": {
+          "texture": "#sample_fridge_top",
+          "uv": [
+            1,
+            0,
+            15,
+            14
+          ],
+          "cullface": "down"
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        2,
+        2
+      ],
+      "to": [
+        1,
+        16,
+        16
+      ],
+      "faces": {
+        "west": {
+          "texture": "#sample_fridge_side",
+          "uv": [
+            2,
+            0,
+            16,
+            14
+          ],
+          "cullface": "west"
+        },
+        "east": {
+          "texture": "#sample_fridge_inner",
+          "uv": [
+            0,
+            0,
+            14,
+            14
+          ]
+        },
+        "north": {
+          "texture": "#sample_fridge_side",
+          "uv": [
+            15,
+            0,
+            16,
+            14
+          ]
+        },
+        "south": {
+          "texture": "#sample_fridge_back",
+          "uv": [
+            0,
+            0,
+            1,
+            14
+          ],
+          "cullface": "south"
+        },
+        "up": {
+          "texture": "#sample_fridge_top",
+          "uv": [
+            0,
+            2,
+            1,
+            16
+          ],
+          "cullface": "up"
+        }
+      }
+    },
+    {
+      "from": [
+        15,
+        2,
+        2
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "faces": {
+        "east": {
+          "texture": "#sample_fridge_side",
+          "uv": [
+            14,
+            0,
+            0,
+            14
+          ],
+          "cullface": "east"
+        },
+        "west": {
+          "texture": "#sample_fridge_inner",
+          "uv": [
+            2,
+            0,
+            16,
+            14
+          ]
+        },
+        "north": {
+          "texture": "#sample_fridge_side",
+          "uv": [
+            0,
+            0,
+            1,
+            14
+          ]
+        },
+        "south": {
+          "texture": "#sample_fridge_back",
+          "uv": [
+            15,
+            0,
+            16,
+            14
+          ],
+          "cullface": "south"
+        },
+        "up": {
+          "texture": "#sample_fridge_top",
+          "uv": [
+            15,
+            2,
+            16,
+            16
+          ],
+          "cullface": "up"
+        }
+      }
+    },
+    {
+      "from": [
+        1,
+        2,
+        15
+      ],
+      "to": [
+        15,
+        16,
+        16
+      ],
+      "faces": {
+        "north": {
+          "texture": "#sample_fridge_inner",
+          "uv": [
+            1,
+            0,
+            15,
+            14
+          ]
+        },
+        "south": {
+          "texture": "#sample_fridge_back",
+          "uv": [
+            1,
+            0,
+            15,
+            14
+          ],
+          "cullface": "south"
+        },
+        "up": {
+          "texture": "#sample_fridge_top",
+          "uv": [
+            1,
+            15,
+            15,
+            16
+          ],
+          "cullface": "up"
+        }
+      }
+    },
+    {
+      "from": [
+        1,
+        15,
+        2
+      ],
+      "to": [
+        15,
+        16,
+        15
+      ],
+      "faces": {
+        "up": {
+          "texture": "#sample_fridge_top",
+          "uv": [
+            1,
+            2,
+            15,
+            15
+          ],
+          "cullface": "up"
+        },
+        "down": {
+          "texture": "#sample_fridge_inner",
+          "uv": [
+            1,
+            1,
+            15,
+            14
+          ]
+        },
+        "north": {
+          "texture": "#sample_fridge_side",
+          "uv": [
+            1,
+            0,
+            15,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        1,
+        2,
+        2
+      ],
+      "to": [
+        15,
+        3,
+        15
+      ],
+      "faces": {
+        "up": {
+          "texture": "#sample_fridge_inner",
+          "uv": [
+            1,
+            2,
+            15,
+            15
+          ]
+        },
+        "north": {
+          "texture": "#sample_fridge_side",
+          "uv": [
+            1,
+            13,
+            15,
+            14
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        1,
+        7,
+        3
+      ],
+      "to": [
+        15,
+        8,
+        15
+      ],
+      "faces": {
+        "up": {
+          "texture": "#sample_fridge_inner",
+          "uv": [
+            1,
+            3,
+            15,
+            15
+          ]
+        },
+        "down": {
+          "texture": "#sample_fridge_inner",
+          "uv": [
+            1,
+            1,
+            15,
+            13
+          ]
+        },
+        "north": {
+          "texture": "#sample_fridge_rack",
+          "uv": [
+            0,
+            2,
+            14,
+            3
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        1,
+        11,
+        3
+      ],
+      "to": [
+        15,
+        12,
+        15
+      ],
+      "faces": {
+        "up": {
+          "texture": "#sample_fridge_inner",
+          "uv": [
+            1,
+            3,
+            15,
+            15
+          ]
+        },
+        "down": {
+          "texture": "#sample_fridge_inner",
+          "uv": [
+            1,
+            1,
+            15,
+            13
+          ]
+        },
+        "north": {
+          "texture": "#sample_fridge_rack",
+          "uv": [
+            0,
+            2,
+            14,
+            3
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        3,
+        3,
+        6
+      ],
+      "to": [
+        13,
+        6,
+        10
+      ],
+      "faces": {
+        "north": {
+          "texture": "#sample_fridge_rack",
+          "uv": [
+            0,
+            0,
+            10,
+            3
+          ]
+        },
+        "south": {
+          "texture": "#sample_fridge_rack",
+          "uv": [
+            0,
+            0,
+            10,
+            3
+          ]
+        },
+        "west": {
+          "texture": "#sample_fridge_rack",
+          "uv": [
+            10,
+            0,
+            14,
+            3
+          ]
+        },
+        "east": {
+          "texture": "#sample_fridge_rack",
+          "uv": [
+            10,
+            0,
+            14,
+            3
+          ]
+        },
+        "up": {
+          "texture": "#sample_fridge_rack",
+          "uv": [
+            0,
+            4,
+            10,
+            8
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        3,
+        8,
+        6
+      ],
+      "to": [
+        13,
+        11,
+        10
+      ],
+      "faces": {
+        "north": {
+          "texture": "#sample_fridge_rack",
+          "uv": [
+            0,
+            0,
+            10,
+            3
+          ]
+        },
+        "south": {
+          "texture": "#sample_fridge_rack",
+          "uv": [
+            0,
+            0,
+            10,
+            3
+          ]
+        },
+        "west": {
+          "texture": "#sample_fridge_rack",
+          "uv": [
+            10,
+            0,
+            14,
+            3
+          ]
+        },
+        "east": {
+          "texture": "#sample_fridge_rack",
+          "uv": [
+            10,
+            0,
+            14,
+            3
+          ]
+        },
+        "up": {
+          "texture": "#sample_fridge_rack",
+          "uv": [
+            0,
+            4,
+            10,
+            8
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        3,
+        12,
+        6
+      ],
+      "to": [
+        13,
+        14,
+        10
+      ],
+      "faces": {
+        "north": {
+          "texture": "#sample_fridge_rack",
+          "uv": [
+            0,
+            1,
+            10,
+            3
+          ]
+        },
+        "south": {
+          "texture": "#sample_fridge_rack",
+          "uv": [
+            0,
+            1,
+            10,
+            3
+          ]
+        },
+        "west": {
+          "texture": "#sample_fridge_rack",
+          "uv": [
+            10,
+            1,
+            14,
+            3
+          ]
+        },
+        "east": {
+          "texture": "#sample_fridge_rack",
+          "uv": [
+            10,
+            1,
+            14,
+            3
+          ]
+        },
+        "up": {
+          "texture": "#sample_fridge_rack",
+          "uv": [
+            0,
+            4,
+            10,
+            8
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        2,
+        -6
+      ],
+      "to": [
+        2,
+        16,
+        2
+      ],
+      "faces": {
+        "west": {
+          "texture": "#sample_fridge_front",
+          "uv": [
+            8,
+            0,
+            16,
+            14
+          ],
+          "cullface": "west"
+        },
+        "east": {
+          "texture": "#sample_fridge_door_in",
+          "uv": [
+            0,
+            0,
+            8,
+            14
+          ]
+        },
+        "north": {
+          "texture": "#sample_fridge_side",
+          "uv": [
+            0,
+            0,
+            2,
+            14
+          ]
+        },
+        "up": {
+          "texture": "#sample_fridge_top",
+          "uv": [
+            0,
+            0,
+            2,
+            8
+          ],
+          "cullface": "up"
+        },
+        "down": {
+          "texture": "#sample_fridge_top",
+          "uv": [
+            0,
+            0,
+            2,
+            8
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        14,
+        2,
+        -6
+      ],
+      "to": [
+        16,
+        16,
+        2
+      ],
+      "faces": {
+        "east": {
+          "texture": "#sample_fridge_front",
+          "uv": [
+            0,
+            0,
+            8,
+            14
+          ],
+          "cullface": "east"
+        },
+        "west": {
+          "texture": "#sample_fridge_door_in",
+          "uv": [
+            8,
+            0,
+            0,
+            14
+          ]
+        },
+        "north": {
+          "texture": "#sample_fridge_side",
+          "uv": [
+            0,
+            0,
+            2,
+            14
+          ]
+        },
+        "up": {
+          "texture": "#sample_fridge_top",
+          "uv": [
+            0,
+            0,
+            2,
+            8
+          ],
+          "cullface": "up"
+        },
+        "down": {
+          "texture": "#sample_fridge_top",
+          "uv": [
+            0,
+            0,
+            2,
+            8
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        1,
+        2,
+        15
+      ],
+      "to": [
+        15,
+        16,
+        16
+      ],
+      "shade": false,
+      "light_emission": 15,
+      "faces": {
+        "north": {
+          "texture": "#sample_fridge_inner_glow",
+          "uv": [
+            1,
+            0,
+            15,
+            14
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        3,
+        3,
+        6
+      ],
+      "to": [
+        13,
+        6,
+        10
+      ],
+      "shade": false,
+      "light_emission": 15,
+      "faces": {
+        "north": {
+          "texture": "#sample_fridge_rack_glow",
+          "uv": [
+            0,
+            0,
+            10,
+            3
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        3,
+        8,
+        6
+      ],
+      "to": [
+        13,
+        11,
+        10
+      ],
+      "shade": false,
+      "light_emission": 15,
+      "faces": {
+        "north": {
+          "texture": "#sample_fridge_rack_glow",
+          "uv": [
+            0,
+            0,
+            10,
+            3
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        3,
+        12,
+        6
+      ],
+      "to": [
+        13,
+        14,
+        10
+      ],
+      "shade": false,
+      "light_emission": 15,
+      "faces": {
+        "north": {
+          "texture": "#sample_fridge_rack_glow",
+          "uv": [
+            0,
+            1,
+            10,
+            3
+          ]
+        }
+      }
+    }
+  ],
+  "render_type": "minecraft:cutout"
+}

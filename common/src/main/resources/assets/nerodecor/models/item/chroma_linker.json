@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "nerodecor:item/chroma_core/chroma_linker"
+  }
+}

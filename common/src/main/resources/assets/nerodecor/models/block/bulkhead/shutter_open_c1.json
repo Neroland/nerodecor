@@ -1,0 +1,216 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "nerodecor:block/bulkhead/shutter",
+    "curtain": "nerodecor:block/bulkhead/shutter",
+    "foot": "nerodecor:block/bulkhead/shutter_foot",
+    "housing": "nerodecor:block/bulkhead/shutter_housing",
+    "rail": "nerodecor:block/bulkhead/shutter_rail"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        6
+      ],
+      "to": [
+        1,
+        12,
+        10
+      ],
+      "faces": {
+        "north": {
+          "texture": "#rail",
+          "uv": [
+            0,
+            4,
+            1,
+            16
+          ]
+        },
+        "south": {
+          "texture": "#rail",
+          "uv": [
+            0,
+            4,
+            1,
+            16
+          ]
+        },
+        "east": {
+          "texture": "#rail",
+          "uv": [
+            2,
+            4,
+            6,
+            16
+          ]
+        },
+        "west": {
+          "texture": "#rail",
+          "uv": [
+            2,
+            4,
+            6,
+            16
+          ]
+        },
+        "up": {
+          "texture": "#rail",
+          "uv": [
+            2,
+            0,
+            6,
+            1
+          ]
+        },
+        "down": {
+          "texture": "#rail",
+          "uv": [
+            2,
+            0,
+            6,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        15,
+        0,
+        6
+      ],
+      "to": [
+        16,
+        12,
+        10
+      ],
+      "faces": {
+        "north": {
+          "texture": "#rail",
+          "uv": [
+            0,
+            4,
+            1,
+            16
+          ]
+        },
+        "south": {
+          "texture": "#rail",
+          "uv": [
+            0,
+            4,
+            1,
+            16
+          ]
+        },
+        "east": {
+          "texture": "#rail",
+          "uv": [
+            2,
+            4,
+            6,
+            16
+          ]
+        },
+        "west": {
+          "texture": "#rail",
+          "uv": [
+            2,
+            4,
+            6,
+            16
+          ]
+        },
+        "up": {
+          "texture": "#rail",
+          "uv": [
+            2,
+            0,
+            6,
+            1
+          ]
+        },
+        "down": {
+          "texture": "#rail",
+          "uv": [
+            2,
+            0,
+            6,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        12,
+        5
+      ],
+      "to": [
+        16,
+        16,
+        11
+      ],
+      "faces": {
+        "north": {
+          "texture": "#housing",
+          "uv": [
+            0,
+            0,
+            16,
+            4
+          ]
+        },
+        "south": {
+          "texture": "#housing",
+          "uv": [
+            0,
+            0,
+            16,
+            4
+          ]
+        },
+        "up": {
+          "texture": "#housing",
+          "uv": [
+            0,
+            4,
+            16,
+            10
+          ]
+        },
+        "down": {
+          "texture": "#housing",
+          "uv": [
+            0,
+            4,
+            16,
+            10
+          ]
+        },
+        "east": {
+          "texture": "#housing",
+          "uv": [
+            0,
+            10,
+            6,
+            14
+          ]
+        },
+        "west": {
+          "texture": "#housing",
+          "uv": [
+            0,
+            10,
+            6,
+            14
+          ]
+        }
+      }
+    }
+  ]
+}

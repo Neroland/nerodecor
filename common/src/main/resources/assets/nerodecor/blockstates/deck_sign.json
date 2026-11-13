@@ -1,0 +1,234 @@
+{
+  "variants": {
+    "face=north,number=0": {
+      "model": "nerodecor:block/greebles/deck_sign_0"
+    },
+    "face=north,number=1": {
+      "model": "nerodecor:block/greebles/deck_sign_1"
+    },
+    "face=north,number=2": {
+      "model": "nerodecor:block/greebles/deck_sign_2"
+    },
+    "face=north,number=3": {
+      "model": "nerodecor:block/greebles/deck_sign_3"
+    },
+    "face=north,number=4": {
+      "model": "nerodecor:block/greebles/deck_sign_4"
+    },
+    "face=north,number=5": {
+      "model": "nerodecor:block/greebles/deck_sign_5"
+    },
+    "face=north,number=6": {
+      "model": "nerodecor:block/greebles/deck_sign_6"
+    },
+    "face=north,number=7": {
+      "model": "nerodecor:block/greebles/deck_sign_7"
+    },
+    "face=north,number=8": {
+      "model": "nerodecor:block/greebles/deck_sign_8"
+    },
+    "face=north,number=9": {
+      "model": "nerodecor:block/greebles/deck_sign_9"
+    },
+    "face=east,number=0": {
+      "model": "nerodecor:block/greebles/deck_sign_0",
+      "y": 90
+    },
+    "face=east,number=1": {
+      "model": "nerodecor:block/greebles/deck_sign_1",
+      "y": 90
+    },
+    "face=east,number=2": {
+      "model": "nerodecor:block/greebles/deck_sign_2",
+      "y": 90
+    },
+    "face=east,number=3": {
+      "model": "nerodecor:block/greebles/deck_sign_3",
+      "y": 90
+    },
+    "face=east,number=4": {
+      "model": "nerodecor:block/greebles/deck_sign_4",
+      "y": 90
+    },
+    "face=east,number=5": {
+      "model": "nerodecor:block/greebles/deck_sign_5",
+      "y": 90
+    },
+    "face=east,number=6": {
+      "model": "nerodecor:block/greebles/deck_sign_6",
+      "y": 90
+    },
+    "face=east,number=7": {
+      "model": "nerodecor:block/greebles/deck_sign_7",
+      "y": 90
+    },
+    "face=east,number=8": {
+      "model": "nerodecor:block/greebles/deck_sign_8",
+      "y": 90
+    },
+    "face=east,number=9": {
+      "model": "nerodecor:block/greebles/deck_sign_9",
+      "y": 90
+    },
+    "face=south,number=0": {
+      "model": "nerodecor:block/greebles/deck_sign_0",
+      "y": 180
+    },
+    "face=south,number=1": {
+      "model": "nerodecor:block/greebles/deck_sign_1",
+      "y": 180
+    },
+    "face=south,number=2": {
+      "model": "nerodecor:block/greebles/deck_sign_2",
+      "y": 180
+    },
+    "face=south,number=3": {
+      "model": "nerodecor:block/greebles/deck_sign_3",
+      "y": 180
+    },
+    "face=south,number=4": {
+      "model": "nerodecor:block/greebles/deck_sign_4",
+      "y": 180
+    },
+    "face=south,number=5": {
+      "model": "nerodecor:block/greebles/deck_sign_5",
+      "y": 180
+    },
+    "face=south,number=6": {
+      "model": "nerodecor:block/greebles/deck_sign_6",
+      "y": 180
+    },
+    "face=south,number=7": {
+      "model": "nerodecor:block/greebles/deck_sign_7",
+      "y": 180
+    },
+    "face=south,number=8": {
+      "model": "nerodecor:block/greebles/deck_sign_8",
+      "y": 180
+    },
+    "face=south,number=9": {
+      "model": "nerodecor:block/greebles/deck_sign_9",
+      "y": 180
+    },
+    "face=west,number=0": {
+      "model": "nerodecor:block/greebles/deck_sign_0",
+      "y": 270
+    },
+    "face=west,number=1": {
+      "model": "nerodecor:block/greebles/deck_sign_1",
+      "y": 270
+    },
+    "face=west,number=2": {
+      "model": "nerodecor:block/greebles/deck_sign_2",
+      "y": 270
+    },
+    "face=west,number=3": {
+      "model": "nerodecor:block/greebles/deck_sign_3",
+      "y": 270
+    },
+    "face=west,number=4": {
+      "model": "nerodecor:block/greebles/deck_sign_4",
+      "y": 270
+    },
+    "face=west,number=5": {
+      "model": "nerodecor:block/greebles/deck_sign_5",
+      "y": 270
+    },
+    "face=west,number=6": {
+      "model": "nerodecor:block/greebles/deck_sign_6",
+      "y": 270
+    },
+    "face=west,number=7": {
+      "model": "nerodecor:block/greebles/deck_sign_7",
+      "y": 270
+    },
+    "face=west,number=8": {
+      "model": "nerodecor:block/greebles/deck_sign_8",
+      "y": 270
+    },
+    "face=west,number=9": {
+      "model": "nerodecor:block/greebles/deck_sign_9",
+      "y": 270
+    },
+    "face=down,number=0": {
+      "model": "nerodecor:block/greebles/deck_sign_0",
+      "x": 90
+    },
+    "face=down,number=1": {
+      "model": "nerodecor:block/greebles/deck_sign_1",
+      "x": 90
+    },
+    "face=down,number=2": {
+      "model": "nerodecor:block/greebles/deck_sign_2",
+      "x": 90
+    },
+    "face=down,number=3": {
+      "model": "nerodecor:block/greebles/deck_sign_3",
+      "x": 90
+    },
+    "face=down,number=4": {
+      "model": "nerodecor:block/greebles/deck_sign_4",
+      "x": 90
+    },
+    "face=down,number=5": {
+      "model": "nerodecor:block/greebles/deck_sign_5",
+      "x": 90
+    },
+    "face=down,number=6": {
+      "model": "nerodecor:block/greebles/deck_sign_6",
+      "x": 90
+    },
+    "face=down,number=7": {
+      "model": "nerodecor:block/greebles/deck_sign_7",
+      "x": 90
+    },
+    "face=down,number=8": {
+      "model": "nerodecor:block/greebles/deck_sign_8",
+      "x": 90
+    },
+    "face=down,number=9": {
+      "model": "nerodecor:block/greebles/deck_sign_9",
+      "x": 90
+    },
+    "face=up,number=0": {
+      "model": "nerodecor:block/greebles/deck_sign_0",
+      "x": 270
+    },
+    "face=up,number=1": {
+      "model": "nerodecor:block/greebles/deck_sign_1",
+      "x": 270
+    },
+    "face=up,number=2": {
+      "model": "nerodecor:block/greebles/deck_sign_2",
+      "x": 270
+    },
+    "face=up,number=3": {
+      "model": "nerodecor:block/greebles/deck_sign_3",
+      "x": 270
+    },
+    "face=up,number=4": {
+      "model": "nerodecor:block/greebles/deck_sign_4",
+      "x": 270
+    },
+    "face=up,number=5": {
+      "model": "nerodecor:block/greebles/deck_sign_5",
+      "x": 270
+    },
+    "face=up,number=6": {
+      "model": "nerodecor:block/greebles/deck_sign_6",
+      "x": 270
+    },
+    "face=up,number=7": {
+      "model": "nerodecor:block/greebles/deck_sign_7",
+      "x": 270
+    },
+    "face=up,number=8": {
+      "model": "nerodecor:block/greebles/deck_sign_8",
+      "x": 270
+    },
+    "face=up,number=9": {
+      "model": "nerodecor:block/greebles/deck_sign_9",
+      "x": 270
+    }
+  }
+}

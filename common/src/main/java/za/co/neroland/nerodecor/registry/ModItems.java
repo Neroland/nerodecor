@@ -8,6 +8,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
 import za.co.neroland.nerodecor.NeroDecorCommon;
+import za.co.neroland.nerodecor.content.item.ChromaCapableBlockItem;
 import za.co.neroland.nerodecor.content.item.DecorBlockItem;
 import za.co.neroland.nerodecor.registry.RegistrationProvider.RegistryEntry;
 
@@ -32,7 +33,7 @@ public final class ModItems {
         for (RegistryEntry<? extends Block> block : DecorBlocks.ALL) {
             String name = block.id().getPath();
             RegistryEntry<DecorBlockItem> item = ITEMS.register(name,
-                    key -> new DecorBlockItem(block.get(), new Item.Properties().setId(key)));
+                    key -> new ChromaCapableBlockItem(block.get(), new Item.Properties().setId(key)));
             BLOCK_ITEMS.add(item);
         }
     }

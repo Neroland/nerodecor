@@ -1,0 +1,296 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "nerodecor:block/lab_habitat/sample_fridge_side",
+    "sample_fridge_front": "nerodecor:block/lab_habitat/sample_fridge_front",
+    "sample_fridge_back": "nerodecor:block/lab_habitat/sample_fridge_back",
+    "sample_fridge_side": "nerodecor:block/lab_habitat/sample_fridge_side",
+    "sample_fridge_top": "nerodecor:block/lab_habitat/sample_fridge_top",
+    "sample_fridge_front_glow": "nerodecor:block/lab_habitat/sample_fridge_front_glow"
+  },
+  "elements": [
+    {
+      "from": [
+        1,
+        0,
+        2
+      ],
+      "to": [
+        15,
+        2,
+        16
+      ],
+      "faces": {
+        "north": {
+          "texture": "#sample_fridge_front",
+          "uv": [
+            1,
+            14,
+            15,
+            16
+          ]
+        },
+        "south": {
+          "texture": "#sample_fridge_back",
+          "uv": [
+            1,
+            14,
+            15,
+            16
+          ],
+          "cullface": "south"
+        },
+        "west": {
+          "texture": "#sample_fridge_side",
+          "uv": [
+            2,
+            14,
+            16,
+            16
+          ]
+        },
+        "east": {
+          "texture": "#sample_fridge_side",
+          "uv": [
+            14,
+            14,
+            0,
+            16
+          ]
+        },
+        "down": {
+          "texture": "#sample_fridge_top",
+          "uv": [
+            1,
+            0,
+            15,
+            14
+          ],
+          "cullface": "down"
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        2,
+        2
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "faces": {
+        "south": {
+          "texture": "#sample_fridge_back",
+          "uv": [
+            0,
+            0,
+            16,
+            14
+          ],
+          "cullface": "south"
+        },
+        "west": {
+          "texture": "#sample_fridge_side",
+          "uv": [
+            2,
+            0,
+            16,
+            14
+          ],
+          "cullface": "west"
+        },
+        "east": {
+          "texture": "#sample_fridge_side",
+          "uv": [
+            14,
+            0,
+            0,
+            14
+          ],
+          "cullface": "east"
+        },
+        "up": {
+          "texture": "#sample_fridge_top",
+          "uv": [
+            0,
+            2,
+            16,
+            16
+          ],
+          "cullface": "up"
+        },
+        "down": {
+          "texture": "#sample_fridge_top",
+          "uv": [
+            0,
+            0,
+            16,
+            14
+          ]
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        2,
+        0
+      ],
+      "to": [
+        8,
+        16,
+        2
+      ],
+      "faces": {
+        "north": {
+          "texture": "#sample_fridge_front",
+          "uv": [
+            8,
+            0,
+            16,
+            14
+          ],
+          "cullface": "north"
+        },
+        "up": {
+          "texture": "#sample_fridge_top",
+          "uv": [
+            0,
+            0,
+            8,
+            2
+          ],
+          "cullface": "up"
+        },
+        "down": {
+          "texture": "#sample_fridge_top",
+          "uv": [
+            0,
+            14,
+            8,
+            16
+          ]
+        },
+        "west": {
+          "texture": "#sample_fridge_side",
+          "uv": [
+            0,
+            0,
+            2,
+            14
+          ],
+          "cullface": "west"
+        }
+      }
+    },
+    {
+      "from": [
+        8,
+        2,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        2
+      ],
+      "faces": {
+        "north": {
+          "texture": "#sample_fridge_front",
+          "uv": [
+            0,
+            0,
+            8,
+            14
+          ],
+          "cullface": "north"
+        },
+        "up": {
+          "texture": "#sample_fridge_top",
+          "uv": [
+            8,
+            0,
+            16,
+            2
+          ],
+          "cullface": "up"
+        },
+        "down": {
+          "texture": "#sample_fridge_top",
+          "uv": [
+            8,
+            14,
+            16,
+            16
+          ]
+        },
+        "east": {
+          "texture": "#sample_fridge_side",
+          "uv": [
+            16,
+            0,
+            14,
+            14
+          ],
+          "cullface": "east"
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        2,
+        0
+      ],
+      "to": [
+        8,
+        16,
+        2
+      ],
+      "shade": false,
+      "light_emission": 15,
+      "faces": {
+        "north": {
+          "texture": "#sample_fridge_front_glow",
+          "uv": [
+            8,
+            0,
+            16,
+            14
+          ],
+          "cullface": "north"
+        }
+      }
+    },
+    {
+      "from": [
+        8,
+        2,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        2
+      ],
+      "shade": false,
+      "light_emission": 15,
+      "faces": {
+        "north": {
+          "texture": "#sample_fridge_front_glow",
+          "uv": [
+            0,
+            0,
+            8,
+            14
+          ],
+          "cullface": "north"
+        }
+      }
+    }
+  ],
+  "render_type": "minecraft:cutout"
+}

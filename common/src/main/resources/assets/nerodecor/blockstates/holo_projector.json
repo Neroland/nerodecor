@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "face=down": {
+      "model": "nerodecor:block/holo/holo_projector"
+    },
+    "face=up": {
+      "model": "nerodecor:block/holo/holo_projector",
+      "x": 180
+    },
+    "face=north": {
+      "model": "nerodecor:block/holo/holo_projector",
+      "x": 90,
+      "y": 180
+    },
+    "face=south": {
+      "model": "nerodecor:block/holo/holo_projector",
+      "x": 90
+    },
+    "face=west": {
+      "model": "nerodecor:block/holo/holo_projector",
+      "x": 90,
+      "y": 90
+    },
+    "face=east": {
+      "model": "nerodecor:block/holo/holo_projector",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

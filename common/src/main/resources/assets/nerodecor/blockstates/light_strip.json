@@ -1,0 +1,220 @@
+{
+  "variants": {
+    "axis=x,face=down,neg_link=false,pos_link=false": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c11"
+    },
+    "axis=x,face=down,neg_link=true,pos_link=false": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c10"
+    },
+    "axis=x,face=down,neg_link=false,pos_link=true": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c01"
+    },
+    "axis=x,face=down,neg_link=true,pos_link=true": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c00"
+    },
+    "axis=z,face=down,neg_link=false,pos_link=false": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c11",
+      "y": 90
+    },
+    "axis=z,face=down,neg_link=true,pos_link=false": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c10",
+      "y": 90
+    },
+    "axis=z,face=down,neg_link=false,pos_link=true": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c01",
+      "y": 90
+    },
+    "axis=z,face=down,neg_link=true,pos_link=true": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c00",
+      "y": 90
+    },
+    "axis=x,face=up,neg_link=false,pos_link=false": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c11",
+      "x": 180
+    },
+    "axis=x,face=up,neg_link=true,pos_link=false": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c10",
+      "x": 180
+    },
+    "axis=x,face=up,neg_link=false,pos_link=true": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c01",
+      "x": 180
+    },
+    "axis=x,face=up,neg_link=true,pos_link=true": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c00",
+      "x": 180
+    },
+    "axis=z,face=up,neg_link=false,pos_link=false": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c11",
+      "x": 180,
+      "y": 90
+    },
+    "axis=z,face=up,neg_link=true,pos_link=false": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c10",
+      "x": 180,
+      "y": 90
+    },
+    "axis=z,face=up,neg_link=false,pos_link=true": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c01",
+      "x": 180,
+      "y": 90
+    },
+    "axis=z,face=up,neg_link=true,pos_link=true": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c00",
+      "x": 180,
+      "y": 90
+    },
+    "axis=x,face=north,neg_link=false,pos_link=false": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c11",
+      "x": 90,
+      "y": 180
+    },
+    "axis=x,face=north,neg_link=true,pos_link=false": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c01",
+      "x": 90,
+      "y": 180
+    },
+    "axis=x,face=north,neg_link=false,pos_link=true": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c10",
+      "x": 90,
+      "y": 180
+    },
+    "axis=x,face=north,neg_link=true,pos_link=true": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c00",
+      "x": 90,
+      "y": 180
+    },
+    "axis=y,face=north,neg_link=false,pos_link=false": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c11_z",
+      "x": 90,
+      "y": 180
+    },
+    "axis=y,face=north,neg_link=true,pos_link=false": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c10_z",
+      "x": 90,
+      "y": 180
+    },
+    "axis=y,face=north,neg_link=false,pos_link=true": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c01_z",
+      "x": 90,
+      "y": 180
+    },
+    "axis=y,face=north,neg_link=true,pos_link=true": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c00_z",
+      "x": 90,
+      "y": 180
+    },
+    "axis=x,face=south,neg_link=false,pos_link=false": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c11",
+      "x": 90
+    },
+    "axis=x,face=south,neg_link=true,pos_link=false": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c10",
+      "x": 90
+    },
+    "axis=x,face=south,neg_link=false,pos_link=true": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c01",
+      "x": 90
+    },
+    "axis=x,face=south,neg_link=true,pos_link=true": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c00",
+      "x": 90
+    },
+    "axis=y,face=south,neg_link=false,pos_link=false": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c11_z",
+      "x": 90
+    },
+    "axis=y,face=south,neg_link=true,pos_link=false": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c10_z",
+      "x": 90
+    },
+    "axis=y,face=south,neg_link=false,pos_link=true": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c01_z",
+      "x": 90
+    },
+    "axis=y,face=south,neg_link=true,pos_link=true": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c00_z",
+      "x": 90
+    },
+    "axis=y,face=west,neg_link=false,pos_link=false": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c11_z",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y,face=west,neg_link=true,pos_link=false": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c10_z",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y,face=west,neg_link=false,pos_link=true": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c01_z",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y,face=west,neg_link=true,pos_link=true": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c00_z",
+      "x": 90,
+      "y": 90
+    },
+    "axis=z,face=west,neg_link=false,pos_link=false": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c11",
+      "x": 90,
+      "y": 90
+    },
+    "axis=z,face=west,neg_link=true,pos_link=false": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c10",
+      "x": 90,
+      "y": 90
+    },
+    "axis=z,face=west,neg_link=false,pos_link=true": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c01",
+      "x": 90,
+      "y": 90
+    },
+    "axis=z,face=west,neg_link=true,pos_link=true": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c00",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y,face=east,neg_link=false,pos_link=false": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c11_z",
+      "x": 90,
+      "y": 270
+    },
+    "axis=y,face=east,neg_link=true,pos_link=false": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c10_z",
+      "x": 90,
+      "y": 270
+    },
+    "axis=y,face=east,neg_link=false,pos_link=true": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c01_z",
+      "x": 90,
+      "y": 270
+    },
+    "axis=y,face=east,neg_link=true,pos_link=true": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c00_z",
+      "x": 90,
+      "y": 270
+    },
+    "axis=z,face=east,neg_link=false,pos_link=false": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c11",
+      "x": 90,
+      "y": 270
+    },
+    "axis=z,face=east,neg_link=true,pos_link=false": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c01",
+      "x": 90,
+      "y": 270
+    },
+    "axis=z,face=east,neg_link=false,pos_link=true": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c10",
+      "x": 90,
+      "y": 270
+    },
+    "axis=z,face=east,neg_link=true,pos_link=true": {
+      "model": "nerodecor:block/chroma_lights/light_strip_c00",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

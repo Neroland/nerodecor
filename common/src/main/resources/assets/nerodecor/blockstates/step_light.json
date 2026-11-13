@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "nerodecor:block/chroma_lights/step_light"
+    },
+    "facing=east": {
+      "model": "nerodecor:block/chroma_lights/step_light",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "nerodecor:block/chroma_lights/step_light",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "nerodecor:block/chroma_lights/step_light",
+      "y": 270
+    }
+  }
+}

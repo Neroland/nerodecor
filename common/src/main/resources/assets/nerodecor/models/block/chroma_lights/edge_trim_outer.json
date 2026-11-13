@@ -1,0 +1,170 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "nerodecor:block/chroma_lights/edge_trim",
+    "t": "nerodecor:block/chroma_lights/edge_trim_c00",
+    "p": "nerodecor:block/chroma_lights/edge_trim_outer",
+    "g": "nerodecor:block/chroma_lights/edge_trim_outer_glow"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        3,
+        1,
+        3
+      ],
+      "faces": {
+        "up": {
+          "texture": "#p",
+          "uv": [
+            0,
+            0,
+            3,
+            3
+          ]
+        },
+        "south": {
+          "texture": "#t",
+          "uv": [
+            4,
+            8,
+            7,
+            9
+          ]
+        },
+        "east": {
+          "texture": "#t",
+          "uv": [
+            4,
+            8,
+            7,
+            9
+          ]
+        },
+        "down": {
+          "texture": "#p",
+          "uv": [
+            0,
+            0,
+            3,
+            3
+          ],
+          "cullface": "down"
+        },
+        "north": {
+          "texture": "#t",
+          "uv": [
+            4,
+            8,
+            7,
+            9
+          ],
+          "cullface": "north"
+        },
+        "west": {
+          "texture": "#t",
+          "uv": [
+            4,
+            8,
+            7,
+            9
+          ],
+          "cullface": "west"
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        1,
+        0
+      ],
+      "to": [
+        1,
+        3,
+        1
+      ],
+      "faces": {
+        "south": {
+          "texture": "#t",
+          "uv": [
+            4,
+            5,
+            5,
+            7
+          ]
+        },
+        "east": {
+          "texture": "#t",
+          "uv": [
+            4,
+            5,
+            5,
+            7
+          ]
+        },
+        "up": {
+          "texture": "#t",
+          "uv": [
+            4,
+            10,
+            5,
+            11
+          ]
+        },
+        "north": {
+          "texture": "#t",
+          "uv": [
+            4,
+            5,
+            5,
+            7
+          ],
+          "cullface": "north"
+        },
+        "west": {
+          "texture": "#t",
+          "uv": [
+            4,
+            5,
+            5,
+            7
+          ],
+          "cullface": "west"
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        3,
+        1,
+        3
+      ],
+      "shade": false,
+      "light_emission": 15,
+      "faces": {
+        "up": {
+          "texture": "#g",
+          "uv": [
+            0,
+            0,
+            3,
+            3
+          ],
+          "tintindex": 0
+        }
+      }
+    }
+  ],
+  "render_type": "minecraft:cutout"
+}

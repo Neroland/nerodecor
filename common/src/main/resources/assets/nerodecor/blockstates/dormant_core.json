@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "nerodecor:block/ancients/dormant_core"
+    },
+    "powered=true": {
+      "model": "nerodecor:block/ancients/dormant_core_on"
+    }
+  }
+}

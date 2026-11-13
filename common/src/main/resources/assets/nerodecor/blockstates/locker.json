@@ -1,0 +1,124 @@
+{
+  "variants": {
+    "facing=north,neg_link=false,open=false,pos_link=false": {
+      "model": "nerodecor:block/lab_habitat/locker_c11"
+    },
+    "facing=north,neg_link=true,open=false,pos_link=false": {
+      "model": "nerodecor:block/lab_habitat/locker_c10"
+    },
+    "facing=north,neg_link=false,open=false,pos_link=true": {
+      "model": "nerodecor:block/lab_habitat/locker_c01"
+    },
+    "facing=north,neg_link=true,open=false,pos_link=true": {
+      "model": "nerodecor:block/lab_habitat/locker_c00"
+    },
+    "facing=north,neg_link=false,open=true,pos_link=false": {
+      "model": "nerodecor:block/lab_habitat/locker_c11_open"
+    },
+    "facing=north,neg_link=true,open=true,pos_link=false": {
+      "model": "nerodecor:block/lab_habitat/locker_c10_open"
+    },
+    "facing=north,neg_link=false,open=true,pos_link=true": {
+      "model": "nerodecor:block/lab_habitat/locker_c01_open"
+    },
+    "facing=north,neg_link=true,open=true,pos_link=true": {
+      "model": "nerodecor:block/lab_habitat/locker_c00_open"
+    },
+    "facing=east,neg_link=false,open=false,pos_link=false": {
+      "model": "nerodecor:block/lab_habitat/locker_c11",
+      "y": 90
+    },
+    "facing=east,neg_link=true,open=false,pos_link=false": {
+      "model": "nerodecor:block/lab_habitat/locker_c10",
+      "y": 90
+    },
+    "facing=east,neg_link=false,open=false,pos_link=true": {
+      "model": "nerodecor:block/lab_habitat/locker_c01",
+      "y": 90
+    },
+    "facing=east,neg_link=true,open=false,pos_link=true": {
+      "model": "nerodecor:block/lab_habitat/locker_c00",
+      "y": 90
+    },
+    "facing=east,neg_link=false,open=true,pos_link=false": {
+      "model": "nerodecor:block/lab_habitat/locker_c11_open",
+      "y": 90
+    },
+    "facing=east,neg_link=true,open=true,pos_link=false": {
+      "model": "nerodecor:block/lab_habitat/locker_c10_open",
+      "y": 90
+    },
+    "facing=east,neg_link=false,open=true,pos_link=true": {
+      "model": "nerodecor:block/lab_habitat/locker_c01_open",
+      "y": 90
+    },
+    "facing=east,neg_link=true,open=true,pos_link=true": {
+      "model": "nerodecor:block/lab_habitat/locker_c00_open",
+      "y": 90
+    },
+    "facing=south,neg_link=false,open=false,pos_link=false": {
+      "model": "nerodecor:block/lab_habitat/locker_c11",
+      "y": 180
+    },
+    "facing=south,neg_link=true,open=false,pos_link=false": {
+      "model": "nerodecor:block/lab_habitat/locker_c10",
+      "y": 180
+    },
+    "facing=south,neg_link=false,open=false,pos_link=true": {
+      "model": "nerodecor:block/lab_habitat/locker_c01",
+      "y": 180
+    },
+    "facing=south,neg_link=true,open=false,pos_link=true": {
+      "model": "nerodecor:block/lab_habitat/locker_c00",
+      "y": 180
+    },
+    "facing=south,neg_link=false,open=true,pos_link=false": {
+      "model": "nerodecor:block/lab_habitat/locker_c11_open",
+      "y": 180
+    },
+    "facing=south,neg_link=true,open=true,pos_link=false": {
+      "model": "nerodecor:block/lab_habitat/locker_c10_open",
+      "y": 180
+    },
+    "facing=south,neg_link=false,open=true,pos_link=true": {
+      "model": "nerodecor:block/lab_habitat/locker_c01_open",
+      "y": 180
+    },
+    "facing=south,neg_link=true,open=true,pos_link=true": {
+      "model": "nerodecor:block/lab_habitat/locker_c00_open",
+      "y": 180
+    },
+    "facing=west,neg_link=false,open=false,pos_link=false": {
+      "model": "nerodecor:block/lab_habitat/locker_c11",
+      "y": 270
+    },
+    "facing=west,neg_link=true,open=false,pos_link=false": {
+      "model": "nerodecor:block/lab_habitat/locker_c10",
+      "y": 270
+    },
+    "facing=west,neg_link=false,open=false,pos_link=true": {
+      "model": "nerodecor:block/lab_habitat/locker_c01",
+      "y": 270
+    },
+    "facing=west,neg_link=true,open=false,pos_link=true": {
+      "model": "nerodecor:block/lab_habitat/locker_c00",
+      "y": 270
+    },
+    "facing=west,neg_link=false,open=true,pos_link=false": {
+      "model": "nerodecor:block/lab_habitat/locker_c11_open",
+      "y": 270
+    },
+    "facing=west,neg_link=true,open=true,pos_link=false": {
+      "model": "nerodecor:block/lab_habitat/locker_c10_open",
+      "y": 270
+    },
+    "facing=west,neg_link=false,open=true,pos_link=true": {
+      "model": "nerodecor:block/lab_habitat/locker_c01_open",
+      "y": 270
+    },
+    "facing=west,neg_link=true,open=true,pos_link=true": {
+      "model": "nerodecor:block/lab_habitat/locker_c00_open",
+      "y": 270
+    }
+  }
+}

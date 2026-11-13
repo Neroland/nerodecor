@@ -1,0 +1,97 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "nerodecor:block/chroma_lights/floor_tile_f15_v0",
+    "t": "nerodecor:block/chroma_lights/floor_tile_f15_v0",
+    "g": "nerodecor:block/chroma_lights/floor_tile_glow_f15",
+    "s": "nerodecor:block/chroma_lights/floor_tile_f15_v0",
+    "sg": "nerodecor:block/chroma_lights/floor_tile_glow_f15"
+  },
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "faces": {
+        "north": {
+          "texture": "#s",
+          "cullface": "north"
+        },
+        "east": {
+          "texture": "#s",
+          "cullface": "east"
+        },
+        "south": {
+          "texture": "#s",
+          "cullface": "south"
+        },
+        "west": {
+          "texture": "#s",
+          "cullface": "west"
+        },
+        "up": {
+          "texture": "#t",
+          "cullface": "up"
+        },
+        "down": {
+          "texture": "#t",
+          "cullface": "down"
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        16,
+        16
+      ],
+      "shade": false,
+      "light_emission": 15,
+      "faces": {
+        "north": {
+          "texture": "#sg",
+          "cullface": "north",
+          "tintindex": 0
+        },
+        "east": {
+          "texture": "#sg",
+          "cullface": "east",
+          "tintindex": 0
+        },
+        "south": {
+          "texture": "#sg",
+          "cullface": "south",
+          "tintindex": 0
+        },
+        "west": {
+          "texture": "#sg",
+          "cullface": "west",
+          "tintindex": 0
+        },
+        "up": {
+          "texture": "#g",
+          "cullface": "up",
+          "tintindex": 0
+        },
+        "down": {
+          "texture": "#g",
+          "cullface": "down",
+          "tintindex": 0
+        }
+      }
+    }
+  ],
+  "render_type": "minecraft:cutout"
+}

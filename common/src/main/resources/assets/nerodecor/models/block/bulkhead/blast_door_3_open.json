@@ -1,0 +1,80 @@
+{
+  "parent": "minecraft:block/block",
+  "textures": {
+    "particle": "nerodecor:block/bulkhead/blast_door_edge",
+    "edge": "nerodecor:block/bulkhead/blast_door_edge",
+    "t3": "nerodecor:block/bulkhead/blast_door_3",
+    "t5": "nerodecor:block/bulkhead/blast_door_5"
+  },
+  "elements": [
+    {
+      "from": [
+        13,
+        0,
+        4
+      ],
+      "to": [
+        16,
+        16,
+        12
+      ],
+      "faces": {
+        "north": {
+          "texture": "#t3",
+          "uv": [
+            0,
+            0,
+            3,
+            16
+          ]
+        },
+        "south": {
+          "texture": "#t5",
+          "uv": [
+            13,
+            0,
+            16,
+            16
+          ]
+        },
+        "up": {
+          "texture": "#edge",
+          "uv": [
+            13,
+            4,
+            16,
+            12
+          ]
+        },
+        "down": {
+          "texture": "#edge",
+          "uv": [
+            13,
+            4,
+            16,
+            12
+          ]
+        },
+        "east": {
+          "texture": "#edge",
+          "uv": [
+            4,
+            0,
+            12,
+            16
+          ]
+        },
+        "west": {
+          "texture": "#edge",
+          "uv": [
+            4,
+            0,
+            12,
+            16
+          ]
+        }
+      }
+    }
+  ],
+  "render_type": "minecraft:cutout"
+}

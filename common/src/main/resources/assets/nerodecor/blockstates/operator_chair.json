@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "nerodecor:block/command/operator_chair"
+    },
+    "facing=north_east": {
+      "model": "nerodecor:block/command/operator_chair_diag"
+    },
+    "facing=east": {
+      "model": "nerodecor:block/command/operator_chair",
+      "y": 90
+    },
+    "facing=south_east": {
+      "model": "nerodecor:block/command/operator_chair_diag",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "nerodecor:block/command/operator_chair",
+      "y": 180
+    },
+    "facing=south_west": {
+      "model": "nerodecor:block/command/operator_chair_diag",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "nerodecor:block/command/operator_chair",
+      "y": 270
+    },
+    "facing=north_west": {
+      "model": "nerodecor:block/command/operator_chair_diag",
+      "y": 270
+    }
+  }
+}

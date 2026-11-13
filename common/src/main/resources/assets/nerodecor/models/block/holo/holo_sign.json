@@ -1,0 +1,102 @@
+{
+  "parent": "minecraft:block/block",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "particle": "nerodecor:block/holo/holo_sign_base",
+    "top": "nerodecor:block/holo/holo_sign_base",
+    "side": "nerodecor:block/holo/holo_sign_base",
+    "glow_top": "nerodecor:block/holo/holo_sign_base_glow",
+    "panel": "nerodecor:block/holo/holo_sign_panel_glow"
+  },
+  "elements": [
+    {
+      "from": [
+        2,
+        0,
+        6
+      ],
+      "to": [
+        14,
+        2,
+        10
+      ],
+      "faces": {
+        "north": {
+          "texture": "#side"
+        },
+        "east": {
+          "texture": "#side"
+        },
+        "south": {
+          "texture": "#side"
+        },
+        "west": {
+          "texture": "#side"
+        },
+        "up": {
+          "texture": "#top"
+        },
+        "down": {
+          "texture": "#top",
+          "cullface": "down"
+        }
+      }
+    },
+    {
+      "from": [
+        2,
+        0,
+        6
+      ],
+      "to": [
+        14,
+        2,
+        10
+      ],
+      "shade": false,
+      "light_emission": 15,
+      "faces": {
+        "up": {
+          "texture": "#glow_top",
+          "tintindex": 0
+        }
+      }
+    },
+    {
+      "from": [
+        0,
+        5,
+        8
+      ],
+      "to": [
+        16,
+        16,
+        8
+      ],
+      "shade": false,
+      "light_emission": 15,
+      "faces": {
+        "south": {
+          "texture": "#panel",
+          "uv": [
+            0,
+            0,
+            16,
+            11
+          ],
+          "tintindex": 0
+        },
+        "north": {
+          "texture": "#panel",
+          "uv": [
+            16,
+            0,
+            0,
+            11
+          ],
+          "tintindex": 0
+        }
+      }
+    }
+  ]
+}
