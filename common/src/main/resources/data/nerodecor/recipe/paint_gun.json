@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IB",
+    "S "
+  ],
+  "key": {
+    "I": "minecraft:iron_ingot",
+    "B": "minecraft:glass_bottle",
+    "S": "minecraft:stick"
+  },
+  "result": {
+    "id": "nerodecor:paint_gun",
+    "count": 1
+  }
+}

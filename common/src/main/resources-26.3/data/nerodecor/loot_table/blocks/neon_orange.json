@@ -8,7 +8,15 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "nerodecor:neon_orange"
+          "modifier": [
+            {
+              "type": "minecraft:set_components",
+              "components": {
+                "nerodecor:color": "orange"
+              }
+            }
+          ],
+          "name": "nerodecor:chroma_cube"
         }
       ],
       "rolls": 1

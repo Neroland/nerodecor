@@ -43,14 +43,30 @@ public final class ChromaTintBridge implements BlockTintSource {
 /*public final class ChromaTintBridge implements BlockColor {
 *///?}
 
-    public static final ChromaTintBridge INSTANCE = new ChromaTintBridge();
+    /** For blocks with the {@code COLOR} property (its value is a tint input). */
+    public static final ChromaTintBridge PAINTED = new ChromaTintBridge(true);
+    /**
+     * For decor blocks without {@code COLOR} (Luminous, collection lights): 26.x reads every property a tint source
+     * declares relevant off each state while grouping models, so this one must declare none.
+     */
+    public static final ChromaTintBridge PLAIN = new ChromaTintBridge(false);
 
-    private ChromaTintBridge() {
+    private final boolean painted;
+
+    private ChromaTintBridge(boolean painted) {
+        this.painted = painted;
     }
 
-    /** Every decor block (paintable families, Luminous, collections, the chroma cube). */
-    public static Block[] blocks() {
-        return DecorBlocks.allBlocks();
+    /** Decor blocks that carry {@code COLOR} (register {@link #PAINTED}). */
+    public static Block[] paintedBlocks() {
+        return DecorBlocks.paintableBlocks();
+    }
+
+    /** Every other decor block (register {@link #PLAIN}). */
+    public static Block[] plainBlocks() {
+        return java.util.Arrays.stream(DecorBlocks.allBlocks())
+                .filter(b -> !b.defaultBlockState().hasProperty(DecorProperties.COLOR))
+                .toArray(Block[]::new);
     }
 
     /** The opaque tint at {@code pos}: hub colour, else the block's paint. */
@@ -84,7 +100,7 @@ public final class ChromaTintBridge implements BlockTintSource {
 
     @Override
     public Set<Property<?>> relevantProperties() {
-        return Set.of(DecorProperties.COLOR);
+        return painted ? Set.of(DecorProperties.COLOR) : Set.of();
     }
     //?} else {
     /*@Override

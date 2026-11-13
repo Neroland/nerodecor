@@ -1,11 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "nerodecor:item/neon_magenta",
-    "tints": [
-      {
-        "type": "nerodecor:decor_color"
-      }
-    ]
+    "model": "nerodecor:item/neon_magenta"
   }
 }

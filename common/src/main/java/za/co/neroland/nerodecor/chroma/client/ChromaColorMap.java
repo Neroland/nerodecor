@@ -24,7 +24,7 @@ public final class ChromaColorMap {
 
     /** Section key for section coordinates. */
     public static long sectionKeyOf(int sx, int sy, int sz) {
-        return ((long) sx & 0x3FFFFFL) << 42 | ((long) sy & 0xFFFFFL) | ((long) sz & 0x3FFFFFL) << 20;
+        return (sx & 0x3FFFFFL) << 42 | (sy & 0xFFFFFL) | (sz & 0x3FFFFFL) << 20;
     }
 
     public static int sectionX(long key) {

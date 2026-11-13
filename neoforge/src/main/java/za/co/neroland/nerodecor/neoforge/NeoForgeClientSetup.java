@@ -8,11 +8,13 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
+import net.neoforged.neoforge.client.event.ClientTickEvent;
+import net.neoforged.neoforge.common.NeoForge;
 
 import za.co.neroland.nerodecor.client.DecorColorItemTint;
 import za.co.neroland.nerodecor.client.ClientRenderRegistry;
-import za.co.neroland.nerodecor.client.DecorColorTintSource;
-import za.co.neroland.nerodecor.registry.DecorBlocks;
+import za.co.neroland.nerodecor.client.ChromaTintBridge;
+import za.co.neroland.nerodecor.chroma.client.ChromaClientSync;
 
 /**
  * NeoForge client-only wiring (block + item paint tint, collection renderers). Loaded only behind
@@ -26,11 +28,15 @@ public final class NeoForgeClientSetup {
 
     public static void init(IEventBus modEventBus) {
         //? if >=26.1 {
-        modEventBus.addListener((RegisterColorHandlersEvent.BlockTintSources event) ->
-                event.register(List.of(DecorColorTintSource.INSTANCE), DecorBlocks.paintableBlocks()));
+        modEventBus.addListener((RegisterColorHandlersEvent.BlockTintSources event) -> {
+            event.register(List.of(ChromaTintBridge.PAINTED), ChromaTintBridge.paintedBlocks());
+            event.register(List.of(ChromaTintBridge.PLAIN), ChromaTintBridge.plainBlocks());
+        });
         //?} else {
-        /*modEventBus.addListener((RegisterColorHandlersEvent.Block event) ->
-                event.register(DecorColorTintSource.INSTANCE, DecorBlocks.paintableBlocks()));
+        /*modEventBus.addListener((RegisterColorHandlersEvent.Block event) -> {
+            event.register(ChromaTintBridge.PAINTED, ChromaTintBridge.paintedBlocks());
+            event.register(ChromaTintBridge.PLAIN, ChromaTintBridge.plainBlocks());
+        });
         *///?}
         // Item paint tint: 1.21.4+ registers the nerodecor:decor_color tint source type that the paintable
         // blocks' item definitions name; 1.21.1 (no item definitions) registers a per-item ItemColor.
@@ -39,9 +45,11 @@ public final class NeoForgeClientSetup {
                 event.register(DecorColorItemTint.ID, DecorColorItemTint.MAP_CODEC));
         //?} else {
         /*modEventBus.addListener((RegisterColorHandlersEvent.Item event) ->
-                event.register(DecorColorItemTint.INSTANCE, DecorBlocks.paintableBlocks()));
+                event.register(DecorColorItemTint.INSTANCE, DecorColorItemTint.legacyItems()));
         *///?}
         modEventBus.addListener(NeoForgeClientSetup::onRegisterRenderers);
+        // Chroma: release budgeted section re-meshes after hub colour changes.
+        NeoForge.EVENT_BUS.addListener((ClientTickEvent.Post event) -> ChromaClientSync.tick());
     }
 
     @SuppressWarnings({"unchecked", "rawtypes"})

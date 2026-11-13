@@ -5,7 +5,6 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
@@ -137,7 +136,7 @@ public final class LabGantryConduitsBlocks {
 
     /** Shaped metal furniture: no occlusion, never suffocates, conducts no redstone, no mob spawns. */
     private static BlockBehaviour.Properties furniture(ResourceKey<Block> key) {
-        return metal(key).noOcclusion().isValidSpawn(Blocks::never).isRedstoneConductor((s, l, p) -> false)
+        return metal(key).noOcclusion().isValidSpawn((s, l, p, t) -> false).isRedstoneConductor((s, l, p) -> false)
                 .isSuffocating((s, l, p) -> false);
     }
 }

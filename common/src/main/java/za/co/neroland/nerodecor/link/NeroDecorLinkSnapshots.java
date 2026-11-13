@@ -29,6 +29,9 @@ import za.co.neroland.nerodecor.content.block.DecorSlabBlock;
 import za.co.neroland.nerodecor.content.block.DecorStairBlock;
 import za.co.neroland.nerodecor.content.block.DecorWallBlock;
 import za.co.neroland.nerodecor.registry.DecorBlocks;
+import za.co.neroland.nerodecor.registry.ChromaContent;
+import za.co.neroland.nerodecor.content.block.ChromaCubeBlock;
+import za.co.neroland.nerodecor.content.block.NeonShimBlock;
 import za.co.neroland.nerodecor.registry.RegistrationProvider.RegistryEntry;
 
 /**
@@ -177,6 +180,19 @@ public final class NeroDecorLinkSnapshots implements LinkSnapshotProvider {
         }
         root.add("colors", colors);
         root.addProperty("colors_available", DecorColor.values().length);
+
+        // 0.8.0 neon fold: the twelve neon blocks are now one chroma_cube with a COLOR; old ids map here.
+        JsonArray legacy = new JsonArray();
+        for (RegistryEntry<Block> shim : DecorBlocks.NEON_SHIMS) {
+            if (shim.get() instanceof NeonShimBlock neon) {
+                JsonObject row = new JsonObject();
+                row.addProperty("legacy_id", shim.id().toString());
+                row.addProperty("block", ChromaContent.CUBE.id().toString());
+                row.addProperty("color", neon.dye().getSerializedName());
+                legacy.add(row);
+            }
+        }
+        root.add("legacy_neon", legacy);
         return root;
     }
 
@@ -233,7 +249,8 @@ public final class NeroDecorLinkSnapshots implements LinkSnapshotProvider {
                 row.addProperty("ctm_style", surface.ctmStyle().name());
             }
             // Every Luminous block glows by design; among the paintable families only neon is fullbright.
-            row.addProperty("emissive", !paintable || NEON_FAMILY.equals(family));
+            row.addProperty("emissive", !paintable || NEON_FAMILY.equals(family)
+                    || block instanceof ChromaCubeBlock);
             rows.add(row);
         }
 
@@ -249,7 +266,7 @@ public final class NeroDecorLinkSnapshots implements LinkSnapshotProvider {
 
     /** The block's geometry, from its class. Unknown classes report {@code "block"} rather than guessing. */
     private static String shapeOf(Block block) {
-        if (block instanceof DecorCubeBlock) {
+        if (block instanceof DecorCubeBlock || block instanceof ChromaCubeBlock) {
             return "cube";
         }
         if (block instanceof DecorSlabBlock || block instanceof SlabBlock) {

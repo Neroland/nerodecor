@@ -13,6 +13,8 @@ Built on **Neroland Core**.
 - [Luminous Collection](Luminous-Collection.md) — the glowing, animated, connected signature set
   (circuit plating, holo-grid floor, starfield, aurora glass, void rift, plasma conduit, fusion lamp
   and more).
+- [Chroma Cube, Paint Gun and the neon fold](Chroma-Cube-And-Paint-Gun.md) — 0.8.0: the cube that replaced
+  neon, the paint gun, and how 0.7.x neon converts.
 - [Architect Quests](Architect-Quests.md) — the optional NeroQuests chapter: 11 crafting and collection
   quests across every NeroDecor family.
 - [Companion Link Module](Link-Module.md) — the read-only palette and block catalogue a NeroLink

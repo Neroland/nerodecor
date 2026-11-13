@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:function",
+  "function": "nerodecor_gametest:chroma_neon_item_folds",
+  "environment": "minecraft:default",
+  "structure": "nerodecor_gametest:chroma_arena",
+  "max_ticks": 60
+}

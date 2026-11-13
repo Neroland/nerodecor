@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:function",
+  "function": "nerodecor_gametest:chroma_cube_light_follows_brightness",
+  "environment": "minecraft:default",
+  "structure": "nerodecor_gametest:chroma_arena",
+  "max_ticks": 100
+}

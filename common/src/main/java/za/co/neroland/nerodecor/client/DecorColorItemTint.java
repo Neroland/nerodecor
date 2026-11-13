@@ -71,7 +71,17 @@ public final class DecorColorItemTint implements ItemTintSource {
     //?} else {
     /*@Override
     public int getColor(ItemStack stack, int tintIndex) {
-        return tintIndex == 0 ? argb(stack) : 0xFFFFFFFF;
+        // The paint gun tints its canister (layer 1); paintable block items tint layer 0.
+        int layer = stack.getItem() instanceof za.co.neroland.nerodecor.content.item.PaintGunItem ? 1 : 0;
+        return tintIndex == layer ? argb(stack) : 0xFFFFFFFF;
+    }
+
+    // 1.21.1: the items this ItemColor is registered for (paintable block items and the paint gun).
+    public static net.minecraft.world.level.ItemLike[] legacyItems() {
+        java.util.List<net.minecraft.world.level.ItemLike> items = new java.util.ArrayList<>(
+                java.util.List.of(za.co.neroland.nerodecor.registry.DecorBlocks.paintableBlocks()));
+        items.add(za.co.neroland.nerodecor.registry.ChromaContent.PAINT_GUN.get());
+        return items.toArray(net.minecraft.world.level.ItemLike[]::new);
     }
     *///?}
 }

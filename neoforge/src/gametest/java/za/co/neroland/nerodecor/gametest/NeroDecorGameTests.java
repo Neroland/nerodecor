@@ -15,8 +15,11 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.resources.Identifier;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Container;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.level.ChunkEvent;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.bus.api.IEventBus;
@@ -26,7 +29,10 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import za.co.neroland.nerodecor.NeroDecorCommon;
 import za.co.neroland.nerodecor.content.DecorColor;
 import za.co.neroland.nerodecor.content.DecorProperties;
+import za.co.neroland.nerodecor.content.block.ChromaCubeBlock;
+import za.co.neroland.nerodecor.content.item.NeonShimItem;
 import za.co.neroland.nerodecor.registry.ChromaContent;
+import za.co.neroland.nerodecor.registry.ModDataComponents;
 import za.co.neroland.nerodecor.registry.DecorBlocks;
 
 /**
@@ -91,16 +97,29 @@ public final class NeroDecorGameTests {
     }
 
     /**
-     * The 0.7.1 fixture (tools/gen_gametest_fixture.py) loads with every block in place and every block item
-     * in its chests. Stage 3 extends this to assert the neon cubes come back as same-colour chroma cubes.
+     * The 0.7.1 fixture (tools/gen_gametest_fixture.py) loads with every block in place and every block item in its
+     * chests, and the neon fold turns it into 0.8.0 content: a {@code ChunkEvent.Load} is posted for each fixture
+     * chunk (the real hook the loader fires), the queued swap runs on the next server tick, and then every neon
+     * position holds a {@code chroma_cube} with the old neon's COLOR and light 15, and every neon chest stack is a
+     * chroma cube stack with that colour.
      */
     static void fixture071Loads(GameTestHelper helper) {
+        ServerLevel level = helper.getLevel();
+        java.util.Set<Long> chunks = new java.util.HashSet<>();
+        for (int x = 0; x < 12; x += 1) {
+            for (int z = 0; z < 10; z += 1) {
+                BlockPos abs = helper.absolutePos(new BlockPos(x, 1, z));
+                if (chunks.add(((long) (abs.getX() >> 4) << 32) ^ ((abs.getZ() >> 4) & 0xFFFFFFFFL))) {
+                    NeoForge.EVENT_BUS.post(new ChunkEvent.Load(level.getChunkAt(abs), false));
+                }
+            }
+        }
         helper.succeedWhen(() -> {
             List<String> ids = fixtureIds();
             helper.assertTrue(ids.size() == 59, "fixture manifest has " + ids.size() + " ids, expected 59");
             helper.assertTrue(!helper.getBlockState(new BlockPos(1, 1, 1)).isAir(),
                     "fixture grid origin is air; " + describeNonAir(helper));
-            List<Item> stored = new ArrayList<>();
+            List<ItemStack> stored = new ArrayList<>();
             for (int c = 0; c < 3; c++) {
                 BlockPos chestPos = new BlockPos(1 + c * 2, 1, 8);
                 helper.assertBlockPresent(net.minecraft.world.level.block.Blocks.CHEST, chestPos);
@@ -109,15 +128,31 @@ public final class NeroDecorGameTests {
                 Container chest = (Container) helper.getLevel().getBlockEntity(helper.absolutePos(chestPos));
                 for (int slot = 0; slot < chest.getContainerSize(); slot++) {
                     if (!chest.getItem(slot).isEmpty()) {
-                        stored.add(chest.getItem(slot).getItem());
+                        stored.add(chest.getItem(slot));
                     }
                 }
             }
+            for (ItemStack stack : stored) {
+                helper.assertTrue(!(stack.getItem() instanceof NeonShimItem), "a chest still holds a legacy neon stack");
+            }
+            Block cube = ChromaContent.CUBE.get();
             for (int n = 0; n < ids.size(); n++) {
-                Identifier id = Identifier.fromNamespaceAndPath(NeroDecorCommon.MOD_ID, ids.get(n));
+                String path = ids.get(n);
+                BlockPos pos = new BlockPos(1 + n % 10, 1, 1 + n / 10);
+                if (path.startsWith("neon_")) {
+                    DecorColor dye = DecorColor.valueOf(path.substring(5).toUpperCase(java.util.Locale.ROOT));
+                    helper.assertBlockPresent(cube, pos);
+                    helper.assertBlockProperty(pos, DecorProperties.COLOR, dye);
+                    helper.assertBlockProperty(pos, ChromaCubeBlock.LIGHT, 15);
+                    helper.assertTrue(level.getLightEmission(helper.absolutePos(pos)) == 15, path + " lost its light");
+                    helper.assertTrue(stored.stream().anyMatch(s -> s.is(cube.asItem())
+                            && s.get(ModDataComponents.COLOR.get()) == dye), "no " + dye + " chroma cube for " + path);
+                    continue;
+                }
+                Identifier id = Identifier.fromNamespaceAndPath(NeroDecorCommon.MOD_ID, path);
                 Block expected = BuiltInRegistries.BLOCK.getValue(id);
-                helper.assertBlockPresent(expected, new BlockPos(1 + n % 10, 1, 1 + n / 10));
-                helper.assertTrue(stored.contains(expected.asItem()), "fixture chests are missing " + id);
+                helper.assertBlockPresent(expected, pos);
+                helper.assertTrue(stored.stream().anyMatch(s -> s.is(expected.asItem())), "fixture chests are missing " + id);
             }
         });
     }

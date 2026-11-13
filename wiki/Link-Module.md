@@ -58,7 +58,8 @@ use, so the app's list matches what you see in game. Per block:
 - its **collection**: `decor` for the paintable families, `luminous` for the
   [Luminous collection](Luminous-Collection.md),
 - whether it is **paintable** (the paintable families are; the Luminous blocks are not) and whether
-  it is **emissive** (the neon family and every Luminous block),
+  it is **emissive** (the Chroma Cube and every Luminous block; the `palette` section's `legacy_neon` list maps
+  each old `neon_<colour>` id to `chroma_cube` and its colour),
 - for the paintable families only, its **CTM family** (`nerodecor:hull`, `nerodecor:panel`,
   `nerodecor:glass`, `nerodecor:neon`) and its **connected-texture style** (`FULL`, `GLASS` or
   `STRIP`) — two faces connect only on the same family *and* the same painted colour.

@@ -51,7 +51,8 @@
             16,
             16
           ],
-          "cullface": "down"
+          "cullface": "down",
+          "tintindex": 0
         }
       }
     }

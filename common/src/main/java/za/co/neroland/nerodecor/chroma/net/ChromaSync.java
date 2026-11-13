@@ -79,6 +79,8 @@ public final class ChromaSync {
 
     /** Server tick (end). */
     public static void tick(MinecraftServer server) {
+        // The neon fold's chunk-load swaps run here (outside chunk loading), whether Chroma is enabled or not.
+        za.co.neroland.nerodecor.content.NeonFold.drainPending();
         if (!ChromaConfig.ENABLED.get()) {
             return;
         }

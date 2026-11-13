@@ -1,7 +1,7 @@
 {
   "title": "quest.nerodecor.architect.first_light.title",
   "description": "quest.nerodecor.architect.first_light.desc",
-  "icon": "nerodecor:neon_cyan",
+  "icon": "nerodecor:chroma_cube",
   "objectives": [
     {
       "type": "neroquests:craft_item",

@@ -10,6 +10,10 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
+import net.minecraftforge.event.TickEvent;
+//? if <1.21.6 {
+/*import net.minecraftforge.common.MinecraftForge;
+*///?}
 //? if >=1.21.6 {
 import net.minecraftforge.eventbus.api.bus.BusGroup;
 //?} else {
@@ -18,8 +22,8 @@ import net.minecraftforge.eventbus.api.bus.BusGroup;
 
 import za.co.neroland.nerodecor.client.DecorColorItemTint;
 import za.co.neroland.nerodecor.client.ClientRenderRegistry;
-import za.co.neroland.nerodecor.client.DecorColorTintSource;
-import za.co.neroland.nerodecor.registry.DecorBlocks;
+import za.co.neroland.nerodecor.client.ChromaTintBridge;
+import za.co.neroland.nerodecor.chroma.client.ChromaClientSync;
 
 /**
  * Forge client-only wiring (block + item paint tint, collection renderers). Loaded only behind {@code Dist.CLIENT}.
@@ -37,18 +41,26 @@ public final class ForgeClientSetup {
     /*public static void init(IEventBus modBusGroup) {
     *///?}
         //? if >=26.1 {
-        RegisterColorHandlersEvent.Block.BUS.addListener(event ->
-                event.register(List.of(DecorColorTintSource.INSTANCE), DecorBlocks.paintableBlocks()));
+        RegisterColorHandlersEvent.Block.BUS.addListener(event -> {
+            event.register(List.of(ChromaTintBridge.PAINTED), ChromaTintBridge.paintedBlocks());
+            event.register(List.of(ChromaTintBridge.PLAIN), ChromaTintBridge.plainBlocks());
+        });
         //?} else if >=1.21.9 {
-        /*RegisterColorHandlersEvent.Block.BUS.addListener(event ->
-                event.register(DecorColorTintSource.INSTANCE, DecorBlocks.paintableBlocks()));
+        /*RegisterColorHandlersEvent.Block.BUS.addListener(event -> {
+            event.register(ChromaTintBridge.PAINTED, ChromaTintBridge.paintedBlocks());
+            event.register(ChromaTintBridge.PLAIN, ChromaTintBridge.plainBlocks());
+        });
         *///?} else if >=1.21.6 {
-        /*RegisterColorHandlersEvent.Block.getBus(modBusGroup).addListener(event ->
-                event.register(DecorColorTintSource.INSTANCE, DecorBlocks.paintableBlocks()));
+        /*RegisterColorHandlersEvent.Block.getBus(modBusGroup).addListener(event -> {
+            event.register(ChromaTintBridge.PAINTED, ChromaTintBridge.paintedBlocks());
+            event.register(ChromaTintBridge.PLAIN, ChromaTintBridge.plainBlocks());
+        });
         *///?} else {
         /*// Before Forge's EventBus 7 (1.21.6) mod-bus events are registered on the mod's own event bus.
-        modBusGroup.addListener((RegisterColorHandlersEvent.Block event) ->
-                event.register(DecorColorTintSource.INSTANCE, DecorBlocks.paintableBlocks()));
+        modBusGroup.addListener((RegisterColorHandlersEvent.Block event) -> {
+            event.register(ChromaTintBridge.PAINTED, ChromaTintBridge.paintedBlocks());
+            event.register(ChromaTintBridge.PLAIN, ChromaTintBridge.plainBlocks());
+        });
         *///?}
         //? if >=1.21.4 {
         // Item paint tint. Forge has no event for item tint source types (NeoForge's ItemTintSources has no
@@ -62,7 +74,13 @@ public final class ForgeClientSetup {
         //?} else {
         /*// 1.21.1 has no item definitions: register a per-item ItemColor on the mod event bus.
         modBusGroup.addListener((RegisterColorHandlersEvent.Item event) ->
-                event.register(DecorColorItemTint.INSTANCE, DecorBlocks.paintableBlocks()));
+                event.register(DecorColorItemTint.INSTANCE, DecorColorItemTint.legacyItems()));
+        *///?}
+        // Chroma: release budgeted section re-meshes after hub colour changes.
+        //? if >=1.21.6 {
+        TickEvent.ClientTickEvent.Post.BUS.addListener(event -> ChromaClientSync.tick());
+        //?} else {
+        /*MinecraftForge.EVENT_BUS.addListener((TickEvent.ClientTickEvent.Post event) -> ChromaClientSync.tick());
         *///?}
         //? if >=1.21.9 {
         EntityRenderersEvent.RegisterRenderers.BUS.addListener(ForgeClientSetup::onRegisterRenderers);

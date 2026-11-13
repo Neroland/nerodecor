@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " G ",
+    "GQG",
+    " G "
+  ],
+  "key": {
+    "G": "minecraft:glass",
+    "Q": "minecraft:glowstone_dust"
+  },
+  "result": {
+    "id": "nerodecor:chroma_cube",
+    "count": 4
+  }
+}

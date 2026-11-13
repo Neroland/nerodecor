@@ -51,7 +51,8 @@
             16,
             16
           ],
-          "cullface": "south"
+          "cullface": "south",
+          "tintindex": 0
         }
       }
     }

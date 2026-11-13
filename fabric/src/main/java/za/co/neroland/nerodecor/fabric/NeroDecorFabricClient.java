@@ -3,6 +3,7 @@ package za.co.neroland.nerodecor.fabric;
 import java.util.List;
 
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 //? if >=26.1 {
@@ -21,9 +22,10 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import za.co.neroland.nerodecor.NeroDecorCommon;
 import za.co.neroland.nerodecor.client.ClientRenderRegistry;
 import za.co.neroland.nerodecor.client.DecorColorItemTint;
-import za.co.neroland.nerodecor.client.DecorColorTintSource;
+import za.co.neroland.nerodecor.client.ChromaTintBridge;
+import za.co.neroland.nerodecor.chroma.client.ChromaClientSync;
+import za.co.neroland.nerodecor.platform.FabricChromaNet;
 import za.co.neroland.nerodecor.client.NeroDecorClient;
-import za.co.neroland.nerodecor.registry.DecorBlocks;
 
 /** Fabric client entry point for NeroDecor. */
 public final class NeroDecorFabricClient implements ClientModInitializer {
@@ -33,9 +35,11 @@ public final class NeroDecorFabricClient implements ClientModInitializer {
         NeroDecorCommon.LOGGER.info("[NeroDecor] Fabric client bootstrap");
         NeroDecorClient.initClient();
         //? if >=26.1 {
-        BlockColorRegistry.register(List.of(DecorColorTintSource.INSTANCE), DecorBlocks.paintableBlocks());
+        BlockColorRegistry.register(List.of(ChromaTintBridge.PAINTED), ChromaTintBridge.paintedBlocks());
+        BlockColorRegistry.register(List.of(ChromaTintBridge.PLAIN), ChromaTintBridge.plainBlocks());
         //?} else {
-        /*ColorProviderRegistry.BLOCK.register(DecorColorTintSource.INSTANCE, DecorBlocks.paintableBlocks());
+        /*ColorProviderRegistry.BLOCK.register(ChromaTintBridge.PAINTED, ChromaTintBridge.paintedBlocks());
+        ColorProviderRegistry.BLOCK.register(ChromaTintBridge.PLAIN, ChromaTintBridge.plainBlocks());
         *///?}
         //? if >=1.21.4 {
         // Item paint tint. Fabric API has no item tint source registry, but vanilla's
@@ -43,9 +47,12 @@ public final class NeroDecorFabricClient implements ClientModInitializer {
         // needed); client init runs before the first resource reload parses the item definitions.
         ItemTintSources.ID_MAPPER.put(DecorColorItemTint.ID, DecorColorItemTint.MAP_CODEC);
         //?} else {
-        /*ColorProviderRegistry.ITEM.register(DecorColorItemTint.INSTANCE, DecorBlocks.paintableBlocks());
+        /*ColorProviderRegistry.ITEM.register(DecorColorItemTint.INSTANCE, DecorColorItemTint.legacyItems());
         *///?}
         registerCollectionRenderers();
+        // Chroma: clientbound packets + budgeted section re-meshes.
+        FabricChromaNet.registerClient();
+        ClientTickEvents.END_CLIENT_TICK.register(mc -> ChromaClientSync.tick());
     }
 
     /** Iterates {@link ClientRenderRegistry} once (after NeroDecorClient.initClient() ran the packages' register()). */

@@ -17,10 +17,10 @@ matching items crafted in a crafting grid; machine outputs do not count.
 
 | Quest | Needs | Objective | Reward |
 | --- | --- | --- | --- |
-| First Light | — | Craft 8 neon blocks (`neroland:decor/neon`, any colour) | 20 XP, 8 glowstone dust |
+| First Light | — | Craft 8 Chroma Cubes (`neroland:decor/neon`, any colour) | 20 XP, 8 glowstone dust |
 | Hull Plating | First Light | Craft 16 hull pieces (`neroland:decor/hull`: blocks, slabs, stairs, walls) | 40 XP, 30 credits |
 | Clean Lines | First Light | Craft 16 panels (`neroland:decor/panel`) | 40 XP, 30 credits |
-| Full Spectrum | First Light | Hold one neon block of each of the 12 colours | 100 XP, 100 credits |
+| Full Spectrum | First Light | Hold 12 Chroma Cubes | 100 XP, 100 credits |
 | Through the Glass | Hull Plating | Craft 8 tinted glass (`neroland:decor/glass`) | 50 XP, 16 glass |
 | Starsteel Frame | Hull Plating | Craft 4 Starsteel Pillars | 50 XP, 40 credits |
 | Circuitry | Clean Lines | Craft 8 Circuit Plating and 8 Holo-Grid Floor | 60 XP, 8 redstone |

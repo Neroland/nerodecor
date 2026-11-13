@@ -24,6 +24,12 @@ import net.minecraft.world.level.storage.LevelResource;
 import net.minecraft.world.phys.AABB;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import za.co.neroland.nerodecor.chroma.ChromaColor;
+import za.co.neroland.nerodecor.chroma.ChromaOp;
+import za.co.neroland.nerodecor.chroma.ChromaOpBatch;
+import za.co.neroland.nerodecor.chroma.ChromaSyncCodec;
+import za.co.neroland.nerodecor.chroma.RelativePos;
+import za.co.neroland.nerodecor.chroma.net.ChromaEdits;
 import za.co.neroland.nerodecor.chroma.server.ChromaLimits;
 import za.co.neroland.nerodecor.chroma.server.ChromaNetworkData;
 import za.co.neroland.nerodecor.chroma.server.ChromaNetworkStore;
@@ -34,7 +40,11 @@ import za.co.neroland.nerodecor.chroma.server.ChromaVerdict;
 import za.co.neroland.nerodecor.chroma.server.HubNetwork;
 import za.co.neroland.nerodecor.content.DecorColor;
 import za.co.neroland.nerodecor.content.DecorProperties;
+import za.co.neroland.nerodecor.content.block.ChromaCubeBlock;
 import za.co.neroland.nerodecor.content.block.ChromaHubBlockEntity;
+import za.co.neroland.nerodecor.content.block.NeonShimBlock;
+import za.co.neroland.nerodecor.content.item.PaintGunItem;
+import za.co.neroland.nerodecor.registry.ModDataComponents;
 import za.co.neroland.nerodecor.registry.ChromaContent;
 import za.co.neroland.nerodecor.registry.DecorBlocks;
 
@@ -57,6 +67,10 @@ final class ChromaGameTests {
         functions.register("chroma_volume_and_hub_caps", () -> ChromaGameTests::volumeAndHubCaps);
         functions.register("chroma_hub_break_relink", () -> ChromaGameTests::hubBreakRelink);
         functions.register("chroma_corrupt_recovery", () -> ChromaGameTests::corruptRecovery);
+        functions.register("chroma_paint_gun", () -> ChromaGameTests::paintGun);
+        functions.register("chroma_neon_item_folds", () -> ChromaGameTests::neonItemFolds);
+        functions.register("chroma_cube_light_follows_brightness", () -> ChromaGameTests::cubeLightFollowsBrightness);
+        functions.register("chroma_sync_ops", () -> ChromaGameTests::syncOps);
     }
 
     // --- helpers ---------------------------------------------------------------------------------------------------
@@ -306,5 +320,85 @@ final class ChromaGameTests {
     private static void writeGarbage(Path file) throws IOException {
         Files.createDirectories(file.getParent());
         Files.write(file, new byte[] {0x1f, (byte) 0x8b, 0x08, 0x00, 'n', 'o', 't', ' ', 'n', 'b', 't', 0x00, 0x13});
+    }
+
+    // --- Stage 3: static sync, tint, neon fold ---------------------------------------------------------------------
+
+    /** The paint gun paints for a builder, copies on sneak (gun component), and is refused where the player may not build. */
+    static void paintGun(GameTestHelper helper) {
+        ServerLevel level = helper.getLevel();
+        ServerPlayer builder = player(helper, GameType.SURVIVAL);
+        ServerPlayer adventurer = player(helper, GameType.ADVENTURE);
+        BlockPos block = put(helper, new BlockPos(10, 2, 10), hull());
+        expect(helper, ChromaVerdict.OK, PaintGunItem.paint(level, builder, block, DecorColor.MAGENTA), "paint");
+        helper.assertTrue(level.getBlockState(block).getValue(DecorProperties.COLOR) == DecorColor.MAGENTA,
+                "block not painted");
+        expect(helper, ChromaVerdict.PROTECTED, PaintGunItem.paint(level, adventurer, block, DecorColor.LIME),
+                "adventure-mode paint");
+        helper.assertTrue(level.getBlockState(block).getValue(DecorProperties.COLOR) == DecorColor.MAGENTA,
+                "denied paint changed the block");
+        BlockPos stone = put(helper, new BlockPos(11, 2, 10), Blocks.STONE);
+        expect(helper, ChromaVerdict.NOT_CAPABLE, PaintGunItem.paint(level, builder, stone, DecorColor.RED), "stone");
+        ItemStack gun = new ItemStack(ChromaContent.PAINT_GUN.get());
+        helper.assertTrue(PaintGunItem.colour(gun) == DecorColor.NATURAL, "fresh gun is not natural");
+        gun.set(ModDataComponents.COLOR.get(), DecorColor.CYAN);
+        helper.assertTrue(PaintGunItem.colour(gun) == DecorColor.CYAN, "gun colour component");
+        helper.succeed();
+    }
+
+    /** A dropped legacy neon stack becomes a same-colour chroma cube stack (loader item-entity hook). */
+    static void neonItemFolds(GameTestHelper helper) {
+        ServerLevel level = helper.getLevel();
+        Block shim = DecorBlocks.NEON_SHIMS.get(0).get();
+        DecorColor dye = ((NeonShimBlock) shim).dye();
+        BlockPos at = helper.absolutePos(new BlockPos(12, 3, 12));
+        ItemEntity entity = new ItemEntity(level, at.getX() + 0.5, at.getY(), at.getZ() + 0.5, new ItemStack(shim, 5));
+        level.addFreshEntity(entity);
+        helper.succeedWhen(() -> {
+            ItemStack now = entity.getItem();
+            helper.assertTrue(now.is(ChromaContent.cubeItem()), "dropped neon not folded: " + now);
+            helper.assertTrue(now.getCount() == 5, "count changed");
+            helper.assertTrue(now.get(ModDataComponents.COLOR.get()) == dye, "colour lost");
+        });
+    }
+
+    /** A linked chroma cube's light follows its palette entry's brightness (applied by the sync tick, >= 1 s apart). */
+    static void cubeLightFollowsBrightness(GameTestHelper helper) {
+        ServerLevel level = helper.getLevel();
+        ServerPlayer owner = player(helper, GameType.SURVIVAL);
+        long id = placeHub(helper, new BlockPos(12, 2, 12), owner);
+        BlockPos cube = put(helper, new BlockPos(14, 2, 12), ChromaContent.CUBE.get());
+        expect(helper, ChromaVerdict.OK, ChromaNetworks.link(level, owner, id, cube), "link cube");
+        HubNetwork network = ChromaNetworks.store(level).get(id);
+        int rel = RelativePos.pack(cube.getX() - network.anchorX(), cube.getY() - network.anchorY(),
+                cube.getZ() - network.anchorZ());
+        ChromaOpBatch batch = ChromaOpBatch.of(List.of(ChromaOp.setPaletteEntry(0, ChromaColor.of(255, 40, 40, 5)),
+                ChromaOp.setIndex(rel, 0))).value();
+        expect(helper, ChromaVerdict.OK, ChromaNetworks.store(level).applyOps(id, owner.getUUID(), batch, p -> true),
+                "ops");
+        helper.succeedWhen(() -> helper.assertTrue(
+                level.getBlockState(cube).getValue(ChromaCubeBlock.LIGHT) == 5
+                        && level.getLightEmission(cube) == 5, "cube light did not follow brightness 5"));
+    }
+
+    /** Op packets: decoded, role-checked (a stranger is refused) and applied atomically for the owner. */
+    static void syncOps(GameTestHelper helper) {
+        ServerLevel level = helper.getLevel();
+        ServerPlayer owner = player(helper, GameType.SURVIVAL);
+        ServerPlayer stranger = player(helper, GameType.SURVIVAL);
+        long id = placeHub(helper, new BlockPos(12, 2, 12), owner);
+        BlockPos block = put(helper, new BlockPos(13, 2, 12), hull());
+        expect(helper, ChromaVerdict.OK, ChromaNetworks.link(level, owner, id, block), "link");
+        HubNetwork network = ChromaNetworks.store(level).get(id);
+        int rel = RelativePos.pack(1, 0, 0);
+        ChromaOpBatch batch = ChromaOpBatch.of(List.of(ChromaOp.setPaletteEntry(0, ChromaColor.of(1, 2, 3)),
+                ChromaOp.setIndex(rel, 0))).value();
+        byte[] bytes = ChromaSyncCodec.encodeOps(id, batch);
+        expect(helper, ChromaVerdict.NO_PERMISSION, ChromaEdits.apply(level, stranger, bytes), "stranger ops");
+        helper.assertTrue(network.palette().size() == 0, "refused batch changed the palette");
+        expect(helper, ChromaVerdict.OK, ChromaEdits.apply(level, owner, bytes), "owner ops");
+        helper.assertTrue(network.palette().size() == 1 && network.paletteIndexAt(rel) == 0, "ops not applied");
+        expect(helper, ChromaVerdict.BAD_OP, ChromaEdits.apply(level, owner, new byte[] {1, 2, 3}), "garbage");
+        helper.succeed();
     }
 }

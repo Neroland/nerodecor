@@ -7,7 +7,15 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "nerodecor:neon_blue"
+          "name": "nerodecor:chroma_cube",
+          "functions": [
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "nerodecor:color": "blue"
+              }
+            }
+          ]
         }
       ],
       "conditions": [

@@ -103,7 +103,8 @@
             16,
             16
           ],
-          "cullface": "north"
+          "cullface": "north",
+          "tintindex": 0
         },
         "south": {
           "texture": "#side_h_glow_c00",
@@ -113,7 +114,8 @@
             16,
             16
           ],
-          "cullface": "south"
+          "cullface": "south",
+          "tintindex": 0
         },
         "up": {
           "texture": "#side_h_glow_c00",
@@ -123,7 +125,8 @@
             16,
             16
           ],
-          "cullface": "up"
+          "cullface": "up",
+          "tintindex": 0
         },
         "down": {
           "texture": "#side_h_glow_c00",
@@ -133,7 +136,8 @@
             16,
             16
           ],
-          "cullface": "down"
+          "cullface": "down",
+          "tintindex": 0
         },
         "east": {
           "texture": "#end_glow",
@@ -143,7 +147,8 @@
             16,
             16
           ],
-          "cullface": "east"
+          "cullface": "east",
+          "tintindex": 0
         },
         "west": {
           "texture": "#end_glow",
@@ -153,7 +158,8 @@
             16,
             16
           ],
-          "cullface": "west"
+          "cullface": "west",
+          "tintindex": 0
         }
       }
     }

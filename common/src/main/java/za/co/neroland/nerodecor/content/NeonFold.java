@@ -33,7 +33,7 @@ import za.co.neroland.nerodecor.registry.ModDataComponents;
  * <ul>
  *   <li><b>Blocks</b>: when a chunk loads (NeoForge/Forge {@code ChunkEvent.Load}, Fabric
  *       {@code ServerChunkEvents.CHUNK_LOAD}), sections that may hold a shim ({@link LevelChunkSection#maybeHas}) are
- *       scanned and the swap is queued on the server thread ({@code server.execute}), never applied mid-load.</li>
+ *       scanned and the swap is queued for the next server tick ({@link #drainPending()}), never applied mid-load.</li>
  *   <li><b>Containers</b> in that chunk: shim stacks are converted in the same queued task.</li>
  *   <li><b>Entity inventories</b> and <b>dropped items</b>: {@link NeonShimItem}.</li>
  * </ul>
@@ -41,6 +41,11 @@ import za.co.neroland.nerodecor.registry.ModDataComponents;
  * <p>Logs nothing about players or positions.
  */
 public final class NeonFold {
+
+    private record Pending(ServerLevel level, List<BlockPos> blocks, List<BlockPos> containers) {
+    }
+
+    private static final java.util.Queue<Pending> PENDING = new java.util.concurrent.ConcurrentLinkedQueue<>();
 
     private NeonFold() {
     }
@@ -126,7 +131,7 @@ public final class NeonFold {
 
     /**
      * Chunk-load hook: finds shim blocks (only in sections whose palette may hold one) and containers holding shim
-     * stacks, then queues the swap on the server thread.
+     * stacks, then queues the swap for the next server tick.
      */
     public static void onChunkLoad(ServerLevel level, LevelChunk chunk) {
         List<BlockPos> blocks = new ArrayList<>();
@@ -158,7 +163,20 @@ public final class NeonFold {
         if (blocks.isEmpty() && containers.isEmpty()) {
             return;
         }
-        level.getServer().execute(() -> apply(level, blocks, containers));
+        PENDING.add(new Pending(level, blocks, containers));
+    }
+
+    /**
+     * Applies the swaps queued by {@link #onChunkLoad}. Called at the start of the server tick, so a swap never runs
+     * inside chunk loading ({@code server.execute} runs a task inline when called on the server thread, which is
+     * where chunk-load events fire, so the fold keeps its own queue instead).
+     */
+    public static void drainPending() {
+        Pending next;
+        int budget = 64;
+        while (budget-- > 0 && (next = PENDING.poll()) != null) {
+            apply(next.level(), next.blocks(), next.containers());
+        }
     }
 
     /** Swaps the given shim blocks and converts the given containers, where still loaded. Server thread. */

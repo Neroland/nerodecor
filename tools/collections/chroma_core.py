@@ -403,6 +403,22 @@ _HUB_LOOT = {
                                            "include": ["%s:chroma_network" % NS]}]}],
                "conditions": [{"condition": "minecraft:survives_explosion"}]}]}
 
+# The cube drops itself with its painted colour (one entry per COLOR value; exactly one matches).
+_DYES = ["white", "light_gray", "gray", "black", "red", "orange", "yellow", "lime", "green", "cyan",
+         "light_blue", "blue", "purple", "magenta", "pink", "brown"]
+_CUBE_LOOT = {"type": "minecraft:block",
+              "pools": [{"rolls": 1, "bonus_rolls": 0,
+                         "entries": [{"type": "minecraft:item", "name": "%s:chroma_cube" % NS,
+                                      "conditions": [{"condition": "minecraft:block_state_property",
+                                                      "block": "%s:chroma_cube" % NS,
+                                                      "properties": {"color": "natural"}}]}]
+                         + [{"type": "minecraft:item", "name": "%s:chroma_cube" % NS,
+                             "conditions": [{"condition": "minecraft:block_state_property",
+                                             "block": "%s:chroma_cube" % NS, "properties": {"color": c}}],
+                             "functions": [{"function": "minecraft:set_components",
+                                            "components": {"%s:color" % NS: c}}]} for c in _DYES],
+                         "conditions": [{"condition": "minecraft:survives_explosion"}]}]}
+
 BLOCKS = [
     Block("chroma_hub", shape="custom", emissive=True, light=7, block_entity=True,
           textures={"side": "chroma_hub_side", "side_glow": "chroma_hub_side_glow",
@@ -411,7 +427,7 @@ BLOCKS = [
                     "prism_glow": "chroma_hub_prism_glow"},
           model=_hub_model, name="Chroma Hub", loot=_HUB_LOOT),
     Block("chroma_cube", shape="cube", connects="mask16", chroma=True, paintable=True,
-          emissive=True, light=15, textures={"all": "chroma_cube"}, name="Chroma Cube"),
+          emissive=True, light=15, textures={"all": "chroma_cube"}, name="Chroma Cube", loot=_CUBE_LOOT),
 ]
 
 

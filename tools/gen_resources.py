@@ -126,14 +126,24 @@ LANG_HEAD = [
      "Box mode: mark two corners."),
     ("message.nerodecor.chroma.linker.mode_single",
      "Single mode: click blocks to link or unlink."),
-]
+    ("message.nerodecor.chroma.bad_op",
+     "That Chroma edit was malformed and was ignored."),
+    ("message.nerodecor.paint_gun.selected",
+     "Paint: %s"),
+    ("message.nerodecor.paint_gun.picked",
+     "Copied paint: %s"),
+] + [("color.nerodecor.%s" % c, n) for c, n in (
+    ("natural", "Natural"), ("white", "White"), ("light_gray", "Light Gray"), ("gray", "Gray"),
+    ("black", "Black"), ("red", "Red"), ("orange", "Orange"), ("yellow", "Yellow"), ("lime", "Lime"),
+    ("green", "Green"), ("cyan", "Cyan"), ("light_blue", "Light Blue"), ("blue", "Blue"),
+    ("purple", "Purple"), ("magenta", "Magenta"), ("pink", "Pink"), ("brown", "Brown"))]
 QUEST_LANG = [
     ("chapter.nerodecor.architect.title",
      "Architect"),
     ("quest.nerodecor.architect.first_light.title",
      "First Light"),
     ("quest.nerodecor.architect.first_light.desc",
-     "Eight neon blocks, any colour. A base can be functional and still glow - this is where it starts to look like somewhere people live."),
+     "Eight Chroma Cubes, any colour. A base can be functional and still glow - this is where it starts to look like somewhere people live."),
     ("quest.nerodecor.architect.hull_plating.title",
      "Hull Plating"),
     ("quest.nerodecor.architect.hull_plating.desc",
@@ -169,7 +179,7 @@ QUEST_LANG = [
     ("quest.nerodecor.architect.full_spectrum.title",
      "Full Spectrum"),
     ("quest.nerodecor.architect.full_spectrum.desc",
-     "Hold one neon block of every colour - all twelve. A complete palette, ready for whatever you build next."),
+     "Hold twelve Chroma Cubes - dye them every colour you like. A complete palette, ready for whatever you build next."),
     ("quest.nerodecor.architect.master_architect.title",
      "Master Architect"),
     ("quest.nerodecor.architect.master_architect.desc",
@@ -270,6 +280,54 @@ def render_type(family):
 
 
 # --- per-kind emitters --------------------------------------------------------
+NEON_LEGACY = "neon"
+
+
+def emit_neon_shim(name, t):
+    """A legacy neon_<colour> id (0.8.0 neon fold): hidden shim. Keeps its model so a not-yet-swapped block or
+    stack renders; drops a chroma_cube of its colour; no recipe of its own, no decor-family tag entry."""
+    colour = name[len("neon_"):]
+    files["assets/%s/blockstates/%s.json" % (NS, name)] = {"variants": {"": {"model": "%s:block/%s" % (NS, name)}}}
+    faces = {face: {"uv": [0, 0, 16, 16], "texture": "#all", "tintindex": 0, "cullface": face}
+             for face in ("north", "east", "south", "west", "up", "down")}
+    files["assets/%s/models/block/%s.json" % (NS, name)] = {
+        "textures": {"particle": tex(t), "all": tex(t)},
+        "elements": [{"from": [0, 0, 0], "to": [16, 16, 16], "faces": faces}], "render_type": "minecraft:cutout"}
+    files["assets/%s/models/item/%s.json" % (NS, name)] = {"parent": "%s:block/%s" % (NS, name)}
+    files["assets/%s/items/%s.json" % (NS, name)] = {
+        "model": {"type": "minecraft:model", "model": "%s:item/%s" % (NS, name)}}
+    table = {"type": "minecraft:block",
+             "pools": [{"rolls": 1, "bonus_rolls": 0,
+                        "entries": [{"type": "minecraft:item", "name": block_id("chroma_cube"),
+                                     "functions": [{"function": "minecraft:set_components",
+                                                    "components": {"%s:color" % NS: colour}}]}],
+                        "conditions": [{"condition": "minecraft:survives_explosion"}]}]}
+    files["data/%s/loot_table/blocks/%s.json" % (NS, name)] = table
+    files[RES_26_3 + "data/%s/loot_table/blocks/%s.json" % (NS, name)] = loot_26_3(table)
+    mineable.append(block_id(name))
+    lang["block.%s.%s" % (NS, name)] = title(name) + " (Legacy)"
+    lang["item.%s.%s" % (NS, name)] = title(name) + " (Legacy)"
+
+
+def emit_chroma_cube_data():
+    """The chroma cube's crafting (base recipe + one dye recolour per old neon colour, reusing the neon_<colour>
+    recipe ids so recipe books carry over), the paint gun recipe, and the cube's place in the old neon family."""
+    files["data/%s/recipe/chroma_cube.json" % NS] = {
+        "type": "minecraft:crafting_shaped", "pattern": [" G ", "GQG", " G "],
+        "key": {"G": "minecraft:glass", "Q": "minecraft:glowstone_dust"},
+        "result": {"id": block_id("chroma_cube"), "count": 4}}
+    for c in NEON:
+        files["data/%s/recipe/neon_%s.json" % (NS, c)] = {
+            "type": "minecraft:crafting_shapeless",
+            "ingredients": ["minecraft:%s_dye" % c, block_id("chroma_cube")],
+            "result": {"id": block_id("chroma_cube"), "count": 1, "components": {"%s:color" % NS: c}}}
+    files["data/%s/recipe/paint_gun.json" % NS] = {
+        "type": "minecraft:crafting_shaped", "pattern": ["IB", "S "],
+        "key": {"I": "minecraft:iron_ingot", "B": "minecraft:glass_bottle", "S": "minecraft:stick"},
+        "result": {"id": "%s:paint_gun" % NS, "count": 1}}
+    decor_tags.setdefault(NEON_LEGACY, []).append(block_id("chroma_cube"))
+
+
 def emit_cube(name, t, fam):
     files["assets/%s/blockstates/%s.json" % (NS, name)] = {"variants": {"": {"model": "%s:block/%s" % (NS, name)}}}
     # A full cube whose faces carry tintindex 0, so the DecorColorTintSource can paint it
@@ -437,7 +495,7 @@ STONECUT_COUNT = {"slab": 2, "stairs": 1, "wall": 1}
 
 def emit_recipes():
     for name, kind, t, fam, mat in SPEC:
-        if kind == "cube" and mat:
+        if kind == "cube" and mat and fam != NEON_LEGACY:
             files["data/%s/recipe/%s.json" % (NS, name)] = cube_recipe(name, fam, mat)
         elif kind in ("slab", "stairs", "wall", "pane"):
             files["data/%s/recipe/%s.json" % (NS, name)] = shape_recipe(name, CUBE_OF[t], kind)
@@ -555,6 +613,10 @@ def _el(frm, to, faces, texture, emit=0, uv=None, cull=True):
         elif isinstance(cull, dict) and cull.get(f):
             face["cullface"] = cull[f]
         fs[f] = face
+    if emit:
+        # Chroma (0.8.0): emissive layers take the hub colour through the tint bridge (white = unchanged).
+        for face in fs.values():
+            face["tintindex"] = 0
     e = {"from": frm, "to": to}
     if emit:
         e["shade"] = False
@@ -787,6 +849,9 @@ def emit_luminous():
 def main():
     emit = {"cube": emit_cube, "slab": emit_slab, "stairs": emit_stairs, "wall": emit_wall, "pane": emit_pane}
     for name, kind, t, fam, _mat in SPEC:
+        if fam == NEON_LEGACY:
+            emit_neon_shim(name, t)
+            continue
         emit[kind](name, t, fam)
         # 1.21.4+/26.x: every item needs a client-item file at assets/<ns>/items/<id>.json
         # pointing at its model, or the item icon renders as the missing texture. Every SPEC block is
@@ -797,6 +862,7 @@ def main():
                       "tints": [{"type": "%s:decor_color" % NS}]}}
     emit_tinted_templates()
     emit_recipes()
+    emit_chroma_cube_data()
     emit_luminous()
 
     # The tools/collections layer: gen_collections.py owns those blocks' own files; their shared
@@ -834,6 +900,28 @@ def main():
 
 
 LANG_FILE = "assets/%s/lang/en_us.json" % NS
+# Outputs under this prefix land in common/src/main/resources-26.3 (the 26.3 loot format overlay).
+RES_26_3 = "../resources-26.3/"
+
+
+def loot_26_3(table):
+    """Pre-26.3 block loot -> the 26.3 format (the collection kit's converter)."""
+    import importlib
+    _collections_pkg()
+    return importlib.import_module("nerodecor_collections._kit").loot_26_3(table)
+
+
+def _collections_pkg():
+    import importlib.util
+    pkg = sys.modules.get("nerodecor_collections")
+    if pkg is None:
+        d = os.path.join(HERE, "collections")
+        spec = importlib.util.spec_from_file_location("nerodecor_collections", os.path.join(d, "__init__.py"),
+                                                      submodule_search_locations=[d])
+        pkg = importlib.util.module_from_spec(spec)
+        sys.modules["nerodecor_collections"] = pkg
+        spec.loader.exec_module(pkg)
+    return pkg
 
 COLLECTIONS = {"lang": {}, "mineable": [], "decor": {}, "owned": set()}
 

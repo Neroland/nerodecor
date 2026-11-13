@@ -7,10 +7,17 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
+import net.neoforged.neoforge.event.level.ChunkEvent;
+import net.neoforged.neoforge.event.tick.ServerTickEvent;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.chunk.LevelChunk;
 
 import za.co.neroland.nerodecor.NeroDecorCommon;
 import za.co.neroland.nerodecor.client.NeroDecorClient;
+import za.co.neroland.nerodecor.chroma.net.ChromaSync;
 import za.co.neroland.nerodecor.command.NeroDecorCommands;
+import za.co.neroland.nerodecor.content.NeonFold;
+import za.co.neroland.nerodecor.platform.NeoForgeChromaNet;
 import za.co.neroland.nerodecor.registry.NeoForgeRegistrationFactory;
 import za.co.neroland.nerodecor.telemetry.NeroDecorTelemetry;
 
@@ -29,6 +36,14 @@ public final class NeroDecorNeoForge {
         // Showcase command (/nerodecor gallery) on the game bus.
         NeoForge.EVENT_BUS.addListener((RegisterCommandsEvent event) ->
                 NeroDecorCommands.register(event.getDispatcher()));
+        // Chroma 0.8.0: packets, static sync + light (server tick), neon fold on chunk load.
+        modEventBus.addListener(NeoForgeChromaNet::register);
+        NeoForge.EVENT_BUS.addListener((ServerTickEvent.Post event) -> ChromaSync.tick(event.getServer()));
+        NeoForge.EVENT_BUS.addListener((ChunkEvent.Load event) -> {
+            if (event.getLevel() instanceof ServerLevel level && event.getChunk() instanceof LevelChunk chunk) {
+                NeonFold.onChunkLoad(level, chunk);
+            }
+        });
         //? if >=1.21.9 {
         if (FMLEnvironment.getDist() == Dist.CLIENT) {
         //?} else {
