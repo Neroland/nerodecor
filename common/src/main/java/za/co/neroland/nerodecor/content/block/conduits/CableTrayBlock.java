@@ -28,7 +28,7 @@ public class CableTrayBlock extends ShapedBlock {
 
     public CableTrayBlock(Properties properties) {
         super(properties);
-        registerDefaultState(defaultBlockState().setValue(BlockStateProperties.FACING, Direction.DOWN)
+        registerDefaultState(defaultBlockState().setValue(FACE, Direction.DOWN)
                 .setValue(BlockStateProperties.AXIS, Direction.Axis.X)
                 .setValue(AxisLinkBlock.POS_LINK, false).setValue(AxisLinkBlock.NEG_LINK, false));
         bakeShapes();
