@@ -693,18 +693,6 @@
     "assets/nerodecor/textures/block/bulkhead/viewport_frame_f6.png": "22bd066e9c11113596a23b976a2edf7e3353c72fb8af3502c1fb423475620f89",
     "assets/nerodecor/textures/block/bulkhead/viewport_frame_f7.png": "39277d34702eb39ac650d194bca06bd6697f0fce6383b879a7bd275194cb244e",
     "assets/nerodecor/textures/block/bulkhead/viewport_frame_f8.png": "80ef5d0c7a89d9db58f43b4d51955945088e1e4efa4e619d2a13ce2703f9ba73",
-    "assets/nerodecor/textures/block/bulkhead/viewport_frame_f9.png": "66e8e05cdb58e0fd05896d8164b054166fc644c02dc7d5ef26b514024cf74f61",
-    "data/nerodecor/loot_table/blocks/access_pad.json": "4b0d8c757202039a4dc9987c9d55ac29467167784a6e4f591a9b9d58efd50865",
-    "data/nerodecor/loot_table/blocks/airlock_frame.json": "eb74e8c3a3bcbc160ae577dcaf2860ca8fd14f6bd03a0cb9724a7860c98939e8",
-    "data/nerodecor/loot_table/blocks/blast_door.json": "e3b701d23bffa0cbee9e26c4c7cc401bab4a6543a653b335de44d1b77eb2b7a9",
-    "data/nerodecor/loot_table/blocks/canopy_glass.json": "e98e66b7ca7989ec8627e20117bbf6e0507a0b2aaf20b1b9ae8f41d7d008da5f",
-    "data/nerodecor/loot_table/blocks/door_status_light.json": "2f1eba80e268b108f6430433f8bcc0e41d83c5824b5b4bc3c0d2140888a8876c",
-    "data/nerodecor/loot_table/blocks/iris_hatch.json": "75453feb1378e505876b7fff7f535aaa2563c6b6a75f3800ff5551888e07961c",
-    "data/nerodecor/loot_table/blocks/porthole.json": "01595cf84bc0a1223745d7ff5751ca362fe2fd834fd4d97f2027bcca8d315317",
-    "data/nerodecor/loot_table/blocks/pressure_trapdoor.json": "49796ff1f7eb380914a47b01afb508fc12d9e430c3b0801980daf3553ef37e06",
-    "data/nerodecor/loot_table/blocks/shutter.json": "6bce40c9c065744a192eb509ae970e6373ca6c3f256f9cbcf0ee58297f4326fd",
-    "data/nerodecor/loot_table/blocks/sliding_door.json": "16d66167592bb1ecb0927010db5e52c33fb34b917b185e669df540ae16feb9bd",
-    "data/nerodecor/loot_table/blocks/smart_glass.json": "68f34536d7dbdd89436ab4c644f9f2594e51aa3eb4aa6920c98ba0e9e4928826",
-    "data/nerodecor/loot_table/blocks/viewport_frame.json": "730ca15a57146464d10e6327a0902d7b26507591b9d7b1bb546ffded88c7910a"
+    "assets/nerodecor/textures/block/bulkhead/viewport_frame_f9.png": "66e8e05cdb58e0fd05896d8164b054166fc644c02dc7d5ef26b514024cf74f61"
   }
 }

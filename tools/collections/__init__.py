@@ -20,8 +20,10 @@ as `collections`, so it cannot shadow the standard library.
 import importlib
 import json
 import os
+import re
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+JAVA = os.path.join(os.path.dirname(os.path.dirname(HERE)), "common", "src", "main", "java")
 COLLECTIONS = ["chroma_lights", "bulkhead", "holo", "command", "lab_habitat", "gantry",
                "conduits", "seven_worlds", "ancients", "greebles", "chroma_core"]
 
@@ -40,6 +42,34 @@ def blocks(name, examples=False):
 def items(name):
     """Item-only art a collection declares (ITEMS, a list of _kit.Item); [] when it has none."""
     return list(getattr(module(name), "ITEMS", []))
+
+
+_REGISTERED = None
+_COMMENTS = re.compile(r"/\*.*?\*/|//[^\n]*", re.S)
+_REGISTER = re.compile(r"\b(?:register|block)\(\s*\"([a-z0-9_]+)\"")
+
+
+def registered_ids():
+    """Ids the Java sources register with a string literal (`X.register("id", ...)` or
+    `CollectionRegistries.block("id", ...)`), comments ignored. A collection block's DATA files (loot
+    tables, recipe, mineable tag entry) are only emitted once its id is registered: a loot table naming
+    an unregistered item fails to parse and takes the whole loot registry down on 26.x, and a plain tag
+    entry for an unknown block drops the whole tag. Assets (models, textures, lang) are always emitted."""
+    global _REGISTERED
+    if _REGISTERED is None:
+        ids = set()
+        for root, _dirs, names in os.walk(JAVA):
+            for n in names:
+                if n.endswith(".java"):
+                    with open(os.path.join(root, n), encoding="utf-8") as fh:
+                        ids.update(_REGISTER.findall(_COMMENTS.sub("", fh.read())))
+        _REGISTERED = ids
+    return _REGISTERED
+
+
+def has_data(block):
+    """True when the block is registered in Java, so its data files may ship (see registered_ids)."""
+    return block.id in registered_ids()
 
 
 def manifest_path(name):
@@ -63,10 +93,11 @@ def aggregate(strict=True, log=print):
     for name in COLLECTIONS:
         try:
             for b in blocks(name):
-                agg["owned"].update(block_json(name, b))
+                agg["owned"].update(block_json(name, b, data=has_data(b)))
                 lang, fam = block_aggregates(name, b)
                 agg["lang"].update(lang)
-                agg["mineable"].append("nerodecor:" + b.id)
+                if has_data(b):
+                    agg["mineable"].append("nerodecor:" + b.id)
                 agg["decor"].setdefault(fam, []).append("nerodecor:" + b.id)
             for it in items(name):
                 agg["owned"].update(item_json(name, it))

@@ -14,7 +14,9 @@ import net.minecraft.world.level.material.MapColor;
 
 import za.co.neroland.nerodecor.NeroDecorCommon;
 import za.co.neroland.nerodecor.client.ctm.CtmStyle;
+import za.co.neroland.nerodecor.content.DecorColor;
 import za.co.neroland.nerodecor.content.block.DecorCubeBlock;
+import za.co.neroland.nerodecor.content.block.NeonShimBlock;
 import za.co.neroland.nerodecor.content.block.DecorPaneBlock;
 import za.co.neroland.nerodecor.content.block.DecorSlabBlock;
 import za.co.neroland.nerodecor.content.block.DecorStairBlock;
@@ -52,6 +54,9 @@ public final class DecorBlocks {
             "red", "orange", "yellow", "lime", "green", "cyan",
             "light_blue", "blue", "purple", "magenta", "pink", "white"};
 
+    /** The twelve legacy {@code neon_<colour>} shim blocks (hidden; registered, never in {@link #ALL}). */
+    public static final List<RegistryEntry<Block>> NEON_SHIMS = new ArrayList<>();
+
     /** A hull block used by the {@code /nerodecor gallery} paint row; assigned in {@link #init()}. */
     public static RegistryEntry<Block> HULL_NERO_ALLOY;
 
@@ -82,9 +87,12 @@ public final class DecorBlocks {
             pane("glass_" + f + "_pane", FAM_GLASS, DecorBlocks::glass);
             slab("glass_" + f + "_slab", FAM_GLASS, CtmStyle.GLASS, DecorBlocks::glass);
         }
-        // Neon light strips: one per colour.
+        // Neon (0.7.x): folded into the Chroma Cube in 0.8.0. The ids stay registered as hidden shims (not in ALL:
+        // no creative tab, recipe, link row or gallery tile) that turn into a same-colour chroma_cube; see NeonFold.
         for (String c : NEON_COLOURS) {
-            cube("neon_" + c, FAM_NEON, CtmStyle.STRIP, DecorBlocks::neon);
+            DecorColor dye = DecorColor.valueOf(c.toUpperCase(java.util.Locale.ROOT));
+            NEON_SHIMS.add(BLOCKS.register("neon_" + c,
+                    key -> new NeonShimBlock(neon(base(key)), FAM_NEON, dye)));
         }
     }
 
@@ -153,7 +161,8 @@ public final class DecorBlocks {
         return BlockBehaviour.Properties.of().setId(key);
     }
 
-    static RegistryEntry<Block> track(RegistryEntry<Block> entry) {
+    /** Adds a registered block to {@link #ALL} (block item, creative tab, paint tint, link catalogue). */
+    public static RegistryEntry<Block> track(RegistryEntry<Block> entry) {
         ALL.add(entry);
         return entry;
     }

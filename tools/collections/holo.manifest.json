@@ -218,14 +218,6 @@
     "assets/nerodecor/textures/block/holo/world_globe_scan.png": "23e5f835547d1642dfcddd046386763255dd7697423be4a14478b88a6f9e7940",
     "assets/nerodecor/textures/block/holo/world_globe_scan.png.mcmeta": "b308a3ea4868ebd2a72102d24da34f077b0fcef95e7fda8b44d224e9006d553e",
     "assets/nerodecor/textures/block/holo/world_globe_station.png": "5ba730367c09a731827f7f116401becdd17de41faa4fd2256894fb250b47c0a2",
-    "assets/nerodecor/textures/block/holo/world_globe_station_glow.png": "a9e9ff2d2c6f77e129c4db9921ecebf5c63d735e0aafeb25e6692601fd7e5a13",
-    "data/nerodecor/loot_table/blocks/arrow_sign.json": "a49153b230cab9bca13ded2927657a3dc9342987b7f28752074695fcf80afebd",
-    "data/nerodecor/loot_table/blocks/holo_curtain.json": "5078ecff4c446f9160452900d93ad823064fede6258ae2a11c13bca74a9ca289",
-    "data/nerodecor/loot_table/blocks/holo_plinth.json": "254ddc3a2e4b586ff4c0c22194999e3c16c6d7696a64e6980ee12b99c58daa9f",
-    "data/nerodecor/loot_table/blocks/holo_projector.json": "7bce92f2840d2871e3027abe204dc81bd6078199410ddaa4cdac990512afbb10",
-    "data/nerodecor/loot_table/blocks/holo_sign.json": "8e0fbceb0e2b4365c953032d636075c8eb904b8472d8ff25b5ad100a8e6730fc",
-    "data/nerodecor/loot_table/blocks/holo_table.json": "d2cec18a93604e07e18ed0cbff1b60c597245066993a4524a7606a8fd626e01e",
-    "data/nerodecor/loot_table/blocks/ticker_strip.json": "890c2c8c6dfebb92eecf82ebbe55e9b8ef6d1a6d2eb6fc8a4d7e9e27ef79b094",
-    "data/nerodecor/loot_table/blocks/world_globe.json": "39c5e1ed4c2f8902229f8d50fc6a9c950ecd3968296af939aca666bf0bc18082"
+    "assets/nerodecor/textures/block/holo/world_globe_station_glow.png": "a9e9ff2d2c6f77e129c4db9921ecebf5c63d735e0aafeb25e6692601fd7e5a13"
   }
 }

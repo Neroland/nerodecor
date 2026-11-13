@@ -5,6 +5,10 @@ import java.util.List;
 //? if >=1.21.4 {
 import net.minecraft.client.color.item.ItemTintSources;
 //?}
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 //? if >=1.21.6 {
 import net.minecraftforge.eventbus.api.bus.BusGroup;
@@ -13,10 +17,15 @@ import net.minecraftforge.eventbus.api.bus.BusGroup;
 *///?}
 
 import za.co.neroland.nerodecor.client.DecorColorItemTint;
+import za.co.neroland.nerodecor.client.ClientRenderRegistry;
 import za.co.neroland.nerodecor.client.DecorColorTintSource;
 import za.co.neroland.nerodecor.registry.DecorBlocks;
 
-/** Forge client-only wiring (block + item paint tint). Loaded only behind {@code Dist.CLIENT}. */
+/**
+ * Forge client-only wiring (block + item paint tint, collection renderers). Loaded only behind {@code Dist.CLIENT}.
+ * Render layers come from the model JSON {@code render_type} (1.21.x) or the texture alpha (26.x), so
+ * {@link ClientRenderRegistry#blockLayers()} needs no registration here.
+ */
 public final class ForgeClientSetup {
 
     private ForgeClientSetup() {
@@ -55,5 +64,22 @@ public final class ForgeClientSetup {
         modBusGroup.addListener((RegisterColorHandlersEvent.Item event) ->
                 event.register(DecorColorItemTint.INSTANCE, DecorBlocks.paintableBlocks()));
         *///?}
+        //? if >=1.21.9 {
+        EntityRenderersEvent.RegisterRenderers.BUS.addListener(ForgeClientSetup::onRegisterRenderers);
+        //?} else if >=1.21.6 {
+        /*EntityRenderersEvent.RegisterRenderers.getBus(modBusGroup).addListener(ForgeClientSetup::onRegisterRenderers);
+        *///?} else {
+        /*modBusGroup.addListener(ForgeClientSetup::onRegisterRenderers);
+        *///?}
+    }
+
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    private static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
+        for (ClientRenderRegistry.BlockEntityRendererEntry e : ClientRenderRegistry.blockEntityRenderers()) {
+            event.registerBlockEntityRenderer((BlockEntityType) e.type().get(), e.provider());
+        }
+        for (ClientRenderRegistry.EntityRendererEntry e : ClientRenderRegistry.entityRenderers()) {
+            event.registerEntityRenderer((EntityType) e.type().get(), (EntityRendererProvider) e.provider());
+        }
     }
 }

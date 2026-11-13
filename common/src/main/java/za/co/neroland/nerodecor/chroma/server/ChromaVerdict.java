@@ -26,7 +26,9 @@ public enum ChromaVerdict {
     BAD_CHANNEL,
     NOT_LINKED,
     SELECTION_TOO_LARGE,
-    RATE_LIMITED;
+    RATE_LIMITED,
+    /** An edit batch referenced a palette entry that does not exist (Stage 3 sync ops). */
+    BAD_OP;
 
     public boolean isOk() {
         return this == OK || this == ALREADY_LINKED;

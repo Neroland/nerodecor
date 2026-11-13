@@ -186,14 +186,6 @@
     "assets/nerodecor/textures/block/command/wall_screen_glow_f8.png": "bd2e2456c5432e8e373ca07b9292e91a55b3d97419bea62e149854c837ba0bda",
     "assets/nerodecor/textures/block/command/wall_screen_glow_f8.png.mcmeta": "b308a3ea4868ebd2a72102d24da34f077b0fcef95e7fda8b44d224e9006d553e",
     "assets/nerodecor/textures/block/command/wall_screen_glow_f9.png": "a6380179f83a8777f9f94b542cd4c1e618fbce210a153d76bace9d3e971370d0",
-    "assets/nerodecor/textures/block/command/wall_screen_glow_f9.png.mcmeta": "b308a3ea4868ebd2a72102d24da34f077b0fcef95e7fda8b44d224e9006d553e",
-    "data/nerodecor/loot_table/blocks/blinkenlight_panel.json": "dd677097ef2406e8dfa8f35dbae01c65bc540343012c015f31604913d01d8c72",
-    "data/nerodecor/loot_table/blocks/command_console.json": "2eef65433401c7c987b556f077684c5692bdd536362f8d7aee37629c030b2849",
-    "data/nerodecor/loot_table/blocks/drive_rack.json": "822db1698623ea113d2fd023134061238e6840297884249aca024e252699e3ab",
-    "data/nerodecor/loot_table/blocks/keyboard_shelf.json": "e80068326efe89b19d3119687032908606d174158567bff16b7fc6d3aaaf7ba8",
-    "data/nerodecor/loot_table/blocks/operator_chair.json": "7eb4ddb89dcf0c7aa371019eda95e12cc12e4dd040c35c7717ceb8bb99ce0ec9",
-    "data/nerodecor/loot_table/blocks/patch_panel.json": "1902d3265e8a9aa8293cb4b85ca586620e7c50a508dbe5da1c5bf955cb47f450",
-    "data/nerodecor/loot_table/blocks/server_rack.json": "6c695487b0e829268e633772c4311566991137f7bc44ccab4dc958b037c3af67",
-    "data/nerodecor/loot_table/blocks/wall_screen.json": "e5194e40fa4ffa10aa708fc77f7bdb5d5a1d17c62599363d48e77d2631c0abc7"
+    "assets/nerodecor/textures/block/command/wall_screen_glow_f9.png.mcmeta": "b308a3ea4868ebd2a72102d24da34f077b0fcef95e7fda8b44d224e9006d553e"
   }
 }

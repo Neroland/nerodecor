@@ -19,6 +19,8 @@ Per-block outputs (relative to common/src/main/resources):
   assets/nerodecor/blockstates/<id>.json, items/<id>.json, models/item/<id>.json,
   assets/nerodecor/models/block/<collection>/*.json, textures/block/<collection>/*.png(.mcmeta),
   data/nerodecor/loot_table/blocks/<id>.json, data/nerodecor/recipe/<id>.json (if declared)
+  ../resources-26.3/data/nerodecor/loot_table/blocks/<id>.json (the same loot in the 26.3 format;
+  paths with the _kit.RES_26_3 prefix are relative to common/src/main/resources-26.3)
 Item-only art (a module's ITEMS + ITEM_TEXTURES, see _kit.Item):
   assets/nerodecor/models/item/<id>.json, items/<id>.json, textures/item/<collection>/<tid>.png
 Shared files (en_us.json, mineable/pickaxe, neroland:decor/<family>) belong to gen_resources.py,
@@ -84,7 +86,7 @@ def build(pkg, name, examples=False):
     outs, arts, blocks = {}, {}, pkg.blocks(name, examples)
     refs = set()
     for b in blocks:
-        for rel, obj in k.block_json(name, b).items():
+        for rel, obj in k.block_json(name, b, data=pkg.has_data(b)).items():
             if rel in outs:
                 raise ValueError("%s: two blocks emit %s" % (name, rel))
             outs[rel] = render_json(obj)
@@ -171,7 +173,7 @@ def aggregate_problems(pkg, names):
             for key, val in entries.items():
                 if lang.get(key) != val:
                     out.append("aggregate: en_us %s" % key)
-            if bid not in pick:
+            if pkg.has_data(b) and bid not in pick:
                 out.append("aggregate: mineable/pickaxe %s" % bid)
             fam_ids = {v["id"] for v in load("data/neroland/tags/block/decor/%s.json" % fam).get("values", [])}
             if bid not in fam_ids:
@@ -183,7 +185,9 @@ def aggregate_problems(pkg, names):
     return out
 
 
-def write(root, rel, data):
+def write(root, rel, data, dry=False):
+    if dry and rel.startswith("../"):  # dry runs keep the 26.3 overlay inside the output folder
+        rel = rel[3:]
     path = os.path.join(root, rel)
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "wb") as fh:  # truncate in place (the dev mount cannot unlink/replace)
@@ -388,7 +392,7 @@ def main():
         agg = {"lang": {}, "decor": {}}
         for n in names:
             for rel, data in built[n].items():
-                write(args.out, rel, data)
+                write(args.out, rel, data, dry=True)
             for b in pkg.blocks(n, args.examples):
                 lang, fam = kit().block_aggregates(n, b)
                 agg["lang"].update(lang)
@@ -447,6 +451,11 @@ def main():
         total_w += len(new) + len(stale)
         total_o += len(outs)
     print("gen_collections: %d collections, %d outputs (%d written)" % (len(names), total_o, total_w))
+    pending = [b.id for n in names for b in pkg.blocks(n) if not pkg.has_data(b)]
+    if pending:
+        print("gen_collections: %d block(s) not registered in Java yet -- loot/recipe/mineable withheld "
+              "until they are (rerun after registering): %s" % (len(pending), ", ".join(pending[:8])
+                                                               + (", ..." if len(pending) > 8 else "")))
     if not (args.no_aggregates or args.multiloader):
         r = subprocess.run([sys.executable, os.path.join(HERE, "gen_resources.py")])
         if r.returncode:

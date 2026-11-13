@@ -259,14 +259,6 @@
     "assets/nerodecor/textures/block/gantry/strut_flange.png": "9cdbbad9ba7f11178a51bc31d0fa1b33e7923c98984be8fff48e2175e043059c",
     "assets/nerodecor/textures/block/gantry/truss_beam.png": "0342cb81e22a21ad7eced82d939f8d1b4c960029128981cf6ade81db799406b2",
     "assets/nerodecor/textures/block/gantry/truss_beam_b.png": "95850c4de26f4cac0fe5e29eb05295904e630c453e3758a036659064983d6c71",
-    "assets/nerodecor/textures/block/gantry/truss_beam_end.png": "894cda674ea9f4c64a257ac5add4543b15340ce31e3e2c14bdd707fdd5560028",
-    "data/nerodecor/loot_table/blocks/catwalk.json": "869d5b8033d2f6378e6eae2439fb74a1fd9e3945d73ed7dd08503e631d645537",
-    "data/nerodecor/loot_table/blocks/catwalk_stairs.json": "eff8f2dd8346cb1dcb4efc5da475883f9a44a2857813f78a1c648965d512b78c",
-    "data/nerodecor/loot_table/blocks/floor_grate.json": "a1a5d94ed0042190f3c7a221ee3a69739ca0c512885e77f516ced9257f34a58d",
-    "data/nerodecor/loot_table/blocks/floor_grate_slab.json": "9057906aa2c136fd26fed691f89456e5e02fffec7de0b4d13b0b0bfb551632aa",
-    "data/nerodecor/loot_table/blocks/gantry_ladder.json": "cd4e2795aa81591d98d29122b496e871b42460eb9b6224db0d1a3ff70dfabde9",
-    "data/nerodecor/loot_table/blocks/railing.json": "0c91b6965153b9db8a1f3411aba7994cf422bef802238ed3c79ce863379f9a50",
-    "data/nerodecor/loot_table/blocks/strut.json": "4d5bc1655ce85e2584c9078eada063de2263d3d26977bef882ace951c4570e1f",
-    "data/nerodecor/loot_table/blocks/truss_beam.json": "950229a2e3c2f9e9b2a9b0a7e64bbab8db376eeb6675fb581aab9b2d0ce111d6"
+    "assets/nerodecor/textures/block/gantry/truss_beam_end.png": "894cda674ea9f4c64a257ac5add4543b15340ce31e3e2c14bdd707fdd5560028"
   }
 }

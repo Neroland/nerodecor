@@ -60,7 +60,9 @@ class Block:
     family      neroland:decor/<family> tag (default: the collection name)
     recipe      optional recipe json written to data/nerodecor/recipe/<id>.json
     loot        optional loot table json (default: drops itself, survives_explosion). Use it for
-                blocks whose drop must carry data, e.g. copy_components from the block entity
+                blocks whose drop must carry data, e.g. copy_components from the block entity.
+                Written in the pre-26.3 format; the runner also writes the 26.3-format copy to
+                common/src/main/resources-26.3 (loot_26_3)
     render_type optional model render_type (emissive blocks default to minecraft:cutout)
 
     Every emitted block model gets "parent": "minecraft:block/block" unless it sets its own parent,
@@ -813,10 +815,72 @@ def validate_model(where, model):
 
 
 BLOCK_PARENT = "minecraft:block/block"
+# Output paths starting with this prefix land in common/src/main/resources-26.3 (merged over the shared
+# resources for 26.3+ nodes); every other path is relative to common/src/main/resources.
+RES_26_3 = "../resources-26.3/"
 
 
-def block_json(coll, b):
-    """Every JSON file for one block: {rel_path: obj}, relative to common/src/main/resources."""
+# --- 26.3 loot format ------------------------------------------------------------------------
+def _ordered(d):
+    """26.3 loot JSON key order: "type" first, the rest sorted (matches the hand-written overlays)."""
+    return dict(([("type", d["type"])] if "type" in d else []) + sorted((k, v) for k, v in d.items() if k != "type"))
+
+
+def _cond_26_3(c):
+    c = dict(c)
+    t = c.pop("condition")
+    if t == "minecraft:block_state_property":
+        c = {"blocks": c.pop("block"), "state": c.pop("properties"), **c}
+        t = "minecraft:match_block"
+    c["type"] = t
+    return _ordered(c)
+
+
+def _conds_26_3(cs):
+    if len(cs) != 1:
+        raise ValueError("26.3 loot: only one condition per node is supported, got %d" % len(cs))
+    return _cond_26_3(cs[0])
+
+
+def _fn_26_3(f):
+    f = dict(f)
+    f["type"] = f.pop("function")
+    if "conditions" in f:
+        f["condition"] = _conds_26_3(f.pop("conditions"))
+    return _ordered(f)
+
+
+def loot_26_3(table):
+    """Pre-26.3 block loot table -> the 26.3 format (pool/entry `conditions` -> one `condition` with
+    `type`, `functions` -> `modifier` with `type`, block_state_property -> match_block, bonus_rolls 0
+    dropped)."""
+    pools = []
+    for p in table["pools"]:
+        p = dict(p)
+        if p.get("bonus_rolls", 0) == 0:
+            p.pop("bonus_rolls", None)
+        if "conditions" in p:
+            p["condition"] = _conds_26_3(p.pop("conditions"))
+        ents = []
+        for e in p["entries"]:
+            e = dict(e)
+            if "functions" in e:
+                e["modifier"] = [_fn_26_3(f) for f in e.pop("functions")]
+            if "conditions" in e:
+                e["condition"] = _conds_26_3(e.pop("conditions"))
+            ents.append(_ordered(e))
+        p["entries"] = ents
+        pools.append(_ordered(p))
+    out = {k: v for k, v in table.items() if k != "pools"}
+    out["pools"] = pools
+    return _ordered(out)
+
+
+
+
+def block_json(coll, b, data=True):
+    """Every JSON file for one block: {rel_path: obj}, relative to common/src/main/resources.
+    data=False leaves out the data files (loot tables, recipe): the block is not registered in Java yet."""
     check_block(coll, b)
     c = Ctx(coll, b)
     fn = custom_json if b.shape == "custom" else EMITTERS[(b.shape, b.connects)]
@@ -833,11 +897,16 @@ def block_json(coll, b):
     if b.paintable:
         item["model"]["tints"] = [{"type": "%s:decor_color" % NS}]
     out["assets/%s/items/%s.json" % (NS, b.id)] = item
-    out["data/%s/loot_table/blocks/%s.json" % (NS, b.id)] = b.loot or {
+    if not data:
+        return out
+    loot = b.loot or {
         "type": "minecraft:block",
         "pools": [{"rolls": 1, "bonus_rolls": 0,
                    "entries": [{"type": "minecraft:item", "name": "%s:%s" % (NS, b.id)}],
                    "conditions": [{"condition": "minecraft:survives_explosion"}]}]}
+    out["data/%s/loot_table/blocks/%s.json" % (NS, b.id)] = loot
+    # 26.3 changed the loot format; its nodes read this overlay instead (see loot_26_3)
+    out["%sdata/%s/loot_table/blocks/%s.json" % (RES_26_3, NS, b.id)] = loot_26_3(loot)
     if b.recipe:
         out["data/%s/recipe/%s.json" % (NS, b.id)] = b.recipe
     return out

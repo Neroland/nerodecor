@@ -203,14 +203,6 @@
     "assets/nerodecor/textures/block/greebles/warning_placard_oxygen.png": "36499f3f2f3f55123a1754e7c5419b3378ca6555e5866f4c32426c82a705972f",
     "assets/nerodecor/textures/block/greebles/warning_placard_radiation.png": "ee63f6cf4456ec19907f9d2cc47414a30564b874428cbd1386b3fd9f9f68a266",
     "assets/nerodecor/textures/block/greebles/warning_placard_suit.png": "ba26119aab7d0a1d3fcd10a7e5669fa337a132a99c3a6231c2631fcf5d1f4363",
-    "assets/nerodecor/textures/block/greebles/warning_placard_voltage.png": "887b07a6639d15b440456be0f41f04df68c8f4d3a5dcd18b823fc69a87f9e927",
-    "data/nerodecor/loot_table/blocks/deck_sign.json": "e16ab9159db4f599dfc5d8bdc42bb9cc414354b569314b382a404d67e3347036",
-    "data/nerodecor/loot_table/blocks/floor_arrow.json": "10b24566f844ef20198921c446a57d81eca635fa5515f76760a073563918035c",
-    "data/nerodecor/loot_table/blocks/hazard_stripe.json": "270b5ac8d9eebd7f4d5ce6ed8cb131c14ee9b586396629ca9336654b9b093338",
-    "data/nerodecor/loot_table/blocks/louvre_vent.json": "dd2e42f91fc847923c2fa95f382141228d535ecc8eb30a91931f6eed5e719264",
-    "data/nerodecor/loot_table/blocks/maintenance_panel.json": "401f4dc521f4aecfc59dddb209756cb4fda2f645d1d33342222b2d463ff7e9b7",
-    "data/nerodecor/loot_table/blocks/pipe_bracket.json": "1cb2857f7eded5ace395ab0ade2da8fb83f1e32ddd05ec2fe34d2b78b0c52c05",
-    "data/nerodecor/loot_table/blocks/rivet_plate.json": "60cabdaf159e2e60318d4ecc366f01ac9378f3de56639d95aa9c052cd2ef55b9",
-    "data/nerodecor/loot_table/blocks/warning_placard.json": "0c4492097deacfbce67696fb95e11aa257b8b543d16ea4d5411ff3951ff2a209"
+    "assets/nerodecor/textures/block/greebles/warning_placard_voltage.png": "887b07a6639d15b440456be0f41f04df68c8f4d3a5dcd18b823fc69a87f9e927"
   }
 }

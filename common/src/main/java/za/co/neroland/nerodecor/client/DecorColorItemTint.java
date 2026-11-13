@@ -20,7 +20,7 @@ import za.co.neroland.nerodecor.content.DecorColor;
 import za.co.neroland.nerodecor.registry.ModDataComponents;
 
 /**
- * The item-side counterpart of {@link DecorColorTintSource}: tints a paintable block item from the
+ * The item-side counterpart of {@link ChromaTintBridge}: tints a paintable block item from the
  * stack's {@code nerodecor:color} data component. A stack without the component, or with
  * {@link DecorColor#NATURAL}, renders opaque white (the base texture unchanged).
  *

@@ -6,11 +6,16 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 import java.util.function.LongPredicate;
 
+import za.co.neroland.nerodecor.chroma.ChromaColor;
+import za.co.neroland.nerodecor.chroma.ChromaOp;
+import za.co.neroland.nerodecor.chroma.ChromaOpBatch;
 import za.co.neroland.nerodecor.chroma.RelativePos;
 
 /**
@@ -23,6 +28,8 @@ public final class ChromaNetworkStore {
     private final Map<Long, HubNetwork> networks = new LinkedHashMap<>();
     private final Map<Long, Long> claims = new HashMap<>();
     private Runnable onChange = () -> { };
+    /** Ids of networks whose colouring may have changed since the last {@link #drainTouched()} (sync layer). */
+    private final Set<Long> touched = new LinkedHashSet<>();
 
     /** Called after every change (the SavedData marks itself dirty). */
     public void onChange(Runnable listener) {
@@ -31,6 +38,20 @@ public final class ChromaNetworkStore {
 
     private void changed() {
         onChange.run();
+    }
+
+    private void touch(long id) {
+        touched.add(id);
+    }
+
+    /** Networks whose linked blocks, palette, anchor or activity changed since the last call; clears the set. */
+    public Set<Long> drainTouched() {
+        if (touched.isEmpty()) {
+            return Set.of();
+        }
+        Set<Long> out = new LinkedHashSet<>(touched);
+        touched.clear();
+        return out;
     }
 
     public HubNetwork get(long id) {
@@ -71,6 +92,7 @@ public final class ChromaNetworkStore {
         network.setAnchor(x, y, z);
         network.setActive(true, 0L);
         networks.put(id, network);
+        touch(id);
         changed();
         return network;
     }
@@ -81,6 +103,7 @@ public final class ChromaNetworkStore {
         if (network.active()) {
             claimAll(network, pos -> true);
         }
+        touch(network.id());
         changed();
     }
 
@@ -89,6 +112,7 @@ public final class ChromaNetworkStore {
         HubNetwork network = networks.remove(id);
         if (network != null) {
             release(network);
+            touch(id);
             changed();
         }
         return network;
@@ -102,6 +126,7 @@ public final class ChromaNetworkStore {
         if (verdict == ChromaVerdict.OK) {
             network.put(RelativePos.pack(x - network.anchorX(), y - network.anchorY(), z - network.anchorZ()), 0, 0);
             claims.put(ChromaPos.pack(x, y, z), id);
+            touch(id);
             changed();
         }
         return verdict;
@@ -117,6 +142,7 @@ public final class ChromaNetworkStore {
             if (claims.getOrDefault(key, 0L) == id) {
                 claims.remove(key);
             }
+            touch(id);
             changed();
         }
         return verdict;
@@ -133,6 +159,7 @@ public final class ChromaNetworkStore {
         if (network != null) {
             network.remove(RelativePos.pack(x - network.anchorX(), y - network.anchorY(), z - network.anchorZ()));
         }
+        touch(id);
         changed();
         return true;
     }
@@ -154,6 +181,7 @@ public final class ChromaNetworkStore {
         network.setAnchor(x, y, z);
         network.setActive(true, 0L);
         int dropped = claimAll(network, keep);
+        touch(id);
         changed();
         return dropped;
     }
@@ -166,7 +194,58 @@ public final class ChromaNetworkStore {
         }
         release(network);
         network.setActive(false, now);
+        touch(id);
         changed();
+    }
+
+    /**
+     * Applies a validated edit batch (palette entries, block palette indices, zone assignments) atomically: every
+     * op is checked first and nothing changes unless all pass. Block ops must target blocks this network already
+     * controls, and {@code mayEdit} (absolute {@link ChromaPos}-packed position) must allow each of them.
+     */
+    public ChromaVerdict applyOps(long id, UUID actor, ChromaOpBatch batch, LongPredicate mayEdit) {
+        HubNetwork network = networks.get(id);
+        if (network == null) {
+            return ChromaVerdict.NO_NETWORK;
+        }
+        if (!network.active()) {
+            return ChromaVerdict.INACTIVE;
+        }
+        ChromaVerdict role = ChromaValidator.checkAction(network, actor, ChromaAction.PAINT);
+        if (!role.isOk()) {
+            return role;
+        }
+        if (batch.firstUnresolvedIndex(network.palette().size()) >= 0) {
+            return ChromaVerdict.BAD_OP;
+        }
+        for (ChromaOp op : batch.ops()) {
+            if (op.kind() == ChromaOp.Kind.SET_PALETTE_ENTRY) {
+                continue;
+            }
+            if (!network.isLinkedOffset(op.target())) {
+                return ChromaVerdict.NOT_LINKED;
+            }
+            if (op.kind() == ChromaOp.Kind.ASSIGN_ZONE && op.value() >= network.zones().size()) {
+                return ChromaVerdict.BAD_ZONE;
+            }
+            if (!mayEdit.test(network.absolute(op.target()))) {
+                return ChromaVerdict.PROTECTED;
+            }
+        }
+        for (ChromaOp op : batch.ops()) {
+            switch (op.kind()) {
+                case SET_PALETTE_ENTRY -> network.palette().set(op.target(), ChromaColor.fromPacked(op.value()));
+                case SET_INDEX -> network.put(op.target(), op.value(), network.zoneAt(op.target()));
+                case ASSIGN_ZONE -> network.put(op.target(), network.paletteIndexAt(op.target()), op.value());
+                default -> {
+                }
+            }
+        }
+        if (batch.size() > 0) {
+            touch(id);
+            changed();
+        }
+        return ChromaVerdict.OK;
     }
 
     public ChromaVerdict setTrust(long id, UUID actor, UUID target, ChromaRole role) {
@@ -227,6 +306,7 @@ public final class ChromaNetworkStore {
         if (wasActive) {
             claimAll(network, pos -> true);
         }
+        touch(id);
         changed();
         return ChromaVerdict.OK;
     }
@@ -243,6 +323,7 @@ public final class ChromaNetworkStore {
             HubNetwork network = it.next();
             if (network.owner().equals(player)) {
                 release(network);
+                touch(network.id());
                 it.remove();
                 any = true;
             } else if (network.forget(player)) {

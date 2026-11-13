@@ -151,14 +151,6 @@
     "assets/nerodecor/textures/block/lab_habitat/specimen_tank_fluid_glow_c11.png.mcmeta": "b308a3ea4868ebd2a72102d24da34f077b0fcef95e7fda8b44d224e9006d553e",
     "assets/nerodecor/textures/block/lab_habitat/specimen_tank_glass.png": "115cd5eed0b69c0f7b2ae919025694e9117cc97ad66af764738e6f5907dbe0b5",
     "assets/nerodecor/textures/block/lab_habitat/specimen_tank_lid.png": "ff00319d3ed26b8d6f5ad71f053b8e9cd4ab857b2a7d7d749eee68ca7ed47e10",
-    "assets/nerodecor/textures/block/lab_habitat/specimen_tank_surface.png": "2552abe993621e56fbadd3ef181ebc6518443bc4b36a4b3a06ef282149174258",
-    "data/nerodecor/loot_table/blocks/crew_bunk.json": "e606bcee69d675321940f4272e847922303b4f2164d566258772e8814c25b4ac",
-    "data/nerodecor/loot_table/blocks/fume_hood.json": "d14672e9d7f2f0ff6d5a5fc3f32dbb0fba691e2c1abe86d4c07d6c3c2f755f67",
-    "data/nerodecor/loot_table/blocks/lab_bench.json": "c59cedd4a6c28c6b252fea07dd94327c15b333d5cf1a8b8e4ae7e5ce4a769f2d",
-    "data/nerodecor/loot_table/blocks/lab_stool.json": "7b1e3354d875c7e49ff31e5477535e8ee2bcb01631bdf5580aaafd3ff5a34da0",
-    "data/nerodecor/loot_table/blocks/locker.json": "1b4c96db2ffa244cc107e3bf6263a50712072e0b7065cb76dcee5b7e691cc3b0",
-    "data/nerodecor/loot_table/blocks/planter.json": "6f8e1230c2d11df137e596f5f3265f31f37d0e4b8d96c77e16c03263f502ff15",
-    "data/nerodecor/loot_table/blocks/sample_fridge.json": "6b1e4191851860ea7f206211905ecf99697893b061c57fb71f00774f4d4c2b81",
-    "data/nerodecor/loot_table/blocks/specimen_tank.json": "18b87da6513da988f6e4b3f66267c47a4c8a84de43833f3f93d3a9fcf08af650"
+    "assets/nerodecor/textures/block/lab_habitat/specimen_tank_surface.png": "2552abe993621e56fbadd3ef181ebc6518443bc4b36a4b3a06ef282149174258"
   }
 }

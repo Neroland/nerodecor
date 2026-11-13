@@ -165,15 +165,6 @@
     "assets/nerodecor/textures/block/conduits/pipe_gauge_dial_glow.png.mcmeta": "e7eb60d94c3aacebe9bdcdbff8b24abbe9853da9ff551d1c5bca15b2d64593d6",
     "assets/nerodecor/textures/block/conduits/pipe_gauge_v.png": "e7691c662e1ca3ba206f97285ee61f47fc031c58961a53e6fa9a6d02c3db4541",
     "assets/nerodecor/textures/block/conduits/pipe_valve.png": "ce1bca4195c35c1571ebb7a21176730338792487e756c999d296a24075de7af8",
-    "assets/nerodecor/textures/block/conduits/pipe_valve_wheel.png": "d3b317c358ee64b12fb70b038002354ebfb0de8d51d2158d44bfbb6148f78efa",
-    "data/nerodecor/loot_table/blocks/beam_emitter_prop.json": "a49dcf54623cc18019a9479e095434d14bd5d06bf49d3abca1a73b1bb3e227da",
-    "data/nerodecor/loot_table/blocks/cable_tray.json": "30f030358f356c22c678ae25a9e16bd241f13d818632cf4ad3dca5fb0146df52",
-    "data/nerodecor/loot_table/blocks/coolant_tube.json": "424906fdaa8c0369be59d2fc0b8cb34e9b34fac39229ae62aaa028c063bacd53",
-    "data/nerodecor/loot_table/blocks/decor_pipe.json": "33e8c4038af9a69f7542b08fb827de02b9842668f2d913e5d5e65e4a6325934d",
-    "data/nerodecor/loot_table/blocks/duct.json": "7d4240082b66439848b700b614bb1ca4a8e3e647b95c9be0bb29b1ff64935c63",
-    "data/nerodecor/loot_table/blocks/duct_fan.json": "1e19b17ce09f6d5aff1e76befddff2d3bd36d7b19a053251f37f75f3cb0e4acd",
-    "data/nerodecor/loot_table/blocks/hanging_cables.json": "cc21d44702192693d903c567b486d39e50cafa5277ff50f73b035a0fe534aa91",
-    "data/nerodecor/loot_table/blocks/pipe_gauge.json": "aca2c458fdec30450e4efd2a8abfda97068d8e2754fe0beac26660ec3f1bc6ac",
-    "data/nerodecor/loot_table/blocks/pipe_valve.json": "22deab01fca89fbb713875db7a076ea968e722d696dbeb5d865b57b7a674ad3b"
+    "assets/nerodecor/textures/block/conduits/pipe_valve_wheel.png": "d3b317c358ee64b12fb70b038002354ebfb0de8d51d2158d44bfbb6148f78efa"
   }
 }

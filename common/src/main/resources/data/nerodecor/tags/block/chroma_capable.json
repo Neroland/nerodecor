@@ -5,6 +5,20 @@
     "#neroland:decor/panel",
     "#neroland:decor/glass",
     "#neroland:decor/neon",
-    "#neroland:decor/luminous"
+    "#neroland:decor/luminous",
+    "nerodecor:light_strip",
+    "nerodecor:edge_trim",
+    "nerodecor:floor_tile",
+    "nerodecor:floor_tile_slab",
+    "nerodecor:step_light",
+    "nerodecor:ceiling_coffer",
+    "nerodecor:light_pillar",
+    "nerodecor:neon_tube",
+    "nerodecor:light_pane",
+    "nerodecor:sconce_bar",
+    "nerodecor:halo_ring",
+    "nerodecor:cage_lamp",
+    "nerodecor:dormant_core",
+    "nerodecor:glyph_strip"
   ]
 }

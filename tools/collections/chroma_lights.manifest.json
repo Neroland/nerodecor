@@ -744,18 +744,6 @@
     "assets/nerodecor/textures/block/chroma_lights/sconce_bar_h_glow.png.mcmeta": "c12f3f31668d1f9e52206a3f62c639f644952f6344843aebc3ded0a67d8dc4c1",
     "assets/nerodecor/textures/block/chroma_lights/step_light.png": "20423840fc59d86a983fb78b5c3f98efdceaf62ca713cf31508e25d42a04ff63",
     "assets/nerodecor/textures/block/chroma_lights/step_light_glow.png": "d30be07181e57b402c9ab5b3c6fa263ded02d9028f98dd05516fde830a3a6a4e",
-    "assets/nerodecor/textures/block/chroma_lights/step_light_glow.png.mcmeta": "c12f3f31668d1f9e52206a3f62c639f644952f6344843aebc3ded0a67d8dc4c1",
-    "data/nerodecor/loot_table/blocks/cage_lamp.json": "5e4155681805220cc69bd1d9c1dc45bc303090407c1ff57c184200c6692edfb1",
-    "data/nerodecor/loot_table/blocks/ceiling_coffer.json": "f80a624e7731057133f1416ad7599e0027e33f68564e39021d8f9fd01df60d41",
-    "data/nerodecor/loot_table/blocks/edge_trim.json": "7d95068b74c4354fa4306cb1abbd54ef23f9f8ffdb0889bcc38bca9d36f6337e",
-    "data/nerodecor/loot_table/blocks/floor_tile.json": "1b48d6d210c62e64efe20a40baf05dcce5934624ae6c35b4fba3583cb43ff8da",
-    "data/nerodecor/loot_table/blocks/floor_tile_slab.json": "c61cb63766a69da44d91975a80d160b0b06e5f858d24854b9ef96c6287c22ea2",
-    "data/nerodecor/loot_table/blocks/halo_ring.json": "c74513703024351945d7460e6777e315cf89e1081aadee3b99f4e98a321b0c1b",
-    "data/nerodecor/loot_table/blocks/light_pane.json": "82fd29acde87da651c62065182d167f6d68ee5750fa442d6f8bb5d77d543a742",
-    "data/nerodecor/loot_table/blocks/light_pillar.json": "e9af1e568a1defbe03c59f530887af53a7f171cfc7081a09c9b5c43ec5f93b66",
-    "data/nerodecor/loot_table/blocks/light_strip.json": "c7379ad91bcd5f220e2bbf2499b43ad9f5ff16e194de4742d091283ba1576559",
-    "data/nerodecor/loot_table/blocks/neon_tube.json": "27c9650580eccfb947bde94903c3d0e63c238bdcc86a7ea7e2e3904f2bb95627",
-    "data/nerodecor/loot_table/blocks/sconce_bar.json": "eb11f4084c0868c6817389bc0e0c9dc2446a119901c97ab5b18a25cf46d3c452",
-    "data/nerodecor/loot_table/blocks/step_light.json": "280477e24d5c69b2591a30b73ad9020404c3e508918a382a69f6632022bc9f27"
+    "assets/nerodecor/textures/block/chroma_lights/step_light_glow.png.mcmeta": "c12f3f31668d1f9e52206a3f62c639f644952f6344843aebc3ded0a67d8dc4c1"
   }
 }

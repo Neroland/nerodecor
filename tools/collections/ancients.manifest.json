@@ -234,13 +234,6 @@
     "assets/nerodecor/textures/block/ancients/glyph_strip_glow_c11.png": "b1b027bfc7192f88713ba6736de58a252fb674810e3b1cb255a056e7f5dd77a2",
     "assets/nerodecor/textures/block/ancients/glyph_strip_glow_c11.png.mcmeta": "b308a3ea4868ebd2a72102d24da34f077b0fcef95e7fda8b44d224e9006d553e",
     "assets/nerodecor/textures/block/ancients/glyph_strip_glow_c11_t.png": "55a27649b4f42179f103a55cc294279fee125e453834a4d60e26ba72d32eea58",
-    "assets/nerodecor/textures/block/ancients/glyph_strip_glow_c11_t.png.mcmeta": "b308a3ea4868ebd2a72102d24da34f077b0fcef95e7fda8b44d224e9006d553e",
-    "data/nerodecor/loot_table/blocks/ancient_brick.json": "a8c9a4453ee611734c75e4823a387ed21aa1bd6a5a88009459d01557304a8723",
-    "data/nerodecor/loot_table/blocks/ancient_pillar.json": "dd989eb27c0022e3ea3385815eb615c838a59afb90147d14a56d52f4025c923a",
-    "data/nerodecor/loot_table/blocks/arch_lintel.json": "a1b4709bd895573221230d8701d192ee4124c5d4b8e6c1fa35bae2c70b1331d3",
-    "data/nerodecor/loot_table/blocks/cracked_ancient_brick.json": "51cac14b89ccaa87dcaf5de8983ce4f650f58aa163cb35d14040dd31a1a3959f",
-    "data/nerodecor/loot_table/blocks/dormant_core.json": "389a447739c06b4351ec10e2e7e48c6652687194f5eba8a55614ef54881eb0e7",
-    "data/nerodecor/loot_table/blocks/glyph_block.json": "85c5c3ed64fb99f3659537c4064df15e7a058c2b10756a8b2b1c4a892349b0e6",
-    "data/nerodecor/loot_table/blocks/glyph_strip.json": "36efa660871aac9812dbdb9260c328f7e12c7e59754e01c22ec8dc6d5ecb70b0"
+    "assets/nerodecor/textures/block/ancients/glyph_strip_glow_c11_t.png.mcmeta": "b308a3ea4868ebd2a72102d24da34f077b0fcef95e7fda8b44d224e9006d553e"
   }
 }

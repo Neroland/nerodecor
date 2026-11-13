@@ -114,12 +114,14 @@ jobs:
       # Build all six cells (loader x MC version). Each produces a distinctly named jar under
       # <loader>/versions/<mc>/build/libs. Forge's distributable is the jarJar output
       # ("*-all.jar", with embedded Sentry); the plain Forge jar is not shipped.
+      # CI runners have far less memory than the dev machine, so cap the daemon heap here (gradle.properties asks for 12G).
       - name: Build all cells
         env:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: >-
           ./gradlew
+          "-Dorg.gradle.jvmargs=-Xmx5G -XX:MaxMetaspaceSize=1G -Dfile.encoding=UTF-8"
           :fabric:1.21.1:build :fabric:1.21.4:build :fabric:1.21.5:build :fabric:1.21.8:build :fabric:1.21.10:build :fabric:1.21.11:build :fabric:26.1.2:build :fabric:26.2:build :fabric:26.3:build
           :neoforge:1.21.1:build :neoforge:1.21.4:build :neoforge:1.21.5:build :neoforge:1.21.8:build :neoforge:1.21.10:build :neoforge:1.21.11:build :neoforge:26.1.2:build :neoforge:26.2:build :neoforge:26.3:build
           :forge:1.21.1:build :forge:1.21.4:build :forge:1.21.5:build :forge:1.21.8:build :forge:1.21.10:build :forge:1.21.11:build :forge:26.1.2:build :forge:26.2:build :forge:26.3:build
@@ -137,6 +139,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: >-
           ./gradlew
+          "-Dorg.gradle.jvmargs=-Xmx5G -XX:MaxMetaspaceSize=1G -Dfile.encoding=UTF-8"
           :fabric:1.21.1:publish :fabric:1.21.4:publish :fabric:1.21.5:publish :fabric:1.21.8:publish :fabric:1.21.10:publish :fabric:1.21.11:publish :fabric:26.1.2:publish :fabric:26.2:publish :fabric:26.3:publish
           :neoforge:1.21.1:publish :neoforge:1.21.4:publish :neoforge:1.21.5:publish :neoforge:1.21.8:publish :neoforge:1.21.10:publish :neoforge:1.21.11:publish :neoforge:26.1.2:publish :neoforge:26.2:publish :neoforge:26.3:publish
           :forge:1.21.1:publish :forge:1.21.4:publish :forge:1.21.5:publish :forge:1.21.8:publish :forge:1.21.10:publish :forge:1.21.11:publish :forge:26.1.2:publish :forge:26.2:publish :forge:26.3:publish

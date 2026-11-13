@@ -29,6 +29,7 @@ public final class NeroDecorClient {
             return;
         }
         initialised = true;
+        ClientRenderRegistry.bootstrap();
         NeroDecorCommon.LOGGER.info("[NeroDecor] client init — connected textures: {}, emissive: {}",
                 NeroDecorConfig.connectedTexturesEnabled(), NeroDecorConfig.emissiveRenderingEnabled());
     }

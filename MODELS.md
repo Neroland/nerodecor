@@ -159,7 +159,13 @@ them into committed resources; the painting toolkit is `tools/collections/_kit.p
 
 Outputs: `blockstates/<id>.json`, `items/<id>.json` (with the `nerodecor:decor_color` tint only when
 `paintable`), `models/item/<id>.json`, loot table, optional recipe, models under
-`models/block/<collection>/` and textures under `textures/block/<collection>/`. Each collection has
+`models/block/<collection>/` and textures under `textures/block/<collection>/`.
+Block models get `"parent": "minecraft:block/block"` (vanilla item display transforms) unless they set
+one. Loot is written twice: `data/` in the pre-26.3 format and `resources-26.3/data/` in the 26.3 format
+(`Block(loot=...)` overrides the default self-drop). **Data files (loot, recipe, `mineable/pickaxe`) are
+withheld until the block id is registered in Java** (a literal `register("id"` / `block("id"`): an unknown
+item in a loot table breaks the 26.x loot registry, so rerun the runner after registering. Item-only art
+(no block) goes in a module's `ITEMS` (`_kit.Item`) + `ITEM_TEXTURES`; see `chroma_core.py`. Each collection has
 its own manifest (`tools/collections/<collection>.manifest.json`); `--check` reports new, stale,
 orphan, collision (a path another harness owns) and missing aggregate entries. The mount cannot
 delete files, so an orphan that cannot be removed is reported until you delete it by hand.

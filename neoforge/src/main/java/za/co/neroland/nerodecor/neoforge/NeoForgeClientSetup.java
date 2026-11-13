@@ -2,14 +2,23 @@ package za.co.neroland.nerodecor.neoforge;
 
 import java.util.List;
 
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 
 import za.co.neroland.nerodecor.client.DecorColorItemTint;
+import za.co.neroland.nerodecor.client.ClientRenderRegistry;
 import za.co.neroland.nerodecor.client.DecorColorTintSource;
 import za.co.neroland.nerodecor.registry.DecorBlocks;
 
-/** NeoForge client-only wiring (block + item paint tint). Loaded only behind {@code Dist.CLIENT}. */
+/**
+ * NeoForge client-only wiring (block + item paint tint, collection renderers). Loaded only behind
+ * {@code Dist.CLIENT}. Render layers come from the model JSON {@code render_type} (1.21.x) or the texture alpha (26.x),
+ * so {@link ClientRenderRegistry#blockLayers()} needs no registration here.
+ */
 public final class NeoForgeClientSetup {
 
     private NeoForgeClientSetup() {
@@ -32,5 +41,16 @@ public final class NeoForgeClientSetup {
         /*modEventBus.addListener((RegisterColorHandlersEvent.Item event) ->
                 event.register(DecorColorItemTint.INSTANCE, DecorBlocks.paintableBlocks()));
         *///?}
+        modEventBus.addListener(NeoForgeClientSetup::onRegisterRenderers);
+    }
+
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    private static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
+        for (ClientRenderRegistry.BlockEntityRendererEntry e : ClientRenderRegistry.blockEntityRenderers()) {
+            event.registerBlockEntityRenderer((BlockEntityType) e.type().get(), e.provider());
+        }
+        for (ClientRenderRegistry.EntityRendererEntry e : ClientRenderRegistry.entityRenderers()) {
+            event.registerEntityRenderer((EntityType) e.type().get(), (EntityRendererProvider) e.provider());
+        }
     }
 }

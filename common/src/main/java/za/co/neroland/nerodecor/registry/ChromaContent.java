@@ -15,15 +15,19 @@ import net.minecraft.world.level.material.MapColor;
 import za.co.neroland.nerolandcore.registry.BlockEntityTypeCompat;
 
 import za.co.neroland.nerodecor.NeroDecorCommon;
+import za.co.neroland.nerodecor.content.block.ChromaCubeBlock;
 import za.co.neroland.nerodecor.content.block.ChromaHubBlock;
 import za.co.neroland.nerodecor.content.block.ChromaHubBlockEntity;
 import za.co.neroland.nerodecor.content.item.ChromaHubItem;
 import za.co.neroland.nerodecor.content.item.ChromaLinkerItem;
 import za.co.neroland.nerodecor.content.item.LinkerState;
+import za.co.neroland.nerodecor.content.item.NeonShimItem;
+import za.co.neroland.nerodecor.content.item.PaintGunItem;
 import za.co.neroland.nerodecor.registry.RegistrationProvider.RegistryEntry;
 
 /**
- * Chroma (0.8.0) registrations: the hub block, its block entity, the hub and linker items and their data
+ * Chroma (0.8.0) registrations: the hub block, its block entity, the hub, linker and paint gun items, the Chroma
+ * Cube and the legacy neon shim items, and their data
  * components. Kept out of {@link DecorBlocks#ALL} (that list drives the generated decor resources); the hub's and
  * linker's assets are hand-authored.
  */
@@ -50,6 +54,11 @@ public final class ChromaContent {
     public static RegistryEntry<BlockEntityType<ChromaHubBlockEntity>> HUB_BLOCK_ENTITY;
     public static RegistryEntry<Item> HUB_ITEM;
     public static RegistryEntry<Item> LINKER;
+    /** The Chroma Cube (replaces the 12 neon cubes); tracked in {@link DecorBlocks#ALL} so it gets its block item. */
+    public static RegistryEntry<Block> CUBE;
+    public static RegistryEntry<Item> PAINT_GUN;
+    /** Items of the hidden neon shims (convert to chroma cubes; no tab, no recipe). */
+    public static final java.util.List<RegistryEntry<Item>> NEON_SHIM_ITEMS = new java.util.ArrayList<>();
 
     private ChromaContent() {
     }
@@ -59,6 +68,14 @@ public final class ChromaContent {
         HUB = DecorBlocks.BLOCKS.register("chroma_hub", key -> new ChromaHubBlock(BlockBehaviour.Properties.of()
                 .setId(key).mapColor(MapColor.METAL).strength(2.0F, 6.0F).sound(SoundType.METAL)
                 .lightLevel(s -> 7)));
+        CUBE = DecorBlocks.track(DecorBlocks.BLOCKS.register("chroma_cube", key -> new ChromaCubeBlock(
+                BlockBehaviour.Properties.of().setId(key).mapColor(MapColor.SNOW).strength(0.4F)
+                        .sound(SoundType.GLASS))));
+    }
+
+    /** The chroma cube's block item (registered by {@code ModItems} with the other {@code ALL} entries). */
+    public static Item cubeItem() {
+        return CUBE.get().asItem();
     }
 
     /** Registers the block entity type and the items. Call after {@link #initBlocks()}. */
@@ -69,10 +86,16 @@ public final class ChromaContent {
                 key -> new ChromaHubItem(HUB.get(), new Item.Properties().setId(key)));
         LINKER = ModItems.ITEMS.register("chroma_linker",
                 key -> new ChromaLinkerItem(new Item.Properties().setId(key).stacksTo(1)));
+        PAINT_GUN = ModItems.ITEMS.register("paint_gun",
+                key -> new PaintGunItem(new Item.Properties().setId(key).stacksTo(1)));
+        for (RegistryEntry<Block> shim : DecorBlocks.NEON_SHIMS) {
+            NEON_SHIM_ITEMS.add(ModItems.ITEMS.register(shim.id().getPath(),
+                    key -> new NeonShimItem(shim.get(), new Item.Properties().setId(key))));
+        }
     }
 
-    /** Blocks registered here (the registry-cap GameTest adds them to the decor count). */
+    /** Blocks registered outside {@link DecorBlocks#ALL}: the hub and the neon shims (the registry-cap GameTest adds them). */
     public static int blockCount() {
-        return 1;
+        return 1 + DecorBlocks.NEON_SHIMS.size();
     }
 }

@@ -31,6 +31,7 @@ public final class ModCreativeTab {
                         ModItems.BLOCK_ITEMS.forEach(item -> output.accept(item.get()));
                         output.accept(ChromaContent.HUB_ITEM.get());
                         output.accept(ChromaContent.LINKER.get());
+                        output.accept(ChromaContent.PAINT_GUN.get());
                     })
                     .build());
 
