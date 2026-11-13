@@ -1,6 +1,11 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "nerodecor:item/hull_void_crystal_slab"
+    "model": "nerodecor:item/hull_void_crystal_slab",
+    "tints": [
+      {
+        "type": "nerodecor:decor_color"
+      }
+    ]
   }
 }

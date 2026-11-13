@@ -1,6 +1,11 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "nerodecor:item/hull_starsteel_wall"
+    "model": "nerodecor:item/hull_starsteel_wall",
+    "tints": [
+      {
+        "type": "nerodecor:decor_color"
+      }
+    ]
   }
 }

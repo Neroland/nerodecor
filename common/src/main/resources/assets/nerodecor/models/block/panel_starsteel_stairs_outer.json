@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:block/outer_stairs",
+  "parent": "nerodecor:block/tinted/outer_stairs",
   "textures": {
     "bottom": "nerodecor:block/panel_starsteel",
     "top": "nerodecor:block/panel_starsteel",

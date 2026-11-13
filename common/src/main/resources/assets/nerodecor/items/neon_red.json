@@ -1,6 +1,11 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "nerodecor:item/neon_red"
+    "model": "nerodecor:item/neon_red",
+    "tints": [
+      {
+        "type": "nerodecor:decor_color"
+      }
+    ]
   }
 }

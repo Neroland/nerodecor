@@ -1,6 +1,11 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "nerodecor:item/glass_cyan_slab"
+    "model": "nerodecor:item/glass_cyan_slab",
+    "tints": [
+      {
+        "type": "nerodecor:decor_color"
+      }
+    ]
   }
 }

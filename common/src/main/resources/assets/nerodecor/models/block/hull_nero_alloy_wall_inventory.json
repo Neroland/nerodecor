@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:block/wall_inventory",
+  "parent": "nerodecor:block/tinted/wall_inventory",
   "textures": {
     "wall": "nerodecor:block/hull_nero_alloy"
   }

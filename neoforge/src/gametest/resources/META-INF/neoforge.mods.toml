@@ -1,0 +1,19 @@
+# Dev-only GameTest mod for NeroDecor (never packaged). Loaded only by the 26.3 gameTestServer run.
+modLoader = "javafml"
+loaderVersion = "[1,)"
+license = "All Rights Reserved"
+
+[[mods]]
+modId = "nerodecor_gametest"
+version = "0.0.0"
+displayName = "NeroDecor GameTests"
+description = '''
+Server GameTests for NeroDecor (development only).
+'''
+
+[[dependencies.nerodecor_gametest]]
+modId = "nerodecor"
+type = "required"
+versionRange = "[0,)"
+ordering = "AFTER"
+side = "BOTH"

@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:function",
+  "function": "nerodecor_gametest:fixture_071_loads",
+  "environment": "minecraft:default",
+  "structure": "nerodecor_gametest:fixture_071",
+  "max_ticks": 40
+}

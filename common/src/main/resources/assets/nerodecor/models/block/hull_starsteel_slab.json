@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:block/slab",
+  "parent": "nerodecor:block/tinted/slab",
   "textures": {
     "bottom": "nerodecor:block/hull_starsteel",
     "top": "nerodecor:block/hull_starsteel",

@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:function",
+  "function": "nerodecor_gametest:place_every_block",
+  "environment": "minecraft:default",
+  "structure": "nerodecor_gametest:empty",
+  "max_ticks": 40
+}

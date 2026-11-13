@@ -9,7 +9,7 @@ the decoration/furniture mod, so the core-prism is set in an ornamental ROSE fra
 
 Outputs:
   art/logo/nerodecor_logo.png       (1024x1024 master)
-  art/logo/nerodecor_logo_400.png   (CurseForge/Modrinth-ready)
+  art/logo/nerodecor_logo_400.png   (CurseForge-ready)
   common/src/main/resources/nerodecor_logo.png  (256x256 in-game mods-list icon)
 """
 SEED = 53

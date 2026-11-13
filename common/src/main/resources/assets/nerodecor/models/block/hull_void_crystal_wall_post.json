@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:block/template_wall_post",
+  "parent": "nerodecor:block/tinted/template_wall_post",
   "textures": {
     "wall": "nerodecor:block/hull_void_crystal"
   }

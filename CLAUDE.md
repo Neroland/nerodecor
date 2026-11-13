@@ -1,14 +1,15 @@
 # Project context for AI coding agents — nerodecor
 
-> Modrinth is temporarily being removed from the upload and is no longer being referenced. Avoid making references to modrinth.
+> NeroDecor is published on CurseForge and GitHub only. Do not reference or link any other mod host.
 
 > This and `AGENTS.md` are kept identical; update both together.
 
 ## The mod
 
 - **NeroDecor** — part of the Neroland sci-fi Minecraft mod ecosystem, built on **Neroland Core**.
-  This repository is currently a **barebones multiloader skeleton** (no gameplay content yet); add
-  shared content under `common/` and wire it through each loader entry point.
+  A sci-fi decoration mod: paintable hull, panels, glass and the Luminous collection (59 blocks in
+  0.7.1), growing toward the 0.8.0 "Chroma" release (hub-driven colour, custom models, doors, holograms).
+  Shared content lives under `common/` and is wired through each loader entry point.
 - Mod id: **`nerodecor`** (matches the registry namespace + every loader manifest). Package root:
   `za.co.neroland.nerodecor`. Author: **Neroland**.
 - Version: **0.7.1-beta.2**.
@@ -33,17 +34,21 @@
   (ModDevGradle), `forge/` (ForgeGradle), `fabric/` (Fabric Loom). Root build files: `settings.gradle`,
   `stonecutter.gradle` (the REAL root build script — Stonecutter repoints `buildFileName` here; the root
   `build.gradle` is inert), `gradle.properties`, `gradlew`, `gradle/`.
-- **Version/loader axis = Stonecutter.** Each loader×MC is a real node `:<loader>:<mc>`
-  (`:fabric:26.1.2 :fabric:26.2 :fabric:26.3 :neoforge:26.1.2 :neoforge:26.2 :neoforge:26.3 :forge:26.1.2 :forge:26.2 :forge:26.3`). `common` is
+- **Version/loader axis = Stonecutter.** Each loader×MC is a real node `:<loader>:<mc>` — 27 of them:
+  `fabric`, `neoforge`, `forge` × `1.21.1 1.21.4 1.21.5 1.21.8 1.21.10 1.21.11 26.1.2 26.2 26.3`. `common` is
   NOT a node — its source is spliced via `rootProject.ext.commonJava` / `commonResources`. Dependency pins
-  live in `gradle.properties` as `*_version_<mc>` keys; `mc_versions=26.1.2,26.2,26.3`.
+  live in `gradle.properties` as `*_version_<mc>` keys; `mc_versions=1.21.1,1.21.4,1.21.5,1.21.8,1.21.10,1.21.11,26.1.2,26.2,26.3`.
 - **Version-specific code in `common/`.** Non-active nodes run `common/` through Stonecutter (`stonecutterProcessCommon`), so shared code uses the same `//? if >=26.3 {` blocks as the loader `src/` trees. Keep the files in the vcsVersion state, and never put a `*/` inside a disabled block. Datapack files whose format differs by version go in `common/src/main/resources-<mc>/`, which is merged over `common/src/main/resources` for every node at or above `<mc>` (`mergeCommonResources`).
 
 ## Build & verify
 
-- Build the cells with the Gradle wrapper, e.g. `./gradlew :fabric:26.2:build` or all nine:
-  `:neoforge:26.1.2:build :neoforge:26.2:build :neoforge:26.3:build :forge:26.1.2:build :forge:26.2:build :forge:26.3:build
-  :fabric:26.1.2:build :fabric:26.2:build :fabric:26.3:build`.
+- Build per cell with the Gradle wrapper, e.g. `./gradlew :fabric:26.3:build`; a release gate builds all
+  27 (`:<loader>:<mc>:build` for every loader and MC version above). Never a plain `build`.
+- **Tests.** JUnit 5 tests live in `common/src/test/java` (pure Java, no game bootstrap; Stonecutter
+  preprocesses them like main) and run on the nine NeoForge nodes as part of `build`. Server GameTests
+  live in `neoforge/src/gametest` (dev-only mod `nerodecor_gametest`, never packaged) on the 26.3 cell:
+  `./gradlew :neoforge:26.3:runGameTestServer`. `tools/gen_gametest_fixture.py` writes the frozen 0.7.1
+  fixture structure those tests load.
 - Static analysis: `./gradlew :fabric:26.2:ecjCheck` (the VS Code Problems panel, via `tools/ecj.prefs`).
   The task only FAILS on errors.
 - A Cowork agent sandbox cannot decompile Minecraft — run builds natively (or via the local gradle MCP)

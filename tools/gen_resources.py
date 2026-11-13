@@ -63,6 +63,79 @@ decor_tags = {}     # family -> [block ids]
 walls = []          # wall block ids — need #minecraft:walls to connect to each other
 
 
+# --- tinted shape templates ---------------------------------------------------
+# Vanilla's slab / stair / wall / pane templates carry no "tintindex", so a paintable shape that used
+# them directly would never show its DecorColor. These are the vanilla element lists (identical in
+# 1.21.1 and 26.3), re-emitted as nerodecor:block/tinted/<template> with "tintindex": 0 on every face.
+# Each tinted template keeps the vanilla template as its parent, so display transforms and
+# ambient-occlusion still come from the running version; only the elements are overridden.
+VANILLA_GEOMETRY = {
+    "slab": [
+        {"from": [0, 0, 0], "to": [16, 8, 16], "faces": {"down": {"uv": [0, 0, 16, 16], "texture": "#bottom", "cullface": "down"}, "up": {"uv": [0, 0, 16, 16], "texture": "#top"}, "north": {"uv": [0, 8, 16, 16], "texture": "#side", "cullface": "north"}, "south": {"uv": [0, 8, 16, 16], "texture": "#side", "cullface": "south"}, "west": {"uv": [0, 8, 16, 16], "texture": "#side", "cullface": "west"}, "east": {"uv": [0, 8, 16, 16], "texture": "#side", "cullface": "east"}}},
+    ],
+    "slab_top": [
+        {"from": [0, 8, 0], "to": [16, 16, 16], "faces": {"down": {"uv": [0, 0, 16, 16], "texture": "#bottom"}, "up": {"uv": [0, 0, 16, 16], "texture": "#top", "cullface": "up"}, "north": {"uv": [0, 0, 16, 8], "texture": "#side", "cullface": "north"}, "south": {"uv": [0, 0, 16, 8], "texture": "#side", "cullface": "south"}, "west": {"uv": [0, 0, 16, 8], "texture": "#side", "cullface": "west"}, "east": {"uv": [0, 0, 16, 8], "texture": "#side", "cullface": "east"}}},
+    ],
+    "stairs": [
+        {"from": [0, 0, 0], "to": [16, 8, 16], "faces": {"down": {"uv": [0, 0, 16, 16], "texture": "#bottom", "cullface": "down"}, "up": {"uv": [0, 0, 16, 16], "texture": "#top"}, "north": {"uv": [0, 8, 16, 16], "texture": "#side", "cullface": "north"}, "south": {"uv": [0, 8, 16, 16], "texture": "#side", "cullface": "south"}, "west": {"uv": [0, 8, 16, 16], "texture": "#side", "cullface": "west"}, "east": {"uv": [0, 8, 16, 16], "texture": "#side", "cullface": "east"}}},
+        {"from": [8, 8, 0], "to": [16, 16, 16], "faces": {"up": {"uv": [8, 0, 16, 16], "texture": "#top", "cullface": "up"}, "north": {"uv": [0, 0, 8, 8], "texture": "#side", "cullface": "north"}, "south": {"uv": [8, 0, 16, 8], "texture": "#side", "cullface": "south"}, "west": {"uv": [0, 0, 16, 8], "texture": "#side"}, "east": {"uv": [0, 0, 16, 8], "texture": "#side", "cullface": "east"}}},
+    ],
+    "inner_stairs": [
+        {"from": [0, 0, 0], "to": [16, 8, 16], "faces": {"down": {"uv": [0, 0, 16, 16], "texture": "#bottom", "cullface": "down"}, "up": {"uv": [0, 0, 16, 16], "texture": "#top"}, "north": {"uv": [0, 8, 16, 16], "texture": "#side", "cullface": "north"}, "south": {"uv": [0, 8, 16, 16], "texture": "#side", "cullface": "south"}, "west": {"uv": [0, 8, 16, 16], "texture": "#side", "cullface": "west"}, "east": {"uv": [0, 8, 16, 16], "texture": "#side", "cullface": "east"}}},
+        {"from": [8, 8, 0], "to": [16, 16, 16], "faces": {"up": {"uv": [8, 0, 16, 16], "texture": "#top", "cullface": "up"}, "north": {"uv": [0, 0, 8, 8], "texture": "#side", "cullface": "north"}, "south": {"uv": [8, 0, 16, 8], "texture": "#side", "cullface": "south"}, "west": {"uv": [0, 0, 16, 8], "texture": "#side"}, "east": {"uv": [0, 0, 16, 8], "texture": "#side", "cullface": "east"}}},
+        {"from": [0, 8, 8], "to": [8, 16, 16], "faces": {"up": {"uv": [0, 8, 8, 16], "texture": "#top", "cullface": "up"}, "north": {"uv": [8, 0, 16, 8], "texture": "#side"}, "south": {"uv": [0, 0, 8, 8], "texture": "#side", "cullface": "south"}, "west": {"uv": [8, 0, 16, 8], "texture": "#side", "cullface": "west"}}},
+    ],
+    "outer_stairs": [
+        {"from": [0, 0, 0], "to": [16, 8, 16], "faces": {"down": {"uv": [0, 0, 16, 16], "texture": "#bottom", "cullface": "down"}, "up": {"uv": [0, 0, 16, 16], "texture": "#top"}, "north": {"uv": [0, 8, 16, 16], "texture": "#side", "cullface": "north"}, "south": {"uv": [0, 8, 16, 16], "texture": "#side", "cullface": "south"}, "west": {"uv": [0, 8, 16, 16], "texture": "#side", "cullface": "west"}, "east": {"uv": [0, 8, 16, 16], "texture": "#side", "cullface": "east"}}},
+        {"from": [8, 8, 8], "to": [16, 16, 16], "faces": {"up": {"uv": [8, 8, 16, 16], "texture": "#top", "cullface": "up"}, "north": {"uv": [0, 0, 8, 8], "texture": "#side"}, "south": {"uv": [8, 0, 16, 8], "texture": "#side", "cullface": "south"}, "west": {"uv": [8, 0, 16, 8], "texture": "#side"}, "east": {"uv": [0, 0, 8, 8], "texture": "#side", "cullface": "east"}}},
+    ],
+    "template_wall_post": [
+        {"from": [4, 0, 4], "to": [12, 16, 12], "faces": {"down": {"texture": "#wall", "cullface": "down"}, "up": {"texture": "#wall", "cullface": "up"}, "north": {"texture": "#wall"}, "south": {"texture": "#wall"}, "west": {"texture": "#wall"}, "east": {"texture": "#wall"}}},
+    ],
+    "template_wall_side": [
+        {"from": [5, 0, 0], "to": [11, 14, 8], "faces": {"down": {"texture": "#wall", "cullface": "down"}, "up": {"texture": "#wall"}, "north": {"texture": "#wall", "cullface": "north"}, "west": {"texture": "#wall"}, "east": {"texture": "#wall"}}},
+    ],
+    "template_wall_side_tall": [
+        {"from": [5, 0, 0], "to": [11, 16, 8], "faces": {"down": {"texture": "#wall", "cullface": "down"}, "up": {"texture": "#wall", "cullface": "up"}, "north": {"texture": "#wall", "cullface": "north"}, "west": {"texture": "#wall"}, "east": {"texture": "#wall"}}},
+    ],
+    "wall_inventory": [
+        {"from": [4, 0, 4], "to": [12, 16, 12], "faces": {"down": {"uv": [4, 4, 12, 12], "texture": "#wall", "cullface": "down"}, "up": {"uv": [4, 4, 12, 12], "texture": "#wall"}, "north": {"uv": [4, 0, 12, 16], "texture": "#wall"}, "south": {"uv": [4, 0, 12, 16], "texture": "#wall"}, "west": {"uv": [4, 0, 12, 16], "texture": "#wall"}, "east": {"uv": [4, 0, 12, 16], "texture": "#wall"}}},
+        {"from": [5, 0, 0], "to": [11, 13, 16], "faces": {"down": {"uv": [5, 0, 11, 16], "texture": "#wall", "cullface": "down"}, "up": {"uv": [5, 0, 11, 16], "texture": "#wall"}, "north": {"uv": [5, 3, 11, 16], "texture": "#wall", "cullface": "north"}, "south": {"uv": [5, 3, 11, 16], "texture": "#wall", "cullface": "south"}, "west": {"uv": [0, 3, 16, 16], "texture": "#wall"}, "east": {"uv": [0, 3, 16, 16], "texture": "#wall"}}},
+    ],
+    "template_glass_pane_post": [
+        {"from": [7, 0, 7], "to": [9, 16, 9], "faces": {"down": {"uv": [7, 7, 9, 9], "texture": "#edge"}, "up": {"uv": [7, 7, 9, 9], "texture": "#edge"}}},
+    ],
+    "template_glass_pane_side": [
+        {"from": [7, 0, 0], "to": [9, 16, 7], "faces": {"down": {"uv": [7, 0, 9, 7], "texture": "#edge"}, "up": {"uv": [7, 0, 9, 7], "texture": "#edge"}, "north": {"uv": [7, 0, 9, 16], "texture": "#edge", "cullface": "north"}, "west": {"uv": [16, 0, 9, 16], "texture": "#pane"}, "east": {"uv": [9, 0, 16, 16], "texture": "#pane"}}},
+    ],
+    "template_glass_pane_side_alt": [
+        {"from": [7, 0, 9], "to": [9, 16, 16], "faces": {"down": {"uv": [7, 0, 9, 7], "texture": "#edge"}, "up": {"uv": [7, 0, 9, 7], "texture": "#edge"}, "south": {"uv": [7, 0, 9, 16], "texture": "#edge", "cullface": "south"}, "west": {"uv": [7, 0, 0, 16], "texture": "#pane"}, "east": {"uv": [0, 0, 7, 16], "texture": "#pane"}}},
+    ],
+    "template_glass_pane_noside": [
+        {"from": [7, 0, 7], "to": [9, 16, 9], "faces": {"north": {"uv": [9, 0, 7, 16], "texture": "#pane"}}},
+    ],
+    "template_glass_pane_noside_alt": [
+        {"from": [7, 0, 7], "to": [9, 16, 9], "faces": {"east": {"uv": [7, 0, 9, 16], "texture": "#pane"}}},
+    ],
+}
+
+
+def tinted_parent(template):
+    return "%s:block/tinted/%s" % (NS, template)
+
+
+def emit_tinted_templates():
+    for template, elements in VANILLA_GEOMETRY.items():
+        tinted = []
+        for el in elements:
+            el = json.loads(json.dumps(el))  # deep copy
+            for face in el["faces"].values():
+                face["tintindex"] = 0
+            tinted.append(el)
+        files["assets/%s/models/block/tinted/%s.json" % (NS, template)] = {
+            "parent": "minecraft:block/%s" % template, "elements": tinted}
+
+
 def tex(t):
     return "%s:block/%s" % (NS, t)
 
@@ -105,8 +178,8 @@ def emit_slab(name, t, fam):
         "type=double": {"model": "%s:block/%s" % (NS, cube)},
     }}
     textures = {"bottom": tex(t), "top": tex(t), "side": tex(t)}
-    files["assets/%s/models/block/%s.json" % (NS, name)] = {"parent": "minecraft:block/slab", "textures": textures}
-    files["assets/%s/models/block/%s_top.json" % (NS, name)] = {"parent": "minecraft:block/slab_top", "textures": textures}
+    files["assets/%s/models/block/%s.json" % (NS, name)] = {"parent": tinted_parent("slab"), "textures": textures}
+    files["assets/%s/models/block/%s_top.json" % (NS, name)] = {"parent": tinted_parent("slab_top"), "textures": textures}
     files["assets/%s/models/item/%s.json" % (NS, name)] = {"parent": "%s:block/%s" % (NS, name)}
     files["data/%s/loot_table/blocks/%s.json" % (NS, name)] = slab_loot(name)
     tag_common(name, fam)
@@ -115,9 +188,9 @@ def emit_slab(name, t, fam):
 def emit_stairs(name, t, fam):
     files["assets/%s/blockstates/%s.json" % (NS, name)] = stairs_blockstate(name)
     textures = {"bottom": tex(t), "top": tex(t), "side": tex(t)}
-    files["assets/%s/models/block/%s.json" % (NS, name)] = {"parent": "minecraft:block/stairs", "textures": textures}
-    files["assets/%s/models/block/%s_inner.json" % (NS, name)] = {"parent": "minecraft:block/inner_stairs", "textures": textures}
-    files["assets/%s/models/block/%s_outer.json" % (NS, name)] = {"parent": "minecraft:block/outer_stairs", "textures": textures}
+    files["assets/%s/models/block/%s.json" % (NS, name)] = {"parent": tinted_parent("stairs"), "textures": textures}
+    files["assets/%s/models/block/%s_inner.json" % (NS, name)] = {"parent": tinted_parent("inner_stairs"), "textures": textures}
+    files["assets/%s/models/block/%s_outer.json" % (NS, name)] = {"parent": tinted_parent("outer_stairs"), "textures": textures}
     files["assets/%s/models/item/%s.json" % (NS, name)] = {"parent": "%s:block/%s" % (NS, name)}
     loot_self(name)
     tag_common(name, fam)
@@ -126,10 +199,10 @@ def emit_stairs(name, t, fam):
 def emit_wall(name, t, fam):
     files["assets/%s/blockstates/%s.json" % (NS, name)] = wall_blockstate(name)
     textures = {"wall": tex(t)}
-    files["assets/%s/models/block/%s_post.json" % (NS, name)] = {"parent": "minecraft:block/template_wall_post", "textures": textures}
-    files["assets/%s/models/block/%s_side.json" % (NS, name)] = {"parent": "minecraft:block/template_wall_side", "textures": textures}
-    files["assets/%s/models/block/%s_side_tall.json" % (NS, name)] = {"parent": "minecraft:block/template_wall_side_tall", "textures": textures}
-    files["assets/%s/models/block/%s_inventory.json" % (NS, name)] = {"parent": "minecraft:block/wall_inventory", "textures": textures}
+    files["assets/%s/models/block/%s_post.json" % (NS, name)] = {"parent": tinted_parent("template_wall_post"), "textures": textures}
+    files["assets/%s/models/block/%s_side.json" % (NS, name)] = {"parent": tinted_parent("template_wall_side"), "textures": textures}
+    files["assets/%s/models/block/%s_side_tall.json" % (NS, name)] = {"parent": tinted_parent("template_wall_side_tall"), "textures": textures}
+    files["assets/%s/models/block/%s_inventory.json" % (NS, name)] = {"parent": tinted_parent("wall_inventory"), "textures": textures}
     files["assets/%s/models/item/%s.json" % (NS, name)] = {"parent": "%s:block/%s_inventory" % (NS, name)}
     loot_self(name)
     walls.append(block_id(name))
@@ -142,7 +215,7 @@ def emit_pane(name, t, fam):
     for suf, parent in (("_post", "post"), ("_side", "side"), ("_side_alt", "side_alt"),
                         ("_noside", "noside"), ("_noside_alt", "noside_alt")):
         files["assets/%s/models/block/%s%s.json" % (NS, name, suf)] = {
-            "parent": "minecraft:block/template_glass_pane_%s" % parent, "textures": textures}
+            "parent": tinted_parent("template_glass_pane_%s" % parent), "textures": textures}
     files["assets/%s/models/item/%s.json" % (NS, name)] = {
         "parent": "minecraft:item/generated", "textures": {"layer0": tex(t)}}
     loot_self(name)
@@ -599,9 +672,13 @@ def main():
     for name, kind, t, fam, _mat in SPEC:
         emit[kind](name, t, fam)
         # 1.21.4+/26.x: every item needs a client-item file at assets/<ns>/items/<id>.json
-        # pointing at its model, or the item icon renders as the missing texture.
+        # pointing at its model, or the item icon renders as the missing texture. Every SPEC block is
+        # paintable, so its item tints layer 0 from the stack's nerodecor:color component through the
+        # nerodecor:decor_color tint source (client/DecorColorItemTint); NATURAL/absent = white.
         files["assets/%s/items/%s.json" % (NS, name)] = {
-            "model": {"type": "minecraft:model", "model": "%s:item/%s" % (NS, name)}}
+            "model": {"type": "minecraft:model", "model": "%s:item/%s" % (NS, name),
+                      "tints": [{"type": "%s:decor_color" % NS}]}}
+    emit_tinted_templates()
     emit_recipes()
     emit_luminous()
 

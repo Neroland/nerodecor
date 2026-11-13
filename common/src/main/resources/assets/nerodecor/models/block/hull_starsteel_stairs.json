@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:block/stairs",
+  "parent": "nerodecor:block/tinted/stairs",
   "textures": {
     "bottom": "nerodecor:block/hull_starsteel",
     "top": "nerodecor:block/hull_starsteel",

@@ -11,7 +11,6 @@ all other original assets in this repository.
 by the copyright holder, currently:
 
 - CurseForge:      <https://www.curseforge.com/minecraft/mc-mods/nerodecor>
-- Modrinth:        <https://modrinth.com/mod/nerodecor>
 - GitHub releases: <https://github.com/Neroland/nerodecor/releases>
 
 The Mod is source-available, not open source: you can read and learn from
@@ -25,11 +24,11 @@ a) USE & PLAY. Use the Mod in single-player or on any server, private or
    public, free or monetised.
 
 b) MODPACKS — allowed and encouraged. You may include the Mod in any
-   modpack, on any platform (CurseForge, Modrinth, private packs, server
+   modpack, on any platform (CurseForge, private packs, server
    packs), without asking first, provided that:
      - the Mod's jar is the unmodified official file, originating from an
        Official Source (packs that reference the official file by
-       download — e.g. CurseForge/Modrinth pack manifests — satisfy this
+       download — e.g. CurseForge pack manifests — satisfy this
        automatically);
      - you do not present the Mod as your own work; and
      - the pack's listing credits "NeroDecor by Neroland" with links to

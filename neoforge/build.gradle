@@ -105,6 +105,34 @@ dependencies {
     }
 }
 
+// Plain-JVM unit tests (JUnit 5, no game bootstrap). The shared tests live in common/src/test/java but,
+// since `common` is not a Gradle project, each NeoForge node wires the source dir itself (stonecutter.gradle
+// preprocesses it like main). Only the NeoForge nodes run them; `build`/`check` runs them automatically.
+sourceSets.test.java.srcDir "${rootProject.projectDir}/common/src/test/java"
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:6.1.3')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test', Test) {
+    useJUnitPlatform()
+}
+
+// Server GameTest harness - the 26.3 NeoForge cell only. A separate `gametest` source set (neoforge/src/gametest,
+// its own neoforge.mods.toml, mod id nerodecor_gametest) loaded only by the gameTestServer run, so nothing in it
+// reaches the shipped jar. Run: gradlew :neoforge:26.3:runGameTestServer (exits non-zero on a failed test).
+def gameTests = mc == '26.3'
+if (gameTests) {
+    sourceSets {
+        gametest {
+            compileClasspath += sourceSets.main.output
+            runtimeClasspath += sourceSets.main.output
+        }
+    }
+}
+
 // Expand neoforge.mods.toml from src/main/templates into a generated resources dir
 // (same pattern as the repo-root build). The template is NOT under src/main/resources,
 // so the IDE never copies a RAW (token-laden) mods.toml into bin/main;
@@ -142,6 +170,12 @@ neoForge {
     version = neoVersion
     ideSyncTask generateModMetadata
 
+    // Give the unit-test source set the same (de-obfuscated) Minecraft + NeoForge classpath as main.
+    addModdingDependenciesTo sourceSets.test
+    if (gameTests) {
+        addModdingDependenciesTo sourceSets.gametest
+    }
+
     def at = rootProject.file('common/src/main/resources/META-INF/accesstransformer.cfg')
     if (at.exists()) {
         accessTransformers.from(at.absolutePath)
@@ -155,6 +189,13 @@ neoForge {
         server {
             server()
             gameDirectory = file('runs/server')
+        }
+        if (gameTests) {
+            gameTestServer {
+                type = 'gameTestServer'
+                gameDirectory = file('runs/gametest')
+                systemProperty 'neoforge.enabledGameTestNamespaces', 'nerodecor_gametest'
+            }
         }
 
         // Stop ModDevGradle from (re)generating absolute, machine-specific
@@ -178,6 +219,20 @@ neoForge {
         "${rootProject.mod_id}" {
             sourceSet sourceSets.main
         }
+        if (gameTests) {
+            nerodecor_gametest {
+                sourceSet sourceSets.gametest
+            }
+        }
+    }
+}
+
+// The GameTest mod loads only in the gameTestServer run; client/server dev runs load NeroDecor alone.
+if (gameTests) {
+    neoForge.runs.configureEach { run ->
+        run.loadedMods = run.name == 'gameTestServer'
+                ? [neoForge.mods.nerodecor, neoForge.mods.nerodecor_gametest]
+                : [neoForge.mods.nerodecor]
     }
 }
 

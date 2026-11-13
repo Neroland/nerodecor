@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:block/template_glass_pane_side",
+  "parent": "nerodecor:block/tinted/template_glass_pane_side",
   "textures": {
     "pane": "nerodecor:block/glass_light_blue",
     "edge": "nerodecor:block/glass_light_blue"

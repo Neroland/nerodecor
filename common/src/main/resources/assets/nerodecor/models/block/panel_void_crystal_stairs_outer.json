@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:block/outer_stairs",
+  "parent": "nerodecor:block/tinted/outer_stairs",
   "textures": {
     "bottom": "nerodecor:block/panel_void_crystal",
     "top": "nerodecor:block/panel_void_crystal",
