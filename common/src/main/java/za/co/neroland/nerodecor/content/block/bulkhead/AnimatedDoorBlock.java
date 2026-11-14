@@ -66,7 +66,12 @@ public abstract class AnimatedDoorBlock extends BhcBlock implements EntityBlock 
         return true;
     }
 
-    /** Called after a toggle so paired blocks (double sliding doors) can follow. */
+    /**
+     * Called after a player or redstone toggle so paired blocks (double sliding doors) can follow. Move partners with
+     * {@link #toggleSelf}, never {@link #toggle}: the partner would call back here, and while a door is closing its
+     * {@code OPEN} state stays true until the scheduled tick, so the pair would toggle each other forever
+     * (MC-NERODECOR-6, StackOverflowError).
+     */
     protected void afterToggle(Level level, BlockPos pos, BlockState state, boolean open) {
     }
 
@@ -99,14 +104,25 @@ public abstract class AnimatedDoorBlock extends BhcBlock implements EntityBlock 
         }
     }
 
-    /** Open or close {@code pos}'s door (server). */
+    /** Open or close {@code pos}'s door (server), then let paired blocks follow. */
     public void toggle(Level level, BlockPos pos, BlockState state, boolean open) {
+        if (toggleSelf(level, pos, state, open)) {
+            afterToggle(level, pos, state, open);
+        }
+    }
+
+    /**
+     * Open or close only {@code pos}'s own door (server), without notifying paired blocks.
+     *
+     * @return whether a transition was started
+     */
+    protected boolean toggleSelf(Level level, BlockPos pos, BlockState state, boolean open) {
         BlockPos ctrl = controller(pos, state);
         if (!(level.getBlockEntity(ctrl) instanceof DoorAnimBlockEntity be)) {
-            return;
+            return false;
         }
         if (be.opening() == open && state.getValue(OPEN) == open) {
-            return;
+            return false;
         }
         List<BlockPos> members = members(level, pos, state);
         if (open) {
@@ -126,7 +142,7 @@ public abstract class AnimatedDoorBlock extends BhcBlock implements EntityBlock 
         }
         level.playSound(null, ctrl, open ? openSound : closeSound, SoundSource.BLOCKS, 1.0F,
                 0.9F + level.getRandom().nextFloat() * 0.1F);
-        afterToggle(level, pos, state, open);
+        return true;
     }
 
     @Override

@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.8.3-beta.1] - 2026-11-14
+
+### Fixed
+
+- **Server crash when closing a double sliding door (`StackOverflowError`).** Closing one door of a pair told its
+  partner to close, which told the first door to close again, without end, because a closing door counts as open
+  until its animation finishes. The partner now follows once. Opening was not affected.
+
 ## [0.8.2-beta.1] - 2026-11-14
 
 A small fix release. Still requires Neroland Core 1.17.0 or later; Core 1.17.6 also stops a damaged Chroma Hub

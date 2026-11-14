@@ -110,7 +110,7 @@ public class SlidingDoorBlock extends AnimatedDoorBlock {
                 && partner.getValue(HINGE) != state.getValue(HINGE)
                 && partner.getValue(HALF) == DoubleBlockHalf.LOWER
                 && jambSide(partner) == jambSide(state).getOpposite()) {
-            toggle(level, other, partner, open);
+            toggleSelf(level, other, partner, open);
         }
     }
 
