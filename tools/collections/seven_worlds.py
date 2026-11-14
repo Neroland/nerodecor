@@ -154,33 +154,34 @@ def station_plating_frame():
 
 
 def _tread(v):
-    """Checker plate: 3px diagonal lugs alternating direction, with a polished walking lane."""
-    dark = mid(ST, 1, 0.55)
-    def lane(x, y):
-        return 5 <= x <= 10
-    img = paint(lambda x, y: ST[2] if lane(x, y) else dark)
-    for y in range(16):                                   # lane edges: grime pushed aside
-        if n("lane%d" % v, 4, y) < 0.6:
-            put(img, 4, y, ST[1])
-        if n("lane%d" % v, 11, y) < 0.6:
-            put(img, 11, y, ST[1])
-    for cy in range(4):
-        for cx in range(4):
-            fwd = (cx + cy) % 2 == 0
+    """Diamond tread: 3px raised lugs on a staggered 8x4 lattice, alternating direction row by
+    row, over a flat deck. Every lug has a glint at its upper end, a lit flank and a 1px cast
+    shadow; the variants differ only by a scuffed lug or two."""
+    deck = mid(ST, 1, 0.75)
+    img = new(16, 16, deck)
+    lug = {}
+    for r in range(4):
+        for c in range(2):
+            fwd = r % 2 == 0
             pts = [(0, 0), (1, 1), (2, 2)] if fwd else [(2, 0), (1, 1), (0, 2)]
-            worn = n("worn%d" % v, cx, cy) < 0.3
+            k = n("scuff%d" % v, c, r)
+            state = "polished" if k < 0.14 else "dull" if k > 0.86 else "clean"
             for i, (dx, dy) in enumerate(pts):
-                x, y = cx * 4 + dx, cy * 4 + dy
-                ln = lane(x, y)
-                c = ST[4] if ln else ST[3]
-                if i == 0 and not ln:
-                    c = mid(ST, 3, 0.6)
-                if ln and worn and i == 2:
-                    c = ST[3]
-                put(img, x, y, c)
-            x, y = cx * 4 + pts[2][0], cy * 4 + pts[2][1] + 1
-            put(img, x, y, ST[1] if lane(x, y) else ST[0])   # occlusion under the lug's low end
-    return done(wear(img, "tread%d" % v, ST, rate=0.03))
+                lug[((c * 8 + (0 if fwd else 4) + 1 + dx) % 16, r * 4 + dy)] = (i, state)
+    for (x, y) in lug:                                     # cast shadow, away from the key light
+        if (x, (y + 1) % 16) not in lug:
+            put(img, x, y + 1, ST[0])
+        if ((x + 1) % 16, (y + 1) % 16) not in lug and ((x + 1) % 16, y) not in lug:
+            put(img, x + 1, y + 1, ST[1])
+    for (x, y), (i, state) in lug.items():
+        if state == "polished":
+            c = ST[4]
+        elif state == "dull":
+            c = ST[3] if i == 0 else mid(ST, 2, 0.6)
+        else:
+            c = ST[4] if i == 0 else ST[3]
+        put(img, x, y, c)
+    return done(img)
 
 
 def station_thermal_blanket():
@@ -358,24 +359,36 @@ def luna_mare_column_end():
 
 
 def luna_bead_glass():
-    """Dust set with orange and green volcanic glass beads."""
+    """Fused volcanic glass: orange and green beads melted into a dark smoky-glass matrix. Each
+    bead is a little lens -- glint top-left, a bright refracted crescent low on the far side, a
+    dark fused seat -- and the matrix carries diagonal sheen streaks instead of stone grain."""
+    M = [mid(LU, 0, 0.2), mid(LU, 0, 0.75), mid(LU, 1, 0.3), mid(LU, 1, 0.9), LU[3]]
     def fn(x, y):
-        k = n("beaddust", x, y)
-        return LU[3] if k < 0.16 else LU[1] if k > 0.92 else mid(LU, 2, 0.35)
+        d = (x + 2 * y) % 16                               # shallow diagonal sheen, tile-periodic
+        return M[2] if d in (3, 4, 12) else M[1]
     img = paint(fn)
-    sh = mid(LU, 0, 0.6)
-    bead(img, 2, 2, BEAD_O, sh, 3)
-    bead(img, 10, 9, BEAD_G, sh, 3)
-    bead(img, 9, 2, BEAD_G, sh, 2)
-    bead(img, 13, 5, BEAD_O, sh, 2)
-    bead(img, 4, 8, BEAD_O, sh, 2)
-    bead(img, 1, 12, BEAD_G, sh, 2)
-    bead(img, 7, 13, BEAD_O, sh, 2)
-    bead(img, 14, 13, BEAD_O, sh, 1)
-    bead(img, 6, 5, BEAD_G, sh, 1)
-    bead(img, 12, 1, BEAD_O, sh, 1)
-    bead(img, 0, 7, BEAD_G, sh, 1)
-    bead(img, 8, 7, BEAD_O, sh, 1)
+    for (x, y, ln) in ((11, 7, 3), (1, 15, 2), (7, 0, 2)):  # reflections on the melt surface
+        for i in range(ln):
+            put(img, x + i, y - i, M[3] if i else M[4])
+    shapes = {6: (".1221.", "134221", "242221", "222231", "122330", ".1100."),
+              4: (".22.", "2421", "2231", ".10."),
+              3: ("421", "231", "110"),
+              2: ("42", "21")}
+    def lens(x0, y0, size, R):
+        rows = shapes[size]
+        cells = {(x0 + i, y0 + j) for j, row in enumerate(rows) for i, ch in enumerate(row) if ch != "."}
+        for (x, y) in cells:                               # fused seat: dark melt low-right
+            for ox, oy in ((1, 0), (0, 1), (1, 1)):
+                if (x + ox, y + oy) not in cells:
+                    put(img, x + ox, y + oy, M[0])
+        return [(x0 + i, y0 + j, R[int(ch)]) for j, row in enumerate(rows) for i, ch in enumerate(row)
+                if ch != "."]
+    px = []
+    for args in ((1, 1, 6, BEAD_O), (7, 4, 4, BEAD_G), (10, 10, 4, BEAD_O), (3, 10, 4, BEAD_G),
+                 (7, 12, 3, BEAD_O), (13, 1, 3, BEAD_G), (13, 6, 2, BEAD_O), (0, 8, 2, BEAD_G)):
+        px += lens(*args)
+    for x, y, c in px:
+        put(img, x, y, c)
     return done(img)
 
 
@@ -676,37 +689,35 @@ def glacira_cryo_fin_cap():
 
 
 def _frost_plate(v):
-    """Cold steel plate; fern frost grows inward from all four edges."""
+    """Cold steel plate with a recessed slot; two sparse fern fronds of frost grow in from
+    opposite corners (a bright stem with paired barbs that shorten toward the tip), over a thin
+    crust of corner rime."""
     img = new(16, 16, COLD[2])
     bevel(img, 0, 0, 16, 16, COLD, fill=2)
-    for x in range(2, 14):
-        if n("fgrain%d" % v, x, 3) < 0.3:
-            put(img, x, 5 + x % 3 * 3, mid(COLD, 1, 0.6))
+    for (x, y, ln) in ((3, 4, 3), (10, 4, 2), (4, 11, 2), (9, 12, 4)):   # brushed grain
+        for i in range(ln):
+            put(img, x + i, y, mid(COLD, 2, 0.3))
     for x in range(6, 10):                               # recessed slot
         put(img, x, 7, COLD[0]); put(img, x, 8, COLD[3])
-    frost = {}
-    def f(x, y, lvl):
-        if 0 <= x < 16 and 0 <= y < 16:
-            frost[(x, y)] = max(lvl, frost.get((x, y), 0))
-    for i in range(16):                                  # rimed edge, broken
-        for (x, y) in ((i, 0), (i, 15), (0, i), (15, i)):
-            k = n("rimb%d" % v, x, y)
-            if k < 0.8:
-                f(x, y, 2 if k < 0.25 else 1)
-    for side in range(4):
-        for s in range(4):
-            pos = 1 + s * 4 + int(n("fpos%d" % v, side, s) * 2)
-            ln = 2 + int(n("flen%d" % v, side, s) * 5)
-            lean = -1 if n("flean%d" % v, side, s) < 0.5 else 1
-            for i in range(1, ln + 1):
-                def at(a, b):                            # a = along the edge, b = inward
-                    return {0: (a, b), 1: (a, 15 - b), 2: (b, a), 3: (15 - b, a)}[side]
-                a = pos + (lean if i >= 4 else 0)        # the frond kinks once
-                f(*at(a, i), 3 if i < ln else 2)
-                if i < ln and i >= 2:                    # barbs alternate side to side
-                    f(*at(a + (1 if i % 2 else -1), i - 1), 1)
-    for (x, y), lvl in frost.items():
-        put(img, x, y, (RIME[2], RIME[3], RIME[4])[lvl - 1] if lvl < 3 else RIME[4])
+    corners = {"tl": lambda a, b: (a, b), "tr": lambda a, b: (15 - a, b),
+               "bl": lambda a, b: (a, 15 - b), "br": lambda a, b: (15 - a, 15 - b)}
+    plan = ((("bl", 6), ("tr", 4)), (("tl", 6), ("br", 4)), (("br", 6), ("tl", 3)))[v % 3]
+    for corner, ln in plan:
+        at = corners[corner]
+        frost = {}
+        def f(a, b, lvl):
+            frost[at(a, b)] = max(lvl, frost.get(at(a, b), 0))
+        for (a, b, lvl) in ((0, 0, 3), (1, 0, 2), (0, 1, 2), (2, 0, 1), (0, 2, 1), (4, 0, 1), (0, 3, 1)):
+            f(a, b, lvl)                                 # rime crust in the corner
+        for i in range(1, ln + 1):
+            f(i, i, 3 if i < ln else 2)                  # stem
+            if i % 2 == 1 and i < ln:
+                bl = min(3, (ln - i + 1) // 2)
+                for j in range(1, bl + 1):               # paired barbs, shorter toward the tip
+                    f(i + j + 1, i, 2 if j < bl else 1)
+                    f(i, i + j + 1, 2 if j < bl else 1)
+        for (x, y), lvl in frost.items():
+            put(img, x, y, (RIME[1], RIME[3], RIME[4])[lvl - 1])
     return done(img)
 
 
@@ -807,40 +818,58 @@ COMB_CAPPED = {1, 5, 6, 10}
 
 
 def greenxertz_hive_comb():
-    """Uneven hex cells with waxy walls; four are capped with domed amber resin."""
+    """Honeycomb: four regular hexagonal cells (8px pitch, alternate rows offset 4px) with waxy
+    walls. Each open cell is a well -- shadow under its top-left walls, a dark floor, bounce
+    light on the far inner wall -- so the comb has depth; one cell is capped with a domed amber
+    resin plug."""
+    seeds = [(0.5, 0.5), (8.5, 0.5), (4.5, 8.5), (12.5, 8.5)]
+    def hexd(x, y, s):                                     # pointy-top hex norm, on the torus
+        dx = abs(((x + 0.5 - s[0] + 8) % 16) - 8)
+        dy = abs(((y + 0.5 - s[1] + 8) % 16) - 8)
+        return max(dx, (dy + 0.75 * dx) * 4 / 5.5)
     cell = {}
-    def fn(x, y):
-        i, d1, d2 = voronoi(COMB_SEEDS, x, y)
-        cell[(x, y)] = (i, d2 - d1 < 0.95)
-        return WAX[3] if d2 - d1 < 0.95 else GX[0]
-    img = paint(fn)
-    out = img.copy()
     for y in range(16):
         for x in range(16):
-            i, wall = cell[(x, y)]
-            up, left = cell[(x, (y - 1) % 16)], cell[((x - 1) % 16, y)]
-            down, right = cell[(x, (y + 1) % 16)], cell[((x + 1) % 16, y)]
+            ds = sorted((hexd(x, y, s), i) for i, s in enumerate(seeds))
+            cell[(x, y)] = (ds[0][1], ds[1][0] - ds[0][0] < 0.7, ds[0][0])
+    capped = {2: AMBER}
+    WELL = (7, 17, 24)
+    img = new(16, 16, GX[0])
+    def at(x, y):
+        return cell[(x % 16, y % 16)]
+    def depth(x, y, dx, dy):
+        """How many px of open cell lie between (x, y) and the wall in direction (dx, dy)."""
+        k = 1
+        while k < 6 and not at(x + dx * k, y + dy * k)[1]:
+            k += 1
+        return k
+    for y in range(16):
+        for x in range(16):
+            i, wall, d = at(x, y)
+            up, left, down, right = at(x, y - 1), at(x - 1, y), at(x, y + 1), at(x + 1, y)
             if wall:
-                if not down[1] or not right[1]:
-                    put(out, x, y, WAX[2])                # wall edge facing away from the light
-                elif not up[1] and not left[1]:
-                    put(out, x, y, WAX[4])
+                put(img, x, y, WAX[2] if (up[1] and left[1]) or (right[1] and at(x, y - 1)[1] and not down[1]) else WAX[3])
                 continue
-            if i in COMB_CAPPED:
-                c = AMBER[2]
-                if up[1] or left[1]:
-                    c = AMBER[3]
-                if down[1] or right[1]:
-                    c = AMBER[1]
-                if up[1] and left[1]:
-                    c = AMBER[4]
-                put(out, x, y, c)
+            lit = min(depth(x, y, 0, -1), depth(x, y, -1, 0))      # distance from the lit-side walls
+            far = min(depth(x, y, 0, 1), depth(x, y, 1, 0))
+            if i in capped:
+                R = capped[i]
+                c = R[3] if lit == 1 else R[1] if far == 1 else R[2]
+            elif lit == 1:
+                c = WELL                                   # cast shadow of the lit-side wall
+            elif far == 1:
+                c = GX[1]                                  # bounce on the far inner wall
             else:
-                c = mid(GX, 0, 0.6)
-                if up[1] or left[1]:
-                    c = (9, 22, 26)                        # shadow under the lit-side wall
-                put(out, x, y, c)
-    return done(out)
+                c = GX[0] if lit == 2 else mid(GX, 0, 0.3)
+            put(img, x, y, c)
+    for i in capped:                                       # glint on the resin dome
+        sx, sy = seeds[i]
+        put(img, int(sx) - 1, int(sy) - 2, capped[i][4])
+        put(img, int(sx) - 2, int(sy) - 1, capped[i][4])
+    for (x, y) in ((4, 0), (12, 8), (0, 8), (8, 0)):       # wax glints where three walls meet
+        if at(x, y)[1]:
+            put(img, x, y, WAX[4])
+    return done(img)
 
 
 # =============================================================================================
@@ -1144,7 +1173,7 @@ _FIN_TEX = ["glacira_cryo_fin_plate", "glacira_cryo_fin_spine", "glacira_cryo_fi
 
 BLOCKS = [
     # Station
-    _cube("station_plating", connects="mask16"),
+    _cube("station_plating", connects="mask16", chroma=True),
     _tile("station_tread_plate"),
     _cube("station_thermal_blanket"),
     # Luna
@@ -1182,3 +1211,54 @@ BLOCKS = [
     _cube("nyxara_shard_mosaic"),
     _cube("nyxara_geode_block"),
 ]
+
+# =========================================================================================
+# Recipes (0.8.0 Stage 6): vanilla + Neroland Core ingredients only, no gate. See _kit.shaped.
+# =========================================================================================
+# The Seven Worlds blocks are made from vanilla stand-ins for each world's rock, so they need no
+# Nerospace install and no progression gate. Each world has a base block; its other shapes come off the
+# stonecutter (1:1).
+from ._kit import attach_recipes, shaped  # noqa: E402
+
+attach_recipes(BLOCKS, {
+    "station_plating": shaped("station_plating", 8, ["SSS", "SIS", "SSS"], I="minecraft:iron_ingot",
+                              S="minecraft:smooth_stone"),
+    "station_thermal_blanket": shaped("station_thermal_blanket", 8, ["WWW", "WNW", "WWW"],
+                                      N="minecraft:gold_nugget", W="#minecraft:wool"),
+    "luna_regolith_brick": shaped("luna_regolith_brick", 4, ["AC", "CA"], A="minecraft:andesite",
+                                  C="minecraft:calcite"),
+    "luna_bead_glass": shaped("luna_bead_glass", 8, ["GGG", "GCG", "GGG"], C="minecraft:calcite",
+                              G="minecraft:glass"),
+    "mars_rust_plate": shaped("mars_rust_plate", 8, ["TTT", "TIT", "TTT"], I="minecraft:iron_ingot",
+                              T="minecraft:orange_terracotta"),
+    "mars_wind_strata_brick": shaped("mars_wind_strata_brick", 4, ["RT", "TR"], R="minecraft:red_sandstone",
+                                     T="minecraft:terracotta"),
+    "cindara_ember_basalt": shaped("cindara_ember_basalt", 4, ["BM", "MB"], B="minecraft:basalt",
+                                   M="minecraft:magma_block"),
+    "cindara_slag_brick": shaped("cindara_slag_brick", 4, ["BK", "KB"], B="minecraft:blackstone",
+                                 K="minecraft:basalt"),
+    "glacira_bubble_ice": shaped("glacira_bubble_ice", 4, ["PG", "GP"], G="minecraft:glass",
+                                 P="minecraft:packed_ice"),
+    "glacira_snow_brick": shaped("glacira_snow_brick", 4, ["SP", "PS"], P="minecraft:packed_ice",
+                                 S="minecraft:snow_block"),
+    "greenxertz_woven_chitin": shaped("greenxertz_woven_chitin", 4, ["MS", "SM"], M="minecraft:moss_block",
+                                      S="minecraft:string"),
+    "greenxertz_spore_tile": shaped("greenxertz_spore_tile", 4, ["ML", "LM"], L="minecraft:glowstone_dust",
+                                    M="minecraft:moss_block"),
+    "greenxertz_hive_comb": shaped("greenxertz_hive_comb", 4, ["HM", "MH"], H="minecraft:honeycomb",
+                                   M="minecraft:moss_block"),
+    "nyxara_faceted_crystal": shaped("nyxara_faceted_crystal", 4, ["AQ", "QA"], A="minecraft:amethyst_shard",
+                                     Q="minecraft:quartz"),
+    "nyxara_geode_block": shaped("nyxara_geode_block", 4, ["AC", "CA"], A="minecraft:amethyst_shard",
+                                 C="minecraft:calcite"),
+}, stonecutting=[
+    ("station_plating", "station_tread_plate", 1),
+    ("luna_regolith_brick", "luna_bootprint_tile", 1),
+    ("luna_regolith_brick", "luna_mare_column", 1),
+    ("mars_wind_strata_brick", "mars_spherule_stone", 1),
+    ("mars_wind_strata_brick", "mars_dust_drift_tile", 1),
+    ("cindara_slag_brick", "cindara_ash_tile", 1),
+    ("glacira_snow_brick", "glacira_frost_plate", 1),
+    ("glacira_snow_brick", "glacira_cryo_fin", 1),
+    ("nyxara_faceted_crystal", "nyxara_shard_mosaic", 1),
+])

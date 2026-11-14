@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GGG",
+    "GPG",
+    "III"
+  ],
+  "key": {
+    "G": "minecraft:glass",
+    "I": "minecraft:iron_ingot",
+    "P": "minecraft:prismarine_crystals"
+  },
+  "result": {
+    "id": "nerodecor:specimen_tank",
+    "count": 1
+  }
+}

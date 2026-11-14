@@ -7,6 +7,118 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.8.0-beta.1] - 2026-11-14
+
+The "Chroma" release: a hub-driven colour and animation system, 106 new blocks in ten collections, block entities
+for doors, holograms and screens, and a walkable showroom. Existing worlds load: 0.7.x neon cubes turn into Chroma
+Cubes of the same colour on their own. Still requires Neroland Core 1.17.0 or later.
+
+### Added
+
+- **Chroma system.** A **Chroma Hub** owns a network of up to 4,096 linked blocks inside its volume (48 x 32 x 48 by
+  default). The **Chroma Linker** binds to a hub (sneak-use) and links blocks one at a time, by box drag or by
+  flood fill. Each network has up to 32 zones and a 256-colour palette; colours are RGB with a brightness level, and
+  a Chroma Cube's light level follows its brightness. Hub data is saved per dimension with Neroland Core's recovery
+  guard and a last-known-good backup.
+- **Chroma Hub editor.** Empty-hand use on a hub opens it: Zones, Palette, Scenes, Access and a 3D View tab with
+  orbit, pan, zoom, Y-slice, brush, box, fill, two-point and axis gradients, eyedropper and zone assignment; an
+  HSV / hue / light / hex colour picker with A/B colours; Apply, Revert and 32-step undo/redo. Access roles are
+  Owner, Admin, Painter and Viewer (at most 64 trusted players).
+- **Scene composer.** The Scenes tab's **Compose** view authors a scene zone by zone: each zone gets either an
+  effect (type, period, amplitude, axis, wavelength, density and two colours from the picker) or a keyframe
+  timeline (up to 32 keys, each a tick offset, a colour from the picker and an easing: linear, ease in, ease out,
+  ease in-out or step; add, remove and reorder keys; a length and a loop flag). A live preview samples the same
+  effect and timeline code the blocks run (one cycle at the hub, a row of blocks along the axis, and a live
+  swatch). **Store scene** saves to the selected slot and **Load** brings a slot back for editing. The flash
+  limit is checked before sending and again on the server; a refused scene shows a red banner. The slot list
+  marks the playing slot **LIVE** and its Play buttons read clearly as enabled.
+- **Scenes and animation.** Eight scene slots per hub; each zone plays an effect (pulse, breathe, chase, axis wave,
+  radial ripple, rainbow, sparkle, sky mirror) or a keyframe timeline (up to 32 keys), authored in the scene
+  composer above, as a quick effect on every zone, or imported from a share code or Scene Chip. Triggers: manual, redstone
+  (strength 0 = static, 1-15 pick slots), daylight (dawn/day/dusk/night) and music (client-side, note blocks and
+  jukeboxes). Colours are computed on each client from the game time, so playing a scene sends no per-block
+  traffic and never rebuilds chunks. Client options for reduced motion and turning animation off; server
+  kill-switches.
+- **Photosensitivity rule.** Scenes are sampled on the server before they are saved; a scene in which more than a
+  quarter of the sampled positions flash more than three times in any second is rejected with an explanation.
+- **Scene Chip** (stores one scene; use on a hub to load, sneak-use to copy) and **share codes** (`ND1-...`) to copy
+  scenes between hubs and players. Scenes carry no author.
+- **Paint Gun.** Recolours a paintable block in the world without breaking it.
+- **106 new blocks** (165 registered, cap 200):
+  - Chroma Lights (12): light strip, edge trim, floor tile + slab, step light, ceiling coffer, light pillar, neon
+    tube, light pane, sconce bar, halo ring, cage lamp.
+  - Bulkhead (12): sliding door (two side by side open together), iris hatch, 3x3 blast door, pressure trapdoor,
+    airlock frame, door status light, access pad, viewport frame, porthole, canopy glass, roller shutter, smart
+    glass (use or redstone toggles it opaque).
+  - Holo (8): holo projector, holo sign (two editable lines), arrow sign, world globe (seven worlds), holo table,
+    holo curtain, holo plinth, ticker strip.
+  - Command (8): command console (straight, inner and outer corners), wall screen (N x M tiles read as one
+    display), keyboard shelf, operator chair, server rack, drive rack, patch panel, blinkenlight panel.
+  - Lab & Habitat (8): lab bench, fume hood, specimen tank, sample fridge, lab stool, crew bunk, locker, planter.
+  - Gantry (8): catwalk, catwalk stairs, railing, gantry ladder, floor grate + slab, strut, truss beam.
+  - Conduits (9): decor pipe, pipe valve, pipe gauge, cable tray, hanging cables, duct, duct fan, coolant tube,
+    beam emitter prop.
+  - Seven Worlds (24): three or four blocks for each of Station, Luna, Mars, Cindara, Glacira, Greenxertz and
+    Nyxara (named after the Nerospace worlds; no dependency).
+  - Ancients (7): glyph block (8 glyphs), ancient brick, cracked ancient brick, ancient pillar, dormant core,
+    glyph strip, arch lintel.
+  - Greebles (8): louvre vent, maintenance panel, hazard stripe, deck sign, warning placard, rivet plate, pipe
+    bracket, floor arrow.
+  - Chroma core (2): Chroma Hub and Chroma Cube.
+- **Block entities** (11 types, none ticking): animated doors (sliding door, iris hatch, blast door, pressure
+  trapdoor, shutter), holo projector, holo sign, world globe, holo table, wall screen and the Chroma Hub. The holo
+  sign, holo table and wall screen accept Neroland Core `link.display` pushes; a wall screen group's anchor tile
+  renders the whole display.
+- **Seats.** Operator chairs and lab stools can be sat on (an invisible seat entity that is never saved).
+- **Empty-hand use cycles looks** on many blocks: glyphs, deck sign numbers, placard symbols, arrow directions,
+  planter plants, globe worlds, maintenance panel and cabinet doors, hazard stripe edge, sconce orientation.
+- **Recipes** for every new block and tool from vanilla materials (Nero Alloy for the blast door): 195 recipes in
+  all, each with a recipe-book unlock, plus stonecutter routes for slabs, Seven Worlds variants and Ancients
+  shapes. See the wiki's Recipes page.
+- **JEI and EMI** information pages for the hub, linker, paint gun and Scene Chip (26.x builds); the legacy neon
+  items are hidden there.
+- **NeroLink link schema 2.** The `nerodecor` link module adds a Chroma remote: the requester's own hubs, zones and
+  scenes, a few safe actions and live events, scoped to hubs the requester owns or is trusted on. Details on the
+  wiki's Link Module page.
+- **Privacy.** Hub data is erased through Neroland Core's player-data erasure: the player leaves every trusted
+  list and their hubs are orphaned (names reset, colours kept) for operators to reclaim with
+  `/nerodecor chroma claim`. `/nerodecor privacy export` writes a player's own hub data to a JSON file. Orphaned
+  hubs are deleted after 30 days, broken-hub networks after 90, exports after 7.
+- **Showroom.** `/nerodecor gallery` (operators only) now builds a walkable showroom of eight staged bays, each
+  with its own wall, floor and ceiling materials: reactor hall, observation deck, command bridge, server vault,
+  airlock sequence, Chroma corridor (playing a slow wave scene), Seven Worlds museum and ancient vault.
+  `/nerodecor gallery clear` removes the showroom remembered for this dimension (and refuses when there is none),
+  reporting the blocks and hub networks it removed; the old flat layout is `/nerodecor gallery grid`.
+- **Test harnesses.** JUnit tests for the pure Chroma code, server GameTests on NeoForge 26.3 (placement, 0.7.1
+  save fixture, Chroma links, scenes, privacy, recipes, showroom), and a Fabric client game test that screenshots
+  the showcase, the eight showroom bays, every hub tab and the scene composer, plus a Chroma layer performance
+  pass (4,096 animated cubes on one hub).
+
+### Changed
+
+- **Neon folded into the Chroma Cube.** The twelve `neon_*` blocks are now hidden legacy blocks: placed neon,
+  neon items in inventories, dropped items and containers in loaded chunks convert to a Chroma Cube of the same
+  colour. The old neon recipes now dye and recolour Chroma Cubes. The fold never reads a container that still
+  holds an unrolled loot table (dungeon and structure chests keep their loot until a player opens them) and skips
+  freshly generated chunks.
+- The per-dimension Chroma save file now carries a format version (`v`; files without it load as version 1), and
+  one malformed network entry is skipped and counted instead of sending the whole file to recovery.
+- Paintable slabs, stairs, walls and panes now show their paint colour, and pre-dyed items show it in the
+  inventory.
+- `/nerodecor gallery` builds the showroom; the old grid moved to `/nerodecor gallery grid` (and
+  `/nerodecor gallery grid clear`). Every gallery command now needs operator rights (permission level 2):
+  creative mode alone is no longer enough, because the showroom clears a large box and removes any hub network
+  whose hub stood in it, whoever owns it.
+
+### Upgrading from 0.7.x
+
+- Back up the world first, as always.
+- Neon cubes convert automatically the first time their chunk loads or the item ticks in an inventory; nothing
+  needs to be done by hand. Items in ender chests and in chunks that are never loaded again stay as neon until
+  they are.
+- The `neon_*` ids remain registered (hidden) throughout 0.8.x so old saves keep loading. **They are removed in
+  0.9.0**: load every world you care about in 0.8.x once before updating past it.
+
 ## [0.7.1-beta.2] - 2026-10-31
 
 ### Changed
@@ -124,7 +236,7 @@ load unchanged.
 
 ### Added
 
-- **17 new blocks** (59 total, well inside ADR-001's 200 cap): Circuit Plating, Holo-Grid Floor,
+- **17 new blocks** (59 total, well inside the 200-block registry cap): Circuit Plating, Holo-Grid Floor,
   Starfield Panel, Data Stream Panel, Aurora Glass, Lumen Panel, Void Rift, Void Crystal Lattice,
   Capacitor Bank, Xenobloom, Ion Vent, Plasma Conduit, Starsteel Pillar and Fusion Lamp, plus slabs
   of Circuit Plating, Holo-Grid Floor and Lumen Panel. All model-only: no block entities, no ticking.

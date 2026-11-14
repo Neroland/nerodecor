@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GGG",
+    "GAG",
+    "GGG"
+  ],
+  "key": {
+    "A": "minecraft:amethyst_shard",
+    "G": "minecraft:glass_pane"
+  },
+  "result": {
+    "id": "nerodecor:holo_curtain",
+    "count": 8
+  }
+}

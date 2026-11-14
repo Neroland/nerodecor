@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BB"
+  ],
+  "key": {
+    "B": "minecraft:iron_bars"
+  },
+  "result": {
+    "id": "nerodecor:louvre_vent",
+    "count": 4
+  }
+}

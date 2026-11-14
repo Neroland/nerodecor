@@ -850,3 +850,22 @@ BLOCKS = [
           model=_lintel_model, blockstate=_lintel_state, item_model="arch_lintel_left",
           name="Arch Lintel"),
 ]
+
+# =========================================================================================
+# Recipes (0.8.0 Stage 6): vanilla + Neroland Core ingredients only, no gate. See _kit.shaped.
+# =========================================================================================
+from ._kit import CUBE, attach_recipes, shaped  # noqa: E402
+
+_AB = "nerodecor:ancient_brick"
+attach_recipes(BLOCKS, {
+    "ancient_brick": shaped("ancient_brick", 8, ["BBB", "BLB", "BBB"], B="minecraft:deepslate_bricks",
+                            L="minecraft:lapis_lazuli"),
+    "glyph_block": shaped("glyph_block", 8, ["AAA", "AGA", "AAA"], A=_AB, G="minecraft:glowstone_dust"),
+    "ancient_pillar": shaped("ancient_pillar", 2, ["A", "A"], A=_AB),
+    "glyph_strip": shaped("glyph_strip", 6, ["GGG"], G="nerodecor:glyph_block"),
+    "dormant_core": shaped("dormant_core", 1, ["ABA", "BCB", "ABA"], A=_AB, B="minecraft:amethyst_shard", C=CUBE),
+}, stonecutting=[
+    ("ancient_brick", "ancient_pillar", 1),
+    ("ancient_brick", "arch_lintel", 1),
+    ("glyph_block", "glyph_strip", 2),
+], smelting=[("ancient_brick", "cracked_ancient_brick")])

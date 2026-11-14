@@ -70,7 +70,7 @@ public final class NeroDecorForge {
 
     private static void onChunkLoad(ChunkEvent.Load event) {
         if (event.getLevel() instanceof ServerLevel level && event.getChunk() instanceof LevelChunk chunk) {
-            NeonFold.onChunkLoad(level, chunk);
+            NeonFold.onChunkLoad(level, chunk, event.isNewChunk());
         }
     }
 }

@@ -44,10 +44,10 @@ public final class LabGantryConduitsBlocks {
 
     // 26.3 renamed PushReaction (DESTROY -> POPPED); pistons pop the bunk like a bed.
     //? if >=26.3 {
-    private static final PushReaction BUNK_PUSH = PushReaction.POPPED;
-    //?} else {
-    /*private static final PushReaction BUNK_PUSH = PushReaction.DESTROY;
-    *///?}
+    /*private static final PushReaction BUNK_PUSH = PushReaction.POPPED;
+    *///?} else {
+    private static final PushReaction BUNK_PUSH = PushReaction.DESTROY;
+    //?}
 
     /** The invisible vehicle a player rides on a seat block (see {@link SeatEntity#sit}). Never saved. */
     public static final RegistryEntry<EntityType<SeatEntity>> SEAT = CollectionRegistries.ENTITY_TYPES.register("seat",

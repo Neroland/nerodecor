@@ -581,3 +581,25 @@ ITEMS = [
     Item("paint_gun", ["paint_gun", "paint_gun_paint"], parent="minecraft:item/handheld",
          tints=[_WHITE, {"type": "%s:decor_color" % NS}], name="Paint Gun"),
 ]
+
+# =========================================================================================
+# Recipes (0.8.0 Stage 6): vanilla + Neroland Core ingredients only, no gate. See _kit.shaped.
+# =========================================================================================
+# chroma_cube and paint_gun keep their 0.7.x recipes in tools/gen_resources.py (recipe ids carry over).
+from ._kit import CUBE, attach_recipes, shaped  # noqa: E402
+
+attach_recipes([b for b in BLOCKS if b.id != "chroma_cube"], {
+    "chroma_hub": shaped("chroma_hub", 1, ["IQI", "CRC", "III"], C=CUBE, I="minecraft:iron_ingot",
+                         Q="minecraft:quartz", R="minecraft:redstone"),
+})
+for _b in BLOCKS:
+    if _b.id == "chroma_hub":
+        _b.highlight = "machines"
+for _it in ITEMS:
+    _it.highlight = "tools"
+    if _it.id == "chroma_linker":
+        _it.recipe = shaped("chroma_linker", 1, [" A", " R", "I "], A="minecraft:amethyst_shard",
+                            I="minecraft:iron_ingot", R="minecraft:redstone")
+    elif _it.id == "scene_chip":
+        _it.recipe = shaped("scene_chip", 2, ["GRG", "NQN"], G="minecraft:gold_nugget", N="minecraft:iron_nugget",
+                            Q="minecraft:quartz", R="minecraft:redstone")

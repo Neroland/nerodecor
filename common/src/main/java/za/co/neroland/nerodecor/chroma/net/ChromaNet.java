@@ -9,6 +9,9 @@ import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.server.level.ServerPlayer;
 
+import za.co.neroland.nerodecor.content.block.holo.net.HoloNet;
+import za.co.neroland.nerodecor.content.block.holo.net.HoloSignEditPayload;
+
 /**
  * NeroDecor's packet table, declared once and wired by each loader (see {@link ChromaNetPlatform}). Clientbound
  * handlers run on the client main thread and reach the client only through lambdas, so a dedicated server never
@@ -30,11 +33,24 @@ public final class ChromaNet {
             new Clientbound<>(ChromaPayloads.Snapshot.TYPE, ChromaPayloads.Snapshot.STREAM_CODEC,
                     p -> za.co.neroland.nerodecor.chroma.client.ChromaClientSync.onSnapshot(p.data())),
             new Clientbound<>(ChromaPayloads.Delta.TYPE, ChromaPayloads.Delta.STREAM_CODEC,
-                    p -> za.co.neroland.nerodecor.chroma.client.ChromaClientSync.onDelta(p.data())));
+                    p -> za.co.neroland.nerodecor.chroma.client.ChromaClientSync.onDelta(p.data())),
+            new Clientbound<>(ChromaHubNet.Detail.TYPE, ChromaHubNet.Detail.STREAM_CODEC,
+                    p -> ChromaHubNet.onClientDetail(p.data())),
+            // Stage 4 (scenes)
+            new Clientbound<>(ChromaScenePayloads.SceneState.TYPE, ChromaScenePayloads.SceneState.STREAM_CODEC,
+                    p -> ChromaScenePayloads.onClientScene(p.data())),
+            new Clientbound<>(ChromaScenePayloads.ZoneMap.TYPE, ChromaScenePayloads.ZoneMap.STREAM_CODEC,
+                    p -> ChromaScenePayloads.onClientZones(p.data())));
 
     private static final List<Serverbound<?>> SERVERBOUND = List.of(
             new Serverbound<>(ChromaPayloads.Ops.TYPE, ChromaPayloads.Ops.STREAM_CODEC,
-                    (p, player) -> ChromaEdits.handle(player, p.data())));
+                    (p, player) -> ChromaEdits.handle(player, p.data())),
+            new Serverbound<>(HoloSignEditPayload.TYPE, HoloSignEditPayload.STREAM_CODEC, HoloNet::handleEdit),
+            new Serverbound<>(ChromaHubNet.Action.TYPE, ChromaHubNet.Action.STREAM_CODEC,
+                    (p, player) -> ChromaHubNet.handle(player, p.data())),
+            // Stage 4 (scenes)
+            new Serverbound<>(ChromaScenePayloads.SceneEdit.TYPE, ChromaScenePayloads.SceneEdit.STREAM_CODEC,
+                    (p, player) -> ChromaSceneEdits.handle(player, p.data())));
 
     private ChromaNet() {
     }

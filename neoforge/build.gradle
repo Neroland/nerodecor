@@ -105,6 +105,15 @@ dependencies {
     }
 }
 
+// The recipe-viewer plugins (common compat/jei, compat/emi) compile only where that viewer's API is on the
+// classpath for this Minecraft line (the 26.x pins above); elsewhere they are left out of the jar.
+if (!jeiVersion) {
+    sourceSets.main.java.exclude('za/co/neroland/nerodecor/compat/jei/**')
+}
+if (!emiFile) {
+    sourceSets.main.java.exclude('za/co/neroland/nerodecor/compat/emi/**')
+}
+
 // Plain-JVM unit tests (JUnit 5, no game bootstrap). The shared tests live in common/src/test/java but,
 // since `common` is not a Gradle project, each NeoForge node wires the source dir itself (stonecutter.gradle
 // preprocesses it like main). Only the NeoForge nodes run them; `build`/`check` runs them automatically.
@@ -130,6 +139,10 @@ if (gameTests) {
             compileClasspath += sourceSets.main.output
             runtimeClasspath += sourceSets.main.output
         }
+    }
+    dependencies {
+        // The link GameTests talk to Core's NeroLink registry directly (Core is already on the run classpath).
+        gametestCompileOnly "za.co.neroland.nerolandcore:nerolandcore-neoforge-${mc}:${nerolandcoreVersion}"
     }
 }
 
@@ -260,7 +273,12 @@ tasks.register('ecjCheck', JavaExec) {
         def analysisCp = (sourceSets.main.compileClasspath.files + sourceSets.main.output.files)
                 .findAll { it.exists() }
                 .join(File.pathSeparator)
-        def srcDirs = sourceSets.main.java.srcDirs.findAll { it.exists() }.collect { it.absolutePath }
+        // Pass the source FILES (not dirs) so the sourceSet excludes apply — e.g. the JEI/EMI plugins on
+        // cells without those APIs — via an ecj @argfile to stay under the Windows command-line limit.
+        def ecjSrcList = layout.buildDirectory.file('tmp/ecjCheck/sources.txt').get().asFile
+        ecjSrcList.parentFile.mkdirs()
+        ecjSrcList.text = sourceSets.main.java.files.collect { '"' + it.absolutePath.replace('\\', '/') + '"' }.join('\n')
+        def srcDirs = ['@' + ecjSrcList.absolutePath]
         args = [
                 '--release', "${project.javaRelease}",
                 '-proc:none',

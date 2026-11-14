@@ -1,6 +1,14 @@
 {
   "schema": 1,
   "outputs": {
+    "../resources-26.3/data/nerodecor/loot_table/blocks/crew_bunk.json": "b255ee96038f06b648741467de24193e1e11c628b30e4ca7c7a787083e96e6fe",
+    "../resources-26.3/data/nerodecor/loot_table/blocks/fume_hood.json": "a03a3af8eca76f30674ce8df4f701633eb3a6322c5b2554f95f4930278d9a20d",
+    "../resources-26.3/data/nerodecor/loot_table/blocks/lab_bench.json": "155cb66683f97e0783e5fa099431d1c46fe1706c072b6644a3efee3487918e1e",
+    "../resources-26.3/data/nerodecor/loot_table/blocks/lab_stool.json": "8b698e1a9cd827d3ca0b15d47db815824366fc394f015aff20e218371125fa2a",
+    "../resources-26.3/data/nerodecor/loot_table/blocks/locker.json": "6f7a159d58e66e6952072af448e308d9179923d6fe418478850af0e621c96aa6",
+    "../resources-26.3/data/nerodecor/loot_table/blocks/planter.json": "95fe8b9e287ff6f51077ece292f9f5197aa8f063584e1d557eedbd4400726978",
+    "../resources-26.3/data/nerodecor/loot_table/blocks/sample_fridge.json": "a2d1b64ccbd8b94d1d9c3c219e7209c7b04523043df435f7ffebeb33ff975377",
+    "../resources-26.3/data/nerodecor/loot_table/blocks/specimen_tank.json": "c4beba2f7aaa47dce3831f918a91a0574fb114a5606fcfe6c8efb7e9dbe84d28",
     "assets/nerodecor/blockstates/crew_bunk.json": "c67150ecbd509387d7df6818fb5d481e8d3fd6a850e1244052469f0336e280eb",
     "assets/nerodecor/blockstates/fume_hood.json": "71657ba40cd651f515388594c78fe5acb75c2ca42ea9db17d801dc6ebcfaf7e3",
     "assets/nerodecor/blockstates/lab_bench.json": "d4c5209b723e5a2a47ed5a4c86b8039839e05094df665cf714237e7898e24bc9",
@@ -151,6 +159,22 @@
     "assets/nerodecor/textures/block/lab_habitat/specimen_tank_fluid_glow_c11.png.mcmeta": "b308a3ea4868ebd2a72102d24da34f077b0fcef95e7fda8b44d224e9006d553e",
     "assets/nerodecor/textures/block/lab_habitat/specimen_tank_glass.png": "115cd5eed0b69c0f7b2ae919025694e9117cc97ad66af764738e6f5907dbe0b5",
     "assets/nerodecor/textures/block/lab_habitat/specimen_tank_lid.png": "ff00319d3ed26b8d6f5ad71f053b8e9cd4ab857b2a7d7d749eee68ca7ed47e10",
-    "assets/nerodecor/textures/block/lab_habitat/specimen_tank_surface.png": "2552abe993621e56fbadd3ef181ebc6518443bc4b36a4b3a06ef282149174258"
+    "assets/nerodecor/textures/block/lab_habitat/specimen_tank_surface.png": "2552abe993621e56fbadd3ef181ebc6518443bc4b36a4b3a06ef282149174258",
+    "data/nerodecor/loot_table/blocks/crew_bunk.json": "6c9fbf885689afa1f62c0abc91b8ed70d1736681561b47785314837e733329a6",
+    "data/nerodecor/loot_table/blocks/fume_hood.json": "d14672e9d7f2f0ff6d5a5fc3f32dbb0fba691e2c1abe86d4c07d6c3c2f755f67",
+    "data/nerodecor/loot_table/blocks/lab_bench.json": "c59cedd4a6c28c6b252fea07dd94327c15b333d5cf1a8b8e4ae7e5ce4a769f2d",
+    "data/nerodecor/loot_table/blocks/lab_stool.json": "7b1e3354d875c7e49ff31e5477535e8ee2bcb01631bdf5580aaafd3ff5a34da0",
+    "data/nerodecor/loot_table/blocks/locker.json": "1b4c96db2ffa244cc107e3bf6263a50712072e0b7065cb76dcee5b7e691cc3b0",
+    "data/nerodecor/loot_table/blocks/planter.json": "6f8e1230c2d11df137e596f5f3265f31f37d0e4b8d96c77e16c03263f502ff15",
+    "data/nerodecor/loot_table/blocks/sample_fridge.json": "6b1e4191851860ea7f206211905ecf99697893b061c57fb71f00774f4d4c2b81",
+    "data/nerodecor/loot_table/blocks/specimen_tank.json": "18b87da6513da988f6e4b3f66267c47a4c8a84de43833f3f93d3a9fcf08af650",
+    "data/nerodecor/recipe/crew_bunk.json": "a4e56167416242b31cebf81c73eeb504a2bde7e1f9516aea42ade12a2839a579",
+    "data/nerodecor/recipe/fume_hood.json": "d71f4893e0ee31f33f83128d7ae2a432efa5afae3ddc5ddd7cf1549f5f893196",
+    "data/nerodecor/recipe/lab_bench.json": "4c1a9149bd507afe10d92ecfdda37c5e8992201ee8cd80d0aa04ebda519be4c9",
+    "data/nerodecor/recipe/lab_stool.json": "ebacafc4462bb45e8b6809fa75cf6504d04942b2279bfdff08d28d81b5d91732",
+    "data/nerodecor/recipe/locker.json": "19ac98168c9a916bfcda954033cc99951a062aa75546815d2adf43738fe33366",
+    "data/nerodecor/recipe/planter.json": "8cee34fea3450328d6a2b05a1fd84f5f6587d8430af72088284799851706cf2c",
+    "data/nerodecor/recipe/sample_fridge.json": "93f18efc6c741bd3aa2f9e5804f7b34e9f6acd70915a6f7e83c52b63b22cb3e1",
+    "data/nerodecor/recipe/specimen_tank.json": "0dfbe48c6ea5962908f4701543e1cf1fe61348273a9b9c95a38f07686319dc6c"
   }
 }

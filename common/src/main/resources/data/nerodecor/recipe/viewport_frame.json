@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SGS",
+    "GIG",
+    "SGS"
+  ],
+  "key": {
+    "G": "minecraft:glass",
+    "I": "minecraft:iron_ingot",
+    "S": "minecraft:smooth_stone"
+  },
+  "result": {
+    "id": "nerodecor:viewport_frame",
+    "count": 8
+  }
+}

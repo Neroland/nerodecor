@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "C C",
+    "CCC"
+  ],
+  "key": {
+    "C": "minecraft:copper_ingot"
+  },
+  "result": {
+    "id": "nerodecor:duct",
+    "count": 8
+  }
+}

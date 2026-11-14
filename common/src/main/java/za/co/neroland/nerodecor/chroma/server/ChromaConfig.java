@@ -50,10 +50,17 @@ public final class ChromaConfig {
             "Days a network whose hub has been broken is kept for re-placement before it is deleted "
                     + "(data minimisation; the hub item then starts a fresh network).");
 
+    public static final ConfigValue<Integer> ORPHAN_RETENTION_DAYS = NeroDecorConfig.SCHEMA.intRange(
+            "chroma.orphanRetentionDays", 30, 1, 3650, true,
+            "Days a network whose owner's data was erased (orphaned: colours kept, nobody may edit) is kept for an "
+                    + "operator to claim before it is deleted. Separate from chroma.inactiveRetentionDays.");
+
     private ChromaConfig() {
     }
 
     /** Force class-load so the keys join the schema before it is registered. */
     public static void bootstrap() {
+        // Stage 4 animation keys (chroma.animations, client options) live in their own class.
+        ChromaAnimationConfig.bootstrap();
     }
 }

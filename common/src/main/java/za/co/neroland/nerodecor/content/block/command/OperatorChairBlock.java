@@ -1,18 +1,30 @@
 package za.co.neroland.nerodecor.content.block.command;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import za.co.neroland.nerodecor.content.block.bulkhead.BhcBlock;
 import za.co.neroland.nerodecor.content.block.bulkhead.BhcShapes;
+import za.co.neroland.nerodecor.content.entity.SeatEntity;
 
-/** Operator chair: decorative, eight-way {@code facing} (it turns to face whoever placed it). */
+/**
+ * Operator chair: eight-way {@code facing} (it turns to face whoever placed it). Using it empty-handed sits the player
+ * on a {@link SeatEntity} at {@link #SEAT_Y} (the cushion top).
+ */
 public class OperatorChairBlock extends BhcBlock {
+
+    /** Cushion top (9.5px), from the operator_chair model in the command collection module. */
+    public static final double SEAT_Y = 9.5 / 16.0;
 
     public static final EnumProperty<ChairFacing> FACING = EnumProperty.create("facing", ChairFacing.class);
 
@@ -30,6 +42,15 @@ public class OperatorChairBlock extends BhcBlock {
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         // Player yaw: south = 0, west = 90; the chair's bearing (north = 0) facing back at the player equals the yaw.
         return defaultBlockState().setValue(FACING, ChairFacing.fromBearing(context.getRotation()));
+    }
+
+    @Override
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player,
+                                               BlockHitResult hit) {
+        if (!player.getMainHandItem().isEmpty()) {
+            return InteractionResult.PASS;
+        }
+        return SeatEntity.sit(level, pos, player, SEAT_Y) ? InteractionResult.SUCCESS : InteractionResult.PASS;
     }
 
     @Override

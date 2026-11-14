@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "NNN"
+  ],
+  "key": {
+    "C": "nerodecor:chroma_cube",
+    "N": "minecraft:iron_nugget"
+  },
+  "result": {
+    "id": "nerodecor:light_strip",
+    "count": 8
+  }
+}

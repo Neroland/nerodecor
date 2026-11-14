@@ -28,7 +28,7 @@ import za.co.neroland.nerodecor.registry.RegistrationProvider.RegistryEntry;
  * registered cross-loader through {@link RegistrationProvider}. Each block carries the
  * paintable {@code COLOR} property and its CTM family id. This set is representative of the
  * four families and every shape type (cube/slab/stair/wall/pane); it grows toward the
- * ADR-001 budget by adding entries here (datagen + gen_textures read the same set).
+ * 200-block registry budget by adding entries here (datagen + gen_textures read the same set).
  *
  * <p>{@link #ALL} keeps registration order so {@code ModItems} and datagen iterate the same
  * list. CTM family ids are {@code nerodecor:<family>}; two faces connect on same family +

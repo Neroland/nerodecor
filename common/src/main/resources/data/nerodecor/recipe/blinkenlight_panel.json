@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "NRN",
+    "LCL",
+    "NRN"
+  ],
+  "key": {
+    "C": "nerodecor:chroma_cube",
+    "L": "minecraft:glowstone_dust",
+    "N": "minecraft:iron_nugget",
+    "R": "minecraft:redstone"
+  },
+  "result": {
+    "id": "nerodecor:blinkenlight_panel",
+    "count": 4
+  }
+}

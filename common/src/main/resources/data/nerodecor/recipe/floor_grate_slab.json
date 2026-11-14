@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "FFF"
+  ],
+  "key": {
+    "F": "nerodecor:floor_grate"
+  },
+  "result": {
+    "id": "nerodecor:floor_grate_slab",
+    "count": 6
+  }
+}

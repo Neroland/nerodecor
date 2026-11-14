@@ -18,10 +18,10 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.block.state.BlockState;
 
 import za.co.neroland.nerolandcore.data.PlayerDataErasure;
-import za.co.neroland.nerolandcore.data.SavedDataRecovery;
 
 import za.co.neroland.nerodecor.NeroDecorCommon;
 import za.co.neroland.nerodecor.chroma.RelativePos;
+import za.co.neroland.nerodecor.chroma.server.privacy.ChromaPrivacy;
 import za.co.neroland.nerodecor.content.block.ChromaHubBlockEntity;
 
 /**
@@ -46,7 +46,6 @@ public final class ChromaNetworks {
     }
 
     private static final long SWEEP_INTERVAL_MS = 10L * 60L * 1000L;
-    private static final long DAY_MS = 24L * 60L * 60L * 1000L;
 
     private static volatile ChromaRateLimiter limiter;
 
@@ -55,7 +54,7 @@ public final class ChromaNetworks {
 
     /** Registers the erasure hook with Core. Called once from common init. */
     public static void init() {
-        PlayerDataErasure.register(ChromaNetworks::erase);
+        PlayerDataErasure.register(ChromaPrivacy::erase);
     }
 
     // --- stores ---------------------------------------------------------------------------------------------------
@@ -63,9 +62,9 @@ public final class ChromaNetworks {
     /** This dimension's store (through Core's recovery guard), with a throttled retention sweep. */
     public static ChromaNetworkStore store(ServerLevel level) {
         ChromaNetworkData data = ChromaNetworkData.get(level);
-        long now = System.currentTimeMillis();
+        long now = ChromaPrivacy.now();
         if (data.dueForSweep(now, SWEEP_INTERVAL_MS)) {
-            data.store().purgeInactive(now, ChromaConfig.INACTIVE_RETENTION_DAYS.get() * DAY_MS);
+            ChromaPrivacy.sweep(level, data, now); // broken-hub (90 d) and orphaned (30 d) retention
         }
         return data.store();
     }
@@ -185,7 +184,11 @@ public final class ChromaNetworks {
         HubNetwork network = store.get(id);
         if (network != null && network.anchorX() == pos.getX() && network.anchorY() == pos.getY()
                 && network.anchorZ() == pos.getZ()) {
-            store.deactivate(id, System.currentTimeMillis());
+            boolean wasActive = network.active();
+            store.deactivate(id, ChromaPrivacy.now());
+            if (wasActive) {
+                ChromaHooks.hubBroken(network);
+            }
         }
     }
 
@@ -217,7 +220,7 @@ public final class ChromaNetworks {
             return Optional.empty();
         }
         if (!hubPresent(level, network)) {
-            store.deactivate(id, System.currentTimeMillis());
+            store.deactivate(id, ChromaPrivacy.now());
             return Optional.empty();
         }
         int rel = RelativePos.pack(pos.getX() - network.anchorX(), pos.getY() - network.anchorY(),
@@ -448,17 +451,6 @@ public final class ChromaNetworks {
     }
 
     // --- erasure + messages -----------------------------------------------------------------------------------------
-
-    /** POPIA/GDPR erasure: the player's networks are deleted and they leave every trusted list, backups included. */
-    static void erase(MinecraftServer server, UUID player) {
-        for (ServerLevel level : server.getAllLevels()) {
-            ChromaNetworkData data = ChromaNetworkData.get(level);
-            if (data.store().eraseFor(player)) {
-                SavedDataRecovery.backupNow(level, ChromaNetworkData.TYPE, data, ChromaNetworkData.RECOVERY_NAME);
-            }
-        }
-        limiter().forget(player);
-    }
 
     /** Action-bar feedback for a verdict ({@code message.nerodecor.chroma.<verdict>}). */
     public static void tell(ServerPlayer player, ChromaVerdict verdict) {

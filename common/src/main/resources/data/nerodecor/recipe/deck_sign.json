@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "NNN",
+    "GLG"
+  ],
+  "key": {
+    "G": "minecraft:glass_pane",
+    "L": "minecraft:glowstone_dust",
+    "N": "minecraft:iron_nugget"
+  },
+  "result": {
+    "id": "nerodecor:deck_sign",
+    "count": 3
+  }
+}

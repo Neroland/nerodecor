@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "III",
+    "SRS"
+  ],
+  "key": {
+    "I": "minecraft:iron_ingot",
+    "R": "minecraft:redstone",
+    "S": "minecraft:string"
+  },
+  "result": {
+    "id": "nerodecor:patch_panel",
+    "count": 2
+  }
+}

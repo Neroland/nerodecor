@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GCG"
+  ],
+  "key": {
+    "C": "nerodecor:chroma_cube",
+    "G": "minecraft:glass_pane"
+  },
+  "result": {
+    "id": "nerodecor:neon_tube",
+    "count": 4
+  }
+}

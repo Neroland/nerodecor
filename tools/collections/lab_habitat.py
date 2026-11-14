@@ -37,7 +37,7 @@ Kit gaps worked around locally (candidates for _kit):
 """
 import math
 
-from ._kit import (Block, accent, animate, bevel, det, lerp, new, put, ramp, ramp5, rect,  # noqa: F401
+from ._kit import (Block, half_loot, accent, animate, bevel, det, lerp, new, put, ramp, ramp5, rect,  # noqa: F401
                    wear)
 
 COLLECTION = "lab_habitat"
@@ -1115,7 +1115,8 @@ BLOCKS.append(Block(
     textures={k: k for k in ["crew_bunk_side_head", "crew_bunk_side_foot", "crew_bunk_end_head",
                              "crew_bunk_end_foot", "crew_bunk_head_in", "crew_bunk_roof",
                              "crew_bunk_head_bed", "crew_bunk_foot_bed", "crew_bunk_pillow"]},
-    model=_bunk_models, blockstate=_bunk_state, item_model="crew_bunk_head"))
+    model=_bunk_models, blockstate=_bunk_state, item_model="crew_bunk_head",
+    loot=half_loot("crew_bunk", "part", "head")))
 
 
 # =================================================================================================
@@ -1452,3 +1453,22 @@ BLOCKS.append(Block(
               + ["planter_side_c%d%d" % pn for pn in PN]
               + ["planter_plant%d_%s" % (k, s) for k in range(4) for s in "ab"]},
     model=_planter_models, blockstate=_planter_state, item_model="planter_inventory"))
+
+# =========================================================================================
+# Recipes (0.8.0 Stage 6): vanilla + Neroland Core ingredients only, no gate. See _kit.shaped.
+# =========================================================================================
+from ._kit import attach_recipes, shaped  # noqa: E402
+
+_I, _Q = "minecraft:iron_ingot", "minecraft:quartz"
+attach_recipes(BLOCKS, {
+    "lab_bench": shaped("lab_bench", 1, ["QQQ", "I I", "I I"], I=_I, Q=_Q),
+    "fume_hood": shaped("fume_hood", 1, ["PPP", "P P", "III"], I=_I, P="minecraft:glass_pane"),
+    "specimen_tank": shaped("specimen_tank", 1, ["GGG", "GPG", "III"], G="minecraft:glass", I=_I,
+                            P="minecraft:prismarine_crystals"),
+    "sample_fridge": shaped("sample_fridge", 1, ["III", "IPI", "IRI"], I=_I, P="minecraft:packed_ice",
+                            R="minecraft:redstone"),
+    "lab_stool": shaped("lab_stool", 2, ["sss", " I "], I=_I, s="minecraft:smooth_stone_slab"),
+    "crew_bunk": shaped("crew_bunk", 1, ["I", "B", "I"], B="#minecraft:beds", I=_I),
+    "locker": shaped("locker", 2, ["III", "ICI", "III"], C="minecraft:chest", I=_I),
+    "planter": shaped("planter", 2, ["I I", "IDI", "III"], D="minecraft:dirt", I=_I),
+})

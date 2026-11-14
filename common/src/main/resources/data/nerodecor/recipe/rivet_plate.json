@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IN",
+    "NI"
+  ],
+  "key": {
+    "I": "minecraft:iron_ingot",
+    "N": "minecraft:iron_nugget"
+  },
+  "result": {
+    "id": "nerodecor:rivet_plate",
+    "count": 8
+  }
+}

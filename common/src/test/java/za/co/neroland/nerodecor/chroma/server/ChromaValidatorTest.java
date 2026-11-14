@@ -128,4 +128,30 @@ class ChromaValidatorTest {
         }
         assertEquals(ChromaVerdict.ZONE_CAP, store.addZone(5L, OWNER, "one too many", 0, LIMITS));
     }
+
+    @Test
+    void trustListIsCappedButExistingEntriesCanChangeAndRevoke() {
+        ChromaNetworkStore store = new ChromaNetworkStore();
+        store.create(9L, OWNER, 0, 64, 0, 16, 16, 16);
+        for (int i = 0; i < ChromaLimits.MAX_TRUSTED; i++) {
+            assertEquals(ChromaVerdict.OK, store.setTrust(9L, OWNER, new UUID(100, i), ChromaRole.VIEWER));
+        }
+        assertEquals(ChromaVerdict.TRUST_CAP, store.setTrust(9L, OWNER, new UUID(200, 0), ChromaRole.VIEWER));
+        assertEquals(ChromaVerdict.OK, store.setTrust(9L, OWNER, new UUID(100, 0), ChromaRole.PAINTER));
+        assertEquals(ChromaVerdict.OK, store.setTrust(9L, OWNER, new UUID(100, 1), ChromaRole.NONE));
+        assertEquals(ChromaVerdict.OK, store.setTrust(9L, OWNER, new UUID(200, 0), ChromaRole.VIEWER));
+        assertEquals(ChromaLimits.MAX_TRUSTED, store.get(9L).trusted().size());
+    }
+
+    @Test
+    void reachIsTheVolumePlusAMarginOrNearTheHub() {
+        HubNetwork n = network(); // hub at 100,64,100, volume 48x32x48
+        assertTrue(ChromaReach.near(n, 110.5, 64, 100.5));
+        assertTrue(ChromaReach.near(n, 100.5 + 24 + 7, 64, 100.5)); // inside the volume margin
+        assertFalse(ChromaReach.near(n, 100.5 + 24 + 9, 64, 100.5));
+        assertFalse(ChromaReach.near(n, 500, 64, 500));
+        HubNetwork small = new ChromaNetworkStore().create(8L, OWNER, 0, 64, 0, 1, 1, 1);
+        assertTrue(ChromaReach.near(small, 15.0, 64.5, 0.5)); // within 16 of the hub
+        assertFalse(ChromaReach.near(small, 17.5, 64.5, 0.5));
+    }
 }

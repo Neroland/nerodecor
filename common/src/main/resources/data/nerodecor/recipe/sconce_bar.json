@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "N",
+    "C",
+    "N"
+  ],
+  "key": {
+    "C": "nerodecor:chroma_cube",
+    "N": "minecraft:iron_nugget"
+  },
+  "result": {
+    "id": "nerodecor:sconce_bar",
+    "count": 2
+  }
+}

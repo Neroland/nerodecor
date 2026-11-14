@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BK",
+    "KB"
+  ],
+  "key": {
+    "B": "minecraft:blackstone",
+    "K": "minecraft:basalt"
+  },
+  "result": {
+    "id": "nerodecor:cindara_slag_brick",
+    "count": 4
+  }
+}

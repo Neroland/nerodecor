@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "HM",
+    "MH"
+  ],
+  "key": {
+    "H": "minecraft:honeycomb",
+    "M": "minecraft:moss_block"
+  },
+  "result": {
+    "id": "nerodecor:greenxertz_hive_comb",
+    "count": 4
+  }
+}

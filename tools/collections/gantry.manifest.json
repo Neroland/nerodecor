@@ -1,6 +1,14 @@
 {
   "schema": 1,
   "outputs": {
+    "../resources-26.3/data/nerodecor/loot_table/blocks/catwalk.json": "20be63a734b89a765c67555818aa25dc2f2284e7f48e8a070c5e736df1199459",
+    "../resources-26.3/data/nerodecor/loot_table/blocks/catwalk_stairs.json": "072e0e1041ce222763de80c58c9b27c25ee86fc1ef10fa13afea7f11b8427b55",
+    "../resources-26.3/data/nerodecor/loot_table/blocks/floor_grate.json": "2460c8442268a69c595da5faa0c2b5a93ad4a3a46260d22316b681895a98bc85",
+    "../resources-26.3/data/nerodecor/loot_table/blocks/floor_grate_slab.json": "a7d0fc59e96b8c9502ef7d379c9750f35e242d94f81273fe820b1f0e93e0123f",
+    "../resources-26.3/data/nerodecor/loot_table/blocks/gantry_ladder.json": "c9bfe3147309fb8c67b99fa373ed4ecdf03e8bc89d1cec1ab815ec94d38f8011",
+    "../resources-26.3/data/nerodecor/loot_table/blocks/railing.json": "a8e348ac3bc1cb543d7eefd04143f8d069f5d1a53c2bb4d28f7c6822bd2a9994",
+    "../resources-26.3/data/nerodecor/loot_table/blocks/strut.json": "3beb6ea90fab5dfd8d660c62373fcb73f89cbf5609bc83b44c3b962afe6f1bb7",
+    "../resources-26.3/data/nerodecor/loot_table/blocks/truss_beam.json": "06bd33abb9572653034b43f1f3124ae4fe13ae976c12606fa70123523cbbbdfc",
     "assets/nerodecor/blockstates/catwalk.json": "a2099a265e0f2f0d0140404fa27b352c5d32feb3ecba4f22b4b7abbdc603db01",
     "assets/nerodecor/blockstates/catwalk_stairs.json": "4ac3b482dba2b57849eab9638f81d7d3717a0080f5406ec540a6f578bfbaf0f3",
     "assets/nerodecor/blockstates/floor_grate.json": "d7ca8aafdc4b759f9c624934f9c014a864bb0eca0ec3e7bbeb2541391d62f198",
@@ -259,6 +267,24 @@
     "assets/nerodecor/textures/block/gantry/strut_flange.png": "9cdbbad9ba7f11178a51bc31d0fa1b33e7923c98984be8fff48e2175e043059c",
     "assets/nerodecor/textures/block/gantry/truss_beam.png": "0342cb81e22a21ad7eced82d939f8d1b4c960029128981cf6ade81db799406b2",
     "assets/nerodecor/textures/block/gantry/truss_beam_b.png": "95850c4de26f4cac0fe5e29eb05295904e630c453e3758a036659064983d6c71",
-    "assets/nerodecor/textures/block/gantry/truss_beam_end.png": "894cda674ea9f4c64a257ac5add4543b15340ce31e3e2c14bdd707fdd5560028"
+    "assets/nerodecor/textures/block/gantry/truss_beam_end.png": "894cda674ea9f4c64a257ac5add4543b15340ce31e3e2c14bdd707fdd5560028",
+    "data/nerodecor/loot_table/blocks/catwalk.json": "869d5b8033d2f6378e6eae2439fb74a1fd9e3945d73ed7dd08503e631d645537",
+    "data/nerodecor/loot_table/blocks/catwalk_stairs.json": "eff8f2dd8346cb1dcb4efc5da475883f9a44a2857813f78a1c648965d512b78c",
+    "data/nerodecor/loot_table/blocks/floor_grate.json": "a1a5d94ed0042190f3c7a221ee3a69739ca0c512885e77f516ced9257f34a58d",
+    "data/nerodecor/loot_table/blocks/floor_grate_slab.json": "7894d27626b7581dbd232c49f7e75e2919c61cf5656d834591f4594b692142b8",
+    "data/nerodecor/loot_table/blocks/gantry_ladder.json": "cd4e2795aa81591d98d29122b496e871b42460eb9b6224db0d1a3ff70dfabde9",
+    "data/nerodecor/loot_table/blocks/railing.json": "0c91b6965153b9db8a1f3411aba7994cf422bef802238ed3c79ce863379f9a50",
+    "data/nerodecor/loot_table/blocks/strut.json": "4d5bc1655ce85e2584c9078eada063de2263d3d26977bef882ace951c4570e1f",
+    "data/nerodecor/loot_table/blocks/truss_beam.json": "950229a2e3c2f9e9b2a9b0a7e64bbab8db376eeb6675fb581aab9b2d0ce111d6",
+    "data/nerodecor/recipe/catwalk.json": "489b20145cfda105564cff494e96cdd86b8b6bdc78b2bf05988470d08678d67f",
+    "data/nerodecor/recipe/catwalk_stairs.json": "a9583359f8a08eaadbfba95457d66ac4e310672bdef1cea586b8b707a1a3de4f",
+    "data/nerodecor/recipe/catwalk_stairs_from_catwalk_stonecutting.json": "b34b15d653973640a86c92c25019fc7347bd57ec5154bde94ec40e7020e6eb69",
+    "data/nerodecor/recipe/floor_grate.json": "7f4ab596beefdb4ee1cde6bf71422d759e4dea8588b37101435a22bccee1b713",
+    "data/nerodecor/recipe/floor_grate_slab.json": "0e9512ea03ddacef35bb1888faa6d557475bb5ae3935101b27f66b03e39bc6eb",
+    "data/nerodecor/recipe/floor_grate_slab_from_floor_grate_stonecutting.json": "f8da3ca8d20f976a68d0d14c779e1ddfe02a6fa58a6d37b513db83c59bf17aed",
+    "data/nerodecor/recipe/gantry_ladder.json": "971aa97a2b6d500711101d5a69a17f3fb0d395a66b08d1eae092ddc89287765e",
+    "data/nerodecor/recipe/railing.json": "6acc4aefcb4aaad4a87f1e86f99b0f2a27432a8bbfaba366d1ac9128a3c926a2",
+    "data/nerodecor/recipe/strut.json": "252821867b2938060e9a98098dda494b0678bc444fa5891bd82853c81452f06b",
+    "data/nerodecor/recipe/truss_beam.json": "d6f14e29cfef017da95fa9442ccd123085c23b3c57eb59df2eebf8b8f18652d9"
   }
 }

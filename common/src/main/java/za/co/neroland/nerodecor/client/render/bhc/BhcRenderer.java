@@ -48,6 +48,17 @@ public abstract class BhcRenderer<T extends BlockEntity> implements BlockEntityR
 /*public abstract class BhcRenderer<T extends BlockEntity> implements BlockEntityRenderer<T> {
 *///?}
 
+    /** The camera's world position for the frame being built (see {@link #camera()}). */
+    private Vec3 camera = Vec3.ZERO;
+
+    /**
+     * World position of the camera for the quads {@link #build} is recording, for parts that face the viewer
+     * (billboards). Valid only inside {@code build}.
+     */
+    protected Vec3 camera() {
+        return camera;
+    }
+
     /** Records this frame's quads for {@code be}. {@code light} is the packed world light at the block. */
     protected abstract void build(T be, float partialTick, QuadBuffer out, int light);
 
@@ -101,6 +112,7 @@ public abstract class BhcRenderer<T extends BlockEntity> implements BlockEntityR
     public void extractRenderState(T be, State state, float partialTick, Vec3 camera,
                                    ModelFeatureRenderer.CrumblingOverlay breakProgress) {
         BlockEntityRenderer.super.extractRenderState(be, state, partialTick, camera, breakProgress);
+        this.camera = camera;
         state.quads.clear();
         build(be, partialTick, state.quads, state.lightCoords);
     }
@@ -134,6 +146,7 @@ public abstract class BhcRenderer<T extends BlockEntity> implements BlockEntityR
     /*@Override
     public void render(T be, float partialTick, PoseStack poseStack, MultiBufferSource buffers, int light, int overlay,
                        Vec3 camera) {
+        this.camera = camera;
         draw(be, partialTick, poseStack, buffers, light);
     }
     *///?}
@@ -141,6 +154,7 @@ public abstract class BhcRenderer<T extends BlockEntity> implements BlockEntityR
     //? if <1.21.5 {
     /*@Override
     public void render(T be, float partialTick, PoseStack poseStack, MultiBufferSource buffers, int light, int overlay) {
+        this.camera = net.minecraft.client.Minecraft.getInstance().gameRenderer.getMainCamera().getPosition();
         draw(be, partialTick, poseStack, buffers, light);
     }
     *///?}

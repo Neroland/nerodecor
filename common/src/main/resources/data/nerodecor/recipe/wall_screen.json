@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "NGN",
+    "GLG",
+    "NGN"
+  ],
+  "key": {
+    "G": "minecraft:glass_pane",
+    "L": "minecraft:glowstone_dust",
+    "N": "minecraft:iron_nugget"
+  },
+  "result": {
+    "id": "nerodecor:wall_screen",
+    "count": 2
+  }
+}

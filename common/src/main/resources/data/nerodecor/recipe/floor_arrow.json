@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " L ",
+    "LLL",
+    " S "
+  ],
+  "key": {
+    "L": "minecraft:glowstone_dust",
+    "S": "minecraft:smooth_stone_slab"
+  },
+  "result": {
+    "id": "nerodecor:floor_arrow",
+    "count": 4
+  }
+}

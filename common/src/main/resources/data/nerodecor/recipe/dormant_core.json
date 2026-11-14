@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ABA",
+    "BCB",
+    "ABA"
+  ],
+  "key": {
+    "A": "nerodecor:ancient_brick",
+    "B": "minecraft:amethyst_shard",
+    "C": "nerodecor:chroma_cube"
+  },
+  "result": {
+    "id": "nerodecor:dormant_core",
+    "count": 1
+  }
+}

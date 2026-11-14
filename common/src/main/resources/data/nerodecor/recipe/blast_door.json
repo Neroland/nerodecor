@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AA",
+    "AR",
+    "AA"
+  ],
+  "key": {
+    "A": "nerolandcore:nero_alloy_ingot",
+    "R": "minecraft:redstone"
+  },
+  "result": {
+    "id": "nerodecor:blast_door",
+    "count": 2
+  }
+}

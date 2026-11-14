@@ -13,7 +13,7 @@ import net.minecraft.util.StringRepresentable;
  * {@link #NATURAL} (the block's own material tone, i.e. no paint). Stored as a
  * {@code BlockState} {@link net.minecraft.world.level.block.state.properties.EnumProperty}
  * and mirrored on the item via the {@code nerodecor:color} data component; the paint gun
- * (Stage F) simply rewrites the state — no new registry entry per colour (see ADR-001).
+ * (Stage F) simply rewrites the state — no new registry entry per colour (the paint-property design).
  *
  * <p>{@link #tint()} is the render tint the block/item colour providers return:
  * {@code NATURAL} is white (multiply-identity → show the base texture untouched), each

@@ -30,6 +30,8 @@ public final class NeroDecorClient {
         }
         initialised = true;
         ClientRenderRegistry.bootstrap();
+        za.co.neroland.nerodecor.chroma.net.ChromaHubNet.setClientDetailHandler(
+                za.co.neroland.nerodecor.client.screen.chroma.ChromaHubClient::onDetail);
         NeroDecorCommon.LOGGER.info("[NeroDecor] client init — connected textures: {}, emissive: {}",
                 NeroDecorConfig.connectedTexturesEnabled(), NeroDecorConfig.emissiveRenderingEnabled());
     }

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GGG",
+    "RLR"
+  ],
+  "key": {
+    "G": "minecraft:glass_pane",
+    "L": "minecraft:glowstone_dust",
+    "R": "minecraft:redstone"
+  },
+  "result": {
+    "id": "nerodecor:ticker_strip",
+    "count": 4
+  }
+}

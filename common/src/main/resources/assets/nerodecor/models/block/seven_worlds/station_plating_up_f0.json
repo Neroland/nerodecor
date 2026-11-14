@@ -25,7 +25,8 @@
             16,
             16
           ],
-          "cullface": "up"
+          "cullface": "up",
+          "tintindex": 0
         }
       }
     }

@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:function",
+  "function": "nerodecor_gametest:every_item_has_recipe_and_unlock",
+  "environment": "minecraft:default",
+  "structure": "nerodecor_gametest:empty",
+  "max_ticks": 20
+}

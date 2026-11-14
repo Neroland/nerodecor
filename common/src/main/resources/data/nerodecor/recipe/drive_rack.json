@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IQI",
+    "IQI",
+    "IQI"
+  ],
+  "key": {
+    "I": "minecraft:iron_ingot",
+    "Q": "minecraft:quartz"
+  },
+  "result": {
+    "id": "nerodecor:drive_rack",
+    "count": 2
+  }
+}

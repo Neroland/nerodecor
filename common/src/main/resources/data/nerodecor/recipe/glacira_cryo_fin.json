@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "nerodecor:glacira_snow_brick",
+  "result": {
+    "id": "nerodecor:glacira_cryo_fin",
+    "count": 1
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "nerodecor_showcase",
+  "version": "1.0.0",
+  "name": "NeroDecor showcase (client game test, never shipped)",
+  "description": "Builds a NeroDecor showcase in a superflat world and screenshots it and the Chroma Hub screen. Test source set only.",
+  "license": "All Rights Reserved",
+  "environment": "client",
+  "entrypoints": {
+    "fabric-client-gametest": [
+      "za.co.neroland.nerodecor.gametest.NeroDecorShowcaseClientGameTest",
+      "za.co.neroland.nerodecor.gametest.NeroDecorChromaPerfClientGameTest"
+    ]
+  },
+  "depends": {
+    "fabricloader": "*",
+    "fabric-client-gametest-api-v1": "*",
+    "nerodecor": "*"
+  }
+}

@@ -71,6 +71,12 @@ public final class DecorColorItemTint implements ItemTintSource {
     //?} else {
     /*@Override
     public int getColor(ItemStack stack, int tintIndex) {
+        // Scene Chip (Chroma Stage 4): the stripe (layer 1) shows minecraft:dyed_color, default house plasma.
+        if (stack.getItem() instanceof za.co.neroland.nerodecor.content.item.SceneChipItem) {
+            net.minecraft.world.item.component.DyedItemColor dyed =
+                    stack.get(net.minecraft.core.component.DataComponents.DYED_COLOR);
+            return tintIndex == 1 ? 0xFF000000 | (dyed == null ? 0x3FD0E0 : dyed.rgb()) : 0xFFFFFFFF;
+        }
         // The paint gun tints its canister (layer 1); paintable block items tint layer 0.
         int layer = stack.getItem() instanceof za.co.neroland.nerodecor.content.item.PaintGunItem ? 1 : 0;
         return tintIndex == layer ? argb(stack) : 0xFFFFFFFF;
@@ -81,6 +87,7 @@ public final class DecorColorItemTint implements ItemTintSource {
         java.util.List<net.minecraft.world.level.ItemLike> items = new java.util.ArrayList<>(
                 java.util.List.of(za.co.neroland.nerodecor.registry.DecorBlocks.paintableBlocks()));
         items.add(za.co.neroland.nerodecor.registry.ChromaContent.PAINT_GUN.get());
+        items.add(za.co.neroland.nerodecor.registry.ChromaContent.SCENE_CHIP_ITEM.get());
         return items.toArray(net.minecraft.world.level.ItemLike[]::new);
     }
     *///?}

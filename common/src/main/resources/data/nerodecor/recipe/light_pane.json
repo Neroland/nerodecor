@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GGG",
+    "GCG",
+    "GGG"
+  ],
+  "key": {
+    "C": "nerodecor:chroma_cube",
+    "G": "minecraft:glass_pane"
+  },
+  "result": {
+    "id": "nerodecor:light_pane",
+    "count": 8
+  }
+}

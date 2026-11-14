@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GGG",
+    "ALA"
+  ],
+  "key": {
+    "A": "minecraft:amethyst_shard",
+    "G": "minecraft:glass_pane",
+    "L": "minecraft:glowstone_dust"
+  },
+  "result": {
+    "id": "nerodecor:holo_sign",
+    "count": 2
+  }
+}

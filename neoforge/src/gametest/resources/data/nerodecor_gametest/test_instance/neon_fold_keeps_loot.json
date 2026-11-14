@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:function",
+  "function": "nerodecor_gametest:neon_fold_keeps_loot",
+  "environment": "minecraft:default",
+  "structure": "nerodecor_gametest:empty",
+  "max_ticks": 40
+}

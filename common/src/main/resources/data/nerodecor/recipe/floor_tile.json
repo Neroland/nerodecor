@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SCS",
+    "CSC",
+    "SCS"
+  ],
+  "key": {
+    "C": "nerodecor:chroma_cube",
+    "S": "minecraft:smooth_stone"
+  },
+  "result": {
+    "id": "nerodecor:floor_tile",
+    "count": 8
+  }
+}

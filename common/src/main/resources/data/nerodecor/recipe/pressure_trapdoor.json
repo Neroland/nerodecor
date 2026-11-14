@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "minecraft:iron_trapdoor",
+    "minecraft:iron_trapdoor",
+    "minecraft:redstone"
+  ],
+  "result": {
+    "id": "nerodecor:pressure_trapdoor",
+    "count": 2
+  }
+}

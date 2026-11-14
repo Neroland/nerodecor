@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "NNN",
+    "BBB"
+  ],
+  "key": {
+    "B": "minecraft:iron_bars",
+    "N": "minecraft:iron_nugget"
+  },
+  "result": {
+    "id": "nerodecor:catwalk",
+    "count": 8
+  }
+}

@@ -6,15 +6,18 @@ import net.minecraft.server.level.ServerPlayer;
 
 import za.co.neroland.nerodecor.chroma.ChromaResult;
 import za.co.neroland.nerodecor.chroma.ChromaSyncCodec;
+import za.co.neroland.nerodecor.chroma.server.ChromaAction;
 import za.co.neroland.nerodecor.chroma.server.ChromaConfig;
 import za.co.neroland.nerodecor.chroma.server.ChromaGuard;
 import za.co.neroland.nerodecor.chroma.server.ChromaNetworks;
+import za.co.neroland.nerodecor.chroma.server.ChromaReach;
 import za.co.neroland.nerodecor.chroma.server.ChromaVerdict;
 
 /**
  * Server handler for {@link ChromaPayloads.Ops}: decode and validate the batch ({@link ChromaSyncCodec#decodeOps}),
  * charge the per-player rate limiter (one edit request, one op per block op), then apply it atomically through the
  * store, which checks the role and that every targeted block is linked, and asks {@link ChromaGuard} for each block.
+ * The sender must be at the hub ({@link ChromaReach}): these come from the hub screen, not from NeroLink.
  * Refusals answer with the verdict on the action bar; nothing is logged.
  */
 public final class ChromaEdits {
@@ -42,6 +45,11 @@ public final class ChromaEdits {
             return ChromaVerdict.BAD_OP;
         }
         ChromaSyncCodec.OpsMessage ops = message.value();
+        ChromaVerdict near = ChromaReach.mayEditFromScreen(player, level,
+                ChromaNetworks.store(level).get(ops.network()), ChromaAction.PAINT);
+        if (!near.isOk()) {
+            return near;
+        }
         ChromaVerdict rate = ChromaNetworks.limiter().tryAcquire(player.getUUID(), ops.batch().size(),
                 System.nanoTime());
         if (!rate.isOk()) {

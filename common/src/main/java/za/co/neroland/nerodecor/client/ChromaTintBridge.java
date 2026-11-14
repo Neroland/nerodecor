@@ -24,7 +24,10 @@ import za.co.neroland.nerodecor.registry.DecorBlocks;
 /**
  * The block tint for every NeroDecor block: the static Chroma colour a hub gives the block at that position
  * ({@link ChromaClientSync#colors()}), falling back to the block's own paintable {@link DecorColor} (white when it has
- * none, which leaves the texture unchanged). Faces opt in with {@code "tintindex": 0}.
+ * none, which leaves the texture unchanged). Chroma lights, whose glow layer is authored near-white so a hub colour
+ * multiplies cleanly, would glow flat white when unpainted and unlinked; for {@link DecorColor#NATURAL} they take the
+ * house cyan at reduced value ({@link #IDLE_GLOW}) instead. Paintable hulls and panels stay untinted when natural.
+ * Faces opt in with {@code "tintindex": 0}.
  *
  * <p>Per version range:
  * <ul>
@@ -50,6 +53,16 @@ public final class ChromaTintBridge implements BlockTintSource {
      * declares relevant off each state while grouping models, so this one must declare none.
      */
     public static final ChromaTintBridge PLAIN = new ChromaTintBridge(false);
+
+    /** The idle tint of an unpainted, unlinked Chroma light: house cyan (0x22E8FF) at about 70% value. */
+    public static final int IDLE_GLOW = 0x18A3B3;
+
+    /** Ids of the blocks whose tinted layer is a near-white glow (chroma_lights collection plus the Chroma cube). */
+    private static final Set<String> GLOW_IDS = Set.of("chroma_cube", "light_strip", "edge_trim", "floor_tile",
+            "floor_tile_slab", "step_light", "ceiling_coffer", "light_pillar", "neon_tube", "light_pane", "sconce_bar",
+            "halo_ring", "cage_lamp");
+
+    private static volatile Set<Block> glowBlocks;
 
     private final boolean painted;
 
@@ -82,9 +95,27 @@ public final class ChromaTintBridge implements BlockTintSource {
 
     private static int ownColour(BlockState state) {
         if (state.hasProperty(DecorProperties.COLOR)) {
-            return state.getValue(DecorProperties.COLOR).tint();
+            DecorColor colour = state.getValue(DecorProperties.COLOR);
+            return colour == DecorColor.NATURAL && isGlow(state.getBlock()) ? IDLE_GLOW : colour.tint();
         }
-        return 0xFFFFFF;
+        return isGlow(state.getBlock()) ? IDLE_GLOW : 0xFFFFFF;
+    }
+
+    /** Whether {@code block} is a Chroma light (near-white glow layer). Built once, after registration. */
+    public static boolean isGlow(Block block) {
+        Set<Block> known = glowBlocks;
+        if (known == null) {
+            Set<Block> built = java.util.Collections.newSetFromMap(new java.util.IdentityHashMap<>());
+            for (Block b : DecorBlocks.allBlocks()) {
+                var key = net.minecraft.core.registries.BuiltInRegistries.BLOCK.getKey(b);
+                if (za.co.neroland.nerodecor.NeroDecorCommon.MOD_ID.equals(key.getNamespace())
+                        && GLOW_IDS.contains(key.getPath())) {
+                    built.add(b);
+                }
+            }
+            glowBlocks = known = built;
+        }
+        return known.contains(block);
     }
 
     //? if >=26.1 {

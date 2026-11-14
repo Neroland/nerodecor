@@ -27,7 +27,7 @@ shortened to make room), so nothing here can z-fight.
 """
 from functools import lru_cache
 
-from ._kit import (Art, Block, FACE_EDGES, _AXES, _rot, bevel, bezel_layer, expand_mask16, new, put,
+from ._kit import (Art, Block, slab_loot, FACE_EDGES, _AXES, _rot, bevel, bezel_layer, expand_mask16, new, put,
                    ramp, rect, wear)
 
 COLLECTION = "gantry"
@@ -739,10 +739,12 @@ BLOCKS = [
     Block("railing", shape="custom", render_type=CUTOUT, model=railing_models, blockstate=railing_state,
           textures=_roles("railing", "railing_post")),
     Block("gantry_ladder", shape="custom", render_type=CUTOUT, model=ladder_models, blockstate=ladder_state,
+          tags=("minecraft:climbable",),
           textures=_roles("gantry_ladder_c00_b", *["gantry_ladder_c%d%d" % (p, n) for p in (0, 1) for n in (0, 1)])),
     Block("floor_grate", shape="cube", connects="mask16", render_type=CUTOUT,
           textures={"all": "floor_grate"}),
     Block("floor_grate_slab", shape="custom", render_type=CUTOUT, model=slab_models, blockstate=slab_state,
+          loot=slab_loot("floor_grate_slab"),
           textures=_roles(*["floor_grate_slab_side_%d" % m for m in range(4)])),
     Block("strut", shape="custom", model=strut_models, blockstate=lambda c: _axis_state(c, "strut"),
           textures=_roles("strut", "strut_b", "strut_flange")),
@@ -750,3 +752,20 @@ BLOCKS = [
           blockstate=lambda c: _axis_state(c, "truss_beam"),
           textures=_roles("truss_beam", "truss_beam_b", "truss_beam_end")),
 ]
+
+# =========================================================================================
+# Recipes (0.8.0 Stage 6): vanilla + Neroland Core ingredients only, no gate. See _kit.shaped.
+# =========================================================================================
+from ._kit import attach_recipes, shaped  # noqa: E402
+
+_I, _N, _B = "minecraft:iron_ingot", "minecraft:iron_nugget", "minecraft:iron_bars"
+attach_recipes(BLOCKS, {
+    "catwalk": shaped("catwalk", 8, ["NNN", "BBB"], B=_B, N=_N),
+    "catwalk_stairs": shaped("catwalk_stairs", 4, ["B  ", "BB ", "BBB"], B=_B),
+    "railing": shaped("railing", 8, ["BBB", "BBB"], B=_B),
+    "gantry_ladder": shaped("gantry_ladder", 8, ["I I", "III", "I I"], I=_I),
+    "floor_grate": shaped("floor_grate", 4, ["BB", "BB"], B=_B),
+    "floor_grate_slab": shaped("floor_grate_slab", 6, ["FFF"], F="nerodecor:floor_grate"),
+    "strut": shaped("strut", 8, ["I", "I", "I"], I=_I),
+    "truss_beam": shaped("truss_beam", 8, ["I I", " I ", "I I"], I=_I),
+}, stonecutting=[("floor_grate", "floor_grate_slab", 2), ("catwalk", "catwalk_stairs", 1)])

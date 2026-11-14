@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WWW",
+    "WNW",
+    "WWW"
+  ],
+  "key": {
+    "N": "minecraft:gold_nugget",
+    "W": "#minecraft:wool"
+  },
+  "result": {
+    "id": "nerodecor:station_thermal_blanket",
+    "count": 8
+  }
+}

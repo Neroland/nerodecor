@@ -130,6 +130,15 @@ dependencies {
     }
 }
 
+// The recipe-viewer plugins (common compat/jei, compat/emi) compile only where that viewer's API is on the
+// classpath for this Minecraft line (the 26.x pins above); elsewhere they are left out of the jar.
+if (!jeiVersion) {
+    sourceSets.main.java.exclude('za/co/neroland/nerodecor/compat/jei/**')
+}
+if (!emiFile) {
+    sourceSets.main.java.exclude('za/co/neroland/nerodecor/compat/emi/**')
+}
+
 // Expand fabric.mod.json from src/main/templates into a generated resources dir.
 // The template is NOT under src/main/resources, so the IDE never copies a RAW
 // (token-laden) fabric.mod.json into bin/main. eclipse.synchronizationTasks runs
@@ -148,6 +157,9 @@ def generateModMetadata = tasks.register('generateModMetadata', ProcessResources
         // Floor the required Core version at what we compile against so the loader refuses to run
         // NeroDecor against a Core too old to have the APIs it references, instead of crashing later.
         nerolandcore_version : nerolandcoreVersion,
+        // Recipe-viewer entrypoints, only on the lines whose jar carries the plugin class (see the excludes).
+        viewer_entrypoints   : (jeiVersion ? ',\n    "jei_mod_plugin": ["za.co.neroland.nerodecor.compat.jei.NeroDecorJeiPlugin"]' : '')
+                + (emiFile ? ',\n    "emi": ["za.co.neroland.nerodecor.compat.emi.NeroDecorEmiPlugin"]' : ''),
     ]
     inputs.properties(props)
     expand(props)
@@ -203,6 +215,25 @@ def createFabricRunDirs = tasks.register('createFabricRunDirs') {
 eclipse.synchronizationTasks createFabricRunDirs
 tasks.matching { it.name == 'configureLaunch' }.configureEach { dependsOn createFabricRunDirs }
 
+// Client game test harness (Fabric API fabric-client-gametest-api-v1) - the 26.3 Fabric cell only.
+// A separate `gametest` source set (fabric/src/gametest, its own fabric.mod.json) that Loom runs as a second mod in
+// the `runClientGameTest` task. It is never part of sourceSets.main, so nothing here reaches the shipped jar.
+// Server game tests are off so `check`/`build` never launch a game (NeoForge owns the server GameTests).
+// Run: gradlew :fabric:26.3:runClientGameTest (screenshots land in
+// fabric/versions/26.3/build/run/clientGameTest/screenshots).
+if (mc == '26.3') {
+    // `fabricApi` alone would resolve to the Fabric API version string defined at the top of this script.
+    project.extensions.getByName('fabricApi').with {
+        configureTests {
+            createSourceSet = true
+            modId = 'nerodecor_showcase'
+            enableGameTests = false
+            enableClientGameTests = true
+        }
+    }
+    // Stonecutter maps the branch's fabric/src/gametest onto this source set itself (like src/main), so no srcDir here.
+}
+
 // ecjCheck: run the Eclipse compiler over common + fabric main sources, with the same prefs as VS Code.
 configurations {
     ecj
@@ -221,7 +252,12 @@ tasks.register('ecjCheck', JavaExec) {
         def analysisCp = (sourceSets.main.compileClasspath.files + sourceSets.main.output.files)
                 .findAll { it.exists() }
                 .join(File.pathSeparator)
-        def srcDirs = sourceSets.main.java.srcDirs.findAll { it.exists() }.collect { it.absolutePath }
+        // Pass the source FILES (not dirs) so the sourceSet excludes apply — e.g. the JEI/EMI plugins on
+        // cells without those APIs — via an ecj @argfile to stay under the Windows command-line limit.
+        def ecjSrcList = layout.buildDirectory.file('tmp/ecjCheck/sources.txt').get().asFile
+        ecjSrcList.parentFile.mkdirs()
+        ecjSrcList.text = sourceSets.main.java.files.collect { '"' + it.absolutePath.replace('\\', '/') + '"' }.join('\n')
+        def srcDirs = ['@' + ecjSrcList.absolutePath]
         args = [
                 '--release', "${project.javaRelease}",
                 '-proc:none',

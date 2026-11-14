@@ -12,7 +12,8 @@ agent and declares:
 gen_collections.py writes the per-block files (blockstates, models under block/<collection>/,
 items, loot, recipes, textures under textures/block/<collection>/) with one manifest per
 collection; gen_resources.py merges the shared files (en_us lang, mineable/pickaxe,
-neroland:decor/<family> tags) from aggregate().
+neroland:decor/<family> tags, #nerodecor:chroma_capable from chroma=True, Block.tags such as
+#minecraft:climbable) from aggregate().
 
 This package is loaded by file path under the name `nerodecor_collections` (see load()), never
 as `collections`, so it cannot shadow the standard library.
@@ -68,7 +69,8 @@ def registered_ids():
 
 
 def has_data(block):
-    """True when the block is registered in Java, so its data files may ship (see registered_ids)."""
+    """True when the block (or item-only Item) is registered in Java, so its data files may ship (see
+    registered_ids)."""
     return block.id in registered_ids()
 
 
@@ -88,8 +90,8 @@ def aggregate(strict=True, log=print):
     """What gen_resources.py needs: shared lang/tag entries plus every resource path the layer
     owns (so its orphan check skips them). strict=False skips a collection that fails to import
     or declare (an art agent mid-edit) with a warning instead of raising."""
-    from ._kit import block_json, block_aggregates, item_json, item_aggregates
-    agg = {"lang": {}, "mineable": [], "decor": {}, "owned": set()}
+    from ._kit import block_json, block_aggregates, block_tags, item_json, item_aggregates
+    agg = {"lang": {}, "mineable": [], "decor": {}, "tags": {}, "highlight": {}, "owned": set()}
     for name in COLLECTIONS:
         try:
             for b in blocks(name):
@@ -98,9 +100,15 @@ def aggregate(strict=True, log=print):
                 agg["lang"].update(lang)
                 if has_data(b):
                     agg["mineable"].append("nerodecor:" + b.id)
+                    for tag in block_tags(b):  # chroma_capable, climbable, ...: registered ids only
+                        agg["tags"].setdefault(tag, []).append("nerodecor:" + b.id)
+                    if b.highlight:  # Core item highlight (neroland:highlight/<category>)
+                        agg["highlight"].setdefault(b.highlight, []).append("nerodecor:" + b.id)
                 agg["decor"].setdefault(fam, []).append("nerodecor:" + b.id)
             for it in items(name):
-                agg["owned"].update(item_json(name, it))
+                agg["owned"].update(item_json(name, it, data=has_data(it)))
+                if it.highlight and has_data(it):
+                    agg["highlight"].setdefault(it.highlight, []).append("nerodecor:" + it.id)
                 agg["lang"].update(item_aggregates(name, it))
             agg["owned"].update(read_manifest(name))
         except Exception as e:  # noqa: BLE001 -- a broken module must not stop other harnesses

@@ -127,6 +127,23 @@ public final class QuadBuffer {
     }
 
     /**
+     * One pre-transformed quad (Chroma animation layer): {@code xyzuv[offset ..]} holds four corners of x, y, z (block
+     * space, already final) and atlas u, v, so neither the pose nor a sprite lookup is applied.
+     */
+    public void rawQuad(Mode mode, float[] xyzuv, int offset, int argb, int light) {
+        Batch b = batches[mode.ordinal()];
+        b.ensure();
+        int f = b.quads * 4 * FLOATS;
+        int i = b.quads * 4 * INTS;
+        System.arraycopy(xyzuv, offset, b.f, f, 4 * FLOATS);
+        for (int c = 0; c < 4; c++) {
+            b.i[i++] = argb;
+            b.i[i++] = light;
+        }
+        b.quads++;
+    }
+
+    /**
      * Axis-aligned rectangle facing +z (towards south) at depth {@code z}, from (x0, y0) to (x1, y1), sampling the
      * sprite rectangle u0..u1, v0..v1 (v0 at the top edge). {@code doubleSided} adds the back face.
      */

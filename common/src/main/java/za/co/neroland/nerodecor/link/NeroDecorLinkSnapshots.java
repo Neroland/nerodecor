@@ -4,20 +4,25 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
+import java.util.function.Supplier;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.resources.Identifier;
+import net.minecraft.world.level.EmptyBlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.state.BlockState;
 
 import za.co.neroland.nerolandcore.link.LinkSnapshotProvider;
 import za.co.neroland.nerolandcore.palette.Finish;
 import za.co.neroland.nerolandcore.palette.PaletteRegistry;
 
 import za.co.neroland.nerodecor.NeroDecorCommon;
+import za.co.neroland.nerodecor.chroma.server.ChromaTags;
 import za.co.neroland.nerodecor.client.ctm.CtmKey;
 import za.co.neroland.nerodecor.client.ctm.CtmSurface;
 import za.co.neroland.nerodecor.config.NeroDecorConfig;
@@ -31,11 +36,14 @@ import za.co.neroland.nerodecor.content.block.DecorWallBlock;
 import za.co.neroland.nerodecor.registry.DecorBlocks;
 import za.co.neroland.nerodecor.registry.ChromaContent;
 import za.co.neroland.nerodecor.content.block.ChromaCubeBlock;
+import za.co.neroland.nerodecor.content.block.ChromaHubBlock;
+import za.co.neroland.nerodecor.content.block.gantry.AxisLinkBlock;
 import za.co.neroland.nerodecor.content.block.NeonShimBlock;
 import za.co.neroland.nerodecor.registry.RegistrationProvider.RegistryEntry;
 
 /**
- * NeroDecor's whole link surface: two read-only catalogue sections.
+ * NeroDecor's link sections: two public catalogue sections, plus the three requester-scoped Chroma sections, which
+ * are built by {@link ChromaLinkSections} (link schema 2).
  *
  * <h2>Sections</h2>
  *
@@ -44,41 +52,39 @@ import za.co.neroland.nerodecor.registry.RegistrationProvider.RegistryEntry;
  *       finish with its sRGB colour, emissive flag and the material tag it derives from; plus
  *       NeroDecor's own paint vocabulary, the 16 accents and {@code NATURAL} of {@code DecorColor}
  *       that the {@code COLOR} blockstate property can take;</li>
- *   <li>{@code blocks} — every registered decor block (the paintable families and the Luminous
- *       collection) with its shape, whether it takes paint, whether it glows, and, for the paintable
- *       families, its CTM family and connected-texture style, so an app can render a browsable set
- *       rather than a list of opaque ids.</li>
+ *   <li>{@code blocks} — every visible NeroDecor block (the paintable families, the Chroma hub and cube, the
+ *       Luminous blocks and the 0.8.0 collections; the twelve hidden neon shims are left out) with its shape and
+ *       model kind, whether it takes paint, whether a Chroma Hub can drive it ({@code chroma}), whether it glows,
+ *       and, for the paintable families, its CTM family and connected-texture style;</li>
+ *   <li>{@code chroma_hubs}, {@code chroma_zones}, {@code chroma_scenes} — the requester's own and trusted hubs,
+ *       built by {@link ChromaLinkSections}.</li>
  * </ul>
  *
- * <p>Both accept an optional {@code q} parameter (a case-insensitive substring matched against ids and
- * names) so a long list can be searched client-side or server-side, and both cap their output. Any
- * other section name yields an empty object, as Core's contract prescribes.
+ * <p>{@code palette} and {@code blocks} accept an optional {@code q} parameter (a case-insensitive substring
+ * matched against ids and names) and cap their output; the zone and scene sections take {@code hub}. Any other
+ * section name yields an empty object, as Core's contract prescribes.
  *
  * <h2>Privacy (POPIA/GDPR)</h2>
  *
- * <p>The {@code playerId} argument is <b>read for nothing but a null check</b>. Every byte returned
- * here is public content metadata — registry ids, hex colours, enum names — identical for every
- * requester and already visible to anyone who opens the creative tab. NeroDecor stores no
- * player-attributable data anywhere in the mod (a block's paint colour is world state and records
- * nobody), so there is no scoping to do and no filtering the caller must trust.
+ * <p>For {@code palette} and {@code blocks} the {@code playerId} argument is read for nothing but a null check:
+ * every byte is public content metadata, identical for every requester. The Chroma sections use it for one thing,
+ * {@link za.co.neroland.nerodecor.chroma.server.HubNetwork#roleOf}, and return only hubs the requester owns or is
+ * trusted on, with no coordinates and no roster (see {@link ChromaLinkSections}).
  *
- * <p><b>Read-only and bounded.</b> Nothing here mutates anything, touches the world, or loads a chunk:
- * the block catalogue is read from {@link DecorBlocks#ALL}, the mod's own registration-order list, and
- * the palette from Core's registry snapshot.
+ * <p><b>Read-only and bounded.</b> Nothing here mutates anything or loads a chunk.
  *
  * <p>Server thread only (as Core's contract specifies), though nothing here is thread-sensitive.
  */
 public final class NeroDecorLinkSnapshots implements LinkSnapshotProvider {
 
-    private static final List<String> SECTIONS = List.of(
-            NeroDecorLinkModule.SECTION_PALETTE,
-            NeroDecorLinkModule.SECTION_BLOCKS);
+    private final Supplier<ChromaLinkSource> chroma;
+
+    public NeroDecorLinkSnapshots(Supplier<ChromaLinkSource> chroma) {
+        this.chroma = chroma;
+    }
 
     /** Hard cap on rows per list, so a data pack that registers a thousand finishes cannot flood a phone. */
     private static final int MAX_ROWS = 512;
-
-    /** The CTM family whose members render fullbright. Mirrors {@code DecorBlocks}' neon preset. */
-    private static final String NEON_FAMILY = "neon";
 
     @Override
     public String moduleId() {
@@ -92,7 +98,7 @@ public final class NeroDecorLinkSnapshots implements LinkSnapshotProvider {
 
     @Override
     public List<String> sections() {
-        return SECTIONS;
+        return NeroDecorLinkModule.SECTIONS;
     }
 
     @Override
@@ -108,6 +114,12 @@ public final class NeroDecorLinkSnapshots implements LinkSnapshotProvider {
             return switch (section) {
                 case NeroDecorLinkModule.SECTION_PALETTE -> palette(query);
                 case NeroDecorLinkModule.SECTION_BLOCKS -> blocks(query);
+                // Requester-scoped: only hubs the requester owns or is trusted on, no coordinates, no roster.
+                case NeroDecorLinkModule.SECTION_CHROMA_HUBS -> ChromaLinkSections.hubs(chroma.get(), playerId);
+                case NeroDecorLinkModule.SECTION_CHROMA_ZONES ->
+                        ChromaLinkSections.zones(chroma.get(), playerId, param(params, "hub"));
+                case NeroDecorLinkModule.SECTION_CHROMA_SCENES ->
+                        ChromaLinkSections.scenes(chroma.get(), playerId, param(params, "hub"));
                 // Unknown section: nothing to say.
                 default -> new JsonObject();
             };
@@ -203,21 +215,25 @@ public final class NeroDecorLinkSnapshots implements LinkSnapshotProvider {
      * datagen iterate, so an app's list matches what a player sees in game.
      *
      * <p>Family and connected-texture style come from the block's own {@link CtmSurface} contract, and
-     * the shape from its class, so a block added to {@code DecorBlocks} appears here with no change to
-     * this file. {@code emissive} is derived from the CTM family rather than from a light-level read:
-     * the neon family is the fullbright one, and asking a blockstate for its emission would be a
-     * render-side question this catalogue has no business asking.
-     *
-     * <p>The Luminous collection (0.4.0) registers into the same list but does not carry the
-     * {@code COLOR} property and is not a {@link CtmSurface}: those rows report {@code paintable=false},
-     * {@code collection="luminous"} and {@code emissive=true}, and carry no family fields.
+     * the shape and model kind from its class (or, for bespoke blocks, whether its default shape fills the block),
+     * so a block added to {@code DecorBlocks.ALL} appears here with no change to this file. {@code emissive} is the
+     * default state's light emission (the Chroma Cube always counts). The hidden neon shims are skipped; the
+     * Chroma Hub, registered outside {@code ALL}, is listed after it.
      */
     private static JsonObject blocks(String query) {
         JsonObject root = envelope();
         JsonArray rows = new JsonArray();
         int total = 0;
 
-        for (RegistryEntry<? extends Block> entry : DecorBlocks.ALL) {
+        List<RegistryEntry<? extends Block>> visible = new java.util.ArrayList<>(DecorBlocks.ALL);
+        if (ChromaContent.HUB != null) {
+            visible.add(ChromaContent.HUB); // the hub is registered outside ALL but is a visible block
+        }
+        for (RegistryEntry<? extends Block> entry : visible) {
+            Block block = entry.get();
+            if (block instanceof NeonShimBlock) {
+                continue; // hidden legacy ids; the palette section's legacy_neon maps them to chroma_cube
+            }
             total++;
             if (rows.size() >= MAX_ROWS) {
                 continue;
@@ -227,30 +243,32 @@ public final class NeroDecorLinkSnapshots implements LinkSnapshotProvider {
             if (!matches(query, id.toString(), name)) {
                 continue;
             }
-            Block block = entry.get();
+            BlockState state = block.defaultBlockState();
             JsonObject row = new JsonObject();
             row.addProperty("id", id.toString());
             row.addProperty("name", name);
             // Built from the id rather than read off the block: the vanilla convention the mod's own
             // lang files already follow, and one less render-side API in a catalogue.
             row.addProperty("translation_key", "block." + id.getNamespace() + "." + id.getPath());
-            row.addProperty("shape", shapeOf(block));
-            // Paintable families carry the COLOR blockstate property; the Luminous collection does not.
-            boolean paintable = block.defaultBlockState().hasProperty(DecorProperties.COLOR);
+            String model = modelOf(block, state);
+            row.addProperty("shape", shapeOf(block, model));
+            row.addProperty("model", model);
+            // Paintable families carry the COLOR blockstate property.
+            boolean paintable = state.hasProperty(DecorProperties.COLOR);
             row.addProperty("paintable", paintable);
-            row.addProperty("collection", paintable ? "decor" : "luminous");
+            // Whether a Chroma Hub can drive it (the data-driven #nerodecor:chroma_capable tag).
+            row.addProperty("chroma", isChroma(state));
+            boolean emissive = block instanceof ChromaCubeBlock || state.getLightEmission() > 0;
+            row.addProperty("collection", collectionOf(block, paintable, emissive));
 
-            String family = null;
             if (block instanceof CtmSurface surface) {
-                CtmKey key = surface.ctmKey(block.defaultBlockState());
-                family = key.family().getPath();
+                CtmKey key = surface.ctmKey(state);
+                String family = key.family().getPath();
                 row.addProperty("family", key.family().toString());
                 row.addProperty("family_name", readable(family));
                 row.addProperty("ctm_style", surface.ctmStyle().name());
             }
-            // Every Luminous block glows by design; among the paintable families only neon is fullbright.
-            row.addProperty("emissive", !paintable || NEON_FAMILY.equals(family)
-                    || block instanceof ChromaCubeBlock);
+            row.addProperty("emissive", emissive);
             rows.add(row);
         }
 
@@ -264,8 +282,12 @@ public final class NeroDecorLinkSnapshots implements LinkSnapshotProvider {
         return root;
     }
 
-    /** The block's geometry, from its class. Unknown classes report {@code "block"} rather than guessing. */
-    private static String shapeOf(Block block) {
+    /**
+     * The block's model kind: the vanilla-shaped families by class ({@code cube}, {@code slab}, {@code stairs},
+     * {@code wall}, {@code pane}, {@code pillar}); otherwise {@code cube} when the default state fills the block and
+     * {@code custom} for every bespoke model (consoles, doors, pipes, furniture, fittings).
+     */
+    static String modelOf(Block block, BlockState state) {
         if (block instanceof DecorCubeBlock || block instanceof ChromaCubeBlock) {
             return "cube";
         }
@@ -281,10 +303,42 @@ public final class NeroDecorLinkSnapshots implements LinkSnapshotProvider {
         if (block instanceof DecorPaneBlock) {
             return "pane";
         }
-        if (block instanceof RotatedPillarBlock) {
+        if (block instanceof RotatedPillarBlock || block instanceof AxisLinkBlock) {
             return "pillar";
         }
-        return "block";
+        if (block instanceof ChromaHubBlock) {
+            return "custom";
+        }
+        try {
+            return Block.isShapeFullBlock(state.getShape(EmptyBlockGetter.INSTANCE, BlockPos.ZERO)) ? "cube" : "custom";
+        } catch (RuntimeException e) {
+            return "custom"; // a shape that needs a real world is bespoke by definition
+        }
+    }
+
+    /** The schema-1 {@code shape} field, kept for older clients: {@code block} for anything bespoke. */
+    private static String shapeOf(Block block, String model) {
+        return "custom".equals(model) || ("cube".equals(model) && !(block instanceof DecorCubeBlock
+                || block instanceof ChromaCubeBlock)) ? "block" : model;
+    }
+
+    private static boolean isChroma(BlockState state) {
+        try {
+            return ChromaTags.isCapable(state);
+        } catch (RuntimeException e) {
+            return false; // tags not bound yet
+        }
+    }
+
+    /** {@code decor} (paintable families), {@code chroma} (hub and cube), {@code luminous} (other light sources), {@code collections}. */
+    private static String collectionOf(Block block, boolean paintable, boolean emissive) {
+        if (block instanceof ChromaHubBlock || block instanceof ChromaCubeBlock) {
+            return "chroma";
+        }
+        if (paintable) {
+            return "decor";
+        }
+        return emissive ? "luminous" : "collections";
     }
 
     // --- helpers --------------------------------------------------------------
@@ -294,6 +348,10 @@ public final class NeroDecorLinkSnapshots implements LinkSnapshotProvider {
         JsonObject root = new JsonObject();
         root.addProperty("schema_version", NeroDecorLinkModule.SCHEMA_VERSION);
         return root;
+    }
+
+    private static String param(Map<String, String> params, String key) {
+        return params == null ? null : params.get(key);
     }
 
     /** The lower-cased {@code q} parameter, or {@code null} when absent/blank. */

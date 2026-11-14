@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GRG",
+    "NQN"
+  ],
+  "key": {
+    "G": "minecraft:gold_nugget",
+    "N": "minecraft:iron_nugget",
+    "Q": "minecraft:quartz",
+    "R": "minecraft:redstone"
+  },
+  "result": {
+    "id": "nerodecor:scene_chip",
+    "count": 2
+  }
+}

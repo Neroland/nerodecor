@@ -89,18 +89,23 @@ class ChromaNetworkStoreTest {
     }
 
     @Test
-    void erasureDeletesOwnedNetworksAndTrust() {
+    void erasureOrphansOwnedNetworksAndDropsTrust() {
         ChromaNetworkStore store = new ChromaNetworkStore();
         store.create(1L, A, 0, 0, 0, 48, 32, 48);
         store.create(2L, B, 0, 0, 0, 48, 32, 48);
         store.link(1L, A, 1, 0, 0, true, LIMITS);
         store.setTrust(2L, B, A, ChromaRole.PAINTER);
         assertEquals(1, store.ownedBy(A));
-        assertTrue(store.eraseFor(A));
-        assertNull(store.get(1L));
-        assertEquals(0L, store.claimant(1, 0, 0));
+        assertTrue(store.eraseFor(A, 5_000L));
+        HubNetwork orphan = store.get(1L);
+        assertTrue(orphan.orphaned());
+        assertEquals(5_000L, orphan.orphanedSince());
+        assertEquals(HubNetwork.NO_OWNER, orphan.owner());
+        assertEquals(0, store.ownedBy(A));
+        // the build keeps its colour: still active and still claiming its block
+        assertEquals(1L, store.claimant(1, 0, 0));
         assertEquals(ChromaRole.NONE, store.get(2L).roleOf(A));
-        assertFalse(store.eraseFor(A));
+        assertFalse(store.eraseFor(A, 6_000L));
     }
 
     @Test

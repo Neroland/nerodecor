@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "nerodecor:floor_tile",
+  "result": {
+    "id": "nerodecor:floor_tile_slab",
+    "count": 2
+  }
+}

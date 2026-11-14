@@ -130,7 +130,14 @@ public final class ChromaValidator {
         if (target == null || target.equals(network.owner())) {
             return ChromaVerdict.NO_PERMISSION;
         }
-        return role == ChromaRole.NONE || role.isGrantable() ? ChromaVerdict.OK : ChromaVerdict.NO_PERMISSION;
+        if (role == ChromaRole.NONE) {
+            return ChromaVerdict.OK;
+        }
+        if (!role.isGrantable()) {
+            return ChromaVerdict.NO_PERMISSION;
+        }
+        return network.trusted().containsKey(target) || network.trusted().size() < ChromaLimits.MAX_TRUSTED
+                ? ChromaVerdict.OK : ChromaVerdict.TRUST_CAP;
     }
 
     /** A selection (box or flood) that would visit {@code blocks} positions. */

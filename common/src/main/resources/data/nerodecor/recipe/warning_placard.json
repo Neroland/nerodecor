@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "NNN",
+    "YKY"
+  ],
+  "key": {
+    "K": "minecraft:black_dye",
+    "N": "minecraft:iron_nugget",
+    "Y": "minecraft:yellow_dye"
+  },
+  "result": {
+    "id": "nerodecor:warning_placard",
+    "count": 4
+  }
+}

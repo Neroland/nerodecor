@@ -69,6 +69,7 @@ public final class ClientRenderRegistry {
         LightsWorldsAncientsGreeblesClient.register();
         BulkheadHoloCommandClient.register();
         LabGantryConduitsClient.register();
+        za.co.neroland.nerodecor.chroma.client.ChromaAnimationClient.register(); // Chroma Stage 4 animation layer
     }
 
     public static void blockLayer(Supplier<? extends Block> block, Layer layer) {

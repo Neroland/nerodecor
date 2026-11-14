@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "TTT",
+    "TIT",
+    "TTT"
+  ],
+  "key": {
+    "I": "minecraft:iron_ingot",
+    "T": "minecraft:orange_terracotta"
+  },
+  "result": {
+    "id": "nerodecor:mars_rust_plate",
+    "count": 8
+  }
+}

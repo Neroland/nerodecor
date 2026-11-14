@@ -7,12 +7,14 @@
 ## The mod
 
 - **NeroDecor** — part of the Neroland sci-fi Minecraft mod ecosystem, built on **Neroland Core**.
-  A sci-fi decoration mod: paintable hull, panels, glass and the Luminous collection (59 blocks in
-  0.7.1), growing toward the 0.8.0 "Chroma" release (hub-driven colour, custom models, doors, holograms).
-  Shared content lives under `common/` and is wired through each loader entry point.
+  A sci-fi decoration mod: paintable hull, panels and glass, the Luminous collection, and since 0.8.0
+  "Chroma" ten more collections (165 registered blocks of a 200 cap, 12 of them hidden neon shims dropped
+  in 0.9.0) lit by the Chroma system (hubs that colour and animate linked blocks), 11 block entity types
+  (doors, holograms, wall screens, the hub) and a seat entity. Shared content lives under `common/` and is
+  wired through each loader entry point.
 - Mod id: **`nerodecor`** (matches the registry namespace + every loader manifest). Package root:
   `za.co.neroland.nerodecor`. Author: **Neroland**.
-- Version: **0.7.1-beta.2**.
+- Version: **0.8.0-beta.1**.
 - Targets **MC 1.21.1, 1.21.4, 1.21.5, 1.21.8, 1.21.10, 1.21.11, 26.1.2, 26.2 AND 26.3** on **NeoForge,
   MinecraftForge/Forge, and Fabric** → **27 cells**. Source is written for 26.x; older lines use `//?` blocks and
   the `legacyRenames` list in `stonecutter.gradle`. **Java 25** for 26.x, **Java 21** for 1.21.x. Mappings =
@@ -40,6 +42,29 @@
   live in `gradle.properties` as `*_version_<mc>` keys; `mc_versions=1.21.1,1.21.4,1.21.5,1.21.8,1.21.10,1.21.11,26.1.2,26.2,26.3`.
 - **Version-specific code in `common/`.** Non-active nodes run `common/` through Stonecutter (`stonecutterProcessCommon`), so shared code uses the same `//? if >=26.3 {` blocks as the loader `src/` trees. Keep the files in the vcsVersion state, and never put a `*/` inside a disabled block. Datapack files whose format differs by version go in `common/src/main/resources-<mc>/`, which is merged over `common/src/main/resources` for every node at or above `<mc>` (`mergeCommonResources`).
 
+## Code map (0.8.0)
+
+- `registry/` — `DecorBlocks` (hull/panel/glass/neon), `LuminousBlocks`, `ChromaContent` (hub, cube, linker,
+  scene chip, paint gun), `registry/collections/*Blocks` (the ten 0.8.0 collections through
+  `CollectionRegistries.block("id", …)`, which feeds `DecorBlocks.ALL` → items, creative tab, tint, link
+  catalogue), plus block entity and entity types (`nerodecor:seat`).
+- `content/block/<collection>/` — the collection blocks; `bulkhead/BhcBlock` + `BhcShapes` are the shared
+  base for doors/holo/command, `lights/CollectionBlock` for the rest (empty-hand `cycled` looks).
+- `chroma/` — pure Java (java.* only, unit-tested): colours, palette, OKLab gradients, effects, timelines,
+  scenes, codecs, share codes, flash clamp, reduced motion. `chroma/server/` — networks, store/SavedData,
+  validator, limits/config, rate limiter, scenes + triggers, guard/reach, hub admin; `chroma/server/privacy/`
+  — erasure, export, retention, `/nerodecor privacy|chroma` commands. `chroma/net/` — snapshot/delta/op
+  payloads and the hub screen packets. `chroma/client/` — tint bridge sync, the per-hub animation layer
+  (`ChromaHubLayerRenderer`, `ChromaModelQuads` version shims, `ChromaLayerBudget`). `chroma/editor/` —
+  hub editor model (pure).
+- `client/` — `ClientRenderRegistry` (render layers, BE and entity renderers, iterated by each loader),
+  `client/render/bhc/BhcRenderer` (one BE-renderer shim across 1.21.1-26.3), `client/screen/chroma/` (hub
+  editor screen + 3D viewport), `client/ctm/` (legacy CTM solver, unit-tested, not bound).
+- `command/` — `/nerodecor gallery` (showroom), `gallery grid` (flat catalogue); `command/showroom/` holds
+  the showroom builder (`Showroom`) and the eight bays as plan-view data (`ShowroomScenes`).
+- `compat/` — `ViewerInfo` + JEI/EMI plugins (omitted on cells without the APIs, all 1.21.x).
+- `link/` — the NeroLink module (schema 2).
+
 ## Build & verify
 
 - Build per cell with the Gradle wrapper, e.g. `./gradlew :fabric:26.3:build`; a release gate builds all
@@ -47,8 +72,19 @@
 - **Tests.** JUnit 5 tests live in `common/src/test/java` (pure Java, no game bootstrap; Stonecutter
   preprocesses them like main) and run on the nine NeoForge nodes as part of `build`. Server GameTests
   live in `neoforge/src/gametest` (dev-only mod `nerodecor_gametest`, never packaged) on the 26.3 cell:
-  `./gradlew :neoforge:26.3:runGameTestServer`. `tools/gen_gametest_fixture.py` writes the frozen 0.7.1
-  fixture structure those tests load.
+  `./gradlew :neoforge:26.3:runGameTestServer` — placement, paint, registry cap, the 0.7.1 fixture, Chroma
+  links/sync/scenes/privacy/link module, recipes + unlocks, and `showroom_builds`. Each test is a
+  `test_function` registered in `NeroDecorGameTests` plus a `test_instance` JSON. `tools/gen_gametest_fixture.py`
+  writes the frozen 0.7.1 fixture structure those tests load.
+- **Showcase screenshots.** A Fabric client game test (`fabric/src/gametest`, dev-only mod `nerodecor_showcase`,
+  never packaged; 26.3 Fabric cell only) builds a showcase world at midnight — the block catalogue, a Chroma room,
+  2x2 and 3x2 wall screens, the seven globes — runs `/nerodecor gallery` and shoots each showroom bay
+  (`showroom_<n>_<bay>.png`), then every Chroma Hub tab: `./gradlew :fabric:26.3:runClientGameTest` (opens a game
+  window). Shots land in `fabric/versions/26.3/build/run/clientGameTest/screenshots` (with `showcase-report.txt`)
+  and are copied to `tools/collections/.preview/screens/` (gitignored).
+- **Showroom.** `/nerodecor gallery` (creative or op) builds eight bays in a fixed 97 x 13 footprint 3 blocks
+  east/south of the command position, clearing it first; `gallery clear` removes it. Bay layouts are data in
+  `command/showroom/ShowroomScenes.java`; the `showroom_builds` GameTest rejects any unknown id/property/value.
 - Static analysis: `./gradlew :fabric:26.2:ecjCheck` (the VS Code Problems panel, via `tools/ecj.prefs`).
   The task only FAILS on errors.
 - A Cowork agent sandbox cannot decompile Minecraft — run builds natively (or via the local gradle MCP)

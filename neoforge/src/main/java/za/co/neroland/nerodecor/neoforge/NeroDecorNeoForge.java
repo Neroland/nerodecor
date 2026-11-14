@@ -41,7 +41,7 @@ public final class NeroDecorNeoForge {
         NeoForge.EVENT_BUS.addListener((ServerTickEvent.Post event) -> ChromaSync.tick(event.getServer()));
         NeoForge.EVENT_BUS.addListener((ChunkEvent.Load event) -> {
             if (event.getLevel() instanceof ServerLevel level && event.getChunk() instanceof LevelChunk chunk) {
-                NeonFold.onChunkLoad(level, chunk);
+                NeonFold.onChunkLoad(level, chunk, event.isNewChunk());
             }
         });
         //? if >=1.21.9 {

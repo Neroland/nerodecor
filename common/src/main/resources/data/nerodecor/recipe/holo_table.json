@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "IRI",
+    "I I"
+  ],
+  "key": {
+    "A": "minecraft:amethyst_shard",
+    "I": "minecraft:iron_ingot",
+    "R": "minecraft:redstone"
+  },
+  "result": {
+    "id": "nerodecor:holo_table",
+    "count": 1
+  }
+}

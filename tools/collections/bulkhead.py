@@ -21,13 +21,14 @@ Blockstate properties each block expects from Java:
   canopy_glass       facing (low edge), half, pos_link / neg_link (same block at the +/- ridge end)
   shutter            axis (x/z = the way the curtain runs), open, pos_link (shutter above),
                      neg_link (shutter below)
-  smart_glass        north..down booleans, opaque
+  smart_glass        north..down booleans, opaque, powered (Java-only: last redstone signal)
 
 Block-entity parts (drawn by the Java renderer; the JSON here is the static/closed state):
   sliding_door_leaf_lower / _upper (+ _right)   the sliding leaf, authored at its closed position
   iris_hatch_blade                              one flat blade quad (cutout), rotated round the centre
   blast_door_panel_left / _right                the two 21x42 px panels, relative to the centre part
-  pressure_trapdoor_leaf                        the hatch plate, hinge on the south edge
+  pressure_trapdoor_leaf                        the hatch plate, hinge on the south edge (also drawn while
+                                                open: pressure_trapdoor_open is an empty, particle-only model)
   shutter_slat                                  one 4 px slat of the roller curtain
 """
 import math
@@ -770,18 +771,11 @@ def pressure_trapdoor_models(c):
                                                     "down": ("#bottom", [0, 0, 16, 16]),
                                                     "north": s, "south": s, "east": s, "west": s},
                     cull=cull)]
-    v = ("#side", [0, 3, 16, 0])
-    opened = [box((0, 0, 13), (16, 16, 16), {"south": ("#top", [0, 0, 16, 16]),
-                                              "north": ("#bottom", [0, 16, 16, 0]),
-                                              "up": s, "down": v,
-                                              "east": ("#side", [0, 0, 16, 3]), "west": ("#side", [0, 0, 16, 3])},
-                  cull={"south": "south"})]
-    for e in opened:                                         # the 3px strip runs vertically on the ends
-        for f in ("east", "west"):
-            e["faces"][f]["rotation"] = 90
+    # Open: no static plate. The block entity draws the open plate (and the swing), so the static model never
+    # doubles up with the moving one; closed states keep the static plate and the renderer draws nothing.
     return {"pressure_trapdoor_bottom": mdl(c, tex, plate(0, {"down": "down"})),
             "pressure_trapdoor_top": mdl(c, tex, plate(13, {"up": "up"})),
-            "pressure_trapdoor_open": mdl(c, tex, opened),
+            "pressure_trapdoor_open": mdl(c, tex, []),
             "pressure_trapdoor_leaf": mdl(c, tex, plate(0, None))}
 
 
@@ -1403,3 +1397,28 @@ BLOCKS = [
           blockstate=lambda c: _sg_build(c)[1], item_model="smart_glass_inventory",
           render_type="minecraft:translucent", name="Smart Glass"),
 ]
+
+# =========================================================================================
+# Recipes (0.8.0 Stage 6): vanilla + Neroland Core ingredients only, no gate. See _kit.shaped.
+# =========================================================================================
+from ._kit import CUBE, attach_recipes, shaped, shapeless  # noqa: E402
+
+_I, _N, _R = "minecraft:iron_ingot", "minecraft:iron_nugget", "minecraft:redstone"
+attach_recipes(BLOCKS, {
+    "sliding_door": shaped("sliding_door", 2, ["II", "IR", "II"], I=_I, R=_R),
+    "iris_hatch": shaped("iris_hatch", 2, ["TRT"], R=_R, T="minecraft:iron_trapdoor"),
+    "blast_door": shaped("blast_door", 2, ["AA", "AR", "AA"], A="nerolandcore:nero_alloy_ingot", R=_R),
+    "pressure_trapdoor": shapeless("pressure_trapdoor", 2, "minecraft:iron_trapdoor",
+                                   "minecraft:iron_trapdoor", _R),
+    "airlock_frame": shaped("airlock_frame", 8, ["SIS", "IYI", "SIS"], I=_I, S="minecraft:smooth_stone",
+                            Y="minecraft:yellow_dye"),
+    "door_status_light": shapeless("door_status_light", 2, CUBE, _R, _N),
+    "access_pad": shaped("access_pad", 2, ["IG", "IR"], G="minecraft:glass_pane", I=_I, R=_R),
+    "viewport_frame": shaped("viewport_frame", 8, ["SGS", "GIG", "SGS"], G="minecraft:glass", I=_I,
+                             S="minecraft:smooth_stone"),
+    "porthole": shaped("porthole", 4, [" I ", "IGI", " I "], G="minecraft:glass", I=_I),
+    "canopy_glass": shaped("canopy_glass", 8, ["GGG", "GTG", "GGG"], G="minecraft:glass",
+                           T="minecraft:tinted_glass"),
+    "shutter": shaped("shutter", 4, ["NNN", "NNN", "NRN"], N=_N, R=_R),
+    "smart_glass": shaped("smart_glass", 8, ["GGG", "GRG", "GGG"], G="minecraft:glass", R=_R),
+})

@@ -61,6 +61,19 @@ public final class NeroDecorTelemetry {
     private static final Pattern USER_PATH =
             Pattern.compile("(?i)(?:[A-Z]:)?[/\\\\](?:Users|home)[/\\\\][^/\\\\\\s:;,'\"]+");
 
+    /** Player / entity UUIDs (personal data under POPIA + GDPR). */
+    private static final Pattern UUID_TEXT =
+            Pattern.compile("(?i)\\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\\b");
+
+    /** NBT int-array UUIDs ({@code [I; a, b, c, d]}), the form a UUID takes inside a saved-data dump. */
+    private static final Pattern UUID_INT_ARRAY = Pattern.compile(
+            "\\[I;\\s*-?\\d+\\s*,\\s*-?\\d+\\s*,\\s*-?\\d+\\s*,\\s*-?\\d+\\s*]");
+
+    /** World coordinates: {@code BlockPos{x=1, y=2, z=3}}, {@code x=1, y=2, z=3} and {@code [1, 2, 3]} triples. */
+    private static final Pattern COORDINATES = Pattern.compile(
+            "(?i)(?:BlockPos\\{\\s*)?x\\s*=\\s*-?\\d+(?:\\.\\d+)?\\s*,\\s*y\\s*=\\s*-?\\d+(?:\\.\\d+)?\\s*,\\s*z\\s*=\\s*"
+                    + "-?\\d+(?:\\.\\d+)?\\s*}?|\\[\\s*-?\\d+\\s*,\\s*-?\\d+\\s*,\\s*-?\\d+\\s*]");
+
     private static volatile boolean active;
     private static final AtomicInteger eventsSent = new AtomicInteger();
     private static final Set<String> seenFingerprints = ConcurrentHashMap.newKeySet();
@@ -95,6 +108,8 @@ public final class NeroDecorTelemetry {
             options.setSendDefaultPii(false);
             // The machine's hostname is identifying; never attach it.
             options.setAttachServerName(false);
+            // No breadcrumbs at all: they could carry log lines with player-typed text or positions.
+            options.setMaxBreadcrumbs(0);
             options.setEnableUncaughtExceptionHandler(true);
             // Manual session lifecycle (started below, ended on shutdown); random per launch, not linked.
             options.setEnableAutoSessionTracking(false);
@@ -219,6 +234,7 @@ public final class NeroDecorTelemetry {
         // POPIA/GDPR scrubbing: no user identity, no hostname, no OS-account names in paths.
         event.setUser(null);
         event.setServerName(null);
+        event.setBreadcrumbs(null);
         List<SentryException> scrubExceptions = event.getExceptions();
         if (scrubExceptions != null) {
             for (SentryException ex : scrubExceptions) {
@@ -324,8 +340,14 @@ public final class NeroDecorTelemetry {
         return "production";
     }
 
-    /** Replaces home-directory paths (which contain the OS account name) with a neutral marker. */
+    /**
+     * Replaces home-directory paths (which contain the OS account name), UUIDs and world coordinates with neutral
+     * markers. Exception values and FATAL messages pass through here before they leave the machine.
+     */
     static String scrub(String text) {
-        return USER_PATH.matcher(text).replaceAll("/~");
+        String out = USER_PATH.matcher(text).replaceAll("/~");
+        out = UUID_TEXT.matcher(out).replaceAll("<uuid>");
+        out = UUID_INT_ARRAY.matcher(out).replaceAll("<uuid>");
+        return COORDINATES.matcher(out).replaceAll("<pos>");
     }
 }

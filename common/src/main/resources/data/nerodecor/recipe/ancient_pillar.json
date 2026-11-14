@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "A",
+    "A"
+  ],
+  "key": {
+    "A": "nerodecor:ancient_brick"
+  },
+  "result": {
+    "id": "nerodecor:ancient_pillar",
+    "count": 2
+  }
+}

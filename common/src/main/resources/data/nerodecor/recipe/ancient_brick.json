@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BBB",
+    "BLB",
+    "BBB"
+  ],
+  "key": {
+    "B": "minecraft:deepslate_bricks",
+    "L": "minecraft:lapis_lazuli"
+  },
+  "result": {
+    "id": "nerodecor:ancient_brick",
+    "count": 8
+  }
+}

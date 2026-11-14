@@ -7,6 +7,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Container;
+import net.minecraft.world.RandomizableContainer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
@@ -34,7 +35,10 @@ import za.co.neroland.nerodecor.registry.ModDataComponents;
  *   <li><b>Blocks</b>: when a chunk loads (NeoForge/Forge {@code ChunkEvent.Load}, Fabric
  *       {@code ServerChunkEvents.CHUNK_LOAD}), sections that may hold a shim ({@link LevelChunkSection#maybeHas}) are
  *       scanned and the swap is queued for the next server tick ({@link #drainPending()}), never applied mid-load.</li>
- *   <li><b>Containers</b> in that chunk: shim stacks are converted in the same queued task.</li>
+ *   <li><b>Containers</b> in that chunk: shim stacks are converted in the same queued task. A container that still
+ *       carries an unrolled loot table ({@link RandomizableContainer}) is never read: reading its slots would roll
+ *       the table with no player, so dungeon and structure chests keep their loot table until a player opens them.
+ *       Freshly generated chunks are skipped entirely (no neon can exist there).</li>
  *   <li><b>Entity inventories</b> and <b>dropped items</b>: {@link NeonShimItem}.</li>
  * </ul>
  *
@@ -88,6 +92,9 @@ public final class NeonFold {
 
     /** Converts every shim stack in a container; returns how many slots changed. */
     public static int convertContainer(Container container) {
+        if (hasPendingLoot(container)) {
+            return 0;
+        }
         int changed = 0;
         for (int slot = 0; slot < container.getContainerSize(); slot++) {
             ItemStack stack = container.getItem(slot);
@@ -134,6 +141,20 @@ public final class NeonFold {
      * stacks, then queues the swap for the next server tick.
      */
     public static void onChunkLoad(ServerLevel level, LevelChunk chunk) {
+        onChunkLoad(level, chunk, false);
+    }
+
+    /**
+     * As {@link #onChunkLoad(ServerLevel, LevelChunk)}, but a chunk the loader reports as freshly generated only gets
+     * the Chroma light re-apply: worldgen cannot place legacy neon, and touching its containers would roll loot.
+     */
+    public static void onChunkLoad(ServerLevel level, LevelChunk chunk, boolean newlyGenerated) {
+        // The same chunk-load event re-applies Chroma light that was set while this chunk was unloaded.
+        za.co.neroland.nerodecor.chroma.net.ChromaSync.chunkLoaded(level, chunk.getPos().getMinBlockX(),
+                chunk.getPos().getMinBlockZ());
+        if (newlyGenerated) {
+            return;
+        }
         List<BlockPos> blocks = new ArrayList<>();
         LevelChunkSection[] sections = chunk.getSections();
         int baseX = chunk.getPos().getMinBlockX();
@@ -200,7 +221,18 @@ public final class NeonFold {
         return swapped;
     }
 
+    /**
+     * True when {@code container} still holds an unrolled loot table. {@code getItem} on such a container unpacks the
+     * table (with a null player), so the fold must not read it at all.
+     */
+    public static boolean hasPendingLoot(Container container) {
+        return container instanceof RandomizableContainer loot && loot.getLootTable() != null;
+    }
+
     private static boolean holdsShim(Container container) {
+        if (hasPendingLoot(container)) {
+            return false;
+        }
         for (int slot = 0; slot < container.getContainerSize(); slot++) {
             if (container.getItem(slot).getItem() instanceof NeonShimItem) {
                 return true;

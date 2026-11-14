@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "G",
+    "R",
+    "P"
+  ],
+  "key": {
+    "G": "minecraft:glass_pane",
+    "P": "nerodecor:decor_pipe",
+    "R": "minecraft:redstone"
+  },
+  "result": {
+    "id": "nerodecor:pipe_gauge",
+    "count": 1
+  }
+}

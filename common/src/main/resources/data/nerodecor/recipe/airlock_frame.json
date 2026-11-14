@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SIS",
+    "IYI",
+    "SIS"
+  ],
+  "key": {
+    "I": "minecraft:iron_ingot",
+    "S": "minecraft:smooth_stone",
+    "Y": "minecraft:yellow_dye"
+  },
+  "result": {
+    "id": "nerodecor:airlock_frame",
+    "count": 8
+  }
+}

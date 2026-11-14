@@ -11,16 +11,25 @@ Every model is drawn "facing north": its front looks north and it sits against t
 south. `left` / `right` are the VIEWER's left / right when looking at that front (canonical north:
 left = east, right = west). A link boolean is true when the same block continues on that side.
 
-  command_console     facing (4) | shape = straight / inner / outer | left | right
+  command_console     facing (4) | shape = straight / inner / outer / inner_mirrored /
+                      outer_mirrored | left | right
                       straight: cheek plate on each unlinked end (left cap / mid / right cap).
                       inner (concave, operator inside): risers on the back AND on the operator's
                       left (canonical: south + east). outer (convex): corner post only, at the back
                       left (canonical: south-east), stepped hip deck. left / right are ignored for
-                      inner / outer. The deck is one element rotated -22.5 deg about x.
+                      the corners. inner_mirrored / outer_mirrored are the mirror images (risers on
+                      the back and the operator's right; post at the back right): both corner
+                      models are symmetric about their NW-SE diagonal, so the mirror is the same
+                      model turned a further 90 deg clockwise. The deck is one element rotated
+                      -22.5 deg about x.
   wall_screen         facing (4) | up | down | left | right | idle        block entity, light 6
                       16-mask bezel baked into the 32px face: a bezel edge is drawn on every
                       unlinked side, so an N x M group shows one frame. idle=true adds the animated
-                      idle layer (data-flow, 16 frames, tiles seamlessly across the group); the
+                      idle layer (data-flow, 16 frames). The idle picture is painted per mask, so
+                      a group shows ONE display rather than a tiled texture: a scope trace straddles
+                      every horizontal seam and runs unbroken across the vertical ones, the top row
+                      carries the header rows, the bottom row the level meters, the left column the
+                      scale gutter and the right column the status stack (see _screen_idle); the
                       anchor's renderer sets idle=false on the whole group while a `link.display`
                       payload is shown and draws 0.01 px in front of the z=14 face, inset 3 texels
                       (1.5 px) from every bezel edge.
@@ -588,45 +597,129 @@ def _screen_face(mask):
 
 
 def _idle_rows():
+    """Six tile-periodic dash patterns (levels 1..3) for the scrolling data rows."""
     rows = []
-    for i, y in enumerate((1, 5, 9, 25, 29)):
+    for i in range(6):
         pat, x, k = [0] * 32, 0, 0
         while x < 30:
-            ln = (1 + int(det("idle", i, k, "l") * 5)) if i < 3 else (3 + int(det("idle", i, k, "l") * 7))
+            ln = (1 + int(det("idle", i, k, "l") * 5)) if i % 2 == 0 else (3 + int(det("idle", i, k, "l") * 6))
             lvl = 3 if det("idle", i, k, "c") < 0.12 else (2 if det("idle", i, k, "c") < 0.55 else 1)
             for j in range(ln):
                 if x + j < 31:
                     pat[x + j] = lvl
             x += ln + 1 + int(det("idle", i, k, "g") * 3)
             k += 1
-        rows.append((y, (2, -2, 4, -2, 2)[i], pat))
+        rows.append(pat)
     return rows
 
 
-def _wave(x, f):
-    ph = 2 * math.pi * ((x + 2 * f) % 32) / 32.0
-    return 17 + int(round(3.3 * math.sin(ph) + 1.3 * math.sin(3 * ph + 0.6)))
+def _col(mask):
+    """Column role of a tile in its group: S single, L left edge, R right edge, M interior."""
+    return {(1, 1): "S", (1, 0): "L", (0, 1): "R", (0, 0): "M"}[(1 if mask & 2 else 0, 1 if mask & 1 else 0)]
+
+
+def _row(mask):
+    return {(1, 1): "S", (1, 0): "T", (0, 1): "B", (0, 0): "M"}[(1 if mask & 8 else 0, 1 if mask & 4 else 0)]
+
+
+def clamp_(v):
+    return 0.0 if v < 0 else 1.0 if v > 1 else v
+
+
+def _wave(col, x, f, amp):
+    """Trace offset (px, +down) of the travelling scope wave at tile column x, frame f. The
+    phase is one whole cycle across an interior tile and is warped inside the edge tiles (dense
+    on the left, stretched and decaying on the right), always arriving at a seam on a whole
+    cycle with the interior's slope, so the trace is continuous across every vertical seam."""
+    s = x / 32.0
+    if col == "L":
+        u, env = s - 0.5 * (1 - s) ** 2, 0.3 + 0.7 * (s * s * (3 - 2 * s))
+    elif col == "R":
+        u, env = s - 0.5 * s * s, 1.0 - 0.7 * (s * s * (3 - 2 * s))
+    elif col == "S":
+        u, env = s, 0.35 + 0.65 * math.sin(math.pi * clamp_(s))
+    else:
+        u, env = s, 1.0
+    if x < 0 and col == "R" or x >= 32 and col == "L":
+        env = 1.0
+    ph = 2 * math.pi * (u - f / 16.0)
+    return amp * env * (0.78 * math.sin(ph) + 0.30 * math.sin(3 * ph + 0.6))
 
 
 @cache
-def _screen_idle():
-    rows = _idle_rows()
+def _screen_idle(mask=15):
+    """The idle picture for one tile of a group. A group shows ONE display, not a tiled texture:
+
+      * a big scope trace straddles every horizontal seam of the group (upper half in the tile
+        above, lower half in the tile below) and runs unbroken across the vertical seams, growing
+        in from the left edge and decaying toward the right;
+      * the top row carries the header data rows, the bottom row a level-meter bank on a baseline,
+        interior rows two more data rows; rows scroll across the seams;
+      * the left column has the scale gutter, the right column ragged line ends and a status stack.
+
+    A lone tile (mask 15) keeps the compact layout: rows above and below one small trace."""
+    pats = _idle_rows()
+    col, row = _col(mask), _row(mask)
+    x_lo = 8 if col in ("L", "S") else 0
+    x_hi = 24 if col in ("R", "S") else 32
+    # (y, pattern, px per frame, ragged right end for the R/S columns)
+    data = {"T": ((6, 0, 2, 24), (10, 1, -2, 19), (14, 2, 4, 22)),
+            "M": ((13, 3, -2, 21), (19, 4, 2, 24)),
+            "B": ((14, 5, 2, 20),),
+            "S": ((5, 0, 2, 24), (9, 1, -2, 19), (26, 5, 4, 22))}[row]
+    traces = {"T": ((31.5, 8.0),), "M": ((-0.5, 8.0), (31.5, 8.0)), "B": ((-0.5, 8.0),),
+              "S": ((17.0, 4.2),)}[row]
 
     def frame(t):
         f = int(round(t * 16)) % 16
         img = new(32, 32)
-        for y, speed, pat in rows:
-            for x in range(32):
-                c = pat[(x + speed * f) % 32]
+        for y, p, speed, rag in data:
+            pat = pats[p]
+            for x in range(x_lo, min(x_hi, rag) if col in ("R", "S") else x_hi):
+                c = pat[(x - speed * f) % 32]
                 if c:
                     put(img, x, y, PL[c])
-        for x in range(0, 32, 4):
-            put(img, x, 17, PL[1])
-        for x in range(32):
-            y0, y1 = _wave(x - 1, f), _wave(x, f)
-            lo, hi = (y0 + 1, y1) if y1 > y0 else ((y1, y0 - 1) if y1 < y0 else (y1, y1))
-            for y in range(lo, hi + 1):
-                put(img, x, y, PL[3])
+        if col in ("L", "S"):                              # scale gutter: ticks down the left edge
+            for y in range(32):
+                if y % 4 == 1:
+                    put(img, 5, y, PL[1])
+                    if y % 8 == 1:
+                        put(img, 6, y, PL[1])
+        if col in ("R", "S"):                              # status stack by the right edge
+            for i, y in enumerate(range(5, 27, 3)):
+                on = (f // 2 + i * 3 + (i * i) % 5) % 8
+                put(img, 26, y, PL[3] if on == 0 else PL[1])
+                put(img, 27, y, PL[2] if on == 0 else PL[1])
+        if row == "M":                                     # dotted graticule on the mid axis
+            for x in range(x_lo, x_hi, 4):
+                put(img, x, 16, PL[1])
+        if row == "B":                                     # level meters on a baseline
+            for x in range(x_lo, x_hi):
+                if x % 2 == 0:
+                    put(img, x, 27, PL[1])
+            for i in range(8):
+                bx = 1 + 4 * i
+                if bx < x_lo or bx + 1 >= x_hi:
+                    continue
+                ph = det("bar", col, i, "p")
+                k = 1 if det("bar", col, i, "k") < 0.6 else 2
+                hgt = 1 + int(round(3.0 + 3.0 * math.sin(2 * math.pi * (k * f / 16.0 + ph))))
+                for j in range(hgt):
+                    put(img, bx, 26 - j, PL[1])
+                put(img, bx, 26 - hgt, PL[3])
+                put(img, bx + 1, 26 - hgt, PL[3])
+        if row in ("T", "S"):                              # dotted graticule under the header
+            gy = 18 if row == "T" else 17
+            for x in range(x_lo, x_hi, 4):
+                put(img, x, gy, PL[1])
+        for cy, amp in traces:                             # the scope trace, drawn last
+            for x in range(32):
+                y0 = int(math.floor(cy + _wave(col, x - 1, f, amp) + 0.5))
+                y1 = int(math.floor(cy + _wave(col, x, f, amp) + 0.5))
+                lo, hi = (y0 + 1, y1) if y1 > y0 else ((y1, y0 - 1) if y1 < y0 else (y1, y1))
+                for y in range(lo, hi + 1):
+                    if 0 <= y < 32:
+                        put(img, x, y, PL[3])
         return img
     return animate("wall_screen_glow", "data", frame)
 
@@ -634,7 +727,7 @@ def _screen_idle():
 @cache
 def _screen_glow(mask):
     from ._kit import Art
-    art = _screen_idle()
+    art = _screen_idle(mask)
 
     def clear(fr):
         out = fr.copy()
@@ -777,10 +870,11 @@ def mdl(c, textures, elements, particle, cutout=False):
 ROT_Y = {"north": 0, "east": 90, "south": 180, "west": 270}
 
 
-def _var(c, model, facing):
+def _var(c, model, facing, extra=0):
     v = {"model": c.model(model)}
-    if ROT_Y[facing]:
-        v["y"] = ROT_Y[facing]
+    y = (ROT_Y[facing] + extra) % 360
+    if y:
+        v["y"] = y
     return v
 
 
@@ -889,12 +983,13 @@ def console_models(c):
 def console_state(c):
     v = {}
     for f in ROT_Y:
-        for shape in ("straight", "inner", "outer"):
+        for shape in ("straight", "inner", "outer", "inner_mirrored", "outer_mirrored"):
             for l in (False, True):
                 for r in (False, True):
                     m = ("command_console_c%d%d" % (not l, not r)) if shape == "straight" \
-                        else "command_console_" + shape
-                    v["facing=%s,left=%s,right=%s,shape=%s" % (f, _tf(l), _tf(r), shape)] = _var(c, m, f)
+                        else "command_console_" + shape.replace("_mirrored", "")
+                    turn = 90 if shape.endswith("_mirrored") else 0
+                    v["facing=%s,left=%s,right=%s,shape=%s" % (f, _tf(l), _tf(r), shape)] = _var(c, m, f, turn)
     return {"variants": v}
 
 
@@ -1099,3 +1194,22 @@ BLOCKS = [
     Block("blinkenlight_panel", shape="cube", chroma=True, emissive=True,
           textures={"all": "blinkenlight_panel"}),
 ]
+
+# =========================================================================================
+# Recipes (0.8.0 Stage 6): vanilla + Neroland Core ingredients only, no gate. See _kit.shaped.
+# =========================================================================================
+from ._kit import CUBE, attach_recipes, shaped  # noqa: E402
+
+_I, _N, _R = "minecraft:iron_ingot", "minecraft:iron_nugget", "minecraft:redstone"
+_P, _Q, _L = "minecraft:glass_pane", "minecraft:quartz", "minecraft:glowstone_dust"
+attach_recipes(BLOCKS, {
+    "command_console": shaped("command_console", 1, ["GGG", "QRQ", "III"], G=_P, I=_I, Q=_Q, R=_R),
+    "wall_screen": shaped("wall_screen", 2, ["NGN", "GLG", "NGN"], G=_P, L=_L, N=_N),
+    "keyboard_shelf": shaped("keyboard_shelf", 2, ["BBB", "SSS"], B="minecraft:stone_button",
+                             S="minecraft:smooth_stone_slab"),
+    "operator_chair": shaped("operator_chair", 1, ["W  ", "WWW", "I I"], I=_I, W="#minecraft:wool"),
+    "server_rack": shaped("server_rack", 2, ["IRI", "IRI", "IRI"], I=_I, R=_R),
+    "drive_rack": shaped("drive_rack", 2, ["IQI", "IQI", "IQI"], I=_I, Q=_Q),
+    "patch_panel": shaped("patch_panel", 2, ["III", "SRS"], I=_I, R=_R, S="minecraft:string"),
+    "blinkenlight_panel": shaped("blinkenlight_panel", 4, ["NRN", "LCL", "NRN"], C=CUBE, L=_L, N=_N, R=_R),
+})

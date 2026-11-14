@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "condition": {
+        "type": "minecraft:survives_explosion"
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "condition": {
+            "type": "minecraft:match_block",
+            "blocks": "nerodecor:crew_bunk",
+            "state": {
+              "part": "head"
+            }
+          },
+          "name": "nerodecor:crew_bunk"
+        }
+      ],
+      "rolls": 1
+    }
+  ]
+}

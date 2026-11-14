@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GPG"
+  ],
+  "key": {
+    "G": "minecraft:glass_pane",
+    "P": "minecraft:prismarine_shard"
+  },
+  "result": {
+    "id": "nerodecor:coolant_tube",
+    "count": 4
+  }
+}

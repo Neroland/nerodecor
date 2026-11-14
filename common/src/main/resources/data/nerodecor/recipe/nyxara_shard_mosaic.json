@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "nerodecor:nyxara_faceted_crystal",
+  "result": {
+    "id": "nerodecor:nyxara_shard_mosaic",
+    "count": 1
+  }
+}

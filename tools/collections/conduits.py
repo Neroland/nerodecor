@@ -990,3 +990,23 @@ BLOCKS = [
           model=emitter_models,
           blockstate=lambda c: facing_variants(c, "beam_emitter_prop", horizontal=False)),
 ]
+
+# =========================================================================================
+# Recipes (0.8.0 Stage 6): vanilla + Neroland Core ingredients only, no gate. See _kit.shaped.
+# =========================================================================================
+from ._kit import attach_recipes, shaped, shapeless  # noqa: E402
+
+_C, _I, _R = "minecraft:copper_ingot", "minecraft:iron_ingot", "minecraft:redstone"
+_PIPE, _DUCT = "nerodecor:decor_pipe", "nerodecor:duct"
+attach_recipes(BLOCKS, {
+    "decor_pipe": shaped("decor_pipe", 8, ["CCC"], C=_C),
+    "pipe_valve": shaped("pipe_valve", 1, ["L", "P"], L="minecraft:lever", P=_PIPE),
+    "pipe_gauge": shaped("pipe_gauge", 1, ["G", "R", "P"], G="minecraft:glass_pane", P=_PIPE, R=_R),
+    "cable_tray": shaped("cable_tray", 8, ["N N", "III"], I=_I, N="minecraft:iron_nugget"),  # not the minecart grid
+    "hanging_cables": shaped("hanging_cables", 4, ["SSS", "RRR"], R=_R, S="minecraft:string"),
+    "duct": shaped("duct", 8, ["CCC", "C C", "CCC"], C=_C),
+    "duct_fan": shapeless("duct_fan", 1, _DUCT, _I, _R),
+    "coolant_tube": shaped("coolant_tube", 4, ["GPG"], G="minecraft:glass_pane", P="minecraft:prismarine_shard"),
+    "beam_emitter_prop": shaped("beam_emitter_prop", 1, ["A", "Q", "I"], A="minecraft:amethyst_shard", I=_I,
+                                Q="minecraft:quartz"),
+})

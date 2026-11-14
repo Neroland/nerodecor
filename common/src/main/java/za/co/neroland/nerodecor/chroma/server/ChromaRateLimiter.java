@@ -74,6 +74,11 @@ public final class ChromaRateLimiter {
         players.remove(player);
     }
 
+    /** Drops the buckets of every player not in {@code online} (logged-out players keep no rate state). */
+    public synchronized void retainOnly(java.util.Set<UUID> online) {
+        players.keySet().retainAll(online);
+    }
+
     /** Players currently tracked (tests). */
     public synchronized int tracked() {
         return players.size();

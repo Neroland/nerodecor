@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SSS",
+    "SIS",
+    "SSS"
+  ],
+  "key": {
+    "I": "minecraft:iron_ingot",
+    "S": "minecraft:smooth_stone"
+  },
+  "result": {
+    "id": "nerodecor:station_plating",
+    "count": 8
+  }
+}

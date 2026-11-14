@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " G ",
+    "GMG",
+    " S "
+  ],
+  "key": {
+    "G": "minecraft:glass",
+    "M": "minecraft:map",
+    "S": "minecraft:smooth_stone_slab"
+  },
+  "result": {
+    "id": "nerodecor:world_globe",
+    "count": 1
+  }
+}

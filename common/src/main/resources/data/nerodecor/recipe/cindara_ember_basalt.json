@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BM",
+    "MB"
+  ],
+  "key": {
+    "B": "minecraft:basalt",
+    "M": "minecraft:magma_block"
+  },
+  "result": {
+    "id": "nerodecor:cindara_ember_basalt",
+    "count": 4
+  }
+}

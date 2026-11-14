@@ -18,6 +18,8 @@ public record ChromaLimits(boolean enabled, int volumeX, int volumeY, int volume
 
     /** No hub volume axis may exceed this, whatever the config says. */
     public static final int HARD_VOLUME_CAP = 64;
+    /** Most trusted players one hub keeps (the hub screen shows all of them). */
+    public static final int MAX_TRUSTED = 64;
     /** Hard ceiling for {@link #maxBlocksPerHub}. */
     public static final int HARD_BLOCK_CAP = 4096;
     /** Hard ceiling for {@link #maxZones} (matches {@code ZoneAssignment.MAX_ZONES}). */

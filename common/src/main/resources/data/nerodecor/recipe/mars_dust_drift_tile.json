@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "nerodecor:mars_wind_strata_brick",
+  "result": {
+    "id": "nerodecor:mars_dust_drift_tile",
+    "count": 1
+  }
+}

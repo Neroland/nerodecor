@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -42,6 +41,13 @@ public final class ChromaNetworkStore {
 
     private void touch(long id) {
         touched.add(id);
+    }
+
+    /** Stage 4: a network's scene slots changed (saved data must be written; scene sync follows the revision). */
+    void scenesChanged(long id) {
+        if (networks.containsKey(id)) {
+            changed();
+        }
     }
 
     /** Networks whose linked blocks, palette, anchor or activity changed since the last call; clears the set. */
@@ -312,19 +318,22 @@ public final class ChromaNetworkStore {
     }
 
     /**
-     * Erasure (POPIA/GDPR): every network {@code player} owns is deleted and they are removed from every trusted list.
+     * Erasure (POPIA/GDPR): {@code player} leaves every trusted list, and every network they own is orphaned (owner
+     * cleared, trusted list emptied, names blanked, orphan clock started at {@code now}). An orphaned network keeps
+     * colouring its blocks but nobody may edit it until an operator {@linkplain #claimOrphan claims} it; it is deleted
+     * by {@link #purgeOrphaned} once its retention period runs out.
      *
      * @return whether anything changed
      */
-    public boolean eraseFor(UUID player) {
+    public boolean eraseFor(UUID player, long now) {
+        if (player == null || HubNetwork.NO_OWNER.equals(player)) {
+            return false;
+        }
         boolean any = false;
-        Iterator<HubNetwork> it = networks.values().iterator();
-        while (it.hasNext()) {
-            HubNetwork network = it.next();
-            if (network.owner().equals(player)) {
-                release(network);
+        for (HubNetwork network : networks.values()) {
+            if (!network.orphaned() && network.owner().equals(player)) {
+                network.orphan(now);
                 touch(network.id());
-                it.remove();
                 any = true;
             } else if (network.forget(player)) {
                 any = true;
@@ -334,6 +343,45 @@ public final class ChromaNetworkStore {
             changed();
         }
         return any;
+    }
+
+    /** Deletes orphaned networks older than {@code retentionMillis}; returns how many. */
+    public int purgeOrphaned(long now, long retentionMillis) {
+        List<Long> stale = new ArrayList<>();
+        for (HubNetwork network : networks.values()) {
+            if (network.orphaned() && now - network.orphanedSince() > retentionMillis) {
+                stale.add(network.id());
+            }
+        }
+        for (long id : stale) {
+            HubNetwork network = networks.remove(id);
+            if (network != null) {
+                release(network);
+                touch(id);
+            }
+        }
+        if (!stale.isEmpty()) {
+            changed();
+        }
+        return stale.size();
+    }
+
+    /**
+     * An operator takes over an orphaned network for {@code newOwner} (the caller checks the operator permission).
+     * The orphan clock stops.
+     */
+    public ChromaVerdict claimOrphan(long id, UUID newOwner) {
+        HubNetwork network = networks.get(id);
+        if (network == null) {
+            return ChromaVerdict.NO_NETWORK;
+        }
+        if (!network.orphaned() || newOwner == null || HubNetwork.NO_OWNER.equals(newOwner)) {
+            return ChromaVerdict.NO_PERMISSION;
+        }
+        network.claimOrphan(newOwner);
+        touch(id);
+        changed();
+        return ChromaVerdict.OK;
     }
 
     /** Deletes networks whose hub has been gone longer than {@code retentionMillis}. */

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GGG"
+  ],
+  "key": {
+    "G": "nerodecor:glyph_block"
+  },
+  "result": {
+    "id": "nerodecor:glyph_strip",
+    "count": 6
+  }
+}

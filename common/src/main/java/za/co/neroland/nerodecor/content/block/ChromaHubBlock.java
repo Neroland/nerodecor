@@ -32,7 +32,7 @@ import za.co.neroland.nerodecor.registry.ChromaContent;
  * the dimension's saved data. Breaking the hub drops a hub item that carries the id (loot {@code copy_components}),
  * and the network stops applying colour until that item is placed again.
  *
- * <p>Use (empty hand): show the network's size. Sneak-use: toggle auto-adopt (admins).
+ * <p>Use (empty hand): open the Chroma Hub screen (viewers and up). Sneak-use: toggle auto-adopt (admins).
  */
 public class ChromaHubBlock extends Block implements EntityBlock {
 
@@ -59,6 +59,9 @@ public class ChromaHubBlock extends Block implements EntityBlock {
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player,
             BlockHitResult hit) {
+        if (player.getMainHandItem().getItem() instanceof za.co.neroland.nerodecor.content.item.SceneChipItem) {
+            return InteractionResult.PASS; // Stage 4: the Scene Chip's own useOn loads it into the hub
+        }
         if (level instanceof ServerLevel server && player instanceof ServerPlayer serverPlayer
                 && level.getBlockEntity(pos) instanceof ChromaHubBlockEntity hub) {
             ChromaNetworkStore store = ChromaNetworks.store(server);
@@ -74,8 +77,8 @@ public class ChromaHubBlock extends Block implements EntityBlock {
                     ChromaNetworks.tell(serverPlayer, verdict);
                 }
             } else if (ChromaValidator.checkAction(network, player.getUUID(), ChromaAction.VIEW).isOk()) {
-                serverPlayer.sendSystemMessage(Component.translatable("message." + NeroDecorCommon.MOD_ID
-                        + ".chroma.status", network.size(), network.zones().size()), true);
+                // Opens (or refreshes) the Chroma Hub screen on the client.
+                za.co.neroland.nerodecor.chroma.net.ChromaHubNet.open(serverPlayer, server, network);
             } else {
                 ChromaNetworks.tell(serverPlayer, ChromaVerdict.NO_PERMISSION);
             }

@@ -1,6 +1,13 @@
 {
   "schema": 1,
   "outputs": {
+    "../resources-26.3/data/nerodecor/loot_table/blocks/ancient_brick.json": "c67e9feb9ed558298c356b8c3d20cd75e3e8c7cc321f641d75f1bc4681632625",
+    "../resources-26.3/data/nerodecor/loot_table/blocks/ancient_pillar.json": "77592df550412c7b0db5fff020c486385569b27a86e8716195e4810ae2730b4c",
+    "../resources-26.3/data/nerodecor/loot_table/blocks/arch_lintel.json": "496c269fa8620986cadb27516d015d8579872f83143eb6a7048eb6b293e511f5",
+    "../resources-26.3/data/nerodecor/loot_table/blocks/cracked_ancient_brick.json": "8aaa2f2834142430ab72af2f009606567e2122b6c0cc65bda36f114e60be19a6",
+    "../resources-26.3/data/nerodecor/loot_table/blocks/dormant_core.json": "2efa7aa52472475a9d6de1da17f79f0b1da48ccd3c8f21e007dd8c3b2fc41382",
+    "../resources-26.3/data/nerodecor/loot_table/blocks/glyph_block.json": "978e64c01a5344ebc3141d320a6e9174d73a4f6a1b76fcfdd1ec46b22f00056c",
+    "../resources-26.3/data/nerodecor/loot_table/blocks/glyph_strip.json": "79cfab485c4d46ad709850f84f61d86754cfd6ba2d5276aabc257fc4619d1bec",
     "assets/nerodecor/blockstates/ancient_brick.json": "8394a2936264b31e53f1ad2ecc897c60b793676c1280c0efe1f583f1351a17bc",
     "assets/nerodecor/blockstates/ancient_pillar.json": "e7b456ae2fcdad735418666af92bcff1bec276bbd2739e6d7a90baf2618453ab",
     "assets/nerodecor/blockstates/arch_lintel.json": "8f3dc3d1ceeb986915e22056b09954b39c775383f2498302064d320d1f91b24a",
@@ -234,6 +241,22 @@
     "assets/nerodecor/textures/block/ancients/glyph_strip_glow_c11.png": "b1b027bfc7192f88713ba6736de58a252fb674810e3b1cb255a056e7f5dd77a2",
     "assets/nerodecor/textures/block/ancients/glyph_strip_glow_c11.png.mcmeta": "b308a3ea4868ebd2a72102d24da34f077b0fcef95e7fda8b44d224e9006d553e",
     "assets/nerodecor/textures/block/ancients/glyph_strip_glow_c11_t.png": "55a27649b4f42179f103a55cc294279fee125e453834a4d60e26ba72d32eea58",
-    "assets/nerodecor/textures/block/ancients/glyph_strip_glow_c11_t.png.mcmeta": "b308a3ea4868ebd2a72102d24da34f077b0fcef95e7fda8b44d224e9006d553e"
+    "assets/nerodecor/textures/block/ancients/glyph_strip_glow_c11_t.png.mcmeta": "b308a3ea4868ebd2a72102d24da34f077b0fcef95e7fda8b44d224e9006d553e",
+    "data/nerodecor/loot_table/blocks/ancient_brick.json": "a8c9a4453ee611734c75e4823a387ed21aa1bd6a5a88009459d01557304a8723",
+    "data/nerodecor/loot_table/blocks/ancient_pillar.json": "dd989eb27c0022e3ea3385815eb615c838a59afb90147d14a56d52f4025c923a",
+    "data/nerodecor/loot_table/blocks/arch_lintel.json": "a1b4709bd895573221230d8701d192ee4124c5d4b8e6c1fa35bae2c70b1331d3",
+    "data/nerodecor/loot_table/blocks/cracked_ancient_brick.json": "51cac14b89ccaa87dcaf5de8983ce4f650f58aa163cb35d14040dd31a1a3959f",
+    "data/nerodecor/loot_table/blocks/dormant_core.json": "389a447739c06b4351ec10e2e7e48c6652687194f5eba8a55614ef54881eb0e7",
+    "data/nerodecor/loot_table/blocks/glyph_block.json": "85c5c3ed64fb99f3659537c4064df15e7a058c2b10756a8b2b1c4a892349b0e6",
+    "data/nerodecor/loot_table/blocks/glyph_strip.json": "36efa660871aac9812dbdb9260c328f7e12c7e59754e01c22ec8dc6d5ecb70b0",
+    "data/nerodecor/recipe/ancient_brick.json": "a3d983463b6c0429550f65fc29d6be15e3fedff9073c44ab07cea0df4ca49fc0",
+    "data/nerodecor/recipe/ancient_pillar.json": "df72a480b63a3a87c730f7159fe7b46606ccc99aee6500f51d65ac5e7b1a5842",
+    "data/nerodecor/recipe/ancient_pillar_from_ancient_brick_stonecutting.json": "a7c7f0b049d5fce1dcdd6f20b2e50596e9db3e64a673d04cbdbe0c966e93e651",
+    "data/nerodecor/recipe/arch_lintel.json": "481c2cf77947abfa8edb0587ed41b73e7acb39a6fc235aacf327e838a6fb35cd",
+    "data/nerodecor/recipe/cracked_ancient_brick.json": "9e60ae6c7df93c335019ef13d2cc9bfa10273164e15c42170a9e747df1225f23",
+    "data/nerodecor/recipe/dormant_core.json": "d66de178de285e92de2809a5896be1932ae5f0a10035feef7ba73f6bd99b3b12",
+    "data/nerodecor/recipe/glyph_block.json": "a0ce943bb3721afd1b178c12873142352b19c800127f50e9d26527e295113d65",
+    "data/nerodecor/recipe/glyph_strip.json": "4c09fc6fe6990f4791d3386d2c642e71793209a04c7ffdfe2edf28dcef3695bc",
+    "data/nerodecor/recipe/glyph_strip_from_glyph_block_stonecutting.json": "018ecaf75e60817b237de9c1718e2569b573eca85d580bd49e55aa791d9b9135"
   }
 }

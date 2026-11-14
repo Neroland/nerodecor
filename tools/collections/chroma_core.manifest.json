@@ -1,6 +1,7 @@
 {
   "schema": 1,
   "outputs": {
+    "../resources-26.3/data/nerodecor/loot_table/blocks/chroma_cube.json": "016c110a1e096a657c6e654c7280e8bfbd9b406899cc7dd61cc87f5c563dd049",
     "../resources-26.3/data/nerodecor/loot_table/blocks/chroma_hub.json": "e55ddd67171973b0de7970f482e6098f76c7aee4aff9bfb6d985a99f5632cc61",
     "assets/nerodecor/blockstates/chroma_cube.json": "0fb1dd1df8a3eec52e7393e042b58a12858bc941d48d1278ef1fa572a165592c",
     "assets/nerodecor/blockstates/chroma_hub.json": "84ae2a8eb1089348fab150ad23bf86dd6e9201a7c4fa6c9a7b0909de69a8f4fb",
@@ -176,6 +177,10 @@
     "assets/nerodecor/textures/item/chroma_core/paint_gun_paint.png": "32b0e48c8eddfce7fc5ac616fef4a7adac739e4b1ef24d113c9a35075fb09e1d",
     "assets/nerodecor/textures/item/chroma_core/scene_chip.png": "a2ebb4768ce62ccad2960e1b8b44569753b45f303cf8c029785ff1eea889f253",
     "assets/nerodecor/textures/item/chroma_core/scene_chip_stripe.png": "23074a7543ecce9f46cceffef2c964303ad50013d7d828369d2a76f8c61d78bf",
-    "data/nerodecor/loot_table/blocks/chroma_hub.json": "38576c0eebbeb20c7dca6425bf4caa964e542e4cebdc0fad26d2768480b84abf"
+    "data/nerodecor/loot_table/blocks/chroma_cube.json": "e096dcbab2bd7dd5ca49c9f9bb74c018389eb0a0c4aae60cc2472ea4ec3fa6b6",
+    "data/nerodecor/loot_table/blocks/chroma_hub.json": "38576c0eebbeb20c7dca6425bf4caa964e542e4cebdc0fad26d2768480b84abf",
+    "data/nerodecor/recipe/chroma_hub.json": "f11057773e78f8abfe48fa93c5476af1069fdcf54a2fd5f014c17af231e461f2",
+    "data/nerodecor/recipe/chroma_linker.json": "b2c5a64b798ef16a9707a0779405f157b30901ef8e4e8a73f1b44d5d8f723d0a",
+    "data/nerodecor/recipe/scene_chip.json": "a304e316e41a0c6085bb44a7a9f3a31046e7f40baffa7dc31d727096a37682e5"
   }
 }

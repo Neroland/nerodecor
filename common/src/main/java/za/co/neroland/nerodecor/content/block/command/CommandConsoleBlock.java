@@ -16,8 +16,9 @@ import za.co.neroland.nerodecor.content.block.bulkhead.BhcShapes;
 /**
  * Command console: runs side by side ({@code left} / {@code right}: same console, same facing, on the viewer's
  * left / right) and turns corners like stairs. {@code inner} (operator inside) when the console in front of this one
- * faces this one's counter-clockwise turn; {@code outer} when the console behind faces its clockwise turn. The
- * mirrored corners have no model of their own and stay straight.
+ * faces this one's counter-clockwise turn; {@code outer} when the console behind faces its clockwise turn. The mirror
+ * images (front console facing the clockwise turn, back console the counter-clockwise turn) are
+ * {@code inner_mirrored} / {@code outer_mirrored}.
  */
 public class CommandConsoleBlock extends FacingBlock {
 
@@ -42,10 +43,16 @@ public class CommandConsoleBlock extends FacingBlock {
     private BlockState links(BlockState state, BlockGetter level, BlockPos pos) {
         Direction f = state.getValue(BhcProperties.FACING);
         ConsoleShape shape = ConsoleShape.STRAIGHT;
-        if (facing(level.getBlockState(pos.relative(f)), f.getCounterClockWise())) {
+        BlockState front = level.getBlockState(pos.relative(f));
+        BlockState back = level.getBlockState(pos.relative(f.getOpposite()));
+        if (facing(front, f.getCounterClockWise())) {
             shape = ConsoleShape.INNER;
-        } else if (facing(level.getBlockState(pos.relative(f.getOpposite())), f.getClockWise())) {
+        } else if (facing(front, f.getClockWise())) {
+            shape = ConsoleShape.INNER_MIRRORED;
+        } else if (facing(back, f.getClockWise())) {
             shape = ConsoleShape.OUTER;
+        } else if (facing(back, f.getCounterClockWise())) {
+            shape = ConsoleShape.OUTER_MIRRORED;
         }
         return state.setValue(SHAPE, shape)
                 .setValue(BhcProperties.LEFT, facing(level.getBlockState(pos.relative(BhcProperties.leftOf(f))), f))

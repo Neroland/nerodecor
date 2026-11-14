@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "nerodecor:floor_grate",
+  "result": {
+    "id": "nerodecor:floor_grate_slab",
+    "count": 2
+  }
+}

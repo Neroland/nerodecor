@@ -32,6 +32,7 @@ public final class ModCreativeTab {
                         output.accept(ChromaContent.HUB_ITEM.get());
                         output.accept(ChromaContent.LINKER.get());
                         output.accept(ChromaContent.PAINT_GUN.get());
+                        output.accept(ChromaContent.SCENE_CHIP_ITEM.get());
                     })
                     .build());
 

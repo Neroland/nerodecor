@@ -11,7 +11,7 @@
   "environment": "*",
   "entrypoints": {
     "main": ["za.co.neroland.nerodecor.fabric.NeroDecorFabric"],
-    "client": ["za.co.neroland.nerodecor.fabric.NeroDecorFabricClient"]
+    "client": ["za.co.neroland.nerodecor.fabric.NeroDecorFabricClient"]${viewer_entrypoints}
   },
   "mixins": [
     "nerodecor-common.mixins.json",

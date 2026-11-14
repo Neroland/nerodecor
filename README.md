@@ -2,7 +2,7 @@
 
 > Part of the Neroland sci-fi Minecraft mod ecosystem, built on **Neroland Core**.
 
-**Status:** beta — version `0.7.0-beta.1`. Hull/panel, glass and neon families with shape variants, connected textures and paint recolouring, plus the **Luminous collection**: 17 glowing, animated, connected blocks with subtle ambient effects and sounds. See [`CHANGELOG.md`](CHANGELOG.md).
+**Status:** beta — version `0.8.0-beta.1` "Chroma". Hull/panel and glass families with paint recolouring, the **Luminous collection**, and 106 new blocks in ten collections lit by the **Chroma** system: a hub that colours and animates linked lights, with an in-game editor, scenes, triggers and a paint gun. `/nerodecor gallery` builds a walkable showroom. See [`CHANGELOG.md`](CHANGELOG.md) and the [wiki](wiki/Home.md).
 
 ## Build targets
 

@@ -6,7 +6,7 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 
 /**
  * Shared blockstate properties for decor blocks. {@link #COLOR} is the paintable colour
- * (see {@link DecorColor} + ADR-001) carried by every decor block; {@link #WATERLOGGED} is
+ * (see {@link DecorColor}) carried by every decor block; {@link #WATERLOGGED} is
  * vanilla's, reused by the shape blocks that extend waterloggable vanilla blocks.
  */
 public final class DecorProperties {

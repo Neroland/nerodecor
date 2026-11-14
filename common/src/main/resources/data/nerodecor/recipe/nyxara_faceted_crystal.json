@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AQ",
+    "QA"
+  ],
+  "key": {
+    "A": "minecraft:amethyst_shard",
+    "Q": "minecraft:quartz"
+  },
+  "result": {
+    "id": "nerodecor:nyxara_faceted_crystal",
+    "count": 4
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "nerodecor:chroma_cube",
+    "minecraft:redstone",
+    "minecraft:iron_nugget"
+  ],
+  "result": {
+    "id": "nerodecor:door_status_light",
+    "count": 2
+  }
+}

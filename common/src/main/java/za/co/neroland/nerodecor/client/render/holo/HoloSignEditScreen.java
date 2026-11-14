@@ -21,7 +21,7 @@ public class HoloSignEditScreen extends Screen {
     private EditBox line1;
 
     public HoloSignEditScreen(HoloSignBlockEntity sign) {
-        super(Component.translatableWithFallback("screen.nerodecor.holo_sign", "Holo Sign"));
+        super(Component.translatable("screen.nerodecor.holo_sign"));
         this.pos = sign.getBlockPos();
         this.first = sign.line(0);
         this.second = sign.line(1);
@@ -32,11 +32,11 @@ public class HoloSignEditScreen extends Screen {
         int x = width / 2 - 100;
         int y = height / 2 - 30;
         line0 = addRenderableWidget(new EditBox(font, x, y, 200, 20,
-                Component.translatableWithFallback("screen.nerodecor.holo_sign.line1", "Line 1")));
+                Component.translatable("screen.nerodecor.holo_sign.line1")));
         line0.setMaxLength(HoloText.LINE_LENGTH);
         line0.setValue(first);
         line1 = addRenderableWidget(new EditBox(font, x, y + 24, 200, 20,
-                Component.translatableWithFallback("screen.nerodecor.holo_sign.line2", "Line 2")));
+                Component.translatable("screen.nerodecor.holo_sign.line2")));
         line1.setMaxLength(HoloText.LINE_LENGTH);
         line1.setValue(second);
         addRenderableWidget(Button.builder(CommonComponents.GUI_DONE, b -> done()).bounds(x, y + 54, 200, 20).build());

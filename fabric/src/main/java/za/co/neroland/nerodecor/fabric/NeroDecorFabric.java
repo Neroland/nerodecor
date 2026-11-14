@@ -27,7 +27,7 @@ public final class NeroDecorFabric implements ModInitializer {
         FabricChromaNet.registerCommon();
         ServerTickEvents.END_SERVER_TICK.register(ChromaSync::tick);
         //? if >=26.1 {
-        ServerChunkEvents.CHUNK_LOAD.register((level, chunk, newlyGenerated) -> NeonFold.onChunkLoad(level, chunk));
+        ServerChunkEvents.CHUNK_LOAD.register(NeonFold::onChunkLoad);
         //?} else {
         /*ServerChunkEvents.CHUNK_LOAD.register(NeonFold::onChunkLoad);
         *///?}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "nerodecor:glyph_block",
+  "result": {
+    "id": "nerodecor:glyph_strip",
+    "count": 2
+  }
+}

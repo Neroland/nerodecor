@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " A ",
+    "IRI",
+    "III"
+  ],
+  "key": {
+    "A": "minecraft:amethyst_shard",
+    "I": "minecraft:iron_ingot",
+    "R": "minecraft:redstone"
+  },
+  "result": {
+    "id": "nerodecor:holo_projector",
+    "count": 1
+  }
+}

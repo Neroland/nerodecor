@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "NNN",
+    "NRN",
+    "NNN"
+  ],
+  "key": {
+    "N": "minecraft:iron_nugget",
+    "R": "minecraft:redstone"
+  },
+  "result": {
+    "id": "nerodecor:maintenance_panel",
+    "count": 4
+  }
+}

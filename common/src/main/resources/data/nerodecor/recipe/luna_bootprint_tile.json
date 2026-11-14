@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "nerodecor:luna_regolith_brick",
+  "result": {
+    "id": "nerodecor:luna_bootprint_tile",
+    "count": 1
+  }
+}

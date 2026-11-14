@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SSS",
+    "YKY",
+    "SSS"
+  ],
+  "key": {
+    "K": "minecraft:black_dye",
+    "S": "minecraft:smooth_stone",
+    "Y": "minecraft:yellow_dye"
+  },
+  "result": {
+    "id": "nerodecor:hazard_stripe",
+    "count": 8
+  }
+}

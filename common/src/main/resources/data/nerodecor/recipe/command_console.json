@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GGG",
+    "QRQ",
+    "III"
+  ],
+  "key": {
+    "G": "minecraft:glass_pane",
+    "I": "minecraft:iron_ingot",
+    "Q": "minecraft:quartz",
+    "R": "minecraft:redstone"
+  },
+  "result": {
+    "id": "nerodecor:command_console",
+    "count": 1
+  }
+}

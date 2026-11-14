@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "sss",
+    " I "
+  ],
+  "key": {
+    "I": "minecraft:iron_ingot",
+    "s": "minecraft:smooth_stone_slab"
+  },
+  "result": {
+    "id": "nerodecor:lab_stool",
+    "count": 2
+  }
+}

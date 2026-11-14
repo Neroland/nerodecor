@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " C ",
+    "CCC",
+    " N "
+  ],
+  "key": {
+    "C": "nerodecor:chroma_cube",
+    "N": "minecraft:iron_nugget"
+  },
+  "result": {
+    "id": "nerodecor:arrow_sign",
+    "count": 4
+  }
+}

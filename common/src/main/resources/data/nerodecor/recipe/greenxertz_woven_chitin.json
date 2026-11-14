@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MS",
+    "SM"
+  ],
+  "key": {
+    "M": "minecraft:moss_block",
+    "S": "minecraft:string"
+  },
+  "result": {
+    "id": "nerodecor:greenxertz_woven_chitin",
+    "count": 4
+  }
+}

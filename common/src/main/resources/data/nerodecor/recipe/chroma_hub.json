@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IQI",
+    "CRC",
+    "III"
+  ],
+  "key": {
+    "C": "nerodecor:chroma_cube",
+    "I": "minecraft:iron_ingot",
+    "Q": "minecraft:quartz",
+    "R": "minecraft:redstone"
+  },
+  "result": {
+    "id": "nerodecor:chroma_hub",
+    "count": 1
+  }
+}

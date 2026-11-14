@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "B  ",
+    "BB ",
+    "BBB"
+  ],
+  "key": {
+    "B": "minecraft:iron_bars"
+  },
+  "result": {
+    "id": "nerodecor:catwalk_stairs",
+    "count": 4
+  }
+}

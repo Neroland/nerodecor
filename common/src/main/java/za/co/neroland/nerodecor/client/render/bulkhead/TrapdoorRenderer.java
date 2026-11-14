@@ -12,7 +12,10 @@ import za.co.neroland.nerodecor.content.block.bulkhead.BhcProperties;
 import za.co.neroland.nerodecor.content.block.bulkhead.DoorAnimBlockEntity;
 import za.co.neroland.nerodecor.content.block.bulkhead.PressureTrapdoorBlock;
 
-/** The hatch plate swinging on its south hinge (authored facing north, bottom half). */
+/**
+ * The hatch plate swinging on its south hinge (authored facing north, bottom half). The open blockstate has no static
+ * plate, so this also draws the settled open plate; closed, the static model carries the look and this draws nothing.
+ */
 public class TrapdoorRenderer extends BhcRenderer<DoorAnimBlockEntity> {
 
     public TrapdoorRenderer(BlockEntityRendererProvider.Context context) {
@@ -22,8 +25,14 @@ public class TrapdoorRenderer extends BhcRenderer<DoorAnimBlockEntity> {
     protected void build(DoorAnimBlockEntity be, float partialTick, QuadBuffer out, int light) {
         float o = DoorRenders.openness(be, partialTick, PressureTrapdoorBlock.DURATION);
         BlockState state = be.getBlockState();
-        if (o < 0.0F || !state.hasProperty(PressureTrapdoorBlock.HALF)) {
+        if (!state.hasProperty(PressureTrapdoorBlock.HALF)) {
             return;
+        }
+        if (o < 0.0F) {
+            if (!state.getValue(PressureTrapdoorBlock.OPEN)) {
+                return;
+            }
+            o = 1.0F;
         }
         TextureAtlasSprite top = Sprites.get("bulkhead", "pressure_trapdoor_top");
         TextureAtlasSprite bottom = Sprites.get("bulkhead", "pressure_trapdoor_bottom");

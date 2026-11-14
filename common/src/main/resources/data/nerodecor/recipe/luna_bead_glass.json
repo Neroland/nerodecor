@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GGG",
+    "GCG",
+    "GGG"
+  ],
+  "key": {
+    "C": "minecraft:calcite",
+    "G": "minecraft:glass"
+  },
+  "result": {
+    "id": "nerodecor:luna_bead_glass",
+    "count": 8
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "NCN",
+    "NCN",
+    "NCN"
+  ],
+  "key": {
+    "C": "nerodecor:chroma_cube",
+    "N": "minecraft:iron_nugget"
+  },
+  "result": {
+    "id": "nerodecor:light_pillar",
+    "count": 3
+  }
+}

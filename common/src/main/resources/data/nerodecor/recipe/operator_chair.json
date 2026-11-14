@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "W  ",
+    "WWW",
+    "I I"
+  ],
+  "key": {
+    "I": "minecraft:iron_ingot",
+    "W": "#minecraft:wool"
+  },
+  "result": {
+    "id": "nerodecor:operator_chair",
+    "count": 1
+  }
+}

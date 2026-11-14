@@ -28,7 +28,19 @@ public enum ChromaVerdict {
     SELECTION_TOO_LARGE,
     RATE_LIMITED,
     /** An edit batch referenced a palette entry that does not exist (Stage 3 sync ops). */
-    BAD_OP;
+    BAD_OP,
+    /** Stage 4: the scene flashes too fast over a large area (photosensitivity clamp, more than 3 Hz). */
+    FLASH_REJECTED,
+    /** Stage 4: no such scene slot, or the slot is empty. */
+    BAD_SLOT,
+    /** Stage 4: the scene bytes were malformed, tampered or too large. */
+    BAD_SCENE,
+    /** The trusted list already holds {@link ChromaLimits#MAX_TRUSTED} players. */
+    TRUST_CAP,
+    /** Trust can only be granted to a player the server knows (online, or in its profile cache). */
+    UNKNOWN_PLAYER,
+    /** Hub-screen edits need the player near the hub (its volume plus a margin). */
+    TOO_FAR;
 
     public boolean isOk() {
         return this == OK || this == ALREADY_LINKED;

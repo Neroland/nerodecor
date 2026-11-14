@@ -11,7 +11,7 @@ import za.co.neroland.nerodecor.registry.RegistrationProvider.RegistryEntry;
  * NeroDecor item data components. {@link #COLOR} carries a painted {@link DecorColor} on the
  * item form; the {@code DecorBlockItem} bridge copies it onto the placed block's
  * {@code COLOR} state (and back, for pick-block / the paint gun). This is how pre-dyed
- * craftable variants exist as JEI-visible stacks without new registry entries (ADR-001).
+ * craftable variants exist as JEI-visible stacks without new registry entries (keeps the registry small).
  */
 public final class ModDataComponents {
 

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "TRT"
+  ],
+  "key": {
+    "R": "minecraft:redstone",
+    "T": "minecraft:iron_trapdoor"
+  },
+  "result": {
+    "id": "nerodecor:iris_hatch",
+    "count": 2
+  }
+}

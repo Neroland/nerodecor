@@ -24,6 +24,7 @@ import net.minecraft.world.level.storage.LevelResource;
 import net.minecraft.world.phys.AABB;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import za.co.neroland.nerodecor.NeroDecorCommon;
 import za.co.neroland.nerodecor.chroma.ChromaColor;
 import za.co.neroland.nerodecor.chroma.ChromaOp;
 import za.co.neroland.nerodecor.chroma.ChromaOpBatch;
@@ -99,6 +100,11 @@ final class ChromaGameTests {
         return placeHub(helper, local, placer, new ItemStack(ChromaContent.HUB_ITEM.get()));
     }
 
+    private static Block decor(String id) {
+        return net.minecraft.core.registries.BuiltInRegistries.BLOCK.getValue(
+                Identifier.fromNamespaceAndPath(NeroDecorCommon.MOD_ID, id));
+    }
+
     private static BlockPos put(GameTestHelper helper, BlockPos local, Block block) {
         helper.setBlock(local, block);
         return helper.absolutePos(local);
@@ -110,11 +116,22 @@ final class ChromaGameTests {
 
     // --- tests -----------------------------------------------------------------------------------------------------
 
-    /** Every paintable block and every Luminous block is chroma-capable; the hub and vanilla blocks are not. */
+    /**
+     * Every paintable block, the Luminous collection and the collection blocks whose module sets {@code chroma=True}
+     * are chroma-capable (the tag is generated from those flags); plain collection furniture, the hub and vanilla
+     * blocks are not.
+     */
     static void capableTag(GameTestHelper helper) {
-        for (Block block : DecorBlocks.allBlocks()) {
+        for (Block block : DecorBlocks.paintableBlocks()) {
             helper.assertTrue(ChromaTags.isCapable(block.defaultBlockState()),
                     block.builtInRegistryHolder().key().identifier() + " is not chroma_capable");
+        }
+        for (String id : List.of("circuit_plating", "lumen_panel", "station_plating", "specimen_tank", "coolant_tube",
+                "beam_emitter_prop", "light_strip", "glyph_strip", "holo_sign")) {
+            helper.assertTrue(ChromaTags.isCapable(decor(id).defaultBlockState()), id + " is not chroma_capable");
+        }
+        for (String id : List.of("crew_bunk", "gantry_ladder")) {
+            helper.assertTrue(!ChromaTags.isCapable(decor(id).defaultBlockState()), id + " is chroma_capable");
         }
         helper.assertTrue(!ChromaTags.isCapable(ChromaContent.HUB.get().defaultBlockState()), "hub is capable");
         helper.assertTrue(!ChromaTags.isCapable(Blocks.STONE.defaultBlockState()), "stone is capable");
@@ -394,8 +411,20 @@ final class ChromaGameTests {
         ChromaOpBatch batch = ChromaOpBatch.of(List.of(ChromaOp.setPaletteEntry(0, ChromaColor.of(1, 2, 3)),
                 ChromaOp.setIndex(rel, 0))).value();
         byte[] bytes = ChromaSyncCodec.encodeOps(id, batch);
+        // Screen edits need the sender at the hub: the role is checked first, then reach.
+        BlockPos hub = helper.absolutePos(new BlockPos(12, 2, 12));
+        owner.setPos(hub.getX() + 2.5, hub.getY(), hub.getZ() + 0.5);
+        stranger.setPos(hub.getX() + 400.5, hub.getY(), hub.getZ() + 0.5);
+        expect(helper, ChromaVerdict.NO_PERMISSION, ChromaEdits.apply(level, stranger, bytes), "far stranger ops");
+        stranger.setPos(hub.getX() + 1.5, hub.getY(), hub.getZ() + 0.5);
         expect(helper, ChromaVerdict.NO_PERMISSION, ChromaEdits.apply(level, stranger, bytes), "stranger ops");
         helper.assertTrue(network.palette().size() == 0, "refused batch changed the palette");
+        ServerPlayer painter = player(helper, GameType.SURVIVAL);
+        expect(helper, ChromaVerdict.OK, ChromaNetworks.store(level).setTrust(id, owner.getUUID(), painter.getUUID(),
+                ChromaRole.PAINTER), "trust painter");
+        painter.setPos(hub.getX() + 400.5, hub.getY(), hub.getZ() + 0.5);
+        expect(helper, ChromaVerdict.TOO_FAR, ChromaEdits.apply(level, painter, bytes), "trusted but far ops");
+        helper.assertTrue(network.palette().size() == 0, "a far batch changed the palette");
         expect(helper, ChromaVerdict.OK, ChromaEdits.apply(level, owner, bytes), "owner ops");
         helper.assertTrue(network.palette().size() == 1 && network.paletteIndexAt(rel) == 0, "ops not applied");
         expect(helper, ChromaVerdict.BAD_OP, ChromaEdits.apply(level, owner, new byte[] {1, 2, 3}), "garbage");

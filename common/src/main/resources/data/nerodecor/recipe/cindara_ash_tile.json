@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "nerodecor:cindara_slag_brick",
+  "result": {
+    "id": "nerodecor:cindara_ash_tile",
+    "count": 1
+  }
+}

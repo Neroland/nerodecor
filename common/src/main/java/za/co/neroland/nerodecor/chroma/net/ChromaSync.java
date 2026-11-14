@@ -1,14 +1,17 @@
 package za.co.neroland.nerodecor.chroma.net;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Set;
 import java.util.UUID;
 import java.util.WeakHashMap;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
@@ -45,6 +48,8 @@ import za.co.neroland.nerodecor.content.block.ChromaCubeBlock;
  *       delta would not fit.</li>
  *   <li>Chroma cubes' light follows the committed static brightness of their palette entry, at most one light change
  *       per block per second ({@link ChromaLightSchedule}); a block that leaves its hub goes back to 15.</li>
+ *   <li>Light set while a linked block's chunk was unloaded is re-applied when the chunk loads: every hub whose volume
+ *       overlaps the chunk is relit (at most {@value #RELIGHT_CHUNKS_PER_TICK} chunks a tick, each hub once).</li>
  * </ul>
  *
  * <p>Watcher sets live in memory only and are never logged or saved (POPIA/GDPR).
@@ -54,6 +59,15 @@ public final class ChromaSync {
     static final int SCAN_INTERVAL_TICKS = 10;
     private static final int LIGHT_UPDATES_PER_TICK = 256;
     private static final int FULL_LIGHT = 15;
+    static final int RELIGHT_CHUNKS_PER_TICK = 16;
+    private static final int MAX_PENDING_CHUNKS = 4096;
+
+    /** A chunk that loaded: its level and minimum block x / z. Positions only, no player data. */
+    private record LoadedChunk(ServerLevel level, int minX, int minZ) {
+    }
+
+    /** Chunk loads waiting for the next server tick (filled from chunk-load events). */
+    private static final Queue<LoadedChunk> LOADED = new ConcurrentLinkedQueue<>();
 
     private static final class Tracked {
         final ChromaSyncState state;
@@ -69,6 +83,8 @@ public final class ChromaSync {
         /** network id -> absolute positions whose light the network last set. */
         final Map<Long, Set<Long>> lit = new HashMap<>();
         final ChromaLightSchedule light = new ChromaLightSchedule();
+        /** Chunks loaded since their hubs were last relit (min block x / z), in arrival order. */
+        final ArrayDeque<long[]> loadedChunks = new ArrayDeque<>();
     }
 
     private static final Map<ServerLevel, LevelSync> LEVELS = new WeakHashMap<>();
@@ -79,10 +95,22 @@ public final class ChromaSync {
 
     /** Server tick (end). */
     public static void tick(MinecraftServer server) {
+        za.co.neroland.nerodecor.link.NeroDecorLinkModule.serverTick(server); // NeroLink: reach the stores
         // The neon fold's chunk-load swaps run here (outside chunk loading), whether Chroma is enabled or not.
         za.co.neroland.nerodecor.content.NeonFold.drainPending();
+        // Retention (networks and export files) and rate-limit pruning run even when Chroma is disabled.
+        za.co.neroland.nerodecor.chroma.server.privacy.ChromaPrivacy.tick(server);
         if (!ChromaConfig.ENABLED.get()) {
+            LOADED.clear();
             return;
+        }
+        LoadedChunk loaded;
+        while ((loaded = LOADED.poll()) != null) {
+            ArrayDeque<long[]> queue = LEVELS.computeIfAbsent(loaded.level(), ignored -> new LevelSync()).loadedChunks;
+            if (queue.size() >= MAX_PENDING_CHUNKS) {
+                queue.poll(); // a flood of loads: the oldest is dropped (its hub relights on its next edit)
+            }
+            queue.add(new long[] {loaded.minX(), loaded.minZ()});
         }
         long now = System.nanoTime();
         boolean scan = ++ticks % SCAN_INTERVAL_TICKS == 0;
@@ -101,11 +129,17 @@ public final class ChromaSync {
                 tracked.state.markDirty();
             }
             relight(level, sync, id, store.get(id));
+            ChromaSceneSync.touched(level, id); // Stage 4: zone map / anchor may have changed
         }
+        relightLoaded(level, store, sync);
         if (scan) {
             scan(level, store, sync);
         }
         flush(level, store, sync, now);
+        // Stage 4: triggers, then scene state + zone map to the same watchers.
+        Map<Long, Set<UUID>> watched = new HashMap<>();
+        sync.tracked.forEach((id, tracked) -> watched.put(id, tracked.watchers));
+        ChromaSceneSync.tick(level, store, watched, now);
         for (ChromaLightSchedule.Update update : sync.light.drain(now, LIGHT_UPDATES_PER_TICK)) {
             BlockPos pos = BlockPos.of(update.pos());
             if (!level.isLoaded(pos)) {
@@ -160,6 +194,7 @@ public final class ChromaSync {
                     parts.forEach(part -> ChromaNet.sendToPlayer(player, part));
                 }
             }
+            ChromaSceneSync.onNewcomers(level, network, newcomers); // Stage 4 scene state
         }
         Iterator<Map.Entry<Long, Tracked>> it = sync.tracked.entrySet().iterator();
         while (it.hasNext()) {
@@ -269,6 +304,40 @@ public final class ChromaSync {
         } else {
             sync.lit.put(id, new HashSet<>(targets.keySet()));
         }
+    }
+
+    /** Chunk-load hook (server thread): queue the chunk so its hubs re-apply their committed light next tick. */
+    public static void chunkLoaded(ServerLevel level, int minBlockX, int minBlockZ) {
+        if (ChromaConfig.ENABLED.get()) {
+            LOADED.add(new LoadedChunk(level, minBlockX, minBlockZ));
+        }
+    }
+
+    /** Relights every active hub whose volume overlaps a recently loaded chunk (rate-limited, each hub once). */
+    private static void relightLoaded(ServerLevel level, ChromaNetworkStore store, LevelSync sync) {
+        if (sync.loadedChunks.isEmpty()) {
+            return;
+        }
+        Set<Long> hubs = new HashSet<>();
+        for (int n = 0; n < RELIGHT_CHUNKS_PER_TICK && !sync.loadedChunks.isEmpty(); n++) {
+            long[] chunk = sync.loadedChunks.poll();
+            for (HubNetwork network : store.all()) {
+                if (network.active() && overlaps(network, (int) chunk[0], (int) chunk[1])) {
+                    hubs.add(network.id());
+                }
+            }
+        }
+        for (long id : hubs) {
+            relight(level, sync, id, store.get(id));
+        }
+    }
+
+    private static boolean overlaps(HubNetwork network, int minX, int minZ) {
+        int x0 = network.anchorX() + HubNetwork.minOffset(network.sizeX());
+        int x1 = network.anchorX() + HubNetwork.maxOffset(network.sizeX());
+        int z0 = network.anchorZ() + HubNetwork.minOffset(network.sizeZ());
+        int z1 = network.anchorZ() + HubNetwork.maxOffset(network.sizeZ());
+        return x1 >= minX && x0 <= minX + 15 && z1 >= minZ && z0 <= minZ + 15;
     }
 
     private static void request(ServerLevel level, LevelSync sync, long packed, int light) {

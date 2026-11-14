@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC"
+  ],
+  "key": {
+    "C": "minecraft:copper_ingot"
+  },
+  "result": {
+    "id": "nerodecor:decor_pipe",
+    "count": 8
+  }
+}

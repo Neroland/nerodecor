@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "N N",
+    "NNN"
+  ],
+  "key": {
+    "N": "minecraft:iron_nugget"
+  },
+  "result": {
+    "id": "nerodecor:pipe_bracket",
+    "count": 8
+  }
+}

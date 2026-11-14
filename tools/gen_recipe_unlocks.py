@@ -21,6 +21,9 @@ lines this mod builds for).
 Usage (from anywhere):
     python tools/gen_recipe_unlocks.py           # write the advancements
     python tools/gen_recipe_unlocks.py --check   # exit 1 if a file is missing, stale or orphaned (writes nothing)
+
+Either mode first fails if two crafting recipes share one grid (same layout, mirror included, or the same
+shapeless ingredients): the crafting table could only ever make one of them.
 """
 
 import argparse
@@ -132,10 +135,39 @@ def expected():
     return out, skipped
 
 
+def grids():
+    """{canonical crafting grid: [recipe ids]} for every shaped/shapeless crafting recipe. Shaped grids are
+    keyed by their ingredient layout and its horizontal mirror (the crafting table matches both), so two
+    recipes with the same key shadow each other: only one of them can ever be crafted."""
+    out = {}
+    for ns in namespaces():
+        recipes = DATA / ns / "recipe"
+        for path in sorted(recipes.rglob("*.json")):
+            recipe = json.loads(path.read_text(encoding="utf-8"))
+            rid = f"{ns}:{path.relative_to(recipes).with_suffix('').as_posix()}"
+            if recipe.get("type") == "minecraft:crafting_shaped":
+                key = recipe["key"]
+                rows = tuple(tuple(json.dumps(key[c], sort_keys=True) if c != " " else "" for c in row)
+                             for row in recipe["pattern"])
+                mirror = tuple(tuple(reversed(r)) for r in rows)
+                grid = ("shaped", min(rows, mirror))
+            elif recipe.get("type") == "minecraft:crafting_shapeless":
+                grid = ("shapeless", tuple(sorted(json.dumps(i, sort_keys=True) for i in recipe["ingredients"])))
+            else:
+                continue
+            out.setdefault(grid, []).append(rid)
+    return out
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args()
+    clashes = [ids for ids in grids().values() if len(ids) > 1]
+    for ids in clashes:
+        print("crafting grid clash (only one can ever be crafted): " + ", ".join(ids))
+    if clashes:
+        return 1
     files, skipped = expected()
     existing = set()
     for ns in namespaces():

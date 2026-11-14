@@ -36,6 +36,38 @@
     "facing=north,left=true,right=true,shape=outer": {
       "model": "nerodecor:block/command/command_console_outer"
     },
+    "facing=north,left=false,right=false,shape=inner_mirrored": {
+      "model": "nerodecor:block/command/command_console_inner",
+      "y": 90
+    },
+    "facing=north,left=false,right=true,shape=inner_mirrored": {
+      "model": "nerodecor:block/command/command_console_inner",
+      "y": 90
+    },
+    "facing=north,left=true,right=false,shape=inner_mirrored": {
+      "model": "nerodecor:block/command/command_console_inner",
+      "y": 90
+    },
+    "facing=north,left=true,right=true,shape=inner_mirrored": {
+      "model": "nerodecor:block/command/command_console_inner",
+      "y": 90
+    },
+    "facing=north,left=false,right=false,shape=outer_mirrored": {
+      "model": "nerodecor:block/command/command_console_outer",
+      "y": 90
+    },
+    "facing=north,left=false,right=true,shape=outer_mirrored": {
+      "model": "nerodecor:block/command/command_console_outer",
+      "y": 90
+    },
+    "facing=north,left=true,right=false,shape=outer_mirrored": {
+      "model": "nerodecor:block/command/command_console_outer",
+      "y": 90
+    },
+    "facing=north,left=true,right=true,shape=outer_mirrored": {
+      "model": "nerodecor:block/command/command_console_outer",
+      "y": 90
+    },
     "facing=east,left=false,right=false,shape=straight": {
       "model": "nerodecor:block/command/command_console_c11",
       "y": 90
@@ -83,6 +115,38 @@
     "facing=east,left=true,right=true,shape=outer": {
       "model": "nerodecor:block/command/command_console_outer",
       "y": 90
+    },
+    "facing=east,left=false,right=false,shape=inner_mirrored": {
+      "model": "nerodecor:block/command/command_console_inner",
+      "y": 180
+    },
+    "facing=east,left=false,right=true,shape=inner_mirrored": {
+      "model": "nerodecor:block/command/command_console_inner",
+      "y": 180
+    },
+    "facing=east,left=true,right=false,shape=inner_mirrored": {
+      "model": "nerodecor:block/command/command_console_inner",
+      "y": 180
+    },
+    "facing=east,left=true,right=true,shape=inner_mirrored": {
+      "model": "nerodecor:block/command/command_console_inner",
+      "y": 180
+    },
+    "facing=east,left=false,right=false,shape=outer_mirrored": {
+      "model": "nerodecor:block/command/command_console_outer",
+      "y": 180
+    },
+    "facing=east,left=false,right=true,shape=outer_mirrored": {
+      "model": "nerodecor:block/command/command_console_outer",
+      "y": 180
+    },
+    "facing=east,left=true,right=false,shape=outer_mirrored": {
+      "model": "nerodecor:block/command/command_console_outer",
+      "y": 180
+    },
+    "facing=east,left=true,right=true,shape=outer_mirrored": {
+      "model": "nerodecor:block/command/command_console_outer",
+      "y": 180
     },
     "facing=south,left=false,right=false,shape=straight": {
       "model": "nerodecor:block/command/command_console_c11",
@@ -132,6 +196,38 @@
       "model": "nerodecor:block/command/command_console_outer",
       "y": 180
     },
+    "facing=south,left=false,right=false,shape=inner_mirrored": {
+      "model": "nerodecor:block/command/command_console_inner",
+      "y": 270
+    },
+    "facing=south,left=false,right=true,shape=inner_mirrored": {
+      "model": "nerodecor:block/command/command_console_inner",
+      "y": 270
+    },
+    "facing=south,left=true,right=false,shape=inner_mirrored": {
+      "model": "nerodecor:block/command/command_console_inner",
+      "y": 270
+    },
+    "facing=south,left=true,right=true,shape=inner_mirrored": {
+      "model": "nerodecor:block/command/command_console_inner",
+      "y": 270
+    },
+    "facing=south,left=false,right=false,shape=outer_mirrored": {
+      "model": "nerodecor:block/command/command_console_outer",
+      "y": 270
+    },
+    "facing=south,left=false,right=true,shape=outer_mirrored": {
+      "model": "nerodecor:block/command/command_console_outer",
+      "y": 270
+    },
+    "facing=south,left=true,right=false,shape=outer_mirrored": {
+      "model": "nerodecor:block/command/command_console_outer",
+      "y": 270
+    },
+    "facing=south,left=true,right=true,shape=outer_mirrored": {
+      "model": "nerodecor:block/command/command_console_outer",
+      "y": 270
+    },
     "facing=west,left=false,right=false,shape=straight": {
       "model": "nerodecor:block/command/command_console_c11",
       "y": 270
@@ -179,6 +275,30 @@
     "facing=west,left=true,right=true,shape=outer": {
       "model": "nerodecor:block/command/command_console_outer",
       "y": 270
+    },
+    "facing=west,left=false,right=false,shape=inner_mirrored": {
+      "model": "nerodecor:block/command/command_console_inner"
+    },
+    "facing=west,left=false,right=true,shape=inner_mirrored": {
+      "model": "nerodecor:block/command/command_console_inner"
+    },
+    "facing=west,left=true,right=false,shape=inner_mirrored": {
+      "model": "nerodecor:block/command/command_console_inner"
+    },
+    "facing=west,left=true,right=true,shape=inner_mirrored": {
+      "model": "nerodecor:block/command/command_console_inner"
+    },
+    "facing=west,left=false,right=false,shape=outer_mirrored": {
+      "model": "nerodecor:block/command/command_console_outer"
+    },
+    "facing=west,left=false,right=true,shape=outer_mirrored": {
+      "model": "nerodecor:block/command/command_console_outer"
+    },
+    "facing=west,left=true,right=false,shape=outer_mirrored": {
+      "model": "nerodecor:block/command/command_console_outer"
+    },
+    "facing=west,left=true,right=true,shape=outer_mirrored": {
+      "model": "nerodecor:block/command/command_console_outer"
     }
   }
 }

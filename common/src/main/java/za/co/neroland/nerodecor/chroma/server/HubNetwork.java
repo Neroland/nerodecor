@@ -11,6 +11,7 @@ import java.util.UUID;
 
 import za.co.neroland.nerodecor.chroma.ChromaPalette;
 import za.co.neroland.nerodecor.chroma.RelativePos;
+import za.co.neroland.nerodecor.chroma.SceneSlots;
 
 /**
  * One hub's network, pure Java: who owns and may use it, where its volume is, its zones, and the blocks it
@@ -31,6 +32,12 @@ public final class HubNetwork {
 
     public static final String DEFAULT_ZONE = "Default";
 
+    /**
+     * Owner of an orphaned network (its owner's data was erased). Never stored: the saved form omits the owner field,
+     * and {@link #roleOf(UUID)} grants nobody anything on an orphaned network, so this sentinel is never a real role.
+     */
+    public static final UUID NO_OWNER = new UUID(0L, 0L);
+
     private final long id;
     private UUID owner;
     private final Map<UUID, ChromaRole> trusted = new LinkedHashMap<>();
@@ -43,10 +50,14 @@ public final class HubNetwork {
     private boolean active;
     private boolean autoAdopt;
     private long inactiveSince;
+    /** Epoch millis the owner's data was erased (0 = owned). Orphaned networks are deleted after a retention period. */
+    private long orphanedSince;
     private final List<Zone> zones = new ArrayList<>();
     /** packed relative pos -> (palette index & 0xFF) | (zone << 8). */
     private final Map<Integer, Integer> blocks = new HashMap<>();
     private ChromaPalette palette = new ChromaPalette();
+    /** Stage 4: stored scenes, the playing slot and its trigger. */
+    private SceneSlots scenes = new SceneSlots();
 
     public HubNetwork(long id, UUID owner, int sizeX, int sizeY, int sizeZ) {
         if (id == 0L) {
@@ -70,7 +81,7 @@ public final class HubNetwork {
 
     /** The role {@code player} holds here; {@link ChromaRole#NONE} for strangers and {@code null}. */
     public ChromaRole roleOf(UUID player) {
-        if (player == null) {
+        if (player == null || orphaned()) {
             return ChromaRole.NONE;
         }
         if (player.equals(owner)) {
@@ -245,6 +256,71 @@ public final class HubNetwork {
     /** Raw (palette | zone << 8) value, for the codec. */
     Integer rawAt(int packedRelative) {
         return blocks.get(packedRelative);
+    }
+
+    // --- erasure / orphaning (POPIA + GDPR) ------------------------------------------------------------------------
+
+    /** Whether the owner's data has been erased: the colours stay, but nobody may edit until an operator claims it. */
+    public boolean orphaned() {
+        return orphanedSince > 0L;
+    }
+
+    /** Epoch millis the network was orphaned, or 0. */
+    public long orphanedSince() {
+        return orphanedSince;
+    }
+
+    void restoreOrphanedSince(long since) {
+        this.orphanedSince = Math.max(0L, since);
+        if (orphanedSince > 0L) {
+            this.owner = NO_OWNER;
+        }
+    }
+
+    /**
+     * The owner's data was erased: the owner is cleared, every trusted entry goes (data minimisation: nobody may use
+     * the network any more, so the list has no purpose), auto-adopt stops (it acts for the owner), and every free-text
+     * name a player typed is replaced with a neutral default. Linked blocks, palette and zone channels stay, so the
+     * build keeps its colours; they are decor, not personal data.
+     */
+    void orphan(long now) {
+        this.owner = NO_OWNER;
+        this.orphanedSince = Math.max(1L, now);
+        this.trusted.clear();
+        this.autoAdopt = false;
+        blankNames();
+    }
+
+    /** Replaces every player-typed name (zones; scene slots join here) with a neutral default. */
+    void blankNames() {
+        for (int i = 0; i < zones.size(); i++) {
+            zones.set(i, new Zone(blankZoneName(i), zones.get(i).channel()));
+        }
+        scenes.blankNames(); // scene names become "Scene <n>"; zones and programs stay
+    }
+
+    /** The neutral name zone {@code index} gets when its owner is erased ("Default", "Zone 2", ...). */
+    public static String blankZoneName(int index) {
+        return index == 0 ? DEFAULT_ZONE : "Zone " + (index + 1);
+    }
+
+    /** An operator claims an orphaned network for {@code newOwner}. */
+    void claimOrphan(UUID newOwner) {
+        this.owner = Objects.requireNonNull(newOwner);
+        this.orphanedSince = 0L;
+        trusted.remove(newOwner);
+    }
+
+    // --- scenes (Stage 4) -------------------------------------------------------------------------------------------
+
+    /** The hub's scene slots. Mutate only through {@link ChromaScenes} (it checks roles and the flash clamp). */
+    public SceneSlots scenes() {
+        return scenes;
+    }
+
+    /** Replaces the scene slots (saved-data restore). */
+    void replaceScenes(SceneSlots restored) {
+        this.scenes = restored == null ? new SceneSlots() : restored;
     }
 
     void transferOwner(UUID newOwner) {

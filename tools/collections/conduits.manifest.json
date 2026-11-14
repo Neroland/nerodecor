@@ -1,6 +1,15 @@
 {
   "schema": 1,
   "outputs": {
+    "../resources-26.3/data/nerodecor/loot_table/blocks/beam_emitter_prop.json": "f53456ea84de5d411cbe274dbdb5c656ab6801b67e0f3273368af67ce9c5c42d",
+    "../resources-26.3/data/nerodecor/loot_table/blocks/cable_tray.json": "a8e2c50a22afd7bf574445a6d137dee6ce20ed4e845d1776578dc105a27795d0",
+    "../resources-26.3/data/nerodecor/loot_table/blocks/coolant_tube.json": "cd9a6ffc40232594dbd3f5470b6311b528d3f14ee1cd8d39e7d320f6a0f9b312",
+    "../resources-26.3/data/nerodecor/loot_table/blocks/decor_pipe.json": "7fb072c5c2c3b0439c8c7aaf3c7c66d750ebb8e5f13941d0b1ecce78e81618fd",
+    "../resources-26.3/data/nerodecor/loot_table/blocks/duct.json": "f1d926c5b8e9a9652295ecab983fe8906f522b691f970bcb55d5f0486dd968af",
+    "../resources-26.3/data/nerodecor/loot_table/blocks/duct_fan.json": "433dc1bf42b9783e9fddc5dd3b208ea80334f84dff95c178e35c1a4ae404ef95",
+    "../resources-26.3/data/nerodecor/loot_table/blocks/hanging_cables.json": "3ff40a229d766ad853ec0759c3226a4cc67c8b11fc418bdab9d3de9c996d520e",
+    "../resources-26.3/data/nerodecor/loot_table/blocks/pipe_gauge.json": "a3757faaf11ae7066c793dd578653916942e9efaf7f61176fc17850fcd06e3b9",
+    "../resources-26.3/data/nerodecor/loot_table/blocks/pipe_valve.json": "75ce810048d48e2fc3b719827554fc34c7520685abd1c4a3f0d62612337322e4",
     "assets/nerodecor/blockstates/beam_emitter_prop.json": "741ebb4e3eb9dacc38b4bb332fa08a5e2726b498f92df646dbafefc4dd249d73",
     "assets/nerodecor/blockstates/cable_tray.json": "b3e8822a9da21077f9db1ddc25cafe111b252b64f8e30ed4b4a754148dcf0d86",
     "assets/nerodecor/blockstates/coolant_tube.json": "22e530e4d6f01bc4d8a1215215c1e6623bc15f7be94be8c66ca8c61aefdccbb8",
@@ -165,6 +174,24 @@
     "assets/nerodecor/textures/block/conduits/pipe_gauge_dial_glow.png.mcmeta": "e7eb60d94c3aacebe9bdcdbff8b24abbe9853da9ff551d1c5bca15b2d64593d6",
     "assets/nerodecor/textures/block/conduits/pipe_gauge_v.png": "e7691c662e1ca3ba206f97285ee61f47fc031c58961a53e6fa9a6d02c3db4541",
     "assets/nerodecor/textures/block/conduits/pipe_valve.png": "ce1bca4195c35c1571ebb7a21176730338792487e756c999d296a24075de7af8",
-    "assets/nerodecor/textures/block/conduits/pipe_valve_wheel.png": "d3b317c358ee64b12fb70b038002354ebfb0de8d51d2158d44bfbb6148f78efa"
+    "assets/nerodecor/textures/block/conduits/pipe_valve_wheel.png": "d3b317c358ee64b12fb70b038002354ebfb0de8d51d2158d44bfbb6148f78efa",
+    "data/nerodecor/loot_table/blocks/beam_emitter_prop.json": "a49dcf54623cc18019a9479e095434d14bd5d06bf49d3abca1a73b1bb3e227da",
+    "data/nerodecor/loot_table/blocks/cable_tray.json": "30f030358f356c22c678ae25a9e16bd241f13d818632cf4ad3dca5fb0146df52",
+    "data/nerodecor/loot_table/blocks/coolant_tube.json": "424906fdaa8c0369be59d2fc0b8cb34e9b34fac39229ae62aaa028c063bacd53",
+    "data/nerodecor/loot_table/blocks/decor_pipe.json": "33e8c4038af9a69f7542b08fb827de02b9842668f2d913e5d5e65e4a6325934d",
+    "data/nerodecor/loot_table/blocks/duct.json": "7d4240082b66439848b700b614bb1ca4a8e3e647b95c9be0bb29b1ff64935c63",
+    "data/nerodecor/loot_table/blocks/duct_fan.json": "1e19b17ce09f6d5aff1e76befddff2d3bd36d7b19a053251f37f75f3cb0e4acd",
+    "data/nerodecor/loot_table/blocks/hanging_cables.json": "cc21d44702192693d903c567b486d39e50cafa5277ff50f73b035a0fe534aa91",
+    "data/nerodecor/loot_table/blocks/pipe_gauge.json": "aca2c458fdec30450e4efd2a8abfda97068d8e2754fe0beac26660ec3f1bc6ac",
+    "data/nerodecor/loot_table/blocks/pipe_valve.json": "22deab01fca89fbb713875db7a076ea968e722d696dbeb5d865b57b7a674ad3b",
+    "data/nerodecor/recipe/beam_emitter_prop.json": "432e536cbd6d1b5ea85d47c077f22c7b305454655472b54b53463b1cc0c74d97",
+    "data/nerodecor/recipe/cable_tray.json": "d79b06f5980815c53887c0beeabd43d7feebe0dede78aef42ffe122b89b99378",
+    "data/nerodecor/recipe/coolant_tube.json": "d9f543b7bf2a46321b07a3fd2943542d298f99b2dcde31b8e16af7280dbb8413",
+    "data/nerodecor/recipe/decor_pipe.json": "f0e84c73b1d80be71745e697b6948cfc28c65a6b2324ccdec8d03a359432db59",
+    "data/nerodecor/recipe/duct.json": "daf7281add6e96afac1d349328f810250ae8f5afd535cd83a5a1d0c8ab393e32",
+    "data/nerodecor/recipe/duct_fan.json": "4570c2db700c0a23dca18f7fbe74f6062e62c6bc79526aa337c85054dc251898",
+    "data/nerodecor/recipe/hanging_cables.json": "787cf862d5f8bae46287ff5f13cf4d2e53ebf95e036b4fa73e13dd9d7fd61d95",
+    "data/nerodecor/recipe/pipe_gauge.json": "52ab607733fdca44abfa54b909360c04195498b51607863d5cf4cbeb2dd2e495",
+    "data/nerodecor/recipe/pipe_valve.json": "5d29cf14c4a3fc7ae93d55569e19aafd887ed28ce136ef3642110916a47fb285"
   }
 }

@@ -58,12 +58,19 @@ class Block:
     item_model  custom only: model name used for the item (default: first model returned)
     name        en_us name (default: title-cased id)
     family      neroland:decor/<family> tag (default: the collection name)
-    recipe      optional recipe json written to data/nerodecor/recipe/<id>.json
+    recipe      optional recipe json written to data/nerodecor/recipe/<id>.json (use shaped()/shapeless()/
+                stonecut()/smelt() and attach_recipes(); vanilla + Neroland Core ingredients only, no gate)
+    extra_recipes  {recipe name: json} written next to it (stonecutter and smelting routes)
+    highlight   Core item-highlight category the block item joins (neroland:highlight/<category>):
+                materials (default, every decor block), machines, tools, upgrades, or None
     loot        optional loot table json (default: drops itself, survives_explosion). Use it for
                 blocks whose drop must carry data, e.g. copy_components from the block entity.
                 Written in the pre-26.3 format; the runner also writes the 26.3-format copy to
                 common/src/main/resources-26.3 (loot_26_3)
     render_type optional model render_type (emissive blocks default to minecraft:cutout)
+    tags        extra block tags the block belongs to, e.g. ("minecraft:climbable",). Merged by
+                gen_resources.py (data/<ns>/tags/block/<path>.json) once the id is registered in Java.
+                chroma=True blocks join #nerodecor:chroma_capable automatically; do not list it here.
 
     Every emitted block model gets "parent": "minecraft:block/block" unless it sets its own parent,
     so items that use it (models/item/<id>.json parents the item model) inherit vanilla display
@@ -84,8 +91,11 @@ class Block:
     name: Optional[str] = None
     family: Optional[str] = None
     recipe: Optional[dict] = None
+    extra_recipes: dict = field(default_factory=dict)
+    highlight: Optional[str] = "materials"
     loot: Optional[dict] = None
     render_type: Optional[str] = None
+    tags: tuple = ()
 
     @property
     def tinted(self):
@@ -106,12 +116,16 @@ class Item:
     tints   optional client-item tint sources, one per layer (e.g. {"type": "minecraft:constant",
             "value": -1} for an untinted layer, {"type": "nerodecor:decor_color"}, a minecraft:dye)
     name    en_us name (default: title-cased id)
+    recipe  optional recipe json written to data/nerodecor/recipe/<id>.json once the id is registered
+    highlight  Core item-highlight category (neroland:highlight/<category>), e.g. "tools", or None
     """
     id: str
     layers: list
     parent: str = "minecraft:item/generated"
     tints: Optional[list] = None
     name: Optional[str] = None
+    recipe: Optional[dict] = None
+    highlight: Optional[str] = None
 
 
 @dataclass
@@ -820,6 +834,40 @@ BLOCK_PARENT = "minecraft:block/block"
 RES_26_3 = "../resources-26.3/"
 
 
+# --- loot helpers (pre-26.3 format; the runner derives the 26.3 copy) ---------------------------
+def _drop(bid, functions=None, conditions=None):
+    e = {"type": "minecraft:item", "name": "%s:%s" % (NS, bid)}
+    if functions:
+        e["functions"] = functions
+    if conditions:
+        e["conditions"] = conditions
+    return e
+
+
+def _state_is(bid, prop, value):
+    return {"condition": "minecraft:block_state_property", "block": "%s:%s" % (NS, bid),
+            "properties": {prop: value}}
+
+
+def _block_loot(entry):
+    return {"type": "minecraft:block",
+            "pools": [{"rolls": 1, "bonus_rolls": 0, "entries": [entry],
+                       "conditions": [{"condition": "minecraft:survives_explosion"}]}]}
+
+
+def slab_loot(bid, prop="type"):
+    """Slab-style drop: one item, two when the state is `<prop>=double` (vanilla slab table)."""
+    return _block_loot(_drop(bid, functions=[
+        {"function": "minecraft:set_count", "count": 2, "conditions": [_state_is(bid, prop, "double")]},
+        {"function": "minecraft:explosion_decay"}]))
+
+
+def half_loot(bid, prop="part", value="head"):
+    """Two-block furniture (bed-style): only the `<prop>=<value>` half drops the item, so breaking
+    the pair yields one."""
+    return _block_loot(_drop(bid, conditions=[_state_is(bid, prop, value)]))
+
+
 # --- 26.3 loot format ------------------------------------------------------------------------
 def _ordered(d):
     """26.3 loot JSON key order: "type" first, the rest sorted (matches the hand-written overlays)."""
@@ -909,7 +957,20 @@ def block_json(coll, b, data=True):
     out["%sdata/%s/loot_table/blocks/%s.json" % (RES_26_3, NS, b.id)] = loot_26_3(loot)
     if b.recipe:
         out["data/%s/recipe/%s.json" % (NS, b.id)] = b.recipe
+    for name, recipe in sorted(b.extra_recipes.items()):
+        out["data/%s/recipe/%s.json" % (NS, name)] = recipe
     return out
+
+
+def block_tags(b):
+    """Extra block tags (registry ids) this block joins, chroma_capable included for chroma blocks."""
+    tags = list(b.tags)
+    if b.chroma and CHROMA_TAG not in tags:
+        tags.append(CHROMA_TAG)
+    return tags
+
+
+CHROMA_TAG = "%s:chroma_capable" % NS
 
 
 def block_aggregates(coll, b):
@@ -948,8 +1009,9 @@ def block_textures(coll, b, textures):
 # =========================================================================================
 # Item-only art (ITEMS / ITEM_TEXTURES)
 # =========================================================================================
-def item_json(coll, it):
-    """Every JSON file for one item-only Item: {rel_path: obj}."""
+def item_json(coll, it, data=True):
+    """Every JSON file for one item-only Item: {rel_path: obj}. data=False leaves out its recipe (the id is
+    not registered in Java yet)."""
     if not it.layers:
         raise ValueError("%s/%s: an Item needs at least one layer" % (coll, it.id))
     if it.tints is not None and len(it.tints) != len(it.layers):
@@ -959,8 +1021,11 @@ def item_json(coll, it):
     item = {"model": {"type": "minecraft:model", "model": "%s:item/%s" % (NS, it.id)}}
     if it.tints:
         item["model"]["tints"] = it.tints
-    return {"assets/%s/models/item/%s.json" % (NS, it.id): model,
-            "assets/%s/items/%s.json" % (NS, it.id): item}
+    out = {"assets/%s/models/item/%s.json" % (NS, it.id): model,
+           "assets/%s/items/%s.json" % (NS, it.id): item}
+    if data and it.recipe:
+        out["data/%s/recipe/%s.json" % (NS, it.id)] = it.recipe
+    return out
 
 
 def item_aggregates(coll, it):
@@ -988,3 +1053,75 @@ def check_item_art(tid, img):
             if a not in (0, 255) or (a and r == g == b):
                 raise ValueError("item/%s: bad pixel at %d,%d (alpha must be 0/255, no pure grey)"
                                  % (tid, x, y))
+
+
+# =========================================================================================
+# Recipes (0.8.0 Stage 6)
+# =========================================================================================
+# Ingredients are written in the 1.21.2+ short form (an item id string, or "#tag"); the build's
+# legacyRecipes step rewrites them to {"item": ...}/{"tag": ...} for the 1.21.1 line. Vanilla and
+# Neroland Core ingredients only: no progression gate, no other mod. Use only items that exist under
+# the same id on every Minecraft line the mod builds for (1.21.1 .. 26.3): e.g. no minecraft:chain
+# (renamed in 1.21.9), no copper nuggets (added in 1.21.9).
+HIGHLIGHTS = ("machines", "tools", "upgrades", "materials")
+CUBE = "%s:chroma_cube" % NS
+
+
+def _rid(path):
+    return path if ":" in path else "%s:%s" % (NS, path)
+
+
+def shaped(out, count, pattern, **key):
+    """A shaped crafting recipe for nerodecor:<out>. key letters map to item ids / "#tags"."""
+    used = {c for row in pattern for c in row if c != " "}
+    if used != set(key):
+        raise ValueError("recipe %s: pattern letters %s != key %s" % (out, sorted(used), sorted(key)))
+    if len({len(r) for r in pattern}) != 1 or not 1 <= len(pattern) <= 3 or len(pattern[0]) > 3:
+        raise ValueError("recipe %s: pattern must be a rectangle of at most 3x3" % out)
+    return {"type": "minecraft:crafting_shaped", "pattern": list(pattern),
+            "key": {k: key[k] for k in sorted(key)}, "result": {"id": _rid(out), "count": count}}
+
+
+def shapeless(out, count, *ingredients):
+    if not 1 <= len(ingredients) <= 9:
+        raise ValueError("recipe %s: 1..9 ingredients" % out)
+    return {"type": "minecraft:crafting_shapeless", "ingredients": list(ingredients),
+            "result": {"id": _rid(out), "count": count}}
+
+
+def stonecut(src, out, count=1):
+    return {"type": "minecraft:stonecutting", "ingredient": _rid(src),
+            "result": {"id": _rid(out), "count": count}}
+
+
+def smelt(src, out, xp=0.1, time=200):
+    return {"type": "minecraft:smelting", "category": "blocks", "cookingtime": time, "experience": xp,
+            "ingredient": _rid(src), "result": {"id": _rid(out)}}
+
+
+def attach_recipes(blocks, recipes, stonecutting=(), smelting=()):
+    """Give every block in `blocks` its recipe. recipes = {block id: recipe json} must cover each block
+    exactly. stonecutting = (src, out, count) triples, smelting = (src, out) pairs: extra routes written
+    as <out>_from_<src>_stonecutting / _smelting (as the block's recipe when it has none of its own)."""
+    by_id = {b.id: b for b in blocks}
+    unknown = sorted(set(recipes) - set(by_id))
+    if unknown:
+        raise KeyError("recipes for undeclared blocks: %s" % ", ".join(unknown))
+    for bid, recipe in recipes.items():
+        out = recipe.get("result", {}).get("id")
+        if out != _rid(bid):
+            raise ValueError("recipe %s makes %s" % (bid, out))
+        by_id[bid].recipe = recipe
+    extras = [(s, o, stonecut(s, o, n), "stonecutting") for s, o, n in stonecutting]
+    extras += [(s, o, smelt(s, o), "smelting") for s, o in smelting]
+    for src, out, recipe, kind in extras:
+        if out not in by_id:
+            raise KeyError("%s route makes undeclared block %s" % (kind, out))
+        b = by_id[out]
+        if b.recipe is None:
+            b.recipe = recipe
+        else:
+            b.extra_recipes["%s_from_%s_%s" % (out, src.split(":")[-1], kind)] = recipe
+    missing = sorted(b.id for b in blocks if b.recipe is None)
+    if missing:
+        raise ValueError("blocks without a recipe: %s" % ", ".join(missing))

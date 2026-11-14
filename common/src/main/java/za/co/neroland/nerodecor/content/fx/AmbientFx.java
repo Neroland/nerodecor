@@ -22,7 +22,7 @@ import za.co.neroland.nerodecor.config.NeroDecorConfig;
 /**
  * The client-side ambience of a Luminous-collection block: an occasional particle mote and an
  * occasional, quiet sound. Driven entirely from {@code Block#animateTick}, so it costs nothing on
- * a server, needs no block entity and never ticks per block (ADR-001's block-entity policy).
+ * a server, needs no block entity and never ticks per block (the mod's block-entity policy).
  *
  * <p>Two guards keep it subtle at any build size. Each sound has a <b>global cooldown</b> keyed by
  * its event, so a wall of two hundred circuit plates chirps no more often than one plate would.

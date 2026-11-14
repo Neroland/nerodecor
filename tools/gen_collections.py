@@ -23,7 +23,8 @@ Per-block outputs (relative to common/src/main/resources):
   paths with the _kit.RES_26_3 prefix are relative to common/src/main/resources-26.3)
 Item-only art (a module's ITEMS + ITEM_TEXTURES, see _kit.Item):
   assets/nerodecor/models/item/<id>.json, items/<id>.json, textures/item/<collection>/<tid>.png
-Shared files (en_us.json, mineable/pickaxe, neroland:decor/<family>) belong to gen_resources.py,
+Shared files (en_us.json, mineable/pickaxe, neroland:decor/<family>, #nerodecor:chroma_capable and
+other Block.tags tags such as #minecraft:climbable) belong to gen_resources.py,
 which pulls this layer's entries through collections.aggregate().
 
 Deterministic (no RNG, no timestamps). Refuses to overwrite any file it does not own: an output
@@ -109,7 +110,7 @@ def build(pkg, name, examples=False):
             arts[tid] = art
     item_tex = getattr(mod, "ITEM_TEXTURES", {})
     for it in pkg.items(name):
-        for rel, obj in k.item_json(name, it).items():
+        for rel, obj in k.item_json(name, it, data=pkg.has_data(it)).items():
             if rel in outs:
                 raise ValueError("%s: %s is emitted twice (item %s)" % (name, rel, it.id))
             outs[rel] = render_json(obj)
@@ -175,6 +176,10 @@ def aggregate_problems(pkg, names):
                     out.append("aggregate: en_us %s" % key)
             if pkg.has_data(b) and bid not in pick:
                 out.append("aggregate: mineable/pickaxe %s" % bid)
+            for tag in (k.block_tags(b) if pkg.has_data(b) else ()):
+                ns, path = tag.split(":", 1)
+                if bid not in load("data/%s/tags/block/%s.json" % (ns, path)).get("values", []):
+                    out.append("aggregate: #%s %s" % (tag, bid))
             fam_ids = {v["id"] for v in load("data/neroland/tags/block/decor/%s.json" % fam).get("values", [])}
             if bid not in fam_ids:
                 out.append("aggregate: neroland:decor/%s %s" % (fam, bid))
@@ -379,7 +384,7 @@ def main():
         try:
             rels = set(built[n]) if n in built else (
                 {r for b in pkg.blocks(n) for r in kit().block_json(n, b)}
-                | {r for it in pkg.items(n) for r in kit().item_json(n, it)})
+                | {r for it in pkg.items(n) for r in kit().item_json(n, it, data=pkg.has_data(it))})
         except Exception as e:  # noqa: BLE001
             print("gen_collections: (dup check) skipping %s: %s" % (n, e))
             continue

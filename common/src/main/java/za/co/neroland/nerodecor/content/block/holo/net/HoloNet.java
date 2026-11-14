@@ -8,12 +8,13 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.block.state.BlockState;
 
+import za.co.neroland.nerodecor.chroma.net.ChromaNet;
 import za.co.neroland.nerodecor.chroma.server.ChromaGuard;
 import za.co.neroland.nerodecor.content.block.holo.HoloSignBlockEntity;
-import za.co.neroland.nerodecor.platform.Services;
 
 /**
- * Holo sign editing over the network: registration of {@link HoloSignEditPayload} and its server-side validation
+ * Holo sign editing over the network: {@link HoloSignEditPayload} rides NeroDecor's one packet table ({@link ChromaNet},
+ * wired per loader through {@code ChromaNetPlatform}); this class sends it and does the server-side validation
  * (reach, loaded chunk, block-edit permission incl. claim mods via {@code ChromaGuard}, and a per-player rate limit).
  * The rate limiter keeps only the online player object as a weak key and a tick count in memory; nothing is logged
  * or persisted.
@@ -25,25 +26,16 @@ public final class HoloNet {
     private static final double REACH_SQ = 8.0 * 8.0;
     private static final Map<ServerPlayer, Long> LAST_EDIT = new WeakHashMap<>();
 
-    private static HoloNetPlatform platform;
-
     private HoloNet() {
-    }
-
-    /** Called once from common init. */
-    public static void init() {
-        platform = Services.load(HoloNetPlatform.class);
-        platform.registerServerbound(HoloSignEditPayload.TYPE, HoloSignEditPayload.STREAM_CODEC, HoloNet::handleEdit);
     }
 
     /** Client: send a sign edit. */
     public static void sendEdit(BlockPos pos, String first, String second) {
-        if (platform != null) {
-            platform.sendToServer(new HoloSignEditPayload(pos, first, second));
-        }
+        ChromaNet.sendToServer(new HoloSignEditPayload(pos, first, second));
     }
 
-    static void handleEdit(HoloSignEditPayload payload, ServerPlayer player) {
+    /** Server: validate and apply one edit (registered in {@link ChromaNet}'s serverbound table). */
+    public static void handleEdit(HoloSignEditPayload payload, ServerPlayer player) {
         if (!(player.level() instanceof ServerLevel level)) {
             return;
         }

@@ -1,0 +1,365 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "bonus_rolls": 0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "nerodecor:chroma_cube",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "nerodecor:chroma_cube",
+              "properties": {
+                "color": "natural"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nerodecor:chroma_cube",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "nerodecor:chroma_cube",
+              "properties": {
+                "color": "white"
+              }
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "nerodecor:color": "white"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nerodecor:chroma_cube",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "nerodecor:chroma_cube",
+              "properties": {
+                "color": "light_gray"
+              }
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "nerodecor:color": "light_gray"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nerodecor:chroma_cube",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "nerodecor:chroma_cube",
+              "properties": {
+                "color": "gray"
+              }
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "nerodecor:color": "gray"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nerodecor:chroma_cube",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "nerodecor:chroma_cube",
+              "properties": {
+                "color": "black"
+              }
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "nerodecor:color": "black"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nerodecor:chroma_cube",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "nerodecor:chroma_cube",
+              "properties": {
+                "color": "red"
+              }
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "nerodecor:color": "red"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nerodecor:chroma_cube",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "nerodecor:chroma_cube",
+              "properties": {
+                "color": "orange"
+              }
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "nerodecor:color": "orange"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nerodecor:chroma_cube",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "nerodecor:chroma_cube",
+              "properties": {
+                "color": "yellow"
+              }
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "nerodecor:color": "yellow"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nerodecor:chroma_cube",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "nerodecor:chroma_cube",
+              "properties": {
+                "color": "lime"
+              }
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "nerodecor:color": "lime"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nerodecor:chroma_cube",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "nerodecor:chroma_cube",
+              "properties": {
+                "color": "green"
+              }
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "nerodecor:color": "green"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nerodecor:chroma_cube",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "nerodecor:chroma_cube",
+              "properties": {
+                "color": "cyan"
+              }
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "nerodecor:color": "cyan"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nerodecor:chroma_cube",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "nerodecor:chroma_cube",
+              "properties": {
+                "color": "light_blue"
+              }
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "nerodecor:color": "light_blue"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nerodecor:chroma_cube",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "nerodecor:chroma_cube",
+              "properties": {
+                "color": "blue"
+              }
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "nerodecor:color": "blue"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nerodecor:chroma_cube",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "nerodecor:chroma_cube",
+              "properties": {
+                "color": "purple"
+              }
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "nerodecor:color": "purple"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nerodecor:chroma_cube",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "nerodecor:chroma_cube",
+              "properties": {
+                "color": "magenta"
+              }
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "nerodecor:color": "magenta"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nerodecor:chroma_cube",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "nerodecor:chroma_cube",
+              "properties": {
+                "color": "pink"
+              }
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "nerodecor:color": "pink"
+              }
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "nerodecor:chroma_cube",
+          "conditions": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "nerodecor:chroma_cube",
+              "properties": {
+                "color": "brown"
+              }
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:set_components",
+              "components": {
+                "nerodecor:color": "brown"
+              }
+            }
+          ]
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ]
+    }
+  ]
+}

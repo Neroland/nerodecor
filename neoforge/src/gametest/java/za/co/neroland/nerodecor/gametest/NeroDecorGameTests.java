@@ -45,7 +45,7 @@ public final class NeroDecorGameTests {
 
     public static final String MOD_ID = "nerodecor_gametest";
 
-    /** Registry cap from ADR-001 / the 0.8.0 brief. */
+    /** The 200-block registry cap. */
     static final int REGISTRY_CAP = 200;
 
     private static final DeferredRegister<Consumer<GameTestHelper>> FUNCTIONS =
@@ -56,7 +56,13 @@ public final class NeroDecorGameTests {
         FUNCTIONS.register("paint_survives_placement", () -> NeroDecorGameTests::paintSurvivesPlacement);
         FUNCTIONS.register("registry_within_cap", () -> NeroDecorGameTests::registryWithinCap);
         FUNCTIONS.register("fixture_071_loads", () -> NeroDecorGameTests::fixture071Loads);
+        FUNCTIONS.register("neon_fold_keeps_loot", () -> NeroDecorGameTests::neonFoldKeepsLoot);
         ChromaGameTests.register(FUNCTIONS);
+        ChromaSceneGameTests.register(FUNCTIONS); // Chroma Stage 4 (scenes)
+        ChromaPrivacyGameTests.register(FUNCTIONS);
+        ChromaLinkGameTests.register(FUNCTIONS); // Chroma Stage 8 (NeroLink)
+        RecipeGameTests.register(FUNCTIONS); // Stage 6 (recipes + unlocks)
+        ShowroomGameTests.register(FUNCTIONS); // Stage 9 (showroom)
     }
 
     public NeroDecorGameTests(IEventBus modEventBus) {
@@ -154,6 +160,31 @@ public final class NeroDecorGameTests {
                 helper.assertBlockPresent(expected, pos);
                 helper.assertTrue(stored.stream().anyMatch(s -> s.is(expected.asItem())), "fixture chests are missing " + id);
             }
+        });
+    }
+
+    /**
+     * A chest that still carries a loot table is never read by the neon fold: after a chunk-load pass and a direct
+     * {@code convertContainer} call it still has its table, unrolled (reading it would roll loot with no player).
+     */
+    static void neonFoldKeepsLoot(GameTestHelper helper) {
+        BlockPos chestPos = new BlockPos(1, 1, 1);
+        helper.setBlock(chestPos, net.minecraft.world.level.block.Blocks.CHEST);
+        BlockPos abs = helper.absolutePos(chestPos);
+        ServerLevel level = helper.getLevel();
+        var chest = (net.minecraft.world.level.block.entity.ChestBlockEntity) level.getBlockEntity(abs);
+        var table = net.minecraft.world.level.storage.loot.BuiltInLootTables.SIMPLE_DUNGEON;
+        chest.setLootTable(table, 42L);
+        helper.assertTrue(za.co.neroland.nerodecor.content.NeonFold.hasPendingLoot(chest), "loot table not detected");
+        helper.assertTrue(za.co.neroland.nerodecor.content.NeonFold.convertContainer(chest) == 0,
+                "the fold touched a loot chest");
+        NeoForge.EVENT_BUS.post(new ChunkEvent.Load(level.getChunkAt(abs), false));
+        NeoForge.EVENT_BUS.post(new ChunkEvent.Load(level.getChunkAt(abs), true));
+        helper.runAfterDelay(5, () -> {
+            var after = (net.minecraft.world.level.block.entity.ChestBlockEntity) level.getBlockEntity(abs);
+            helper.assertTrue(after != null && table.equals(after.getLootTable()),
+                    "the loot chest lost its loot table after the fold ran");
+            helper.succeed();
         });
     }
 

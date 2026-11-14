@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "NsN",
+    "sCs",
+    "NsN"
+  ],
+  "key": {
+    "C": "nerodecor:chroma_cube",
+    "N": "minecraft:iron_nugget",
+    "s": "minecraft:smooth_stone_slab"
+  },
+  "result": {
+    "id": "nerodecor:ceiling_coffer",
+    "count": 4
+  }
+}

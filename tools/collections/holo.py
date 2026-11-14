@@ -24,7 +24,8 @@ non-chroma blocks glow in one fixed hue: plasma for the plinth, the world's own 
 Block-entity renderer textures are shipped beside the block textures (same folder) and are listed
 under `be_*` roles of the owning block; no model references them:
 
-  holo_projector_beam      16 flow     translucent light cone, scanlines rising (tile vertically)
+  holo_projector_beam      32 flow     translucent light-cone sheet, feathered to zero alpha at the
+                                       side edges and the top; scanlines rise (lens = bottom row)
   holo_projector_scanline  16 flow     translucent overlay for any projected content
   holo_projector_shimmer   16 flicker  sparse sparkle overlay
   holo_projector_idle      32 still    wireframe gem shown when nothing is projected
@@ -37,7 +38,8 @@ under `be_*` roles of the owning block; no model references them:
   world_globe_<world>      GLOBE still equirectangular surface (x = longitude, wraps)
   world_globe_<world>_glow GLOBE still emissive lights for the same map (alpha 0/255)
   world_globe_scan         16 flow     translucent latitude sweep, drawn on a slightly larger shell
-  world_globe_halo         16 still    translucent rim billboard
+  world_globe_halo         32 still    translucent feathered rim billboard (ring peak at 0.79 of
+                                       the half-size, alpha 0 at the quad edge)
   holo_table_grid          32 data     translucent terrain wireframe for the well (tile)
   holo_table_beam          16 flow     translucent column above the well
   holo_table_blips         16 flicker  marker blips over the grid
@@ -211,21 +213,31 @@ def holo_projector_side_glow():
 
 
 def holo_projector_beam():
+    """Light cone sheet (32px, drawn once per frustum side, lens at the bottom). Alpha feathers
+    to nothing at both side edges and toward the top, so the four sheets read as one soft volume
+    instead of a box; fine scanlines and a few motes rise through it."""
     def frame(t):
-        img = new()
+        img = new(32, 32)
         s = int(round(t * 16))
-        for y in range(16):
+        for y in range(32):
             rise = (y + s) % 16
-            for x in range(16):
-                edge = abs(x - 7.5) / 7.5
-                a = 26 + 18 * (1 - edge)
-                if rise % 4 == 0:
-                    a += 44
+            v = y / 31.0                                   # 0 at the top .. 1 at the lens
+            fall = v ** 0.8 * (0.6 + 0.4 * v)
+            for x in range(32):
+                edge = abs(x - 15.5) / 15.5
+                side = max(0.0, math.cos(edge * math.pi / 2)) ** 2.2
+                a = 44.0
+                if rise % 8 == 0:
+                    a += 22
                 if rise == 0:
-                    a += 70
-                if det("beam", x, (y + s) % 16) < 0.05:
+                    a += 34
+                elif rise == 1:
+                    a += 12
+                if det("beam", x, (y + s) % 32) < 0.022:
                     a += 60
-                put(img, x, y, N[4] if rise == 0 else N[3], int(clamp(a / 255.0) * 255))
+                a *= side * fall
+                if a >= 3:
+                    put(img, x, y, N[4] if rise == 0 else N[3], int(min(a, 132)))
         return img
     return animate("holo_projector_beam", "flow", frame)
 
@@ -685,14 +697,26 @@ def world_globe_scan():
 
 
 def world_globe_halo():
-    img = new()
-    for y in range(16):
-        for x in range(16):
-            d = math.hypot(x - 7.5, y - 7.5)
-            if 5.2 <= d <= 8.0:
-                a = int(150 * (1 - abs(d - 7.0) / 1.9)) if d > 6.0 else int(40 * (d - 5.2))
-                if a > 6:
-                    put(img, x, y, N[4] if d > 6.6 else N[3], min(a, 170))
+    """Atmosphere rim billboard (32px): a soft feathered ring -- gaussian falloff outward, a
+    longer one inward -- with a hairline bright core and a slightly brighter limb toward the
+    key light. Low alpha throughout; the renderer tints it."""
+    img = new(32, 32)
+    for y in range(32):
+        for x in range(32):
+            dx, dy = x - 15.5, y - 15.5
+            d = math.hypot(dx, dy)
+            k = (d - 12.3) / (1.7 if d > 12.3 else 3.1)
+            a = 78 * math.exp(-k * k)
+            limb = 0.5 - 0.5 * (dx + dy) / max(d, 1e-6) / math.sqrt(2)   # 1 toward the top-left
+            a *= 0.72 + 0.5 * limb
+            if d < 12.3:
+                a += 7 * max(0.0, (d - 6.0) / 6.3)         # faint haze inside the rim
+            if abs(d - 12.3) < 0.55:
+                a += 20                                    # hairline bright core of the rim
+            if d > 15.6:
+                a = 0
+            if a >= 3:
+                put(img, x, y, N[4] if abs(d - 12.3) < 0.9 else N[3], int(min(a, 124)))
     return img
 
 
@@ -1223,3 +1247,22 @@ BLOCKS = [
           textures=_TICKER_TEX, model=ticker_models, blockstate=ticker_state,
           item_model="ticker_strip_c11"),
 ]
+
+# =========================================================================================
+# Recipes (0.8.0 Stage 6): vanilla + Neroland Core ingredients only, no gate. See _kit.shaped.
+# =========================================================================================
+from ._kit import CUBE, attach_recipes, shaped  # noqa: E402
+
+_A, _I, _N, _R = "minecraft:amethyst_shard", "minecraft:iron_ingot", "minecraft:iron_nugget", "minecraft:redstone"
+_L, _P = "minecraft:glowstone_dust", "minecraft:glass_pane"
+attach_recipes(BLOCKS, {
+    "holo_projector": shaped("holo_projector", 1, [" A ", "IRI", "III"], A=_A, I=_I, R=_R),
+    "holo_sign": shaped("holo_sign", 2, ["GGG", "ALA"], A=_A, G=_P, L=_L),
+    "arrow_sign": shaped("arrow_sign", 4, [" C ", "CCC", " N "], C=CUBE, N=_N),
+    "world_globe": shaped("world_globe", 1, [" G ", "GMG", " S "], G="minecraft:glass", M="minecraft:map",
+                          S="minecraft:smooth_stone_slab"),
+    "holo_table": shaped("holo_table", 1, ["AAA", "IRI", "I I"], A=_A, I=_I, R=_R),
+    "holo_curtain": shaped("holo_curtain", 8, ["GGG", "GAG", "GGG"], A=_A, G=_P),
+    "holo_plinth": shaped("holo_plinth", 2, ["SAS", "SSS"], A=_A, S="minecraft:smooth_stone"),
+    "ticker_strip": shaped("ticker_strip", 4, ["GGG", "RLR"], G=_P, L=_L, R=_R),
+})

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "A",
+    "Q",
+    "I"
+  ],
+  "key": {
+    "A": "minecraft:amethyst_shard",
+    "I": "minecraft:iron_ingot",
+    "Q": "minecraft:quartz"
+  },
+  "result": {
+    "id": "nerodecor:beam_emitter_prop",
+    "count": 1
+  }
+}

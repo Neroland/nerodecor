@@ -23,6 +23,8 @@ import za.co.neroland.nerodecor.content.item.ChromaLinkerItem;
 import za.co.neroland.nerodecor.content.item.LinkerState;
 import za.co.neroland.nerodecor.content.item.NeonShimItem;
 import za.co.neroland.nerodecor.content.item.PaintGunItem;
+import za.co.neroland.nerodecor.content.item.SceneChipData;
+import za.co.neroland.nerodecor.content.item.SceneChipItem;
 import za.co.neroland.nerodecor.registry.RegistrationProvider.RegistryEntry;
 
 /**
@@ -50,6 +52,13 @@ public final class ChromaContent {
                     .networkSynchronized(LinkerState.STREAM_CODEC)
                     .build());
 
+    /** Stage 4: the scene a Scene Chip carries (scene-codec bytes only; no author or player id). */
+    public static final RegistryEntry<DataComponentType<SceneChipData>> SCENE_CHIP =
+            ModDataComponents.COMPONENTS.register("scene_chip", key -> DataComponentType.<SceneChipData>builder()
+                    .persistent(SceneChipData.CODEC)
+                    .networkSynchronized(SceneChipData.STREAM_CODEC)
+                    .build());
+
     public static RegistryEntry<Block> HUB;
     public static RegistryEntry<BlockEntityType<ChromaHubBlockEntity>> HUB_BLOCK_ENTITY;
     public static RegistryEntry<Item> HUB_ITEM;
@@ -57,6 +66,8 @@ public final class ChromaContent {
     /** The Chroma Cube (replaces the 12 neon cubes); tracked in {@link DecorBlocks#ALL} so it gets its block item. */
     public static RegistryEntry<Block> CUBE;
     public static RegistryEntry<Item> PAINT_GUN;
+    /** Stage 4: the Scene Chip. */
+    public static RegistryEntry<Item> SCENE_CHIP_ITEM;
     /** Items of the hidden neon shims (convert to chroma cubes; no tab, no recipe). */
     public static final java.util.List<RegistryEntry<Item>> NEON_SHIM_ITEMS = new java.util.ArrayList<>();
 
@@ -88,6 +99,8 @@ public final class ChromaContent {
                 key -> new ChromaLinkerItem(new Item.Properties().setId(key).stacksTo(1)));
         PAINT_GUN = ModItems.ITEMS.register("paint_gun",
                 key -> new PaintGunItem(new Item.Properties().setId(key).stacksTo(1)));
+        SCENE_CHIP_ITEM = ModItems.ITEMS.register("scene_chip",
+                key -> new SceneChipItem(new Item.Properties().setId(key).stacksTo(16)));
         for (RegistryEntry<Block> shim : DecorBlocks.NEON_SHIMS) {
             NEON_SHIM_ITEMS.add(ModItems.ITEMS.register(shim.id().getPath(),
                     key -> new NeonShimItem(shim.get(), new Item.Properties().setId(key))));

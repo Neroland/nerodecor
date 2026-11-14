@@ -965,37 +965,72 @@ def _bracket_atlas(canon):
 
 
 def _bracket_tex(canon):
+    """The clamp's part sheet. The layout is the model's atlas (see _bracket_atlas), but every
+    swatch is painted as the part it wraps, on a dark backing plate so the sheet reads as one
+    drawing: a drilled foot plate with two anchor bolts, a ribbed post, rolled starsteel straps
+    with a hinge seam, the cap strap with its nero-alloy id band, and a hex bolt head."""
     def paint():
-        img = new(16, 16)
-        for k, (x, y) in _bracket_atlas(canon).items():
+        img = new(16, 16, BODY[1])
+        atlas = _bracket_atlas(canon)
+        used = set()
+        for k, (x, y) in atlas.items():
+            w, h = (1, 1) if k[0] == "px" else (k[0], k[1])
+            used |= {(x + i, y + j) for i in range(w) for j in range(h)}
+        for (x, y) in sorted(used):                        # swatches sit proud of the backing
+            for ox, oy in ((1, 0), (0, 1), (1, 1)):
+                if (x + ox, y + oy) not in used and x + ox < 16 and y + oy < 16:
+                    put(img, x + ox, y + oy, BODY[0])
+        for k, (x, y) in atlas.items():
             if k[0] == "px":
                 r, fill = STYLE_RAMP[k[1]]
                 put(img, x, y, r[fill + 1] if k[2] else r[fill - 1])
                 continue
             w, h, style = k
             r, fill = STYLE_RAMP[style]
-            bevel(img, x, y, x + w, y + h, r, fill=fill)
+            rect(img, x, y, x + w, y + h, r[fill])         # soft bevel: one ramp step each way
+            rect(img, x, y, x + w, y + 1, r[fill + 1])
+            rect(img, x, y, x + 1, y + h, r[fill + 1])
+            rect(img, x, y + h - 1, x + w, y + h, r[fill - 1])
+            rect(img, x + w - 1, y, x + w, y + h, r[fill - 1])
+            put(img, x, y, r[min(4, fill + 2)])
+            tall = w < h
+            if style in ("strap", "top") and max(w, h) == 8:   # one hinge seam on the long bands
+                if tall:
+                    rect(img, x, y + h - 3, x + w, y + h - 2, r[fill - 1])
+                else:
+                    rect(img, x + w - 3, y, x + w - 2, y + h, r[fill - 1])
             if style == "top":                             # nero-alloy id band across the strap
-                if w < h:
+                if tall:
                     rect(img, x, y + h // 2 - 1, x + w, y + h // 2 + 1, ALLOY[2])
                     rect(img, x, y + h // 2 - 1, x + w, y + h // 2, ALLOY[3])
+                    put(img, x, y + h // 2 - 1, ALLOY[4])
                     put(img, x + w - 1, y + h // 2, ALLOY[1])
                 else:
                     rect(img, x + w // 2 - 1, y, x + w // 2 + 1, y + h, ALLOY[2])
                     rect(img, x + w // 2 - 1, y, x + w // 2, y + h, ALLOY[3])
+                    put(img, x + w // 2 - 1, y, ALLOY[4])
                     put(img, x + w // 2, y + h - 1, ALLOY[1])
-            if style == "base":                            # anchor bolts on the two feet
-                if w < h:
+            if style == "base":                            # foot plate: chamfers, bolts, post weld
+                for (cx, cy) in ((x, y), (x + w - 1, y), (x, y + h - 1), (x + w - 1, y + h - 1)):
+                    put(img, cx, cy, STEEL[1])
+                if tall:
+                    rect(img, x + 1, y + 3, x + w - 1, y + h - 3, STEEL[1])
                     for by in (y + 1, y + h - 3):
-                        _rivet(img, x + w // 2 - 1, by, STEEL)
+                        _rivet(img, x + w // 2 - 1, by, STAR)
                 else:
+                    rect(img, x + 3, y + 1, x + w - 3, y + h - 1, STEEL[1])
                     for bx in (x + 1, x + w - 3):
-                        _rivet(img, bx, y + h // 2 - 1, STEEL)
+                        _rivet(img, bx, y + h // 2 - 1, STAR)
+            if style == "post":                            # ribbed pedestal under the saddle
+                rect(img, x, y, x + w, y + 1, BODY[0])     # occluded by the strap above
+                rect(img, x, y + 1, x + 1, y + h, BODY[3])
+                rect(img, x + 1, y + 1, x + 2, y + h, BODY[2])
+                rect(img, x + 2, y + 1, x + 3, y + h, BODY[1])
+                rect(img, x + 3, y + 1, x + 4, y + h, BODY[0])
+                put(img, x, y + 1, BODY[4])
             if style == "bolt":
-                _rivet(img, x, y, STEEL)
-            if style == "strap" and w == 4 and h == 6 or style == "strap" and (w, h) in ((4, 8), (8, 4)):
-                pass
-        return wear(img, "pipe_bracket" + canon, STEEL, rate=0.03)
+                _rivet(img, x, y, STAR)
+        return img
     return paint
 
 
@@ -1186,3 +1221,23 @@ BLOCKS = [
           item_model="floor_arrow_item", name="Floor Arrow",
           textures=_tx("floor_arrow", "floor_arrow_diag", "floor_arrow_glow", "floor_arrow_diag_glow")),
 ]
+
+# =========================================================================================
+# Recipes (0.8.0 Stage 6): vanilla + Neroland Core ingredients only, no gate. See _kit.shaped.
+# =========================================================================================
+from ._kit import attach_recipes, shaped  # noqa: E402
+
+_I, _N, _S = "minecraft:iron_ingot", "minecraft:iron_nugget", "minecraft:smooth_stone"
+_Y, _K = "minecraft:yellow_dye", "minecraft:black_dye"
+attach_recipes(BLOCKS, {
+    "louvre_vent": shaped("louvre_vent", 4, ["BB"], B="minecraft:iron_bars"),
+    "maintenance_panel": shaped("maintenance_panel", 4, ["NNN", "NRN", "NNN"], N=_N, R="minecraft:redstone"),
+    "hazard_stripe": shaped("hazard_stripe", 8, ["SSS", "YKY", "SSS"], K=_K, S=_S, Y=_Y),
+    "deck_sign": shaped("deck_sign", 3, ["NNN", "GLG"], G="minecraft:glass_pane", L="minecraft:glowstone_dust",
+                        N=_N),
+    "warning_placard": shaped("warning_placard", 4, ["NNN", "YKY"], K=_K, N=_N, Y=_Y),
+    "rivet_plate": shaped("rivet_plate", 8, ["IN", "NI"], I=_I, N=_N),
+    "pipe_bracket": shaped("pipe_bracket", 8, ["N N", "NNN"], N=_N),
+    "floor_arrow": shaped("floor_arrow", 4, [" L ", "LLL", " S "], L="minecraft:glowstone_dust",
+                          S="minecraft:smooth_stone_slab"),
+})

@@ -1244,3 +1244,25 @@ BLOCKS = [
 ]
 
 EXAMPLES = []
+
+# =========================================================================================
+# Recipes (0.8.0 Stage 6): vanilla + Neroland Core ingredients only, no gate. See _kit.shaped.
+# =========================================================================================
+from ._kit import CUBE, attach_recipes, shaped  # noqa: E402
+
+_N, _P = "minecraft:iron_nugget", "minecraft:glass_pane"
+_S, _SS, _BARS = "minecraft:smooth_stone", "minecraft:smooth_stone_slab", "minecraft:iron_bars"
+attach_recipes(BLOCKS, {
+    "light_strip": shaped("light_strip", 8, ["CCC", "NNN"], C=CUBE, N=_N),
+    "edge_trim": shaped("edge_trim", 8, ["CCC", "sss"], C=CUBE, s=_SS),
+    "floor_tile": shaped("floor_tile", 8, ["SCS", "CSC", "SCS"], C=CUBE, S=_S),
+    "floor_tile_slab": shaped("floor_tile_slab", 6, ["TTT"], T="nerodecor:floor_tile"),
+    "step_light": shaped("step_light", 4, ["CC", "ss"], C=CUBE, s=_SS),
+    "ceiling_coffer": shaped("ceiling_coffer", 4, ["NsN", "sCs", "NsN"], C=CUBE, N=_N, s=_SS),
+    "light_pillar": shaped("light_pillar", 3, ["NCN", "NCN", "NCN"], C=CUBE, N=_N),
+    "neon_tube": shaped("neon_tube", 4, ["GCG"], C=CUBE, G=_P),
+    "light_pane": shaped("light_pane", 8, ["GGG", "GCG", "GGG"], C=CUBE, G=_P),
+    "sconce_bar": shaped("sconce_bar", 2, ["N", "C", "N"], C=CUBE, N=_N),
+    "halo_ring": shaped("halo_ring", 2, ["NNN", "NCN", "NNN"], C=CUBE, N=_N),
+    "cage_lamp": shaped("cage_lamp", 2, [" N ", "BCB", " N "], B=_BARS, C=CUBE, N=_N),
+}, stonecutting=[("floor_tile", "floor_tile_slab", 2)])

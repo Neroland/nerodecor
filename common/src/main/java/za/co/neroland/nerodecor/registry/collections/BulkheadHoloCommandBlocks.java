@@ -44,7 +44,6 @@ import za.co.neroland.nerodecor.content.block.holo.HoloTableBlockEntity;
 import za.co.neroland.nerodecor.content.block.holo.TickerStripBlock;
 import za.co.neroland.nerodecor.content.block.holo.WorldGlobeBlock;
 import za.co.neroland.nerodecor.content.block.holo.WorldGlobeBlockEntity;
-import za.co.neroland.nerodecor.content.block.holo.net.HoloNet;
 import za.co.neroland.nerodecor.content.fx.AmbientFx;
 import za.co.neroland.nerodecor.registry.RegistrationProvider.RegistryEntry;
 
@@ -112,7 +111,6 @@ public final class BulkheadHoloCommandBlocks {
         registerHolo();
         registerCommand();
         registerBlockEntities();
-        HoloNet.init();
     }
 
     private static void registerBulkhead() {

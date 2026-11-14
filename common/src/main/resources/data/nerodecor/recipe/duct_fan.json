@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "nerodecor:duct",
+    "minecraft:iron_ingot",
+    "minecraft:redstone"
+  ],
+  "result": {
+    "id": "nerodecor:duct_fan",
+    "count": 1
+  }
+}

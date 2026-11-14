@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "QQQ",
+    "I I",
+    "I I"
+  ],
+  "key": {
+    "I": "minecraft:iron_ingot",
+    "Q": "minecraft:quartz"
+  },
+  "result": {
+    "id": "nerodecor:lab_bench",
+    "count": 1
+  }
+}

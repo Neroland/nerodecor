@@ -1,16 +1,19 @@
 # Companion Link Module
 
-NeroDecor publishes a **read-only catalogue** to NeroLink companion clients — the phone app that
-talks to your server. It lets you browse the shared Neroland palette and the full decor block set
-without the game open: which neon colours exist, which shapes the panel family comes in, what hex
-value `starsteel` actually is.
+NeroDecor publishes two things to NeroLink companion clients (the phone app that talks to your
+server):
 
-That is the whole of it. The module shows things; it does not change anything, and it holds no
-information about you.
+- a **public catalogue**: the shared Neroland palette and every NeroDecor block, the same for
+  everyone;
+- a **Chroma remote**: the Chroma Hubs you own or are trusted on, their zones and scenes, and four
+  remote controls (apply a scene, recolour a zone, start or stop the animation, set the brightness).
 
 > **Requires:** Neroland Core (already a hard dependency) and the separate **NeroLink** bridge mod on
-> the server. NeroDecor itself ships no server and no networking — it registers what it can show with
+> the server. NeroDecor itself ships no server and no networking. It registers what it can show with
 > Core, and the bridge serves it. With no bridge installed, this costs one registry entry.
+
+This page documents **link schema 2** (NeroDecor 0.8.0). Schema 1 had only the two catalogue
+sections and no actions.
 
 ## Turning it off
 
@@ -20,105 +23,154 @@ enableLinkModule=false
 ```
 
 Server-authoritative: the server's value wins, because whether a server exposes a mod to companion
-clients is the server's call (unlike `connectedTextures` and `emissiveRendering`, which are yours).
-With it `false` the module is never registered and a companion client lists NeroDecor as absent. The
-blocks themselves behave identically either way.
+clients is the server's call. With it `false` the module is never registered and a companion client
+lists NeroDecor as absent. Turning Chroma itself off (`chroma.enabled=false`) leaves the catalogue
+up, reports `chroma_enabled: false`, lists no hubs and refuses every action.
 
-## What you can see
+## Sections
 
-Both sections accept an optional `q` parameter — a case-insensitive substring matched against ids and
-names — and both cap their output at 512 rows.
+Every section starts with `schema_version` (`2`). Ids are `snake_case` because the bridge only
+accepts lower-case path and topic segments.
 
-### `palette`
+### `palette` (public)
 
-The colour vocabulary, from both ends of it.
+The colour vocabulary. Optional `q` filter (case-insensitive substring of id or name), at most 512
+rows per list.
 
-- **`finishes`** — Neroland Core's shared palette export, verbatim: each finish's id, display name,
-  packed sRGB value, a `#RRGGBB` string a colour picker can use directly, the individual red/green/
-  blue channels, whether it reads as emissive and at what block light level, and the canonical
-  material tag it derives from (`null` for a pure accent). Also `palette_api_version` and
-  `finishes_available`.
+- **`finishes`**: Neroland Core's shared palette export, verbatim (id, name, packed and `#RRGGBB`
+  colour, channels, emissive flag and light, material tag or `null` for an accent).
+  `finishes_registered_by_mod` is `0`: NeroDecor consumes the palette and adds no finishes.
+- **`colors`**: the values the `COLOR` blockstate property can take: sixteen dye-aligned accents
+  plus `NATURAL` ("no paint", white tint).
+- **`legacy_neon`**: each pre-0.8.0 `neon_<colour>` id with the block it became
+  (`nerodecor:chroma_cube`) and its colour.
 
-  NeroDecor **registers no finishes of its own** — it is a consumer of the palette, not a
-  contributor — so `finishes_registered_by_mod` is reported as `0` rather than left to be inferred
-  from the namespaces.
+### `blocks` (public)
 
-- **`colors`** — NeroDecor's own paint vocabulary: the values the `COLOR` blockstate property can
-  take. Sixteen dye-aligned accents whose RGBs mirror Core's `neroland:accent/*` set, plus
-  `NATURAL`, which means "no paint — show the material's own tone" and is why its tint is white
-  (white is the multiply identity, not a colour choice).
+Every visible NeroDecor block in registration order (the creative tab's order), at most 512 rows,
+optional `q` filter. The twelve hidden `neon_<colour>` shims are **not** listed; `chroma_cube` and
+`chroma_hub` are. Per block:
 
-### `blocks`
+| Field | Meaning |
+|---|---|
+| `id`, `name`, `translation_key` | Registry id, readable name, lang key |
+| `model` | `cube`, `slab`, `stairs`, `wall`, `pane`, `pillar` (axis-linked columns and beams) or `custom` (a bespoke model: consoles, doors, pipes, furniture, fittings) |
+| `shape` | The schema-1 field, kept for older clients: as `model`, but `block` for anything bespoke |
+| `chroma` | Whether a Chroma Hub can drive it (the data-driven `#nerodecor:chroma_capable` tag) |
+| `paintable` | Whether it takes paint (has the `COLOR` property) |
+| `emissive` | Whether its default state gives off light (the Chroma Cube always counts) |
+| `collection` | `decor` (paintable families), `chroma` (hub and cube), `luminous` (other light sources) or `collections` |
+| `family`, `family_name`, `ctm_style` | Paintable families only: CTM family and connected-texture style |
 
-Every registered decor block, in registration order — the same order the creative tab and datagen
-use, so the app's list matches what you see in game. Per block:
+Plus `blocks_registered`, `truncated`, and the two client-local render toggles
+(`connected_textures`, `emissive_rendering`). A new block adds a row; that is not a schema change.
 
-- its registry id, a readable name and the translation key,
-- its **shape**: `cube`, `slab`, `stairs`, `wall`, `pane`, `pillar`, or `block` for the rest,
-- its **collection**: `decor` for the paintable families, `luminous` for the
-  [Luminous collection](Luminous-Collection.md),
-- whether it is **paintable** (the paintable families are; the Luminous blocks are not) and whether
-  it is **emissive** (the Chroma Cube and every Luminous block; the `palette` section's `legacy_neon` list maps
-  each old `neon_<colour>` id to `chroma_cube` and its colour),
-- for the paintable families only, its **CTM family** (`nerodecor:hull`, `nerodecor:panel`,
-  `nerodecor:glass`, `nerodecor:neon`) and its **connected-texture style** (`FULL`, `GLASS` or
-  `STRIP`) — two faces connect only on the same family *and* the same painted colour.
+### `chroma_hubs` (yours only)
 
-The section also reports `blocks_registered` and the two client-local render toggles, so a client can
-say "connected textures are off on this client" without guessing.
+The hubs **you own or are trusted on** (viewer or higher), owned hubs first, at most 64:
 
-Adding a block to the mod adds a row here; that is not a schema change, and clients should treat the
-list as one that grows.
+| Field | Meaning |
+|---|---|
+| `hub` | The hub's network id, 16 hex digits. Every other Chroma section and action takes it |
+| `name` | `Chroma Hub` and the id's last four digits (hubs have no player-set name yet) |
+| `role` | Your role: `owner`, `admin`, `painter` or `viewer` |
+| `can_control` | Painter or higher: you may use the actions below |
+| `active` | The hub block is placed (a broken hub keeps its data but drives nothing) |
+| `blocks`, `zones`, `scenes` | Linked blocks, zones, filled scene slots |
+| `active_scene`, `active_scene_name`, `animating` | The playing slot (`-1` = static colours) and its name |
+| `trigger` | `manual`, `redstone` or `daylight` |
+| `brightness` | The hub's static brightness, 0–15 (its brightest colour), or `null` with no colours |
+| `members` | **Counts only**: `admin`, `painter`, `viewer`. Never who |
 
-## What you can do
+Also `chroma_enabled`, `hubs_visible` and `truncated`.
 
-**Nothing, deliberately.**
+### `chroma_zones?hub=<id>` (yours only)
 
-Everything NeroDecor can change is a block in the world: painting one, placing one, breaking one.
-Doing any of that from a phone would let a player edit the world without being in it, and no amount
-of gating turns "recolour that block over there" into a status operation. There is likewise nothing
-to schedule, nothing to claim and nothing to acknowledge — so even the ecosystem's usual
-`acknowledge_alert` would be an action with no alerts behind it.
+The hub's zones: `zone` (index), `name`, `channel`, `colour` (`#RRGGBB`, the colour most of the
+zone's blocks show, or `null` for an empty zone), `brightness` and `blocks` (count).
 
-So NeroDecor registers a snapshot provider and no action handler at all. Companion clients see the
-module as read-only, and its action list is empty rather than padded.
+### `chroma_scenes?hub=<id>` (yours only)
 
-## Display surfaces: not yet
+The eight scene slots: `slot`, `name` (or `null`), `filled`, `active`; plus `active_scene`,
+`animating` and `trigger`.
 
-Neroland Core also ships a **display surface** API — the seam through which a block can accept text,
-an icon and a status colour pushed to it by another mod, so a hologram or a wall panel can show live
-data. That is obviously where NeroDecor is going, and it is the reason Core's
-`neroland:decor/dashboard_surface` tag exists.
+For the zone and scene sections, a hub that does not exist and a hub you may not see give the
+**same** empty answer, so the sections cannot be used to probe for other players' hubs.
 
-It is not wired up here, because NeroDecor currently ships **no block entities at all**: every block
-in the set, the Luminous collection included, is model-only, and a display surface needs somewhere to
-store what was pushed to it. Holograms, signs, panels and racks arrive with those block entities in a later
-build, and the surfaces come with them.
+## Scoping and privacy
+
+- **Only your hubs.** A hub appears only when you own it or are on its trusted list. Erasing a
+  player orphans their hubs, and an orphaned hub is visible to nobody.
+- **No coordinates.** No anchor, no volume, no block position and no dimension, anywhere. A hub is
+  named by its random network id.
+- **No roster.** No other player's name or UUID. Members are three counts. Your own role is the only
+  role named.
+- **Nothing new is stored.** The module reads what the Chroma Hub already holds and already shows the
+  same players in game. In memory only, it keeps one rate-limit bucket per requester and the last
+  scene each hub played (for the animation switch). Nothing is logged with a player, position or
+  scene text.
+
+See [PRIVACY.md](https://github.com/Neroland/nerodecor/blob/main/PRIVACY.md) for what a hub stores.
+
+## Actions
+
+All four need **painter or higher** on the hub, the player **online** (the world-protection checks
+need the player), and pass through **the same code as the Chroma Hub GUI**. The remote can never do
+something the GUI would refuse.
+
+| Action | Body | What it does |
+|---|---|---|
+| `apply_scene` | `hub`, `slot` (0–7) | Plays a scene. The photosensitivity flash clamp applies; the hub switches to the manual trigger, as the GUI's scene buttons do |
+| `toggle_animation` | `hub` | Stops the playing scene (static colours), or resumes the last scene played (else the first filled slot) |
+| `set_zone_colour` | `hub`, `zone`, `colour` (`#RRGGBB`) | Sets every block of the zone to the colour, at the hub's current brightness. Every block must pass the world guard (game mode, spawn protection, world border, claim mods) **before** anything changes, or nothing does |
+| `set_brightness` | `hub`, `value` (0–15) | Sets the brightness of every colour in the hub's palette |
+
+A successful action answers with the hub's `chroma_hubs` row.
+
+### Limits
+
+- **One action per second per player.** A second action within the second is refused with
+  `rate_limited`. The token is spent even when the action is then refused, so the limit cannot be
+  probed for free.
+- The shared Chroma edit limiter (`chroma.editsPerSecond`, `chroma.blockOpsPerMinute`) is charged
+  exactly as for the GUI.
+- Request bodies over 1 KiB are refused.
+
+### Refusals
+
+A refusal's message is a short token the app turns into a sentence:
+
+| Token | Meaning |
+|---|---|
+| `rate_limited` | More than one action a second |
+| `not_owner` | Not your hub, or no such hub (deliberately the same) |
+| `role` | You are a viewer; painters and up only |
+| `protected` | A block is protected (claim, spawn protection, game mode, world border) |
+| `flash_rejected` | The scene flashes too fast over a large area |
+| `bad_slot`, `bad_zone`, `bad_op`, `bad_params` | Empty slot, unknown zone, out-of-range value, malformed body |
+| `inactive` | The hub block is not placed |
+| `not_linked` | Nothing to change (an empty zone, a hub with no colours) |
+| `offline` | You must be in game |
+| `chroma_disabled` | Chroma is off on this server |
 
 ## Live events
 
-**None.** A live delta exists to tell you something changed while you were away. NeroDecor's entire
-state is "which blocks are registered", which never changes at runtime, and "what colour is that
-block", which only changes because somebody was standing there with a paint gun. Neither is worth a
-push notification, so nothing is published on Core's event bus.
+Published on topic `nerodecor.chroma_hubs`, so a client subscribed to the hub list gets the section
+as its first frame and these as deltas. Each payload has `type`, `hub` and `name`:
 
-## Privacy
+| `type` | Extra fields | When |
+|---|---|---|
+| `scene_changed` | `slot` (`-1` = static), `scene`, `by_trigger` | The playing scene changed (GUI, remote, Scene Chip or trigger) |
+| `trigger_fired` | `trigger` (`redstone`/`daylight`), `slot` | A trigger switched the scene; at most one per hub per second |
+| `hub_broken` | | The hub block was removed |
 
-There is essentially no privacy surface here, and that is worth stating rather than implying.
+Every event is **player-scoped**: one copy to the hub's owner and one to each trusted member. Never
+a broadcast, never to anyone else, and no position in any payload.
 
-**NeroDecor stores no player-attributable data anywhere in the mod.** A block's paint colour is world
-state — a blockstate property mirrored onto the item through the `nerodecor:color` data component —
-and records nothing about who applied it. There is no owner, no history and no saved data of the
-mod's own, which is also why NeroDecor is not registered with Neroland Core's shared data-erasure
-hook: there would be nothing for it to erase.
+## Display surfaces: not yet
 
-Both sections are therefore **public content metadata, identical for every requester**: registry ids,
-hex colours and enum names, all of it already visible to anyone who opens the creative tab. The
-requesting player's id is read for nothing but a null check, which is the strongest form of the
-own-data-only contract this API can have.
-
-The mod's only outbound data of any kind is its opt-out crash telemetry — see
-[PRIVACY.md](https://github.com/Neroland/nerodecor/blob/main/PRIVACY.md) for the full disclosure.
+Neroland Core's **display surface** API (text, an icon and a status colour pushed to a block by
+another mod) is not wired up by this module yet.
 
 ## See also
 

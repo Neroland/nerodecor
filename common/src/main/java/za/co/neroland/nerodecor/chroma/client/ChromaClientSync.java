@@ -48,6 +48,12 @@ public final class ChromaClientSync {
     private ChromaClientSync() {
     }
 
+    /** The anchor {@code {x, y, z}} of a hub this client is watching, or {@code null} (client thread). */
+    public static int[] anchorOf(long network) {
+        Hub hub = HUBS.get(network);
+        return hub == null ? null : new int[] {hub.anchorX, hub.anchorY, hub.anchorZ};
+    }
+
     /** The colour map the tint bridge reads (any thread). */
     public static ChromaColorMap colors() {
         return COLORS;
@@ -95,6 +101,7 @@ public final class ChromaClientSync {
         if (d.clear()) {
             drop(hub);
             HUBS.remove(d.network());
+            ChromaAnimationClient.drop(d.network()); // Stage 4 layer
             return;
         }
         Set<Integer> changedIndices = new HashSet<>();
@@ -123,6 +130,7 @@ public final class ChromaClientSync {
     /** Client tick: release due section re-meshes. */
     public static void tick() {
         bind();
+        ChromaAnimationClient.tick(); // Stage 4: animation layer (no re-mesh)
         if (REMESH.pendingCount() == 0) {
             return;
         }
@@ -173,6 +181,7 @@ public final class ChromaClientSync {
         if (level != boundLevel) {
             boundLevel = level;
             HUBS.clear();
+            ChromaAnimationClient.clear();
             COLORS.clear();
             REMESH.clear();
         }
