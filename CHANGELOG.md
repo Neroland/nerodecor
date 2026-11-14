@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.8.2-beta.1] - 2026-11-14
+
+A small fix release. Still requires Neroland Core 1.17.0 or later; Core 1.17.6 also stops a damaged Chroma Hub
+save file from erroring on every world load.
+
+### Fixed
+
+- **EMI: possible "Rendersystem called from wrong thread" crash while EMI reloads.** NeroDecor's EMI info pages
+  (Chroma Hub, Chroma Linker, Paint Gun, Scene Chip) laid out their text while EMI was building its lists on a
+  background thread, which can touch the renderer and crash. The text is now laid out the first time a page is
+  shown. The pages look the same.
+
+### Changed
+
+- **Crash reporting stays off during automated test runs** (the GameTest server, client game tests and CI), so
+  test runs no longer send reports. Normal play is unchanged. Start the game with
+  `-Dnerodecor.telemetry.disabled=true` to turn crash reporting off for any run.
+
 ## [0.8.1-beta.1] - 2026-11-14
 
 The "Chroma" release: a hub-driven colour and animation system, 106 new blocks in ten collections, block entities

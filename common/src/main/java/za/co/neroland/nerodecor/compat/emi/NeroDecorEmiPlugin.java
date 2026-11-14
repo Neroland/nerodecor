@@ -1,14 +1,11 @@
 package za.co.neroland.nerodecor.compat.emi;
 
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import dev.emi.emi.api.EmiEntrypoint;
 import dev.emi.emi.api.EmiPlugin;
 import dev.emi.emi.api.EmiRegistry;
-import dev.emi.emi.api.recipe.EmiInfoRecipe;
-import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
 
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -36,8 +33,9 @@ public final class NeroDecorEmiPlugin implements EmiPlugin {
             // A leading '/' marks a synthetic recipe id (no datapack recipe behind it), as EMI asks.
             Identifier id = Identifier.fromNamespaceAndPath(NeroDecorCommon.MOD_ID,
                     "/info/" + BuiltInRegistries.ITEM.getKey(page.item()).getPath());
-            registry.addRecipe(new EmiInfoRecipe(List.<EmiIngredient>of(EmiStack.of(page.item())),
-                    List.of(page.text()), id));
+            // Not EmiInfoRecipe: it wraps its text (Font.split, which can bake glyphs on the GPU) in its
+            // constructor, and EMI runs register() on its reload worker thread. This page wraps lazily.
+            registry.addRecipe(new NeroDecorInfoEmiRecipe(id, EmiStack.of(page.item()), page.text()));
         }
         Set<Item> hidden = ViewerInfo.hidden().stream().collect(Collectors.toSet());
         if (!hidden.isEmpty()) {

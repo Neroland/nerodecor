@@ -40,7 +40,8 @@ import za.co.neroland.nerodecor.platform.Services;
  *
  * <p>{@link #init()} is called once per loader at bootstrap and reads loader facts through
  * {@link Services#PLATFORM}. Dev/IDE runs report too, tagged {@code environment=development} so they
- * stay out of release metrics.</p>
+ * stay out of release metrics. Automated test runs (game tests, client game tests, CI) never report:
+ * see {@link #automatedTestRun()}.</p>
  */
 public final class NeroDecorTelemetry {
 
@@ -91,7 +92,48 @@ public final class NeroDecorTelemetry {
         if (!NeroDecorConfig.isTelemetryEnabled()) {
             return;
         }
+        String testRun = automatedTestRun();
+        if (testRun != null) {
+            NeroDecorCommon.LOGGER.info("[NeroDecor] Telemetry off for this run ({}).", testRun);
+            return;
+        }
         start();
+    }
+
+    /** Mod ids of the test-only harness mods (NeoForge GameTest server, Fabric client game tests). */
+    private static final String[] TEST_HARNESS_MODS = {"nerodecor_gametest", "nerodecor_showcase"};
+
+    /**
+     * Why this launch is an automated test run that must never report (a deliberately failing assertion or a
+     * half-built test world is not a player's crash), or {@code null} for a normal client/server, dev runs
+     * included. Checks an explicit {@code -Dnerodecor.telemetry.disabled=true}, the loaders' game-test switches,
+     * CI, and the test harness mods being loaded.
+     */
+    static String automatedTestRun() {
+        if (Boolean.getBoolean("nerodecor.telemetry.disabled")) {
+            return "nerodecor.telemetry.disabled";
+        }
+        // Not forge.enabledGameTestNamespaces: the Forge build sets it on every dev run, client included.
+        if (System.getProperty("neoforge.enabledGameTestNamespaces") != null
+                || System.getProperty("neoforge.gameTestServer") != null) {
+            return "game test server";
+        }
+        if (System.getProperty("fabric.client.gametest") != null || System.getProperty("fabric-api.gametest") != null) {
+            return "fabric game test";
+        }
+        if (System.getenv("CI") != null) {
+            return "CI";
+        }
+        try {
+            for (String mod : TEST_HARNESS_MODS) {
+                if (Services.PLATFORM.isModLoaded(mod)) {
+                    return "test harness mod loaded";
+                }
+            }
+        } catch (RuntimeException | LinkageError e) {
+            // Mod list not available this early; the system-property checks above still apply.
+        }
+        return null;
     }
 
     private static synchronized void start() {
