@@ -60,8 +60,10 @@
 - `client/` — `ClientRenderRegistry` (render layers, BE and entity renderers, iterated by each loader),
   `client/render/bhc/BhcRenderer` (one BE-renderer shim across 1.21.1-26.3), `client/screen/chroma/` (hub
   editor screen + 3D viewport), `client/ctm/` (legacy CTM solver, unit-tested, not bound).
-- `command/` — `/nerodecor gallery` (showroom), `gallery grid` (flat catalogue); `command/showroom/` holds
-  the showroom builder (`Showroom`) and the eight bays as plan-view data (`ShowroomScenes`).
+- `command/` — `/nerodecor gallery` (showroom), `gallery grid` (collection catalogue), `capture goto`;
+  `command/showroom/` holds the showroom builder (`Showroom`), the eight bays as plan-view data (`ShowroomScenes`),
+  the registry-driven block grid (`BlockGrid`) and the camera presets (`CameraPresets`). `client/capture/` is the
+  client-only `/nerodecor capture` command (screenshots from the presets), registered per loader.
 - `compat/` — `ViewerInfo` + JEI/EMI plugins (omitted on cells without the APIs, all 1.21.x).
 - `link/` — the NeroLink module (schema 2).
 
@@ -77,14 +79,17 @@
   `test_function` registered in `NeroDecorGameTests` plus a `test_instance` JSON. `tools/gen_gametest_fixture.py`
   writes the frozen 0.7.1 fixture structure those tests load.
 - **Showcase screenshots.** A Fabric client game test (`fabric/src/gametest`, dev-only mod `nerodecor_showcase`,
-  never packaged; 26.3 Fabric cell only) builds a showcase world at midnight — the block catalogue, a Chroma room,
-  2x2 and 3x2 wall screens, the seven globes — runs `/nerodecor gallery` and shoots each showroom bay
-  (`showroom_<n>_<bay>.png`), then every Chroma Hub tab: `./gradlew :fabric:26.3:runClientGameTest` (opens a game
+  never packaged; 26.3 Fabric cell only) builds a showcase world at midnight — a Chroma room, 2x2 and 3x2 wall
+  screens, the seven globes — runs `/nerodecor gallery grid` and `/nerodecor gallery`, shoots both from the
+  `CameraPresets` (`grid_*.png`, `showroom_*.png`, the same names `/nerodecor capture` uses), runs a short
+  `capture grid 2`, then every Chroma Hub tab: `./gradlew :fabric:26.3:runClientGameTest` (opens a game
   window). Shots land in `fabric/versions/26.3/build/run/clientGameTest/screenshots` (with `showcase-report.txt`)
   and are copied to `tools/collections/.preview/screens/` (gitignored).
 - **Showroom.** `/nerodecor gallery` (creative or op) builds eight bays in a fixed 97 x 13 footprint 3 blocks
   east/south of the command position, clearing it first; `gallery clear` removes it. Bay layouts are data in
   `command/showroom/ShowroomScenes.java`; the `showroom_builds` GameTest rejects any unknown id/property/value.
+  `/nerodecor gallery grid` builds every visible block, one row per collection (`BlockGrid`); a new block needs a
+  collection there or the `block_grid_builds` GameTest fails.
 - Static analysis: `./gradlew :fabric:26.2:ecjCheck` (the VS Code Problems panel, via `tools/ecj.prefs`).
   The task only FAILS on errors.
 - A Cowork agent sandbox cannot decompile Minecraft — run builds natively (or via the local gradle MCP)

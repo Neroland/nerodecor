@@ -3,6 +3,8 @@ package za.co.neroland.nerodecor.client.screen.chroma;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mojang.blaze3d.platform.InputConstants;
+
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
@@ -18,6 +20,25 @@ import net.minecraft.network.chat.Component;
  * immediate-mode: controls are drawn and registered as click regions in the same pass. Client only.
  */
 abstract class HubScreenBase extends Screen {
+
+    // Input codes come from InputConstants, never literals: 26.3 renumbered them (mouse left/middle/right are 1/2/3,
+    // key events carry a scancode plus a separate layout keycode, Ctrl and Shift are two-bit masks), and a literal 0
+    // for "left button" made every click in the hub miss.
+
+    /** The left mouse button on this Minecraft line. */
+    protected static final int LEFT = InputConstants.MOUSE_BUTTON_LEFT;
+    /** The right mouse button on this Minecraft line. */
+    protected static final int RIGHT = InputConstants.MOUSE_BUTTON_RIGHT;
+    /** The middle mouse button on this Minecraft line. */
+    protected static final int MIDDLE = InputConstants.MOUSE_BUTTON_MIDDLE;
+    // The layout key codes onKey receives for Z and Y (26.3+: the key event's shortcut key, a lower-case character).
+    //? if >=26.3 {
+    /*protected static final int KEY_Z = 'z';
+    protected static final int KEY_Y = 'y';
+    *///?} else {
+    protected static final int KEY_Z = InputConstants.KEY_Z;
+    protected static final int KEY_Y = InputConstants.KEY_Y;
+    //?}
 
     /** A clickable control registered during the last draw. */
     private record Region(int x, int y, int w, int h, boolean enabled, Runnable action) {
@@ -41,7 +62,7 @@ abstract class HubScreenBase extends Screen {
     protected void drawOverlay(GuiGraphicsExtractor g, int mx, int my) {
     }
 
-    /** A click not taken by a registered control; true when handled. */
+    /** A click not taken by a registered control ({@code button} is {@link #LEFT} etc.); true when handled. */
     protected boolean onClick(double mx, double my, int button) {
         return false;
     }
@@ -58,8 +79,11 @@ abstract class HubScreenBase extends Screen {
         return false;
     }
 
-    /** A key press while no text box has focus; true when handled. */
-    protected boolean onKey(int key, int modifiers) {
+    /**
+     * A key press while no text box has focus; {@code key} is the layout key code (compare with {@link #KEY_Z}),
+     * {@code ctrl} is Ctrl (Cmd on macOS where the line supports it). True when handled.
+     */
+    protected boolean onKey(int key, boolean ctrl, boolean shift) {
         return false;
     }
 
@@ -218,7 +242,7 @@ abstract class HubScreenBase extends Screen {
     }
 
     private boolean clickRegions(double mx, double my, int button) {
-        if (button != 0) {
+        if (button != LEFT) {
             return false;
         }
         for (int i = regions.size() - 1; i >= 0; i--) {
@@ -308,7 +332,13 @@ abstract class HubScreenBase extends Screen {
 
     @Override
     public boolean keyPressed(KeyEvent event) {
-        if (!typing() && onKey(event.key(), event.modifiers())) {
+        //? if >=26.3 {
+        /*boolean mine = !typing()
+                && onKey(event.shortcutKey(), event.hasControlDownWithQuirk(), event.hasShiftDown());
+        *///?} else {
+        boolean mine = !typing() && onKey(event.key(), event.hasControlDown(), event.hasShiftDown());
+        //?}
+        if (mine) {
             return true;
         }
         return super.keyPressed(event);
@@ -338,7 +368,7 @@ abstract class HubScreenBase extends Screen {
 
     @Override
     public boolean keyPressed(int key, int scan, int modifiers) {
-        if (!typing() && onKey(key, modifiers)) {
+        if (!typing() && onKey(key, (modifiers & InputConstants.MOD_CONTROL) != 0, (modifiers & 1) != 0)) {
             return true;
         }
         return super.keyPressed(key, scan, modifiers);

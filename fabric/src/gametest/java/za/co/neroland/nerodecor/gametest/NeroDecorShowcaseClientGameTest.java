@@ -43,7 +43,10 @@ import za.co.neroland.nerodecor.chroma.server.ChromaNetworks;
 import za.co.neroland.nerodecor.chroma.server.ChromaScenes;
 import za.co.neroland.nerodecor.chroma.server.ChromaVerdict;
 import za.co.neroland.nerodecor.chroma.server.HubNetwork;
+import za.co.neroland.nerodecor.client.capture.CaptureSession;
 import za.co.neroland.nerodecor.client.screen.chroma.ChromaHubScreen;
+import za.co.neroland.nerodecor.command.showroom.BlockGrid;
+import za.co.neroland.nerodecor.command.showroom.CameraPresets;
 import za.co.neroland.nerodecor.command.showroom.Showroom;
 import za.co.neroland.nerodecor.command.showroom.ShowroomScenes;
 import za.co.neroland.nerodecor.content.block.ChromaHubBlockEntity;
@@ -51,13 +54,14 @@ import za.co.neroland.nerodecor.content.block.bulkhead.AnimatedDoorBlock;
 import za.co.neroland.nerodecor.registry.ChromaContent;
 
 /**
- * Showcase screenshots for reviewers. Builds, in a superflat creative world: a grid of every NeroDecor block, a closed
- * room lit by Chroma cubes linked to a hub playing a scene (entered through an open sliding door), a 3x2 wall screen
- * and the holo projector / table / seven world globes, a 2x2 wall screen; then runs {@code /nerodecor gallery} and
- * shoots each of the eight showroom bays; screenshots them from several angles, then opens the Chroma Hub screen and
- * screenshots each tab and the Scenes composer. World shots hide the HUD and are taken in spectator mode (no hand). Every shot is also copied to {@code tools/collections/.preview/screens/} (gitignored). Test-only: lives in the {@code gametest} source set and never ships in the mod jar.
+ * Showcase screenshots for reviewers. Builds, in a superflat creative world: a closed room lit by Chroma cubes linked
+ * to a hub playing a scene (entered through an open sliding door), a 3x2 wall screen and the holo projector / table /
+ * seven world globes, a 2x2 wall screen; then runs {@code /nerodecor gallery grid} and {@code /nerodecor gallery} and
+ * shoots the block grid and the showroom from the {@link CameraPresets} viewpoints (the same ones
+ * {@code /nerodecor capture} uses, with the same file names), runs a short {@code /nerodecor capture grid 2} through
+ * {@link CaptureSession}, then opens the Chroma Hub screen and screenshots each tab and the Scenes composer. World shots hide the HUD and are taken in spectator mode (no hand). Every shot is also copied to {@code tools/collections/.preview/screens/} (gitignored). Test-only: lives in the {@code gametest} source set and never ships in the mod jar.
  *
- * <p>Every shot is taken at midnight with the daylight cycle stopped, and the catalogue stands on a dark
+ * <p>Every shot is taken at midnight with the daylight cycle stopped, and the block grid stands on a dark
  * deepslate/blackstone floor, so glow layers and hub colours read against the background.
  *
  * <p>Screenshots land in {@code <run dir>/screenshots}; {@code showcase-report.txt} beside them lists each shot and
@@ -68,7 +72,6 @@ public class NeroDecorShowcaseClientGameTest implements FabricClientGameTest {
 
     private static final Logger LOG = LoggerFactory.getLogger("NeroDecorShowcase");
     private static final String NS = "nerodecor";
-    private static final int PER_ROW = 14;
     private static final String[] TABS = {"ZONES", "PALETTE", "SCENES", "ACCESS", "VIEW"};
 
     private final List<String> report = new ArrayList<>();
@@ -91,21 +94,17 @@ public class NeroDecorShowcaseClientGameTest implements FabricClientGameTest {
             this.log("base", "spawn feet y=" + this.base.getY());
             // World shots: no HUD, and spectator mode so no first-person hand or held item is drawn.
             server.runCommand("clear @a");
+            // Build while still in creative: a spectator may not link the Chroma room's blocks (PROTECTED).
+            this.step("build", () -> server.runOnServer(this::build));
             server.runCommand("gamemode spectator @a");
             ctx.runOnClient(mc -> {
                 setHudHidden(mc, true);
                 mc.player.getAbilities().flying = true;
             });
-            this.step("build", () -> server.runOnServer(this::build));
             ctx.waitTicks(60); // scene sync (twice a second), light schedule, door swing
             sp.getConnection().waitForChunksRender();
 
-            int x0 = this.base.getX() + 4;
-            int z0 = this.base.getZ() + 4;
             int y = this.base.getY();
-            this.view(ctx, sp, server, "catalogue_overview", x0 + PER_ROW - 1, y + 14, z0 - 10, 0.0F, 45.0F);
-            this.view(ctx, sp, server, "catalogue_low_west", x0 - 6, y + 3, z0 + 9, -90.0F, 15.0F);
-            this.view(ctx, sp, server, "catalogue_low_east", x0 + 2 * PER_ROW + 4, y + 3, z0 + 9, 90.0F, 15.0F);
             this.view(ctx, sp, server, "chroma_room_inside", this.base.getX() - 12.5, y + 1, this.base.getZ() + 9.5,
                     124.0F, 25.0F);
             this.view(ctx, sp, server, "chroma_room_door", this.base.getX() - 16.5, y + 1, this.base.getZ() - 4,
@@ -120,7 +119,9 @@ public class NeroDecorShowcaseClientGameTest implements FabricClientGameTest {
                     180.0F, 12.0F);
             this.view(ctx, sp, server, "wall_screen_2x2", this.base.getX() - 13.0, y, this.base.getZ() - 7.0,
                     180.0F, 12.0F);
+            this.grid(ctx, sp, server);
             this.showroom(ctx, sp, server);
+            this.capture(ctx, server);
             server.runCommand("gamemode creative @a");
             ctx.waitTicks(5);
             ctx.runOnClient(mc -> setHudHidden(mc, false)); // HUD back for the screens
@@ -141,39 +142,8 @@ public class NeroDecorShowcaseClientGameTest implements FabricClientGameTest {
         server.getCommands().performPrefixedCommand(server.createCommandSourceStack(),
                 "gamerule doDaylightCycle false");
         server.getCommands().performPrefixedCommand(server.createCommandSourceStack(), "time set midnight");
-        this.catalogue(level, this.base.getX() + 4, y, this.base.getZ() + 4);
         this.chromaRoom(level, owner, this.base.getX() - 20, y, this.base.getZ() + 2);
         this.screensAndHolo(server, level, this.base.getX() - 8, y, this.base.getZ() - 10);
-    }
-
-    /** Every registered NeroDecor block (the neon shims fold into Chroma cubes, so they are left out). */
-    private void catalogue(ServerLevel level, int x0, int y, int z0) {
-        List<Block> blocks = new ArrayList<>();
-        for (Block block : BuiltInRegistries.BLOCK) {
-            var key = BuiltInRegistries.BLOCK.getKey(block);
-            if (NS.equals(key.getNamespace()) && !(key.getPath().startsWith("neon_") && !"neon_tube".equals(key.getPath()))
-                    && !"chroma_hub".equals(key.getPath())) {
-                blocks.add(block);
-            }
-        }
-        blocks.sort((a, b) -> BuiltInRegistries.BLOCK.getKey(a).getPath()
-                .compareTo(BuiltInRegistries.BLOCK.getKey(b).getPath()));
-        // A dark floor under the whole grid (deepslate tiles, a polished blackstone pad under each block).
-        int rows = (blocks.size() + PER_ROW - 1) / PER_ROW;
-        for (int dx = -3; dx <= 2 * PER_ROW + 1; dx++) {
-            for (int dz = -3; dz <= 2 * rows + 1; dz++) {
-                level.setBlock(new BlockPos(x0 + dx, y - 1, z0 + dz), Blocks.DEEPSLATE_TILES.defaultBlockState(),
-                        Block.UPDATE_ALL);
-            }
-        }
-        int i = 0;
-        for (Block block : blocks) {
-            BlockPos pos = new BlockPos(x0 + 2 * (i % PER_ROW), y, z0 + 2 * (i / PER_ROW));
-            level.setBlock(pos.below(), Blocks.POLISHED_BLACKSTONE.defaultBlockState(), Block.UPDATE_ALL);
-            level.setBlock(pos, block.defaultBlockState(), Block.UPDATE_ALL);
-            i++;
-        }
-        this.log("catalogue", i + " blocks in rows of " + PER_ROW);
     }
 
     /** A closed 9x6x9 room: Chroma cubes in the ceiling and wall bands, linked to a hub playing a rainbow scene. */
@@ -300,11 +270,77 @@ public class NeroDecorShowcaseClientGameTest implements FabricClientGameTest {
         server.runCommand("gamemode spectator @a");
         ctx.waitTicks(80); // hub link + scene sync, door swing
         sp.getConnection().waitForChunksRender();
-        for (int i = 0; i < ShowroomScenes.ALL.size(); i++) {
-            BlockPos bay = Showroom.bayOrigin(origin, i);
-            String name = String.format(Locale.ROOT, "showroom_%d_%s", i + 1, ShowroomScenes.ALL.get(i).id());
-            this.view(ctx, sp, server, name, bay.getX() + Showroom.BAY_W / 2.0, origin.getY() + 2.0,
-                    origin.getZ() - 2.0, 0.0F, 6.0F); // level enough that the corridor's floor arrow stays out of shot
+        this.presets(ctx, sp, server, origin, CameraPresets.showroom());
+        this.log("showroom", ShowroomScenes.ALL.size() + " bays, " + CameraPresets.showroom().size() + " viewpoints");
+    }
+
+    // --- block grid -----------------------------------------------------------------------------------------------
+
+    /** Where the grid command runs from; the grid itself starts {@link BlockGrid#OFFSET} east/south of it. */
+    private BlockPos gridAt() {
+        return this.base.offset(30, 0, 30);
+    }
+
+    /** Runs {@code /nerodecor gallery grid} as the player and shoots it from every grid preset. */
+    private void grid(ClientGameTestContext ctx, TestSingleplayerContext sp, TestServerContext server) {
+        BlockPos at = this.gridAt();
+        BlockPos origin = BlockGrid.originFor(at);
+        server.runCommand("gamemode creative @a"); // linking the Chroma demo needs a player who may build
+        this.step("grid build", () -> server.runOnServer(s -> {
+            ServerPlayer player = player(s);
+            String command = String.format(Locale.ROOT, "execute positioned %d %d %d run nerodecor gallery grid",
+                    at.getX(), at.getY(), at.getZ());
+            s.getCommands().performPrefixedCommand(player.createCommandSourceStack(), command);
+        }));
+        server.runCommand("gamemode spectator @a");
+        ctx.waitTicks(60); // hub link + scene sync
+        sp.getConnection().waitForChunksRender();
+        BlockGrid.Layout layout = BlockGrid.layout();
+        this.log("grid", BlockGrid.visibleBlocks().size() + " visible blocks in " + layout.rows().size()
+                + " rows, " + layout.width() + " x " + layout.depth() + (layout.unsorted().isEmpty() ? ""
+                : ", UNSORTED " + layout.unsorted()));
+        if (!layout.unsorted().isEmpty()) {
+            this.log("FAIL grid", "blocks with no collection: " + layout.unsorted());
+        }
+        this.presets(ctx, sp, server, origin, CameraPresets.grid(layout));
+    }
+
+    /** Shoots each preset relative to {@code origin}, with the preset's field of view. */
+    private void presets(ClientGameTestContext ctx, TestSingleplayerContext sp, TestServerContext server,
+                         BlockPos origin, List<CameraPresets.Preset> presets) {
+        int fov = ctx.computeOnClient(mc -> mc.options.fov().get());
+        for (CameraPresets.Preset p : presets) {
+            ctx.runOnClient(mc -> mc.options.fov().set(p.fov()));
+            this.view(ctx, sp, server, p.id(), origin.getX() + p.dx(), origin.getY() + p.dy(),
+                    origin.getZ() + p.dz(), p.yaw(), p.pitch());
+        }
+        ctx.runOnClient(mc -> mc.options.fov().set(fov));
+    }
+
+    /**
+     * Runs the real {@code /nerodecor capture grid 2} flow ({@link CaptureSession}) and checks it saved two shots under
+     * {@code screenshots/nerodecor}. Restores spectator mode and the HUD state the rest of the test expects.
+     */
+    private void capture(ClientGameTestContext ctx, TestServerContext server) {
+        this.step("capture", () -> {
+            Path dir = FabricLoader.getInstance().getGameDir().resolve("screenshots").resolve("nerodecor");
+            int before = count(dir);
+            ctx.runOnClient(mc -> CaptureSession.start(CaptureSession.GRID, 2));
+            ctx.waitFor(mc -> !CaptureSession.running(), 20 * 60);
+            ctx.waitTicks(20);
+            int after = count(dir);
+            this.log(after - before == 2 ? "capture" : "FAIL capture", "capture grid 2 saved " + (after - before)
+                    + " screenshot(s)");
+            ctx.runOnClient(mc -> setHudHidden(mc, true));
+        });
+    }
+
+    private static int count(Path dir) throws IOException {
+        if (!Files.isDirectory(dir)) {
+            return 0;
+        }
+        try (var files = Files.list(dir)) {
+            return (int) files.filter(f -> f.getFileName().toString().endsWith(".png")).count();
         }
     }
 
@@ -447,7 +483,8 @@ public class NeroDecorShowcaseClientGameTest implements FabricClientGameTest {
 
     private void shot(ClientGameTestContext ctx, String name) {
         this.shot++;
-        String file = name.startsWith("showroom_") ? name : String.format(Locale.ROOT, "%02d_%s", this.shot, name);
+        String file = name.startsWith("showroom_") || name.startsWith("grid_") ? name
+                : String.format(Locale.ROOT, "%02d_%s", this.shot, name);
         Path path = ctx.takeScreenshot(file);
         this.report.add(String.format(Locale.ROOT, "SHOT    %-28s %s", file, path.getFileName()));
         this.copyToPreview(path, file + ".png");

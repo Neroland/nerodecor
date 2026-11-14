@@ -20,6 +20,7 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.worldselection.WorldCreationUiState;
+import net.minecraft.client.input.KeyEvent;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
@@ -40,11 +41,12 @@ import za.co.neroland.nerodecor.content.block.ChromaHubBlockEntity;
 import za.co.neroland.nerodecor.registry.ChromaContent;
 
 /**
- * Regression test for "nothing works when I click inside the Chroma Hub": opens the hub by using the block, then
- * drives the screen only through real input (cursor moves, button presses, wheel, typed characters) at GUI scale 2
- * and 3, and asserts each control reacted: tab switches, a typed zone rename that must reach the server, the colour
- * picker, the 3D view's orbit drag and wheel zoom. Results go to {@code hub-input.txt} beside the screenshots; any
- * failed check fails the test. Test-only; no player data is written.
+ * Regression test for "nothing works when I click inside the Chroma Hub" (26.3 renumbered the mouse buttons and
+ * the hub compared against a literal 0): opens the hub (by using the block when the aim lands, else from the server),
+ * then drives it through real input (cursor moves, button presses, wheel, typed characters) at GUI scale 2 and 3 and
+ * asserts each control reacted: tab switches, a typed zone rename that must reach the server, the colour picker, a
+ * brush click in the 3D view and its Ctrl+Z undo, the orbit drag and the wheel zoom. Results go to
+ * {@code hub-input.txt} beside the screenshots; any failed check fails the test. Test-only; no player data is written.
  */
 @SuppressWarnings("UnstableApiUsage")
 public class NeroDecorHubInputClientGameTest implements FabricClientGameTest {
@@ -187,6 +189,19 @@ public class NeroDecorHubInputClientGameTest implements FabricClientGameTest {
                     (int) this.field(view, "h")};
         });
         this.log(p + "view", "x=" + v[0] + " y=" + v[1] + " w=" + v[2] + " h=" + v[3]);
+        // Brush (the default tool): a left click on a block stages a paint; Ctrl+Z takes it back.
+        int ops0 = this.pendingOps(ctx);
+        this.clickGui(ctx, in, v[0] + v[2] / 2.0, v[1] + v[3] / 2.0, LEFT);
+        int ops1 = this.pendingOps(ctx);
+        this.check(p + "view_brush_click", ops1 > ops0, "pending ops " + ops0 + " -> " + ops1);
+        // The 26.3 test harness's holdControl() presses the Ctrl key but sends the next key without the Ctrl
+        // modifier, so the shortcut is delivered as the key event a real Ctrl+Z produces (scancode, layout key code
+        // and modifiers from InputConstants) straight to the screen's keyPressed.
+        ctx.runOnClient(mc -> mc.gui.screen().keyPressed(
+                new KeyEvent(InputConstants.KEY_Z, 'z', InputConstants.MOD_CONTROL)));
+        ctx.waitTick();
+        int ops2 = this.pendingOps(ctx);
+        this.check(p + "ctrl_z_undo", ops2 == ops0, "pending ops " + ops1 + " -> " + ops2);
         double yaw0 = this.camera(ctx, "yaw");
         this.cursorAtGui(ctx, in, v[0] + v[2] / 2.0, v[1] + v[3] / 2.0);
         in.holdMouse(RIGHT);
@@ -294,6 +309,11 @@ public class NeroDecorHubInputClientGameTest implements FabricClientGameTest {
                 throw new IllegalStateException(e);
             }
         });
+    }
+
+    private int pendingOps(ClientGameTestContext ctx) {
+        return ctx.computeOnClient(mc -> ((za.co.neroland.nerodecor.chroma.editor.EditorModel) this.field(
+                mc.gui.screen(), "model")).pendingOps());
     }
 
     private double camera(ClientGameTestContext ctx, String name) {

@@ -1477,7 +1477,7 @@ public class ChromaHubScreen extends HubScreenBase {
 
     @Override
     protected boolean onClick(double mx, double my, int button) {
-        if (pickerShown() && button == 0) {
+        if (pickerShown() && button == LEFT) {
             if (inside(mx, my, pickerX, bodyTop, 96, 64)) {
                 drag = Drag.SV;
             } else if (inside(mx, my, pickerX + 98, bodyTop, 18, 64)) {
@@ -1494,7 +1494,7 @@ public class ChromaHubScreen extends HubScreenBase {
             return false;
         }
         int sx = view.x() + view.width() + 4;
-        if (button == 0 && inside(mx, my, sx, view.y(), 8, view.height())) {
+        if (button == LEFT && inside(mx, my, sx, view.y(), 8, view.height())) {
             drag = Drag.SLICE;
             sliceFromMouse(my);
             return true;
@@ -1502,15 +1502,15 @@ public class ChromaHubScreen extends HubScreenBase {
         if (!view.contains(mx, my)) {
             return false;
         }
-        if (button == 1) {
+        if (button == RIGHT) {
             drag = Drag.ORBIT;
             return true;
         }
-        if (button == 2) {
+        if (button == MIDDLE) {
             drag = Drag.PAN;
             return true;
         }
-        if (button != 0) {
+        if (button != LEFT) {
             return false;
         }
         if (tool == Tool.ORBIT) {
@@ -1679,10 +1679,8 @@ public class ChromaHubScreen extends HubScreenBase {
     }
 
     @Override
-    protected boolean onKey(int key, int modifiers) {
-        boolean ctrl = (modifiers & 2) != 0;
-        boolean shift = (modifiers & 1) != 0;
-        if (ctrl && key == 90) { // Z
+    protected boolean onKey(int key, boolean ctrl, boolean shift) {
+        if (ctrl && key == KEY_Z) {
             if (shift) {
                 redo();
             } else {
@@ -1690,7 +1688,7 @@ public class ChromaHubScreen extends HubScreenBase {
             }
             return true;
         }
-        if (ctrl && key == 89) { // Y
+        if (ctrl && key == KEY_Y) {
             redo();
             return true;
         }

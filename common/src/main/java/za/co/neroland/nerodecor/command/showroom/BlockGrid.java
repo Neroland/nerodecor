@@ -42,10 +42,13 @@ import za.co.neroland.nerodecor.registry.RegistrationProvider.RegistryEntry;
  * {@link #exhibit}; anything it does not list stands alone in its default state.
  *
  * <p>Rows run west to east. Each row is {@value #ROW_PITCH} blocks deep: a dark backing wall {@value #WALL_H} high on
- * the north side (face-mounted pieces hang on it), the exhibit line in front of it, then a three-block walkway to the
+ * the north side (face-mounted pieces hang on it), the exhibit line in front of it, then a four-block walkway to the
  * south to stand in. A holo sign on a plinth labels each row at its west end; exhibits sit {@value #GAP} blocks apart.
- * After the collections come a paint swatch row (a hull block in each {@link DecorColor}) and a Chroma demo strip (a
- * hub linked to the lights beside it, playing a slow wave).
+ * A collection longer than {@value #MAX_ROW} columns continues on a second row. After the collections come a paint
+ * swatch row (a hull block in each {@link DecorColor}) and a Chroma demo strip (a hub linked to the lights beside it,
+ * playing a slow wave). The rows are dealt into a west and an east half, side by side with an aisle between, so the
+ * whole grid is wider than it is deep and frames well from above; the paint row ends the west half and the demo the
+ * east half.
  *
  * <p>Like the showroom, the footprint is a fixed box for a given registry ({@link #min}..{@link #max}); building first
  * clears it (air, no drops, any hub network in it deleted), so rebuilding at the same place gives the same result.
@@ -54,20 +57,24 @@ public final class BlockGrid {
 
     /** Offset from the command position to the footprint's north-west corner (east and south). */
     public static final int OFFSET = 3;
-    public static final int ROW_PITCH = 5;
-    public static final int WALL_H = 4;
+    public static final int ROW_PITCH = 6;
+    public static final int WALL_H = 3;
     public static final int GAP = 2;
     /** First exhibit column (the label stands at x 1). */
     public static final int FIRST_X = 4;
     public static final int CLEAR_ABOVE = 8;
-    private static final int LIGHT_EVERY = 6;
+    /** A collection longer than this (in columns) continues on a second row. */
+    public static final int MAX_ROW = 60;
+    /** Columns between the west and east halves of the grid. */
+    public static final int AISLE = 4;
+    private static final int LIGHT_EVERY = 4;
 
     private static final String FLOOR = "minecraft:deepslate_tiles";
     private static final String EXHIBIT_FLOOR = "minecraft:polished_blackstone";
     private static final String EDGE = "minecraft:polished_blackstone_bricks";
     private static final String WALL = "minecraft:polished_deepslate";
     private static final String WALL_CAP = "minecraft:deepslate_tiles";
-    private static final String LIGHT = "minecraft:light[level=11]";
+    private static final String LIGHT = "minecraft:light[level=13]";
 
     public static final String PAINT_ROW = "PAINT SWATCHES";
     public static final String CHROMA_DEMO_ROW = "CHROMA DEMO";
@@ -335,8 +342,8 @@ public final class BlockGrid {
     public record Placed(String id, Exhibit exhibit, int x) {
     }
 
-    /** One row: its label, exhibits, and the z of its backing wall. */
-    public record Row(String title, List<Placed> exhibits, int z, int width) {
+    /** One row: its label, exhibits, its west column {@code x0}, the z of its backing wall, and its width. */
+    public record Row(String title, List<Placed> exhibits, int x0, int z, int width) {
 
         public int exhibitZ() {
             return z + 1;
@@ -374,35 +381,60 @@ public final class BlockGrid {
                 byCollection.get(c).add(path);
             }
         }
-        List<Row> rows = new ArrayList<>();
-        int maxWidth = 0;
-        for (Map.Entry<String, List<String>> e : byCollection.entrySet()) {
-            Row row = row(e.getKey(), e.getValue(), rows.size());
-            rows.add(row);
-            maxWidth = Math.max(maxWidth, row.width());
-        }
         if (!unsorted.isEmpty()) {
-            Row row = row(UNSORTED_ROW, unsorted, rows.size());
-            rows.add(row);
-            maxWidth = Math.max(maxWidth, row.width());
+            byCollection.put(UNSORTED_ROW, unsorted);
         }
-        int paintWidth = FIRST_X + DecorColor.values().length + 2;
-        rows.add(new Row(PAINT_ROW, List.of(), rows.size() * ROW_PITCH, paintWidth));
-        rows.add(new Row(CHROMA_DEMO_ROW, List.of(), rows.size() * ROW_PITCH, FIRST_X + CHROMA_DEMO_WIDTH + 2));
-        maxWidth = Math.max(maxWidth, Math.max(paintWidth, FIRST_X + CHROMA_DEMO_WIDTH + 2));
-        return new Layout(List.copyOf(rows), maxWidth + 1, rows.size() * ROW_PITCH + 1, List.copyOf(unsorted));
+        // Lines: each collection, wrapped at MAX_ROW columns.
+        List<Row> lines = new ArrayList<>();
+        for (Map.Entry<String, List<String>> e : byCollection.entrySet()) {
+            lines.addAll(lines(e.getKey(), e.getValue()));
+        }
+        // Deal them into a west half and an east half; the paint row ends the west half and the Chroma demo the
+        // east half, so both have open ground to the south to be seen from.
+        int west = (lines.size() + 1) / 2;
+        lines.add(west, new Row(PAINT_ROW, List.of(), 0, 0, FIRST_X + DecorColor.values().length + 2));
+        west++;
+        lines.add(new Row(CHROMA_DEMO_ROW, List.of(), 0, 0, FIRST_X + CHROMA_DEMO_WIDTH + 2));
+        int westWidth = 0;
+        for (int i = 0; i < west; i++) {
+            westWidth = Math.max(westWidth, lines.get(i).width());
+        }
+        int eastX = westWidth + AISLE;
+        int eastWidth = 0;
+        List<Row> rows = new ArrayList<>();
+        for (int i = 0; i < lines.size(); i++) {
+            Row line = lines.get(i);
+            boolean inWest = i < west;
+            int x0 = inWest ? 0 : eastX;
+            int z = (inWest ? i : i - west) * ROW_PITCH;
+            if (!inWest) {
+                eastWidth = Math.max(eastWidth, line.width());
+            }
+            rows.add(new Row(line.title(), line.exhibits(), x0, z, line.width()));
+        }
+        int depth = Math.max(west, lines.size() - west) * ROW_PITCH + 1;
+        return new Layout(List.copyOf(rows), eastX + eastWidth + 1, depth, List.copyOf(unsorted));
     }
 
-    private static Row row(String title, List<String> ids, int index) {
+    /** A collection's row, wrapped onto further rows ("TITLE 2") past {@link #MAX_ROW} columns. */
+    private static List<Row> lines(String title, List<String> ids) {
+        List<Row> out = new ArrayList<>();
         List<Placed> placed = new ArrayList<>();
         int x = FIRST_X;
         for (String id : ids) {
             Exhibit ex = exhibit(id);
+            if (!placed.isEmpty() && x + ex.width() > MAX_ROW) {
+                out.add(new Row(out.isEmpty() ? title : title + " " + (out.size() + 1), List.copyOf(placed), 0, 0,
+                        x - GAP + 2));
+                placed.clear();
+                x = FIRST_X;
+            }
             placed.add(new Placed(id, ex, x));
             x += ex.width() + GAP;
         }
-        int width = (ids.isEmpty() ? FIRST_X : x - GAP) + 2;
-        return new Row(title, List.copyOf(placed), index * ROW_PITCH, width);
+        out.add(new Row(out.isEmpty() ? title : title + " " + (out.size() + 1), List.copyOf(placed), 0, 0,
+                (placed.isEmpty() ? FIRST_X : x - GAP) + 2));
+        return out;
     }
 
     // --- footprint --------------------------------------------------------------------------------------------------
@@ -457,24 +489,24 @@ public final class BlockGrid {
         List<BlockPos> signs = new ArrayList<>();
         List<String[]> signText = new ArrayList<>();
         for (Row row : layout.rows()) {
-            int rw = row.width();
-            for (int x = 1; x < rw - 1; x++) {
+            BlockPos at = origin.offset(row.x0(), 0, 0);
+            for (int x = 1; x < row.width() - 1; x++) {
                 for (int y = 0; y < WALL_H; y++) {
-                    b.put(origin.offset(x, y, row.z()), y == WALL_H - 1 ? WALL_CAP : WALL, row.title());
+                    b.put(at.offset(x, y, row.z()), y == WALL_H - 1 ? WALL_CAP : WALL, row.title());
                 }
-                b.put(origin.offset(x, -1, row.exhibitZ()), EXHIBIT_FLOOR, row.title());
-                if (x % LIGHT_EVERY == 3) {
-                    b.put(origin.offset(x, 3, row.z() + 3), LIGHT, row.title());
+                b.put(at.offset(x, -1, row.exhibitZ()), EXHIBIT_FLOOR, row.title());
+                if (x % LIGHT_EVERY == 2) {
+                    b.put(at.offset(x, WALL_H, row.z() + 3), LIGHT, row.title());
                 }
             }
             // Label: a holo sign on a plinth at the west end of the exhibit line.
-            b.put(origin.offset(1, 0, row.exhibitZ()), "holo_plinth", row.title());
-            b.put(origin.offset(1, 1, row.exhibitZ()), "holo_sign[facing=south]", row.title());
-            signs.add(origin.offset(1, 1, row.exhibitZ()));
+            b.put(at.offset(1, 0, row.exhibitZ()), "holo_plinth", row.title());
+            b.put(at.offset(1, 1, row.exhibitZ()), "holo_sign[facing=south]", row.title());
+            signs.add(at.offset(1, 1, row.exhibitZ()));
             signText.add(new String[] {row.title(), subtitle(row)});
             for (Placed p : row.exhibits()) {
                 for (Cell c : p.exhibit().cells()) {
-                    BlockPos pos = origin.offset(p.x() + c.dx(), c.dy(), row.exhibitZ());
+                    BlockPos pos = at.offset(p.x() + c.dx(), c.dy(), row.exhibitZ());
                     if ("minecraft:air".equals(c.spec())) {
                         continue; // room for a multiblock's other half
                     }
@@ -492,7 +524,7 @@ public final class BlockGrid {
         Block swatch = Showroom.index().get(NeroDecorCommon.MOD_ID + ":" + SWATCH);
         if (paint != null && swatch != null && swatch.defaultBlockState().hasProperty(DecorProperties.COLOR)) {
             for (int k = 0; k < colours.length; k++) {
-                b.put(origin.offset(FIRST_X + k, 0, paint.exhibitZ()),
+                b.put(origin.offset(paint.x0() + FIRST_X + k, 0, paint.exhibitZ()),
                         swatch.defaultBlockState().setValue(DecorProperties.COLOR, colours[k]));
             }
         } else {
@@ -503,7 +535,7 @@ public final class BlockGrid {
             for (String[] cell : CHROMA_DEMO) {
                 int x = Integer.parseInt(cell[0]);
                 int y = Integer.parseInt(cell[1]);
-                b.put(origin.offset(FIRST_X + x, y, demo.exhibitZ()), cell[2], CHROMA_DEMO_ROW);
+                b.put(origin.offset(demo.x0() + FIRST_X + x, y, demo.exhibitZ()), cell[2], CHROMA_DEMO_ROW);
             }
         }
         b.resolveAll();
@@ -565,7 +597,7 @@ public final class BlockGrid {
     /** Links every capable block in the demo strip to its hub and plays a slow cyan-to-violet wave along the row. */
     private static void playDemo(ServerLevel level, BlockPos origin, Row demo, @Nullable ServerPlayer owner,
                                  List<String> errors, List<String> notes) {
-        BlockPos hub = origin.offset(FIRST_X, 0, demo.exhibitZ());
+        BlockPos hub = origin.offset(demo.x0() + FIRST_X, 0, demo.exhibitZ());
         long id = level.getBlockEntity(hub) instanceof za.co.neroland.nerodecor.content.block.ChromaHubBlockEntity h
                 ? h.networkId() : 0L;
         if (owner == null || id == 0L) {
@@ -574,8 +606,8 @@ public final class BlockGrid {
             return;
         }
         ChromaNetworks.Selection selection = ChromaNetworks.linkBox(level, owner, id,
-                origin.offset(FIRST_X, 0, demo.exhibitZ()),
-                origin.offset(FIRST_X + CHROMA_DEMO_WIDTH - 1, WALL_H - 1, demo.exhibitZ()));
+                origin.offset(demo.x0() + FIRST_X, 0, demo.exhibitZ()),
+                origin.offset(demo.x0() + FIRST_X + CHROMA_DEMO_WIDTH - 1, WALL_H - 1, demo.exhibitZ()));
         if (!selection.verdict().isOk() || selection.linked() == 0) {
             errors.add("chroma demo: linking failed: " + selection.verdict());
             return;

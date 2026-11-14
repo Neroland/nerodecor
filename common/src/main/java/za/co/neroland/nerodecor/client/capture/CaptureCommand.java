@@ -6,6 +6,7 @@ import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.builder.RequiredArgumentBuilder;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.network.protocol.game.ServerboundChatCommandPacket;
 
 /**
  * The client-side {@code /nerodecor capture [showroom|grid|all|here] [count]} command, built once for every loader's
@@ -40,11 +41,19 @@ public final class CaptureCommand {
 
     /** Sends a {@code /nerodecor ...} command the client does not handle to the server. */
     private static int forward(String command) {
-        Minecraft mc = Minecraft.getInstance();
+        return toServer(Minecraft.getInstance(), command) ? 1 : 0;
+    }
+
+    /**
+     * Sends a command straight to the server as an unsigned command packet. {@code ClientPacketListener.sendCommand}
+     * would offer it to the client command dispatcher first (every loader hooks it there), which would loop back into
+     * this command; none of the commands sent this way has an argument that needs signing.
+     */
+    static boolean toServer(Minecraft mc, String command) {
         if (mc.getConnection() == null) {
-            return 0;
+            return false;
         }
-        mc.getConnection().sendCommand(command);
-        return 1;
+        mc.getConnection().send(new ServerboundChatCommandPacket(command));
+        return true;
     }
 }

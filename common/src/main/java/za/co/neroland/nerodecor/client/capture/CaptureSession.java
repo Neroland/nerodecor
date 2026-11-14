@@ -252,7 +252,7 @@ public final class CaptureSession {
     private void command(String command) throws Exception {
         this.onClient(() -> {
             if (this.mc.getConnection() != null) {
-                this.mc.getConnection().sendCommand(command);
+                CaptureCommand.toServer(this.mc, command);
             }
         });
         Thread.sleep(150L);
@@ -264,7 +264,11 @@ public final class CaptureSession {
 
     private static void say(Minecraft mc, String text) {
         if (mc.player != null) {
+            //? if >=26.1 {
             mc.player.sendSystemMessage(Component.literal("[NeroDecor] " + text));
+            //?} else {
+            /*mc.player.displayClientMessage(Component.literal("[NeroDecor] " + text), false);
+            *///?}
         }
     }
 

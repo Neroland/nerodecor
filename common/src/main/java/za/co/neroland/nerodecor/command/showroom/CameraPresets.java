@@ -13,8 +13,8 @@ import java.util.Optional;
  * south, -90 east, 90 west, 180 north; positive pitch looks down) and a field of view in degrees.
  *
  * <p>The showroom gets a low, wide hero shot from the corridor and a detail shot inside every bay, plus one shot down
- * the corridor. The grid gets six: two high overviews, two low passes along rows, the paint swatches and the Chroma
- * demo strip. Grid presets follow the grid's live layout, so they keep framing it as blocks are added.
+ * the corridor. The grid gets six: three high overviews, a pass along the first row, the paint swatches and the
+ * Chroma demo strip. Grid presets follow the grid's live layout, so they keep framing it as blocks are added.
  *
  * <p>Pure data: no client classes, so the server's {@code capture goto} resolves the same ids.
  */
@@ -29,11 +29,11 @@ public final class CameraPresets {
 
     /** Detail-shot overrides per bay id: {x, y, z (bay-local), yaw, pitch}. */
     private static final Map<String, double[]> DETAIL = Map.of(
-            // The airlock's first bulkhead stands two blocks in: shoot the open doors from just in front of them.
-            "airlock", new double[] {2.0, 0.6, 0.2, -30.0, 8.0},
-            "seven_worlds", new double[] {0.8, 3.0, 0.8, -40.0, 24.0},
+            // The airlock's first bulkhead stands two blocks in: shoot the chamber behind it, towards the blast door.
+            "airlock", new double[] {9.8, 0.6, 3.0, 58.0, 6.0},
+            "seven_worlds", new double[] {2.5, 3.0, 1.0, -35.0, 26.0},
             "chroma_corridor", new double[] {5.5, 1.0, 0.5, 0.0, 6.0});
-    private static final double[] DETAIL_DEFAULT = {1.0, 3.2, 0.6, -45.0, 28.0};
+    private static final double[] DETAIL_DEFAULT = {1.8, 3.2, 0.6, -45.0, 28.0};
 
     private CameraPresets() {
     }
@@ -41,7 +41,7 @@ public final class CameraPresets {
     /** Showroom presets, offsets from the showroom origin. */
     public static List<Preset> showroom() {
         List<Preset> out = new ArrayList<>();
-        out.add(new Preset("showroom_corridor", SHOWROOM, -6.0, 1.0, 1.5, -90.0F, 4.0F, 70));
+        out.add(new Preset("showroom_corridor", SHOWROOM, 0.5, 3.0, 0.5, -72.0F, 16.0F, 75));
         for (int i = 0; i < ShowroomScenes.ALL.size(); i++) {
             String bay = ShowroomScenes.ALL.get(i).id();
             double bx = 1 + i * Showroom.PITCH;
@@ -65,24 +65,22 @@ public final class CameraPresets {
         double w = layout.width();
         double d = layout.depth();
         List<Preset> out = new ArrayList<>();
-        out.add(new Preset("grid_overview", GRID, w / 2.0, 30.0, d + 12.0, 180.0F, 42.0F, 80));
-        out.add(new Preset("grid_overview_east", GRID, w + 8.0, 20.0, d * 0.75, 135.0F, 32.0F, 75));
-        out.add(new Preset("grid_overview_west", GRID, -8.0, 20.0, d * 0.75, -135.0F, 32.0F, 75));
+        // High and oblique from the south, then from each southern corner.
+        out.add(new Preset("grid_overview", GRID, w / 2.0, 30.0, d + 16.0, 180.0F, 45.0F, 75));
+        out.add(new Preset("grid_overview_east", GRID, w + 4.0, 18.0, d + 4.0, 135.0F, 30.0F, 75));
+        out.add(new Preset("grid_overview_west", GRID, -4.0, 18.0, d + 4.0, -135.0F, 30.0F, 75));
+        // Over the first row's walkway at its west end, looking along it at the exhibits' fronts.
         BlockGrid.Row first = layout.rows().get(0);
-        out.add(new Preset("grid_row_original", GRID, 1.5, 1.0, first.z() + 3.8, -115.0F, 10.0F, 70));
-        BlockGrid.Row bulkhead = layout.row("BULKHEAD");
-        if (bulkhead != null) {
-            out.add(new Preset("grid_row_bulkhead", GRID, 1.5, 1.0, bulkhead.z() + 3.8, -115.0F, 10.0F, 70));
-        }
+        out.add(new Preset("grid_row_original", GRID, first.x0() + 1.5, 4.0, first.z() + 5.0, -118.0F, 32.0F, 70));
         BlockGrid.Row paint = layout.row(BlockGrid.PAINT_ROW);
         if (paint != null) {
-            out.add(new Preset("grid_paint", GRID, BlockGrid.FIRST_X + 8.5, 4.5, paint.z() + 7.5, 180.0F, 32.0F,
-                    70));
+            out.add(new Preset("grid_paint", GRID, paint.x0() + BlockGrid.FIRST_X + 8.5, 2.0, paint.z() + 11.0,
+                    180.0F, 10.0F, 70));
         }
         BlockGrid.Row demo = layout.row(BlockGrid.CHROMA_DEMO_ROW);
         if (demo != null) {
-            out.add(new Preset("grid_chroma_demo", GRID, BlockGrid.FIRST_X + 11.5, 1.5, demo.z() + 12.0, 180.0F,
-                    8.0F, 70));
+            out.add(new Preset("grid_chroma_demo", GRID, demo.x0() + BlockGrid.FIRST_X + 11.5, 1.5, demo.z() + 12.0,
+                    180.0F, 8.0F, 70));
         }
         return out;
     }

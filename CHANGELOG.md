@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.8.0-beta.1] - 2026-11-14
+## [0.8.1-beta.1] - 2026-11-14
 
 The "Chroma" release: a hub-driven colour and animation system, 106 new blocks in ten collections, block entities
 for doors, holograms and screens, and a walkable showroom. Existing worlds load: 0.7.x neon cubes turn into Chroma
@@ -88,11 +88,23 @@ Cubes of the same colour on their own. Still requires Neroland Core 1.17.0 or la
   with its own wall, floor and ceiling materials: reactor hall, observation deck, command bridge, server vault,
   airlock sequence, Chroma corridor (playing a slow wave scene), Seven Worlds museum and ancient vault.
   `/nerodecor gallery clear` removes the showroom remembered for this dimension (and refuses when there is none),
-  reporting the blocks and hub networks it removed; the old flat layout is `/nerodecor gallery grid`.
+  reporting the blocks and hub networks it removed.
+- **Block grid.** `/nerodecor gallery grid` (operators only) builds a catalogue of every obtainable NeroDecor block,
+  read from the registry so new blocks appear on their own: one row per collection on a dark floor, each block in
+  a sensible default state against a backing wall (doors closed, the blast door whole, connecting blocks as a run
+  of three, connected surfaces as a 3 x 2 panel), a holo sign label per row, a paint swatch row in all 17 colours
+  and a Chroma demo strip playing a slow wave. A block no collection claims is shown in an UNSORTED row and
+  reported. `/nerodecor gallery grid clear` removes the grid remembered for this dimension.
+- **`/nerodecor capture`.** A client command, `/nerodecor capture [showroom|grid|all|here] [count]`, that saves
+  screenshots from fixed camera angles (a hero and a detail shot per showroom bay, six over the grid, or your
+  current view) to `screenshots/nerodecor/<yyyyMMdd-HHmmss>_<view>.png`. It hides the HUD, sets each view's field
+  of view, moves operators there (spectator mode, night) with the new operator-only `/nerodecor capture goto`,
+  and restores everything afterwards. Works on every supported loader and version.
 - **Test harnesses.** JUnit tests for the pure Chroma code, server GameTests on NeoForge 26.3 (placement, 0.7.1
-  save fixture, Chroma links, scenes, privacy, recipes, showroom), and a Fabric client game test that screenshots
-  the showcase, the eight showroom bays, every hub tab and the scene composer, plus a Chroma layer performance
-  pass (4,096 animated cubes on one hub).
+  save fixture, Chroma links, scenes, privacy, recipes, showroom, block grid), and a Fabric client game test that
+  screenshots the showcase, the block grid and the showroom from the capture viewpoints, runs a short capture,
+  and shoots every hub tab and the scene composer, plus a Chroma layer performance pass (4,096 animated cubes on
+  one hub).
 
 ### Changed
 
@@ -105,8 +117,9 @@ Cubes of the same colour on their own. Still requires Neroland Core 1.17.0 or la
   one malformed network entry is skipped and counted instead of sending the whole file to recovery.
 - Paintable slabs, stairs, walls and panes now show their paint colour, and pre-dyed items show it in the
   inventory.
-- `/nerodecor gallery` builds the showroom; the old grid moved to `/nerodecor gallery grid` (and
-  `/nerodecor gallery grid clear`). Every gallery command now needs operator rights (permission level 2):
+- `/nerodecor gallery` builds the showroom; the old flat grid is replaced by the collection catalogue at
+  `/nerodecor gallery grid`, and `gallery grid clear` now clears the remembered grid instead of the area around
+  you. Every gallery command now needs operator rights (permission level 2):
   creative mode alone is no longer enough, because the showroom clears a large box and removes any hub network
   whose hub stood in it, whoever owns it.
 

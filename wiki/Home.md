@@ -12,7 +12,8 @@ Built on **Neroland Core**.
 
 - [Chroma Guide](Chroma-Guide.md) — hub, linker, zones, colours, scenes, triggers, the editor, Scene Chips
   and share codes, the NeroLink remote, privacy and photosensitivity, in order.
-- [Showroom](Showroom.md) — `/nerodecor gallery`: eight staged bays that show every collection in use.
+- [Showroom](Showroom.md) — `/nerodecor gallery`: eight staged bays that show every collection in use, the
+  `gallery grid` block catalogue, and `/nerodecor capture` screenshots.
 
 ## Collections
 
