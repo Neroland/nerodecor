@@ -3,6 +3,8 @@ package za.co.neroland.nerodecor.fabric;
 import java.util.List;
 
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
+import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
@@ -26,6 +28,7 @@ import za.co.neroland.nerodecor.client.ChromaTintBridge;
 import za.co.neroland.nerodecor.chroma.client.ChromaClientSync;
 import za.co.neroland.nerodecor.platform.FabricChromaNet;
 import za.co.neroland.nerodecor.client.NeroDecorClient;
+import za.co.neroland.nerodecor.client.capture.CaptureCommand;
 
 /** Fabric client entry point for NeroDecor. */
 public final class NeroDecorFabricClient implements ClientModInitializer {
@@ -53,6 +56,9 @@ public final class NeroDecorFabricClient implements ClientModInitializer {
         // Chroma: clientbound packets + budgeted section re-meshes.
         FabricChromaNet.registerClient();
         ClientTickEvents.END_CLIENT_TICK.register(mc -> ChromaClientSync.tick());
+        // /nerodecor capture (client-side screenshots of the showroom and block grid).
+        ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) ->
+                dispatcher.register(CaptureCommand.<FabricClientCommandSource>node()));
     }
 
     /** Iterates {@link ClientRenderRegistry} once (after NeroDecorClient.initClient() ran the packages' register()). */

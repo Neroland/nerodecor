@@ -163,8 +163,14 @@ public final class Showroom {
      * (permission level 2): only an operator may remove another player's hub network this way.
      */
     public static Cleared clear(ServerLevel level, BlockPos origin) {
-        BlockPos lo = min(origin);
-        BlockPos hi = max(origin);
+        return clearBox(level, min(origin), max(origin));
+    }
+
+    /**
+     * Empties the box {@code lo..hi} (inclusive; air, no drops, attached blocks first) and deletes every Chroma hub
+     * network whose hub stood in it, whoever owns it. Shared by the showroom and the block grid.
+     */
+    public static Cleared clearBox(ServerLevel level, BlockPos lo, BlockPos hi) {
         Set<Long> networks = new LinkedHashSet<>();
         BlockPos.MutableBlockPos p = new BlockPos.MutableBlockPos();
         for (int x = lo.getX(); x <= hi.getX(); x++) {
@@ -202,7 +208,7 @@ public final class Showroom {
     // --- block specs ------------------------------------------------------------------------------------------------
 
     /** Every registered block by full id (both vanilla and NeroDecor), read from the live registry. */
-    private static Map<String, Block> index() {
+    static Map<String, Block> index() {
         Map<String, Block> out = new HashMap<>();
         for (Block block : BuiltInRegistries.BLOCK) {
             Identifier id = BuiltInRegistries.BLOCK.getKey(block);
@@ -309,6 +315,17 @@ public final class Showroom {
             level.setBlock(pos, spec.state(), PLACE);
             plain.add(pos.immutable());
             placed++;
+        }
+
+        /** Places a ready-made state (no spec parsing), resolved with the others in {@link #resolveAll}. */
+        void put(BlockPos pos, BlockState state) {
+            level.setBlock(pos, state, PLACE);
+            plain.add(pos.immutable());
+            placed++;
+        }
+
+        int placed() {
+            return placed;
         }
 
         void resolveAll() {

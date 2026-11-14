@@ -9,7 +9,8 @@
   "entrypoints": {
     "fabric-client-gametest": [
       "za.co.neroland.nerodecor.gametest.NeroDecorShowcaseClientGameTest",
-      "za.co.neroland.nerodecor.gametest.NeroDecorChromaPerfClientGameTest"
+      "za.co.neroland.nerodecor.gametest.NeroDecorChromaPerfClientGameTest",
+      "za.co.neroland.nerodecor.gametest.NeroDecorHubInputClientGameTest"
     ]
   },
   "depends": {

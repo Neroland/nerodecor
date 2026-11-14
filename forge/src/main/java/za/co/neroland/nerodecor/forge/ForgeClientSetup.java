@@ -6,9 +6,11 @@ import java.util.List;
 import net.minecraft.client.color.item.ItemTintSources;
 //?}
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.client.event.RegisterClientCommandsEvent;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.event.TickEvent;
 //? if <1.21.6 {
@@ -24,6 +26,7 @@ import za.co.neroland.nerodecor.client.DecorColorItemTint;
 import za.co.neroland.nerodecor.client.ClientRenderRegistry;
 import za.co.neroland.nerodecor.client.ChromaTintBridge;
 import za.co.neroland.nerodecor.chroma.client.ChromaClientSync;
+import za.co.neroland.nerodecor.client.capture.CaptureCommand;
 
 /**
  * Forge client-only wiring (block + item paint tint, collection renderers). Loaded only behind {@code Dist.CLIENT}.
@@ -81,6 +84,14 @@ public final class ForgeClientSetup {
         TickEvent.ClientTickEvent.Post.BUS.addListener(event -> ChromaClientSync.tick());
         //?} else {
         /*MinecraftForge.EVENT_BUS.addListener((TickEvent.ClientTickEvent.Post event) -> ChromaClientSync.tick());
+        *///?}
+        // /nerodecor capture (client-side screenshots of the showroom and block grid).
+        //? if >=1.21.6 {
+        RegisterClientCommandsEvent.BUS.addListener(event ->
+                event.getDispatcher().register(CaptureCommand.<CommandSourceStack>node()));
+        //?} else {
+        /*MinecraftForge.EVENT_BUS.addListener((RegisterClientCommandsEvent event) ->
+                event.getDispatcher().register(CaptureCommand.<CommandSourceStack>node()));
         *///?}
         //? if >=1.21.9 {
         EntityRenderersEvent.RegisterRenderers.BUS.addListener(ForgeClientSetup::onRegisterRenderers);

@@ -3,18 +3,21 @@ package za.co.neroland.nerodecor.neoforge;
 import java.util.List;
 
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
+import net.neoforged.neoforge.client.event.RegisterClientCommandsEvent;
 import net.neoforged.neoforge.common.NeoForge;
 
 import za.co.neroland.nerodecor.client.DecorColorItemTint;
 import za.co.neroland.nerodecor.client.ClientRenderRegistry;
 import za.co.neroland.nerodecor.client.ChromaTintBridge;
 import za.co.neroland.nerodecor.chroma.client.ChromaClientSync;
+import za.co.neroland.nerodecor.client.capture.CaptureCommand;
 
 /**
  * NeoForge client-only wiring (block + item paint tint, collection renderers). Loaded only behind
@@ -50,6 +53,9 @@ public final class NeoForgeClientSetup {
         modEventBus.addListener(NeoForgeClientSetup::onRegisterRenderers);
         // Chroma: release budgeted section re-meshes after hub colour changes.
         NeoForge.EVENT_BUS.addListener((ClientTickEvent.Post event) -> ChromaClientSync.tick());
+        // /nerodecor capture (client-side screenshots of the showroom and block grid).
+        NeoForge.EVENT_BUS.addListener((RegisterClientCommandsEvent event) ->
+                event.getDispatcher().register(CaptureCommand.<CommandSourceStack>node()));
     }
 
     @SuppressWarnings({"unchecked", "rawtypes"})
