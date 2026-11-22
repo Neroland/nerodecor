@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.9.0] - 2026-11-22
+
+### Added
+
+- Chroma data is now part of Neroland Core's combined export (`/neroland data exportme`). It matches
+  `/nerodecor privacy export` except that it never names another player: hubs you own list how many players
+  hold each role, not who. Built in memory; no file is written and nothing is logged.
+
+### Changed
+
+- Requires Neroland Core **1.20.1**.
+
+### Fixed
+
+- Crash reports could be silently dropped when another mod (any Nero mod included) started Sentry after
+  NeroDecor: all of them share one bundled Sentry, and each global `Sentry.init` replaced the previous client.
+  NeroDecor now reports through a client of its own and never touches the global hub.
+
 ## [0.8.4] - 2026-11-26
 
 ### Added

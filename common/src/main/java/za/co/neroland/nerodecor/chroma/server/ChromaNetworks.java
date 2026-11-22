@@ -18,9 +18,11 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.block.state.BlockState;
 
 import za.co.neroland.nerolandcore.data.PlayerDataErasure;
+import za.co.neroland.nerolandcore.data.PlayerDataExport;
 
 import za.co.neroland.nerodecor.NeroDecorCommon;
 import za.co.neroland.nerodecor.chroma.RelativePos;
+import za.co.neroland.nerodecor.chroma.server.privacy.ChromaExport;
 import za.co.neroland.nerodecor.chroma.server.privacy.ChromaPrivacy;
 import za.co.neroland.nerodecor.content.block.ChromaHubBlockEntity;
 import za.co.neroland.nerodecor.progression.DecorMilestones;
@@ -53,9 +55,10 @@ public final class ChromaNetworks {
     private ChromaNetworks() {
     }
 
-    /** Registers the erasure hook with Core. Called once from common init. */
+    /** Registers the erasure hook and the data-export section with Core. Called once from common init. */
     public static void init() {
         PlayerDataErasure.register(ChromaPrivacy::erase);
+        PlayerDataExport.register(NeroDecorCommon.MOD_ID, ChromaExport::forCore);
     }
 
     // --- stores ---------------------------------------------------------------------------------------------------

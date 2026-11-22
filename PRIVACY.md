@@ -113,6 +113,12 @@ apply.
 
 Ask the server operator for the file. It is deleted after 7 days or on erasure, whichever is first.
 
+The same Chroma data is also part of Neroland Core's combined export (`/neroland data exportme`,
+operators `/neroland data export <uuid>`), under `mods.nerodecor`, with one difference: Core's export
+never names another player, so the hubs you own list only how many players hold each role, not who
+they are. That copy is built in memory and handed over in chat; no file is written and nothing is
+logged. A player who owns no hub and holds no role is listed by Core as having nothing stored.
+
 ### What Chroma does NOT store
 
 - No player names, chat, IP addresses or play-time statistics.
@@ -189,6 +195,9 @@ session and is **not** linked to any other session, to your account, or to your 
   whose stack trace does not name NeroDecor's own package is dropped before sending.
 
 Reports are also de-duplicated and hard-capped at 10 events per game session.
+
+NeroDecor reports through a Sentry client of its own and never touches the shared global Sentry hub,
+so another mod's crash reporter can neither read its reports nor switch it off.
 
 ## How to opt out
 

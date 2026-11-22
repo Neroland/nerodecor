@@ -30,6 +30,7 @@ import za.co.neroland.nerodecor.chroma.ChromaResult;
 import za.co.neroland.nerodecor.chroma.Scene;
 import za.co.neroland.nerodecor.chroma.SceneCodec;
 import za.co.neroland.nerodecor.chroma.SceneSlots;
+import za.co.neroland.nerodecor.chroma.server.ChromaConfig;
 import za.co.neroland.nerodecor.chroma.server.ChromaNetworks;
 import za.co.neroland.nerodecor.chroma.server.ChromaRole;
 import za.co.neroland.nerodecor.chroma.server.HubNetwork;
@@ -96,6 +97,40 @@ public final class ChromaExport {
     }
 
     // --- the document (pure) -------------------------------------------------------------------------------------
+
+    /**
+     * The section handed to Neroland Core's combined export ({@code /neroland data exportme}): {@link #build} without
+     * the trusted players' ids (Core's export never names another player; the per-role counts stay) and without the
+     * notes about the export file, because Core's path writes no file. {@code null} when the player owns no hub and
+     * holds no role (Core then lists NeroDecor as storing nothing). Plain-JVM testable.
+     */
+    public static JsonObject forCore(UUID subject, List<Located> networks, long nowMillis, int orphanRetentionDays,
+            int inactiveRetentionDays) {
+        JsonObject doc = build(subject, networks, nowMillis, orphanRetentionDays, inactiveRetentionDays);
+        if (doc.getAsJsonArray("hubs_owned").isEmpty() && doc.getAsJsonArray("roles_held").isEmpty()) {
+            return null;
+        }
+        for (com.google.gson.JsonElement hub : doc.getAsJsonArray("hubs_owned")) {
+            hub.getAsJsonObject().remove("trusted_players");
+        }
+        doc.getAsJsonObject("retention").remove("export_file_days");
+        JsonObject notes = doc.getAsJsonObject("notes");
+        notes.remove("retention");
+        notes.addProperty("others", "No other player is named here. Hubs you own list how many players hold each "
+                + "role; /nerodecor privacy export lists who they are. The owners of hubs you hold a role on are not "
+                + "named.");
+        notes.addProperty("erasure", "Erasing your data removes you from every trusted list and orphans the hubs you "
+                + "own: their colours stay, their names are replaced, nobody can edit them until an operator claims "
+                + "them, and they are deleted after " + orphanRetentionDays + " days.");
+        return doc;
+    }
+
+    /** {@link #forCore} from the live server (server thread). Never writes a file or logs the player. */
+    public static JsonObject forCore(MinecraftServer server, UUID subject) {
+        return forCore(subject, collect(server), System.currentTimeMillis(),
+                ChromaConfig.ORPHAN_RETENTION_DAYS.get(), ChromaConfig.INACTIVE_RETENTION_DAYS.get());
+    }
+
 
     /** The export document for {@code subject} (plain-JVM testable). Never reads another player's data into it. */
     public static JsonObject build(UUID subject, List<Located> networks, long nowMillis, int orphanRetentionDays,

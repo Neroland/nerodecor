@@ -9,9 +9,14 @@ import java.util.regex.Pattern;
 
 import org.apache.logging.log4j.LogManager;
 
-import io.sentry.Sentry;
+import io.sentry.IScopes;
+import io.sentry.Scope;
+import io.sentry.Scopes;
+import io.sentry.SentryClient;
 import io.sentry.SentryEvent;
 import io.sentry.SentryLevel;
+import io.sentry.SentryOptions;
+import io.sentry.UncaughtExceptionHandlerIntegration;
 import io.sentry.protocol.Message;
 import io.sentry.protocol.SentryException;
 import io.sentry.protocol.SentryStackFrame;
@@ -79,6 +84,14 @@ public final class NeroDecorTelemetry {
     private static final AtomicInteger eventsSent = new AtomicInteger();
     private static final Set<String> seenFingerprints = ConcurrentHashMap.newKeySet();
     private static SentryLogAppender appender;
+    /**
+     * NeroDecor's own Sentry scopes and client, never the global {@code Sentry} hub: every Nero mod bundles the
+     * same Sentry jar, and a global {@code Sentry.init} by any of them would replace the others' client.
+     * {@code null} until {@link #start()} succeeds.
+     */
+    private static volatile IScopes scopes;
+    /** Process lifetime; a field so ecj does not flag it as a leaked resource. */
+    private static UncaughtExceptionHandlerIntegration uncaughtHandler;
 
     private NeroDecorTelemetry() {
     }
@@ -142,22 +155,11 @@ public final class NeroDecorTelemetry {
         }
         String modVersion = Services.PLATFORM.getModVersion();
         boolean dev = Services.PLATFORM.isDevelopmentEnvironment();
-        Sentry.init(options -> {
-            options.setDsn(DSN);
-            options.setRelease("nerodecor@" + modVersion);
-            options.setEnvironment(dev ? "development" : environmentOf(modVersion));
-            // POPIA/GDPR: never store the sender's IP address or identity.
-            options.setSendDefaultPii(false);
-            // The machine's hostname is identifying; never attach it.
-            options.setAttachServerName(false);
-            // No breadcrumbs at all: they could carry log lines with player-typed text or positions.
-            options.setMaxBreadcrumbs(0);
-            options.setEnableUncaughtExceptionHandler(true);
-            // Manual session lifecycle (started below, ended on shutdown); random per launch, not linked.
-            options.setEnableAutoSessionTracking(false);
-            options.setBeforeSend((event, hint) -> ForeignMixinFailure.matches(event) ? null : filterAndScrub(event));
-        });
-        Sentry.configureScope(scope -> {
+        SentryOptions options = baseOptions(modVersion, dev ? "development" : environmentOf(modVersion));
+        options.setBeforeSend((event, hint) -> ForeignMixinFailure.matches(event) ? null : filterAndScrub(event));
+        IScopes own = isolatedScopes(options, "nerodecor");
+        scopes = own;
+        own.configureScope(scope -> {
             scope.setTag("loader", Services.PLATFORM.getPlatformName().toLowerCase(Locale.ROOT));
             scope.setTag("dist", Services.PLATFORM.isClient() ? "client" : "dedicated_server");
             scope.setTag("runtime", dev ? "development" : "production");
@@ -183,11 +185,11 @@ public final class NeroDecorTelemetry {
             }
         });
         // Manual release-health session for this play session; closed on a clean JVM shutdown.
-        Sentry.startSession();
+        own.startSession();
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             try {
-                Sentry.endSession();
-                Sentry.flush(2000L);
+                own.endSession();
+                own.flush(2000L);
             } catch (RuntimeException ignored) {
                 // best-effort flush on shutdown
             }
@@ -203,16 +205,55 @@ public final class NeroDecorTelemetry {
                         + "telemetryEnabled=false in the NeroDecor config).");
     }
 
+    /**
+     * NeroDecor's Sentry options. Nothing identifying is ever sent: no IP or identity, no server name, and no
+     * breadcrumbs at all (they could carry log lines with player-typed text or positions). The shutdown hook is ours
+     * and never closes the global hub, which may belong to another mod. Release health is managed by hand (random
+     * per-launch session, not linked).
+     */
+    static SentryOptions baseOptions(String modVersion, String environment) {
+        SentryOptions options = new SentryOptions();
+        options.setDsn(DSN);
+        options.setRelease("nerodecor@" + modVersion);
+        options.setEnvironment(environment);
+        // POPIA/GDPR: never store the sender's IP address or identity.
+        options.setSendDefaultPii(false);
+        // The machine's hostname is identifying; never attach it.
+        options.setAttachServerName(false);
+        options.setMaxBreadcrumbs(0);
+        options.setEnableUncaughtExceptionHandler(true);
+        options.setEnableShutdownHook(false);
+        options.setEnableAutoSessionTracking(false);
+        return options;
+    }
+
+    /**
+     * Scopes bound to a client of NeroDecor's own, independent of the global {@code Sentry} hub. The options are
+     * activated here (what {@code Sentry.init} would otherwise do), and the uncaught-exception handler chains to
+     * whichever handler was installed before it.
+     */
+    static IScopes isolatedScopes(SentryOptions options, String creator) {
+        options.activate();
+        Scopes own = new Scopes(new Scope(options), new Scope(options), new Scope(options), creator);
+        own.bindClient(new SentryClient(options));
+        if (options.isEnableUncaughtExceptionHandler()) {
+            uncaughtHandler = new UncaughtExceptionHandlerIntegration();
+            uncaughtHandler.register(own, options);
+        }
+        return own;
+    }
+
     static boolean isActive() {
         return active;
     }
 
     /** Capture an exception already known to touch NeroDecor code. */
     static void capture(Throwable t) {
-        if (!active || t == null) {
+        IScopes s = scopes;
+        if (!active || s == null || t == null) {
             return;
         }
-        Sentry.captureException(t);
+        s.captureException(t);
     }
 
     /** Capture a handled exception if it is still clearly from NeroDecor code. */
@@ -224,7 +265,8 @@ public final class NeroDecorTelemetry {
 
     /** Capture a (scrubbed, truncated) FATAL log line that names NeroDecor without a throwable. */
     static void captureMessage(String message) {
-        if (!active) {
+        IScopes s = scopes;
+        if (!active || s == null) {
             return;
         }
         String scrubbed = scrub(message);
@@ -236,7 +278,7 @@ public final class NeroDecorTelemetry {
         Message msg = new Message();
         msg.setFormatted(scrubbed);
         event.setMessage(msg);
-        Sentry.captureEvent(event);
+        s.captureEvent(event);
     }
 
     /** True if any frame of the throwable (or its causes/suppressed) is NeroDecor code. */

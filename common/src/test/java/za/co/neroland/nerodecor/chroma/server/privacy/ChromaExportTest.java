@@ -68,6 +68,21 @@ class ChromaExportTest {
     }
 
     @Test
+    void coreSectionNamesNoOtherPlayerAndIsNullWhenNothingIsStored() {
+        JsonObject doc = ChromaExport.forCore(A, world(), 0L, 30, 90);
+        String json = ChromaExport.toJson(doc);
+        assertFalse(json.contains(B.toString()), "Core's export must not name another player");
+        assertFalse(json.contains("Bobs Disco"), "another player's scene leaked");
+        JsonObject hub = doc.getAsJsonArray("hubs_owned").get(0).getAsJsonObject();
+        assertFalse(hub.has("trusted_players"));
+        assertEquals(1, hub.getAsJsonObject("trusted_players_per_role").get("painter").getAsInt());
+        assertFalse(doc.getAsJsonObject("retention").has("export_file_days"));
+        assertEquals(1, doc.getAsJsonArray("roles_held").size());
+        UUID stranger = new UUID(0x1111L, 0x2222L);
+        assertEquals(null, ChromaExport.forCore(stranger, world(), 0L, 30, 90));
+    }
+
+    @Test
     void filesStayInsideTheFolderAndAreDeleted(@TempDir Path dir) throws Exception {
         ChromaExport.write(dir, A, ChromaExport.build(A, world(), 0L, 30, 90));
         assertTrue(Files.exists(ChromaExport.file(dir, A)));
