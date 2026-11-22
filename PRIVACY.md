@@ -122,6 +122,14 @@ Ask the server operator for the file. It is deleted after 7 days or on erasure, 
   needs it to work.
 - Logs never contain player UUIDs, names, coordinates, or zone, scene or sign text.
 
+### Milestones
+
+NeroDecor opens three personal milestones in Neroland Core's progression store, which other mods (quests,
+trophies) can read: `nerodecor:scene_authored` (you saved a scene on a Chroma hub) and `nerodecor:hub_linked/16`
+and `/64` (a Chroma network you own reached 16 or 64 linked blocks). Only your UUID and the milestone id are
+kept, by Core, which erases them with the rest of your data. NeroDecor itself still records no author or
+history, and nothing about a milestone is logged.
+
 ### NeroLink companion module
 
 The **NeroLink companion module** (`enableLinkModule`, default on, server-authoritative) publishes:

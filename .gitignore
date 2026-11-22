@@ -70,3 +70,5 @@ tools/collections/.preview/
 /neoforge/versions/1.21.4/logs
 /neoforge/versions/1.21.11/logs
 /neoforge/versions/26.3/logs
+/neoforge/versions/1.21.1/logs
+*.log

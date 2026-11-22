@@ -23,6 +23,7 @@ import za.co.neroland.nerodecor.NeroDecorCommon;
 import za.co.neroland.nerodecor.chroma.RelativePos;
 import za.co.neroland.nerodecor.chroma.server.privacy.ChromaPrivacy;
 import za.co.neroland.nerodecor.content.block.ChromaHubBlockEntity;
+import za.co.neroland.nerodecor.progression.DecorMilestones;
 
 /**
  * The game-side face of Chroma hub networks: hub placement and removal, linking (single, box, flood, auto-adopt),
@@ -385,8 +386,24 @@ public final class ChromaNetworks {
                 }
             }
         }
-        return best != null && store.link(best.id(), placer.getUUID(), pos.getX(), pos.getY(), pos.getZ(), true,
-                limits) == ChromaVerdict.OK;
+        if (best == null) {
+            return false;
+        }
+        int before = best.size();
+        if (store.link(best.id(), placer.getUUID(), pos.getX(), pos.getY(), pos.getZ(), true, limits)
+                != ChromaVerdict.OK) {
+            return false;
+        }
+        credit(level, store, best.id(), before);
+        return true;
+    }
+
+    /** Opens the owner's linked-block milestones when network {@code id} grew past a rung. */
+    private static void credit(ServerLevel level, ChromaNetworkStore store, long id, int before) {
+        HubNetwork network = store.get(id);
+        if (network != null) {
+            DecorMilestones.networkGrew(level.getServer(), network.owner(), before, network.size());
+        }
     }
 
     private static ChromaVerdict precheck(ServerLevel level, ServerPlayer player, long id) {
@@ -418,7 +435,12 @@ public final class ChromaNetworks {
         if (!ChromaGuard.mayEdit(player, level, pos, state)) {
             return ChromaVerdict.PROTECTED;
         }
-        return store.link(id, player.getUUID(), x, y, z, capable, limits);
+        int before = store.get(id).size();
+        ChromaVerdict verdict = store.link(id, player.getUUID(), x, y, z, capable, limits);
+        if (verdict == ChromaVerdict.OK) {
+            credit(level, store, id, before);
+        }
+        return verdict;
     }
 
     private static Selection linkAll(ServerLevel level, ServerPlayer player, ChromaNetworkStore store, long id,

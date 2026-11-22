@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.8.4] - 2026-11-26
+
+### Added
+
+- Three player milestones for other mods to read: `nerodecor:scene_authored` (first scene saved on a Chroma hub), and `nerodecor:hub_linked/16` and `nerodecor:hub_linked/64` (a Chroma network you own reaches 16 or 64 linked blocks, by Linker, box, flood or auto-adopt). NeroTrophies can award the Light Show and Wired Up trophies from them. Only the player's UUID goes into Core's progression store; nothing is logged.
+
 ## [0.8.3] - 2026-11-21
 
 ### Changed

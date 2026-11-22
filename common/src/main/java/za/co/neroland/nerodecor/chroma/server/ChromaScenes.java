@@ -11,6 +11,7 @@ import za.co.neroland.nerodecor.chroma.FlashClamp;
 import za.co.neroland.nerodecor.chroma.Scene;
 import za.co.neroland.nerodecor.chroma.SceneCodec;
 import za.co.neroland.nerodecor.chroma.SceneSlots;
+import za.co.neroland.nerodecor.progression.DecorMilestones;
 
 /**
  * Server side of Chroma scenes (Stage 4): saving scenes into a hub's slots, activating a slot, configuring the
@@ -266,7 +267,12 @@ public final class ChromaScenes {
         if (!pre.isOk()) {
             return pre;
         }
-        return save(ChromaNetworks.store(level), id, player.getUUID(), slot, scene, activate, level.getGameTime());
+        ChromaVerdict verdict = save(ChromaNetworks.store(level), id, player.getUUID(), slot, scene, activate,
+                level.getGameTime());
+        if (verdict == ChromaVerdict.OK) {
+            DecorMilestones.sceneAuthored(player);
+        }
+        return verdict;
     }
 
     /** {@link #activate} for a player in a level. */
