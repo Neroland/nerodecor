@@ -34,6 +34,23 @@ public class DecorWallBlock extends WallBlock implements CtmSurface {
         builder.add(DecorProperties.COLOR);
     }
 
+    //? if <1.21 {
+    /*// The old WallBlock precomputes shapes for the constructor's default colour only.
+    @Override
+    protected net.minecraft.world.phys.shapes.VoxelShape getShape(BlockState state,
+            net.minecraft.world.level.BlockGetter level, net.minecraft.core.BlockPos pos,
+            net.minecraft.world.phys.shapes.CollisionContext context) {
+        return super.getShape(state.setValue(DecorProperties.COLOR, DecorColor.NATURAL), level, pos, context);
+    }
+
+    @Override
+    protected net.minecraft.world.phys.shapes.VoxelShape getCollisionShape(BlockState state,
+            net.minecraft.world.level.BlockGetter level, net.minecraft.core.BlockPos pos,
+            net.minecraft.world.phys.shapes.CollisionContext context) {
+        return super.getCollisionShape(state.setValue(DecorProperties.COLOR, DecorColor.NATURAL), level, pos, context);
+    }
+    *///?}
+
     @Override
     @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext context) {

@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.10.0] - 2026-11-24
+
+### Added
+
+- Minecraft 1.20.5 on Fabric and 1.20.6 on Fabric, Forge and NeoForge.
+
+### Changed
+
+- Requires Neroland Core 1.23.0 or newer.
+
 ## [0.9.0] - 2026-11-22
 
 ### Added

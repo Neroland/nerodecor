@@ -249,12 +249,22 @@ public final class QuadBuffer {
             for (int c = 0; c < 4; c++) {
                 int k = f + c * FLOATS;
                 int m = i + c * INTS;
+                //? if >=1.21 {
                 out.addVertex(pose, b.f[k], b.f[k + 1], b.f[k + 2])
                         .setColor(b.i[m])
                         .setUv(b.f[k + 3], b.f[k + 4])
                         .setOverlay(OverlayTexture.NO_OVERLAY)
                         .setLight(b.i[m + 1])
                         .setNormal(pose, nx, ny, nz);
+                //?} else {
+                /*out.vertex(pose, b.f[k], b.f[k + 1], b.f[k + 2])
+                        .color(b.i[m])
+                        .uv(b.f[k + 3], b.f[k + 4])
+                        .overlayCoords(OverlayTexture.NO_OVERLAY)
+                        .uv2(b.i[m + 1])
+                        .normal(pose, nx, ny, nz)
+                        .endVertex();
+                *///?}
             }
         }
     }

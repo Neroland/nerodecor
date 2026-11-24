@@ -3,6 +3,9 @@
 Player- and contributor-facing documentation for **NeroDecor**, part of the Neroland ecosystem.
 Built on **Neroland Core**.
 
+NeroDecor requires **Neroland Core 1.23.0 or newer** (below 2.0). Minecraft 1.20.5 runs on
+Fabric, and 1.20.6 runs on Fabric, Forge and NeoForge.
+
 > **Status:** beta — version `0.8.0-beta.1` "Chroma". Paintable hull, panel and glass families, the Luminous
 > collection, 106 new blocks in ten collections, and the Chroma system: hubs that colour and animate linked
 > lights. Keep this wiki updated alongside code changes (see [`../AGENTS.md`](../AGENTS.md) /

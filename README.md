@@ -7,8 +7,10 @@
 ## Build targets
 
 - **Minecraft:** 1.21.1, 1.21.4, 1.21.5, 1.21.8 (also 1.21.7), 1.21.10 (also 1.21.9), 1.21.11, 26.1.2, 26.2 and 26.3
-- **Loaders:** NeoForge, MinecraftForge/Forge, Fabric (the "27 cells")
-- **Java:** 21 for the 1.21.x builds, 25 for 26.x
+- **Loaders:** Fabric, Forge and NeoForge for the versions above.
+- **Minecraft 1.20.5** on Fabric and **1.20.6** on Fabric, Forge and NeoForge.
+- **Java:** 21 for 1.20.5 through 1.21.x, and 25 for 26.x.
+- **Neroland Core 1.23.0 or newer** (below 2.0).
 - Mod id: `nerodecor` · package `za.co.neroland.nerodecor`
 
 ## Layout
@@ -31,7 +33,7 @@ The build is the repo root, with a flattened cross-loader structure driven by St
 ```
 
 The 1.21.x cells are `:<loader>:1.21.1`, `:1.21.4`, `:1.21.5`, `:1.21.8`, `:1.21.10` and `:1.21.11`
-(see `mc_versions` in `gradle.properties`; `.github/workflows/publish.yml` lists all 27).
+(see `mc_versions` in `gradle.properties`; `.github/workflows/publish.yml` lists each build target).
 
 See [`AGENTS.md`](AGENTS.md) / [`CLAUDE.md`](CLAUDE.md) for agent and contributor context.
 
