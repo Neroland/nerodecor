@@ -53,7 +53,7 @@ public final class DecorColorItemTint implements ItemTintSource {
 
     /** The opaque ARGB tint for a stack: its painted colour, or white when unpainted. */
     public static int argb(ItemStack stack) {
-        DecorColor colour = stack.get(ModDataComponents.COLOR.get());
+        DecorColor colour = ModDataComponents.COLOR.get(stack);
         int rgb = colour == null ? DecorColor.NATURAL.tint() : colour.tint();
         return 0xFF000000 | rgb;
     }
@@ -73,9 +73,15 @@ public final class DecorColorItemTint implements ItemTintSource {
     public int getColor(ItemStack stack, int tintIndex) {
         // Scene Chip (Chroma Stage 4): the stripe (layer 1) shows minecraft:dyed_color, default house plasma.
         if (stack.getItem() instanceof za.co.neroland.nerodecor.content.item.SceneChipItem) {
+            //? if >=1.20.5 {
             net.minecraft.world.item.component.DyedItemColor dyed =
                     stack.get(net.minecraft.core.component.DataComponents.DYED_COLOR);
             return tintIndex == 1 ? 0xFF000000 | (dyed == null ? 0x3FD0E0 : dyed.rgb()) : 0xFFFFFFFF;
+            //?} else {
+            var display = stack.getTagElement("display");
+            int rgb = display == null || !display.contains("color") ? 0x3FD0E0 : display.getInt("color");
+            return tintIndex == 1 ? 0xFF000000 | rgb : 0xFFFFFFFF;
+            //?}
         }
         // The paint gun tints its canister (layer 1); paintable block items tint layer 0.
         int layer = stack.getItem() instanceof za.co.neroland.nerodecor.content.item.PaintGunItem ? 1 : 0;

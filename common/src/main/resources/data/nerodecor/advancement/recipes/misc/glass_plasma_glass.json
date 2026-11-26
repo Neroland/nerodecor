@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "nerolandcore:plasma_glass_block"
+            "items": ["nerolandcore:plasma_glass_block"]
           }
         ]
       },

@@ -3,7 +3,9 @@ package za.co.neroland.nerodecor.content.item;
 import java.util.Optional;
 
 import net.minecraft.core.BlockPos;
+//? if >=1.20.5 {
 import net.minecraft.core.component.DataComponents;
+//?}
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -11,7 +13,9 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+//? if >=1.20.5 {
 import net.minecraft.world.item.component.DyedItemColor;
+//?}
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 
@@ -56,7 +60,7 @@ public class SceneChipItem extends Item {
 
     /** The chip's scene, if it holds a valid one (tampered bytes fail the CRC and read as empty). */
     public static Optional<Scene> scene(ItemStack stack) {
-        SceneChipData data = stack.get(ChromaContent.SCENE_CHIP.get());
+        SceneChipData data = ChromaContent.SCENE_CHIP.get(stack);
         if (data == null) {
             return Optional.empty();
         }
@@ -70,19 +74,21 @@ public class SceneChipItem extends Item {
         if (!bytes.isOk()) {
             return false;
         }
-        stack.set(ChromaContent.SCENE_CHIP.get(), new SceneChipData(bytes.value()));
+        ChromaContent.SCENE_CHIP.set(stack, new SceneChipData(bytes.value()));
         int rgb = SceneAnimator.dominantRgb(scene);
         //? if >=1.21.5 {
         stack.set(DataComponents.DYED_COLOR, new DyedItemColor(rgb));
-        //?} else {
+        //?} else if >=1.20.5 {
         /*stack.set(DataComponents.DYED_COLOR, new DyedItemColor(rgb, false));
+        *///?} else {
+        /*stack.getOrCreateTagElement("display").putInt("color", rgb);
         *///?}
         return true;
     }
 
     /** The chip's scene as a share code ({@code ND1-...}), for copying from the editor. */
     public static Optional<String> shareCode(ItemStack stack) {
-        SceneChipData data = stack.get(ChromaContent.SCENE_CHIP.get());
+        SceneChipData data = ChromaContent.SCENE_CHIP.get(stack);
         if (data == null) {
             return Optional.empty();
         }

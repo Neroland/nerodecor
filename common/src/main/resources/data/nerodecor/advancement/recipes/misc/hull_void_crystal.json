@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "nerolandcore:void_crystal_shard"
+            "items": ["nerolandcore:void_crystal_shard"]
           }
         ]
       },

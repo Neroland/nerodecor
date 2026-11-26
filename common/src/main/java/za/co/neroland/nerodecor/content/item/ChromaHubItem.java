@@ -23,7 +23,7 @@ public class ChromaHubItem extends BlockItem {
     @Override
     public InteractionResult place(BlockPlaceContext context) {
         if (!context.getLevel().isClientSide() && context.getPlayer() instanceof ServerPlayer player
-                && context.getItemInHand().get(ChromaContent.NETWORK_ID.get()) == null) {
+                && ChromaContent.NETWORK_ID.get(context.getItemInHand()) == null) {
             ChromaVerdict verdict = ChromaNetworks.canStartNetwork(player);
             if (verdict == ChromaVerdict.HUB_CAP) {
                 ChromaNetworks.tell(player, verdict);

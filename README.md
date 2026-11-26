@@ -4,13 +4,15 @@
 
 **Status:** beta — version `0.8.0-beta.1` "Chroma". Hull/panel and glass families with paint recolouring, the **Luminous collection**, and 106 new blocks in ten collections lit by the **Chroma** system: a hub that colours and animates linked lights, with an in-game editor, scenes, triggers and a paint gun. `/nerodecor gallery` builds a walkable showroom. See [`CHANGELOG.md`](CHANGELOG.md) and the [wiki](wiki/Home.md).
 
+Minecraft 1.20.5 on NeoForge requires loader 20.5.21-beta.
+
 ## Build targets
 
 - **Minecraft:** 1.21.1, 1.21.4, 1.21.5, 1.21.8 (also 1.21.7), 1.21.10 (also 1.21.9), 1.21.11, 26.1.2, 26.2 and 26.3
 - **Loaders:** Fabric, Forge and NeoForge for the versions above.
-- **Minecraft 1.20.5** on Fabric and **1.20.6** on Fabric, Forge and NeoForge.
-- **Java:** 21 for 1.20.5 through 1.21.x, and 25 for 26.x.
-- **Neroland Core 1.23.0 or newer** (below 2.0).
+- **Minecraft 1.20.x.** Fabric supports Minecraft 1.20 through 1.20.6. Forge supports 1.20 through 1.20.4 and 1.20.6. NeoForge supports 1.20.4 through 1.20.6, with the Forge jar for legacy NeoForge 1.20.1.
+- **Java 17** through Minecraft 1.20.4, **Java 21** from Minecraft 1.20.5 through 1.21.x, and **Java 25** for 26.x.
+- **Neroland Core 1.24.0 or newer** (below 2.0).
 - Mod id: `nerodecor` · package `za.co.neroland.nerodecor`
 
 ## Layout

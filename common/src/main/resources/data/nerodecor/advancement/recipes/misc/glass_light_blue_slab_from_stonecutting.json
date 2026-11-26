@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "nerodecor:glass_light_blue"
+            "items": ["nerodecor:glass_light_blue"]
           }
         ]
       },

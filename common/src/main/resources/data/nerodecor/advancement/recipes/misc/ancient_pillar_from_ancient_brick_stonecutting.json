@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "nerodecor:ancient_brick"
+            "items": ["nerodecor:ancient_brick"]
           }
         ]
       },

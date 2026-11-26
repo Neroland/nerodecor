@@ -9,7 +9,9 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
+//? if >=1.20.5 {
 import net.neoforged.neoforge.client.event.ClientTickEvent;
+//?}
 import net.neoforged.neoforge.client.event.RegisterClientCommandsEvent;
 import net.neoforged.neoforge.common.NeoForge;
 
@@ -52,7 +54,15 @@ public final class NeoForgeClientSetup {
         *///?}
         modEventBus.addListener(NeoForgeClientSetup::onRegisterRenderers);
         // Chroma: release budgeted section re-meshes after hub colour changes.
+        //? if >=1.20.5 {
         NeoForge.EVENT_BUS.addListener((ClientTickEvent.Post event) -> ChromaClientSync.tick());
+        //?} else {
+        /*NeoForge.EVENT_BUS.addListener((net.neoforged.neoforge.event.TickEvent.ClientTickEvent event) -> {
+            if (event.phase == net.neoforged.neoforge.event.TickEvent.Phase.END) {
+                ChromaClientSync.tick();
+            }
+        });
+        *///?}
         // /nerodecor capture (client-side screenshots of the showroom and block grid).
         NeoForge.EVENT_BUS.addListener((RegisterClientCommandsEvent event) ->
                 event.getDispatcher().register(CaptureCommand.<CommandSourceStack>node()));

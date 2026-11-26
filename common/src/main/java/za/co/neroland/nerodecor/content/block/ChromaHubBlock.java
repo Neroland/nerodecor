@@ -49,7 +49,7 @@ public class ChromaHubBlock extends Block implements EntityBlock {
     public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity by, ItemStack stack) {
         super.setPlacedBy(level, pos, state, by, stack);
         if (level instanceof ServerLevel server && level.getBlockEntity(pos) instanceof ChromaHubBlockEntity hub) {
-            Long carried = stack.get(ChromaContent.NETWORK_ID.get());
+            Long carried = ChromaContent.NETWORK_ID.get(stack);
             long id = ChromaNetworks.hubPlaced(server, pos, by instanceof ServerPlayer player ? player : null,
                     carried == null ? 0L : carried);
             hub.setNetworkId(id);

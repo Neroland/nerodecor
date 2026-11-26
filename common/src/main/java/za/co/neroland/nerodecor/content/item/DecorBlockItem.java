@@ -30,7 +30,7 @@ public class DecorBlockItem extends BlockItem {
         if (state == null || !state.hasProperty(DecorProperties.COLOR)) {
             return state;
         }
-        DecorColor colour = context.getItemInHand().get(ModDataComponents.COLOR.get());
+        DecorColor colour = ModDataComponents.COLOR.get(context.getItemInHand());
         return colour == null ? state : state.setValue(DecorProperties.COLOR, colour);
     }
 }

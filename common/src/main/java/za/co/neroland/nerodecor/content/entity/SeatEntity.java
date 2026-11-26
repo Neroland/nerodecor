@@ -142,9 +142,15 @@ public class SeatEntity extends Entity {
         return false;
     }
 
+    //? if >=1.20.5 {
     @Override
     protected void defineSynchedData(SynchedEntityData.Builder builder) {
     }
+    //?} else {
+    /*@Override
+    protected void defineSynchedData() {
+    }
+    *///?}
 
     //? if >=1.21.2 {
     @Override

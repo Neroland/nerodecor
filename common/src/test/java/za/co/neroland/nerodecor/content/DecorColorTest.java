@@ -38,4 +38,29 @@ class DecorColorTest {
             assertTrue(found, n);
         }
     }
+
+    //? if <1.20.5 {
+    /*@org.junit.jupiter.api.BeforeAll
+    static void bootstrapLegacyItems() {
+        net.minecraft.SharedConstants.tryDetectVersion();
+        net.minecraft.server.Bootstrap.bootStrap();
+    }
+
+    @Test
+    void legacyPaintSurvivesItemSaveAndReload() {
+        var stack = new net.minecraft.world.item.ItemStack(net.minecraft.world.item.Items.PAPER);
+        var paint = za.co.neroland.nerodecor.registry.ModDataComponents.COLOR;
+        paint.set(stack, DecorColor.RED);
+        var loaded = net.minecraft.world.item.ItemStack.of(stack.save(new net.minecraft.nbt.CompoundTag()));
+        assertEquals(DecorColor.RED, paint.get(loaded));
+    }
+
+    @Test
+    void invalidLegacyPaintFallsBackToTheNaturalColour() {
+        var stack = new net.minecraft.world.item.ItemStack(net.minecraft.world.item.Items.PAPER);
+        stack.getOrCreateTag().putString("nerodecor:color", "unknown");
+        var paint = za.co.neroland.nerodecor.registry.ModDataComponents.COLOR;
+        assertEquals(DecorColor.NATURAL, paint.getOrDefault(stack, DecorColor.NATURAL));
+    }
+    *///?}
 }

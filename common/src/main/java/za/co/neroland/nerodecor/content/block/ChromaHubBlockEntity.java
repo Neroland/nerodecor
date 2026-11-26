@@ -1,7 +1,9 @@
 package za.co.neroland.nerodecor.content.block;
 
 import net.minecraft.core.BlockPos;
+//? if >=1.20.5 {
 import net.minecraft.core.component.DataComponentMap;
+//?}
 //? if <1.21.6 {
 /*import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -15,7 +17,7 @@ import za.co.neroland.nerodecor.registry.ChromaContent;
 
 /**
  * The hub's block entity: holds only its network id (0 = inert). Everything else is in the dimension's
- * {@code ChromaNetworkData}. The id rides on the dropped hub item through {@link #collectImplicitComponents}.
+ * {@code ChromaNetworkData}. The id rides on the dropped hub item when the block is dropped.
  */
 public class ChromaHubBlockEntity extends BlockEntity {
 
@@ -62,13 +64,15 @@ public class ChromaHubBlockEntity extends BlockEntity {
         networkId = input.getLongOr(NETWORK_KEY, 0L);
     }
 
+    //? if >=1.20.5 {
     @Override
     protected void collectImplicitComponents(DataComponentMap.Builder components) {
         super.collectImplicitComponents(components);
         if (networkId != 0L) {
-            components.set(ChromaContent.NETWORK_ID.get(), networkId);
+            components.set(ChromaContent.NETWORK_ID.entry().get(), networkId);
         }
     }
+    //?}
 
     //? if >=1.21.5 {
     @Override

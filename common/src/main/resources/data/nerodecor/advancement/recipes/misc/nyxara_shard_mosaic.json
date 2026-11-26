@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "nerodecor:nyxara_faceted_crystal"
+            "items": ["nerodecor:nyxara_faceted_crystal"]
           }
         ]
       },

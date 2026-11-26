@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "nerodecor:catwalk"
+            "items": ["nerodecor:catwalk"]
           }
         ]
       },

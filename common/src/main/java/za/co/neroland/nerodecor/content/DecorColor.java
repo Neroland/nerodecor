@@ -4,8 +4,12 @@ import com.mojang.serialization.Codec;
 
 import io.netty.buffer.ByteBuf;
 
+//? if >=1.20.5 {
 import net.minecraft.network.codec.ByteBufCodecs;
+//?}
+//? if >=1.20.5 {
 import net.minecraft.network.codec.StreamCodec;
+//?}
 import net.minecraft.util.StringRepresentable;
 
 /**
@@ -44,8 +48,10 @@ public enum DecorColor implements StringRepresentable {
     public static final Codec<DecorColor> CODEC = StringRepresentable.fromEnum(DecorColor::values);
 
     /** Network stream codec (by ordinal) for the item data component. */
+    //? if >=1.20.5 {
     public static final StreamCodec<ByteBuf, DecorColor> STREAM_CODEC =
             ByteBufCodecs.VAR_INT.map(i -> values()[i], DecorColor::ordinal);
+    //?}
 
     private final String name;
     private final int tint;

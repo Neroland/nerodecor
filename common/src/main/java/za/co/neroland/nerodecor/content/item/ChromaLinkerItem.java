@@ -47,13 +47,13 @@ public class ChromaLinkerItem extends Item {
             return InteractionResult.SUCCESS;
         }
         ItemStack stack = context.getItemInHand();
-        LinkerState linker = stack.getOrDefault(ChromaContent.LINKER_STATE.get(), LinkerState.EMPTY);
+        LinkerState linker = ChromaContent.LINKER_STATE.getOrDefault(stack, LinkerState.EMPTY);
         BlockPos pos = context.getClickedPos();
         if (level.getBlockEntity(pos) instanceof ChromaHubBlockEntity hub) {
             HubNetwork network = ChromaNetworks.store(level).get(hub.networkId());
             ChromaVerdict verdict = ChromaValidator.checkAction(network, player.getUUID(), ChromaAction.LINK);
             if (verdict.isOk()) {
-                stack.set(ChromaContent.LINKER_STATE.get(), linker.bound(network.id()));
+                ChromaContent.LINKER_STATE.set(stack, linker.bound(network.id()));
                 say(player, "bound");
             } else {
                 ChromaNetworks.tell(player, verdict);
@@ -68,12 +68,12 @@ public class ChromaLinkerItem extends Item {
             ChromaNetworks.tell(player, ChromaNetworks.linkFlood(level, player, linker.network(), pos));
         } else if (linker.boxMode()) {
             if (linker.corner().isEmpty()) {
-                stack.set(ChromaContent.LINKER_STATE.get(), linker.withCorner(pos));
+                ChromaContent.LINKER_STATE.set(stack, linker.withCorner(pos));
                 say(player, "corner");
             } else {
                 ChromaNetworks.tell(player, ChromaNetworks.linkBox(level, player, linker.network(),
                         linker.corner().get(), pos));
-                stack.set(ChromaContent.LINKER_STATE.get(), linker.clearedCorner());
+                ChromaContent.LINKER_STATE.set(stack, linker.clearedCorner());
             }
         } else {
             ChromaNetworks.tell(player, ChromaNetworks.toggle(level, player, linker.network(), pos));
@@ -98,8 +98,8 @@ public class ChromaLinkerItem extends Item {
 
     private static void toggleMode(Level level, Player player, ItemStack stack) {
         if (!level.isClientSide() && player instanceof ServerPlayer serverPlayer) {
-            LinkerState next = stack.getOrDefault(ChromaContent.LINKER_STATE.get(), LinkerState.EMPTY).toggledMode();
-            stack.set(ChromaContent.LINKER_STATE.get(), next);
+            LinkerState next = ChromaContent.LINKER_STATE.getOrDefault(stack, LinkerState.EMPTY).toggledMode();
+            ChromaContent.LINKER_STATE.set(stack, next);
             say(serverPlayer, next.boxMode() ? "mode_box" : "mode_single");
         }
     }

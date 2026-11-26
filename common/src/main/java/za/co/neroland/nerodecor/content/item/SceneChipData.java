@@ -7,8 +7,12 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
 
 import io.netty.buffer.ByteBuf;
+//? if >=1.20.5 {
 import net.minecraft.network.codec.ByteBufCodecs;
+//?}
+//? if >=1.20.5 {
 import net.minecraft.network.codec.StreamCodec;
+//?}
 
 import za.co.neroland.nerodecor.chroma.SceneChipCodec;
 
@@ -25,8 +29,10 @@ public record SceneChipData(byte[] data) {
                 : DataResult.success(new SceneChipData(bytes));
     }, chip -> ByteBuffer.wrap(chip.data()));
 
+    //? if >=1.20.5 {
     public static final StreamCodec<ByteBuf, SceneChipData> STREAM_CODEC =
             ByteBufCodecs.byteArray(SceneChipCodec.MAX_BYTES).map(SceneChipData::new, SceneChipData::data);
+    //?}
 
     public SceneChipData {
         data = data == null ? new byte[0] : data.clone();

@@ -7,8 +7,12 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.core.BlockPos;
+//? if >=1.20.5 {
 import net.minecraft.network.codec.ByteBufCodecs;
+//?}
+//? if >=1.20.5 {
 import net.minecraft.network.codec.StreamCodec;
+//?}
 
 /**
  * The Chroma Linker's state (item data component {@code nerodecor:chroma_linker}): the network it is bound to (0 =
@@ -24,11 +28,13 @@ public record LinkerState(long network, boolean boxMode, Optional<BlockPos> corn
             BlockPos.CODEC.optionalFieldOf("corner").forGetter(LinkerState::corner)
     ).apply(i, LinkerState::new));
 
+    //? if >=1.20.5 {
     public static final StreamCodec<ByteBuf, LinkerState> STREAM_CODEC = StreamCodec.composite(
             ByteBufCodecs.VAR_LONG, LinkerState::network,
             ByteBufCodecs.BOOL, LinkerState::boxMode,
             ByteBufCodecs.optional(BlockPos.STREAM_CODEC), LinkerState::corner,
             LinkerState::new);
+    //?}
 
     public LinkerState bound(long id) {
         return new LinkerState(id, boxMode, Optional.empty());

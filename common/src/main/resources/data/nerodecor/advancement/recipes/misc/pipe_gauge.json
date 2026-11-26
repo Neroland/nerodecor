@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "nerodecor:decor_pipe"
+            "items": ["nerodecor:decor_pipe"]
           }
         ]
       },

@@ -292,9 +292,15 @@ abstract class HubScreenBase extends Screen {
         drawOverlay(g, mouseX, mouseY);
     }
     //?} else {
-    /*@Override
+    /*//? if >=1.20.2 {
+    @Override
     public void renderBackground(GuiGraphicsExtractor g, int mouseX, int mouseY, float partialTick) {
         super.renderBackground(g, mouseX, mouseY, partialTick);
+        drawBackgroundPanel(g, mouseX, mouseY, partialTick);
+    }
+    //?}
+
+    private void drawBackgroundPanel(GuiGraphicsExtractor g, int mouseX, int mouseY, float partialTick) {
         beginFrame();
         drawPanel(g, mouseX, mouseY, partialTick);
         endFrame();
@@ -302,6 +308,10 @@ abstract class HubScreenBase extends Screen {
 
     @Override
     public void render(GuiGraphicsExtractor g, int mouseX, int mouseY, float partialTick) {
+        //? if <1.20.2 {
+        super.renderBackground(g);
+        drawBackgroundPanel(g, mouseX, mouseY, partialTick);
+        //?}
         super.render(g, mouseX, mouseY, partialTick);
         drawOverlay(g, mouseX, mouseY);
     }

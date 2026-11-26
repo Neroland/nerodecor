@@ -26,6 +26,34 @@ allprojects {
 // AFTER Stonecutter's own //? processing. Only for pure renames Mojang made with no behaviour change;
 // anything else uses //? if blocks in the source. Loader src/ trees do NOT get these (use //? there).
 ext.legacyRenames = [
+    [below: '1.21', from: /\bSoundType\.TUFF_BRICKS\b/, to: 'SoundType.TUFF'],
+    [below: '1.21', from: /\bSoundType\.COPPER_BULB\b/, to: 'SoundType.COPPER'],
+    [below: '1.20.3', from: /\breturn super\.playerWillDestroy\(/, to: 'super.playerWillDestroy('],
+    [below: '1.20.3', from: /\bBlockState playerWillDestroy\(/, to: 'void playerWillDestroy('],
+    [below: '1.20.5', from: /\bprotected InteractionResult useWithoutItem\(BlockState state, Level level, BlockPos pos, Player player,\s*BlockHitResult hit\)/, to: 'public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, net.minecraft.world.InteractionHand hand, BlockHitResult hit)'],
+    [below: '1.20.5', from: /Item\.TooltipContext context/, to: '@org.jetbrains.annotations.Nullable net.minecraft.world.level.Level context'],
+    [below: '1.20.5', from: /void saveAdditional\(((?:net\.minecraft\.nbt\.)?CompoundTag \w+), (?:net\.minecraft\.core\.)?HolderLookup\.Provider registries\)/, to: 'void saveAdditional($1)'],
+    [below: '1.20.5', from: /protected void loadAdditional\(((?:net\.minecraft\.nbt\.)?CompoundTag \w+), (?:net\.minecraft\.core\.)?HolderLookup\.Provider registries\)/, to: 'public void load($1)'],
+    [below: '1.20.5', from: /super\.saveAdditional\((\w+), registries\)/, to: 'super.saveAdditional($1)'],
+    [below: '1.20.5', from: /super\.loadAdditional\((\w+), registries\)/, to: 'super.load($1)'],
+    [below: '1.20.5', from: /CompoundTag getUpdateTag\(HolderLookup\.Provider registries\)/, to: 'CompoundTag getUpdateTag()'],
+    [below: '1.20.5', from: /super\.getUpdateTag\(registries\)/, to: 'super.getUpdateTag()'],
+    [below: '1.20.5', from: /Value(Input|Output)\.of\((tag|nbt), registries\)/, to: 'Value$1.of($2, null)'],
+    [below: '1.20.5', from: /\bprotected ([\w.]+ (?:getRenderShape|getShape|useShapeForLightOcclusion|canBeReplaced|getCollisionShape|getVisualShape|getShadeBrightness|propagatesSkylightDown|rotate|mirror|neighborChanged|isSignalSource|getSignal|getDirectSignal|onRemove|updateShape|attack|onProjectileHit|tick|randomTick|entityInside|skipRendering)\()/, to: 'public $1'],
+    [below: '1.20.5', from: /(Type<(\w+)> TYPE =\s*new Type<>\(\s*(?:id|Identifier\.fromNamespaceAndPath)\([^;]+?\))\);/, to: '$1, $2.class);'],
+    [below: '1.20.5', from: /\bgetUpdateTag\((?:net\.minecraft\.core\.)?HolderLookup\.Provider registries\)/, to: 'getUpdateTag()'],
+    [below: '1.20.5', from: /saveCustomOnly\(registries\)/, to: 'saveWithoutMetadata()'],
+    [below: '1.20.3', from: /ofFullCopy\(/, to: 'copy('],
+    [below: '1.20.5', from: /\bParticleTypes\.WHITE_SMOKE\b/, to: 'ParticleTypes.SMOKE'],
+    [below: '1.20.2', from: /mouseScrolled\(double (\w+), double (\w+), double (\w+), double (\w+)\)/, to: 'mouseScrolled(double $1, double $2, double $4)'],
+    [below: '1.20.2', from: /super\.mouseScrolled\((\w+), (\w+), \w+, (\w+)\)/, to: 'super.mouseScrolled($1, $2, $3)'],
+    [below: '1.20.5', from: /\.getOrThrow\(\)/, to: '.result().orElseThrow()'],
+    [below: '1.20.5', from: /import net\.minecraft\.network\.RegistryFriendlyByteBuf;/, to: 'import net.minecraft.network.FriendlyByteBuf;'],
+    [below: '1.20.5', from: /\bRegistryFriendlyByteBuf\b/, to: 'FriendlyByteBuf'],
+    [below: '1.20.5', from: /import net\.minecraft\.network\.codec\.StreamCodec;/, to: 'import za.co.neroland.nerolandcore.network.legacy.LegacyStreamCodec;'],
+    [below: '1.20.5', from: /\bStreamCodec\b/, to: 'LegacyStreamCodec'],
+    [below: '1.20.5', from: /import net\.minecraft\.network\.protocol\.common\.custom\.CustomPacketPayload;/, to: 'import za.co.neroland.nerolandcore.network.legacy.LegacyPayload;'],
+    [below: '1.20.5', from: /(?<![.\w])CustomPacketPayload\b/, to: 'LegacyPayload'],
     // 1.21.11 renamed ResourceLocation -> Identifier and ResourceKey.location() -> identifier().
     [below: '1.21.11', from: /\bIdentifier\b/, to: 'ResourceLocation'],
     [below: '1.21.11', from: /\.identifier\(\)/, to: '.location()'],
@@ -70,21 +98,33 @@ subprojects {
 
     // Minecraft 1.21.x runs on Java 21, so its cells must emit Java 21 bytecode (and may not use
     // Java 22+ language features). 26.x cells stay on Java 25. A node's project name IS its MC version.
-    def javaRelease = project.name.startsWith('1.') ? 21 : 25
+    def java17Versions = ['1.20', '1.20.1', '1.20.2', '1.20.3', '1.20.4']
+    def javaRelease = project.name in java17Versions ? 17 : project.name.startsWith('1.') ? 21 : 25
     ext.javaRelease = javaRelease
 
-    if (project.name in ['1.20.5', '1.20.6']) {
+    if (project.name == '1.20' || project.name.startsWith('1.20.')) {
+        def packFormats = [
+                '1.20': [15, 15], '1.20.1': [15, 15], '1.20.2': [18, 18],
+                '1.20.3': [22, 26], '1.20.4': [22, 26], '1.20.5': [32, 41], '1.20.6': [32, 41]
+        ][project.name]
         tasks.named('processResources') {
+            inputs.property('packFormats', packFormats)
             eachFile { file ->
-                file.path = file.path.replaceFirst(/^(data\/[^\/]+\/)(advancement|loot_table|recipe)\//, '$1$2s/')
+                file.path = file.path.replaceFirst(/^(data\/[^\/]+\/)(advancement|loot_table|recipe|structure)\//, '$1$2s/')
                         .replaceFirst(/^(data\/[^\/]+\/tags\/)(block|entity_type|fluid|item)\//, '$1$2s/')
             }
             includeEmptyDirs = false
+            if (javaRelease == 17) {
+                filesMatching('**/*.mixins.json') {
+                    filter { line -> line.replace('JAVA_21', 'JAVA_17') }
+
+                }
+            }
             doLast {
                 def metadata = new File(destinationDir, 'pack.mcmeta')
                 def pack = new groovy.json.JsonSlurper().parse(metadata).pack
                 metadata.setText(groovy.json.JsonOutput.toJson([
-                        pack: [description: pack.description, pack_format: 32, supported_formats: [32, 41]]
+                        pack: [description: pack.description, pack_format: packFormats[0], supported_formats: packFormats]
                 ]), 'UTF-8')
             }
         }
@@ -325,7 +365,10 @@ subprojects {
                     }
                     base.eachFileRecurse(groovy.io.FileType.FILES) { f ->
                         def rel = base.toPath().relativize(f.toPath()).toString().replace('\\', '/')
-                        if (!(rel ==~ /data\/[^\/]+\/recipe\/.+\.json/)) {
+                        def preComponents = sc.eval(sc.current.version, '<1.20.5')
+                        def oldHubLoot = preComponents && rel == 'data/nerodecor/loot_table/blocks/chroma_hub.json'
+                        def oldPaintLoot = preComponents && rel ==~ /data\/nerodecor\/loot_table\/blocks\/(chroma_cube|neon_[a-z_]+)\.json/
+                        if (!(rel ==~ /data\/[^\/]+\/recipe\/.+\.json/) && !oldHubLoot && !oldPaintLoot) {
                             return
                         }
                         def json = slurper.parse(f)
@@ -338,6 +381,39 @@ subprojects {
                         ['ingredient', 'template', 'base', 'addition'].each { k ->
                             if (json[k] != null) {
                                 json[k] = conv(json[k])
+                            }
+                        }
+                        if (sc.eval(sc.current.version, '<1.20.5') && json.result instanceof Map && json.result.id != null) {
+                            if (json.type == 'minecraft:stonecutting') {
+                                json.count = json.result.count ?: 1
+                                json.result = json.result.id
+                            } else if (json.type in ['minecraft:smelting', 'minecraft:blasting', 'minecraft:smoking', 'minecraft:campfire_cooking']) {
+                                json.result = json.result.id
+                            } else {
+                                json.result.item = json.result.remove('id')
+                                def colour = json.result.components?.get('nerodecor:color')
+                                if (colour != null) {
+                                    json.result.remove('components')
+                                    json = [type: 'nerodecor:painted_shapeless', recipe: json, colour: colour]
+                                }
+                            }
+                        }
+                        if (oldHubLoot) {
+                            json.pools[0].entries[0].functions = [[function: 'minecraft:copy_nbt', source: 'block_entity',
+                                    ops: [[source: 'network', target: '"nerodecor:chroma_network"', op: 'replace']]]]
+                        }
+                        if (oldPaintLoot) {
+                            json.pools.each { pool ->
+                                pool.entries.each { entry ->
+                                    entry.functions?.each { function ->
+                                        def colour = function.components?.get('nerodecor:color')
+                                        if (function.function == 'minecraft:set_components' && colour != null) {
+                                            function.remove('components')
+                                            function.function = 'minecraft:set_nbt'
+                                            function.tag = groovy.json.JsonOutput.toJson(['nerodecor:color': colour])
+                                        }
+                                    }
+                                }
                             }
                         }
                         def dst = new File(outDir, rel)

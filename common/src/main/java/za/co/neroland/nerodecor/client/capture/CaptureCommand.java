@@ -53,7 +53,11 @@ public final class CaptureCommand {
         if (mc.getConnection() == null) {
             return false;
         }
+        //? if >=1.20.5 {
         mc.getConnection().send(new ServerboundChatCommandPacket(command));
         return true;
+        //?} else {
+        /*return mc.getConnection().sendUnsignedCommand(command);
+        *///?}
     }
 }

@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "nerodecor:panel_void_crystal"
+            "items": ["nerodecor:panel_void_crystal"]
           }
         ]
       },

@@ -17,8 +17,13 @@ public record HoloSignEditPayload(BlockPos pos, String first, String second) imp
     /** Wire cap per line, well above the 32 shown characters, so a bad client cannot send large strings. */
     private static final int WIRE_MAX = 96;
 
+    //? if >=1.20.5 {
     public static final Type<HoloSignEditPayload> TYPE =
             new Type<>(Identifier.fromNamespaceAndPath(NeroDecorCommon.MOD_ID, "holo_sign_edit"));
+    //?} else {
+    /*public static final Type<HoloSignEditPayload> TYPE =
+            new Type<>(Identifier.fromNamespaceAndPath(NeroDecorCommon.MOD_ID, "holo_sign_edit"), HoloSignEditPayload.class);
+    *///?}
 
     public static final StreamCodec<RegistryFriendlyByteBuf, HoloSignEditPayload> STREAM_CODEC =
             StreamCodec.of(HoloSignEditPayload::write, HoloSignEditPayload::read);

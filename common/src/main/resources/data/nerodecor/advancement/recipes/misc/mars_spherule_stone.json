@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "nerodecor:mars_wind_strata_brick"
+            "items": ["nerodecor:mars_wind_strata_brick"]
           }
         ]
       },

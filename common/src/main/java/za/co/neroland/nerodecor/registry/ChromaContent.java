@@ -2,9 +2,13 @@ package za.co.neroland.nerodecor.registry;
 
 import com.mojang.serialization.Codec;
 
+//? if >=1.20.5 {
 import net.minecraft.core.component.DataComponentType;
+//?}
 import net.minecraft.core.registries.Registries;
+//? if >=1.20.5 {
 import net.minecraft.network.codec.ByteBufCodecs;
+//?}
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
@@ -38,26 +42,35 @@ public final class ChromaContent {
     public static final RegistrationProvider<BlockEntityType<?>> BLOCK_ENTITIES =
             RegistrationProvider.get(Registries.BLOCK_ENTITY_TYPE, NeroDecorCommon.MOD_ID);
 
+    //? if >=1.20.5 {
     /** The network a hub item carries (0/absent = blank hub). */
-    public static final RegistryEntry<DataComponentType<Long>> NETWORK_ID =
-            ModDataComponents.COMPONENTS.register("chroma_network", key -> DataComponentType.<Long>builder()
+    public static final ModDataComponents.StackData<Long> NETWORK_ID =
+            new ModDataComponents.StackData<>(ModDataComponents.COMPONENTS.register("chroma_network", key -> DataComponentType.<Long>builder()
                     .persistent(Codec.LONG)
                     .networkSynchronized(ByteBufCodecs.VAR_LONG)
-                    .build());
+                    .build()));
 
     /** The Chroma Linker's binding and mode. */
-    public static final RegistryEntry<DataComponentType<LinkerState>> LINKER_STATE =
-            ModDataComponents.COMPONENTS.register("chroma_linker", key -> DataComponentType.<LinkerState>builder()
+    public static final ModDataComponents.StackData<LinkerState> LINKER_STATE =
+            new ModDataComponents.StackData<>(ModDataComponents.COMPONENTS.register("chroma_linker", key -> DataComponentType.<LinkerState>builder()
                     .persistent(LinkerState.CODEC)
                     .networkSynchronized(LinkerState.STREAM_CODEC)
-                    .build());
+                    .build()));
 
     /** Stage 4: the scene a Scene Chip carries (scene-codec bytes only; no author or player id). */
-    public static final RegistryEntry<DataComponentType<SceneChipData>> SCENE_CHIP =
-            ModDataComponents.COMPONENTS.register("scene_chip", key -> DataComponentType.<SceneChipData>builder()
+    public static final ModDataComponents.StackData<SceneChipData> SCENE_CHIP =
+            new ModDataComponents.StackData<>(ModDataComponents.COMPONENTS.register("scene_chip", key -> DataComponentType.<SceneChipData>builder()
                     .persistent(SceneChipData.CODEC)
                     .networkSynchronized(SceneChipData.STREAM_CODEC)
-                    .build());
+                    .build()));
+    //?} else {
+    /*public static final ModDataComponents.StackData<Long> NETWORK_ID =
+            new ModDataComponents.StackData<>("nerodecor:chroma_network", Codec.LONG);
+    public static final ModDataComponents.StackData<LinkerState> LINKER_STATE =
+            new ModDataComponents.StackData<>("nerodecor:chroma_linker", LinkerState.CODEC);
+    public static final ModDataComponents.StackData<SceneChipData> SCENE_CHIP =
+            new ModDataComponents.StackData<>("nerodecor:scene_chip", SceneChipData.CODEC);
+    *///?}
 
     public static RegistryEntry<Block> HUB;
     public static RegistryEntry<BlockEntityType<ChromaHubBlockEntity>> HUB_BLOCK_ENTITY;

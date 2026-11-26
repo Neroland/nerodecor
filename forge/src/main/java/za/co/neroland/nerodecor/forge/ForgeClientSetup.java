@@ -82,8 +82,14 @@ public final class ForgeClientSetup {
         // Chroma: release budgeted section re-meshes after hub colour changes.
         //? if >=1.21.6 {
         TickEvent.ClientTickEvent.Post.BUS.addListener(event -> ChromaClientSync.tick());
-        //?} else {
+        //?} else if >=1.20.5 {
         /*MinecraftForge.EVENT_BUS.addListener((TickEvent.ClientTickEvent.Post event) -> ChromaClientSync.tick());
+        *///?} else {
+        /*MinecraftForge.EVENT_BUS.addListener((TickEvent.ClientTickEvent event) -> {
+            if (event.phase == TickEvent.Phase.END) {
+                ChromaClientSync.tick();
+            }
+        });
         *///?}
         // /nerodecor capture (client-side screenshots of the showroom and block grid).
         //? if >=1.21.6 {

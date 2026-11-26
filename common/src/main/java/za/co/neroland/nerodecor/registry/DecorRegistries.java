@@ -18,6 +18,9 @@ public final class DecorRegistries {
         // 0.8.0 collection work packages (registry/collections): blocks join DecorBlocks.ALL before the items.
         za.co.neroland.nerodecor.registry.collections.CollectionRegistries.init();
         ModDataComponents.init();
+        //? if <1.20.5 {
+        /*LegacyPaintRecipe.init();
+        *///?}
         ModItems.init();
         ChromaContent.initItems();
         ModCreativeTab.init();

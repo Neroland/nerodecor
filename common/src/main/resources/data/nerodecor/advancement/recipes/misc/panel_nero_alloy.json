@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "nerolandcore:nero_alloy_ingot"
+            "items": ["nerolandcore:nero_alloy_ingot"]
           }
         ]
       },

@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "nerodecor:hull_starsteel"
+            "items": ["nerodecor:hull_starsteel"]
           }
         ]
       },

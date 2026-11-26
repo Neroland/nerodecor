@@ -29,7 +29,12 @@ import za.co.neroland.nerodecor.telemetry.NeroDecorTelemetry;
 @Mod(NeroDecorCommon.MOD_ID)
 public final class NeroDecorForge {
 
+    //? if >=1.20.5 {
     public NeroDecorForge(FMLJavaModLoadingContext context) {
+    //?} else {
+    /*public NeroDecorForge() {
+        FMLJavaModLoadingContext context = FMLJavaModLoadingContext.get();
+    *///?}
         NeroDecorCommon.LOGGER.info("[NeroDecor] Forge bootstrap");
         //? if >=1.21.6 {
         BusGroup modBusGroup = context.getModBusGroup();
@@ -54,8 +59,14 @@ public final class NeroDecorForge {
         TickEvent.ServerTickEvent.Post.BUS.addListener(event -> ChromaSync.tick(event.server()));
         //?} else if >=1.21.6 {
         /*TickEvent.ServerTickEvent.Post.BUS.addListener(event -> ChromaSync.tick(event.getServer()));
-        *///?} else {
+        *///?} else if >=1.20.5 {
         /*MinecraftForge.EVENT_BUS.addListener((TickEvent.ServerTickEvent.Post event) -> ChromaSync.tick(event.getServer()));
+        *///?} else {
+        /*MinecraftForge.EVENT_BUS.addListener((TickEvent.ServerTickEvent event) -> {
+            if (event.phase == TickEvent.Phase.END) {
+                ChromaSync.tick(event.getServer());
+            }
+        });
         *///?}
         //? if >=1.21.6 {
         ChunkEvent.Load.BUS.addListener(NeroDecorForge::onChunkLoad);

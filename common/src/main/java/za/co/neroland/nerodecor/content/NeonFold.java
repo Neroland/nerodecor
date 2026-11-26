@@ -4,10 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.core.BlockPos;
+//? if >=1.20.5 {
 import net.minecraft.core.component.DataComponents;
+//?}
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.Container;
+//? if >=1.20.5 {
 import net.minecraft.world.RandomizableContainer;
+//?}
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
@@ -36,7 +40,7 @@ import za.co.neroland.nerodecor.registry.ModDataComponents;
  *       {@code ServerChunkEvents.CHUNK_LOAD}), sections that may hold a shim ({@link LevelChunkSection#maybeHas}) are
  *       scanned and the swap is queued for the next server tick ({@link #drainPending()}), never applied mid-load.</li>
  *   <li><b>Containers</b> in that chunk: shim stacks are converted in the same queued task. A container that still
- *       carries an unrolled loot table ({@link RandomizableContainer}) is never read: reading its slots would roll
+ *       carries an unrolled loot table (a vanilla loot container) is never read: reading its slots would roll
  *       the table with no player, so dungeon and structure chests keep their loot table until a player opens them.
  *       Freshly generated chunks are skipped entirely (no neon can exist there).</li>
  *   <li><b>Entity inventories</b> and <b>dropped items</b>: {@link NeonShimItem}.</li>
@@ -78,15 +82,21 @@ public final class NeonFold {
             return stack;
         }
         DecorColor colour = ((NeonShimBlock) item.getBlock()).dye();
-        DecorColor carried = stack.get(ModDataComponents.COLOR.get());
+        DecorColor carried = ModDataComponents.COLOR.get(stack);
         if (carried != null && !carried.isNatural()) {
             colour = carried;
         }
         ItemStack out = new ItemStack(ChromaContent.cubeItem(), stack.getCount());
-        out.set(ModDataComponents.COLOR.get(), colour);
+        ModDataComponents.COLOR.set(out, colour);
+        //? if >=1.20.5 {
         if (stack.has(DataComponents.CUSTOM_NAME)) {
             out.set(DataComponents.CUSTOM_NAME, stack.get(DataComponents.CUSTOM_NAME));
         }
+        //?} else {
+        /*if (stack.hasCustomHoverName()) {
+            out.setHoverName(stack.getHoverName());
+        }
+        *///?}
         return out;
     }
 
@@ -226,7 +236,12 @@ public final class NeonFold {
      * table (with a null player), so the fold must not read it at all.
      */
     public static boolean hasPendingLoot(Container container) {
+        //? if >=1.20.5 {
         return container instanceof RandomizableContainer loot && loot.getLootTable() != null;
+        //?} else {
+        /*return container instanceof net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity loot
+                && loot.saveWithoutMetadata().contains("LootTable");
+        *///?}
     }
 
     private static boolean holdsShim(Container container) {

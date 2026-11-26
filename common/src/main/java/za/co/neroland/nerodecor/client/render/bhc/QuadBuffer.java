@@ -256,13 +256,21 @@ public final class QuadBuffer {
                         .setOverlay(OverlayTexture.NO_OVERLAY)
                         .setLight(b.i[m + 1])
                         .setNormal(pose, nx, ny, nz);
-                //?} else {
+                //?} else if >=1.20.5 {
                 /*out.vertex(pose, b.f[k], b.f[k + 1], b.f[k + 2])
                         .color(b.i[m])
                         .uv(b.f[k + 3], b.f[k + 4])
                         .overlayCoords(OverlayTexture.NO_OVERLAY)
                         .uv2(b.i[m + 1])
                         .normal(pose, nx, ny, nz)
+                        .endVertex();
+                *///?} else {
+                /*out.vertex(pose.pose(), b.f[k], b.f[k + 1], b.f[k + 2])
+                        .color(b.i[m])
+                        .uv(b.f[k + 3], b.f[k + 4])
+                        .overlayCoords(OverlayTexture.NO_OVERLAY)
+                        .uv2(b.i[m + 1])
+                        .normal(pose.normal(), nx, ny, nz)
                         .endVertex();
                 *///?}
             }

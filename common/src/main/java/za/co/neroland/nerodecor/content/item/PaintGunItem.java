@@ -47,7 +47,7 @@ public class PaintGunItem extends Item {
 
     /** The gun's selected colour ({@link DecorColor#NATURAL} = strip paint). */
     public static DecorColor colour(ItemStack gun) {
-        return gun.getOrDefault(ModDataComponents.COLOR.get(), DecorColor.NATURAL);
+        return ModDataComponents.COLOR.getOrDefault(gun, DecorColor.NATURAL);
     }
 
     @Override
@@ -62,7 +62,7 @@ public class PaintGunItem extends Item {
         ItemStack gun = context.getItemInHand();
         if (player.isSecondaryUseActive()) {
             DecorColor picked = state.getValue(DecorProperties.COLOR);
-            gun.set(ModDataComponents.COLOR.get(), picked);
+            ModDataComponents.COLOR.set(gun, picked);
             say(player, "picked", picked);
             return InteractionResult.SUCCESS;
         }
@@ -117,7 +117,7 @@ public class PaintGunItem extends Item {
         DecorColor[] all = DecorColor.values();
         int step = player.isSecondaryUseActive() ? all.length - 1 : 1;
         DecorColor next = all[(colour(gun).ordinal() + step) % all.length];
-        gun.set(ModDataComponents.COLOR.get(), next);
+        ModDataComponents.COLOR.set(gun, next);
         say(serverPlayer, "selected", next);
     }
 
