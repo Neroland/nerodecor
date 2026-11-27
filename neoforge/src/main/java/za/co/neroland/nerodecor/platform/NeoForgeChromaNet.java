@@ -60,7 +60,7 @@ public final class NeoForgeChromaNet implements ChromaNetPlatform {
         *///?}
     }
 }
-//?} else {
+//?} else if >=1.20.4 {
 /*import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -162,6 +162,75 @@ public final class NeoForgeChromaNet implements ChromaNetPlatform {
         @Override
         public void write(FriendlyByteBuf buffer) {
             codec.encode(buffer, message);
+        }
+    }
+}
+*///?} else {
+/*import net.minecraft.client.Minecraft;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.network.NetworkRegistry;
+import net.neoforged.neoforge.network.PacketDistributor;
+import net.neoforged.neoforge.network.PlayNetworkDirection;
+import net.neoforged.neoforge.network.simple.SimpleChannel;
+
+import za.co.neroland.nerodecor.NeroDecorCommon;
+import za.co.neroland.nerodecor.chroma.net.ChromaNet;
+import za.co.neroland.nerolandcore.network.legacy.LegacyPayload;
+import za.co.neroland.nerodecor.chroma.net.ChromaNetPlatform;
+
+public final class NeoForgeChromaNet implements ChromaNetPlatform {
+    private static final String PROTOCOL_VERSION = "1";
+    private static SimpleChannel channel;
+
+    public static void register(IEventBus modEventBus) {
+        var version = NetworkRegistry.acceptMissingOr(PROTOCOL_VERSION);
+        channel = NetworkRegistry.newSimpleChannel(new ResourceLocation(NeroDecorCommon.MOD_ID, "main"),
+                () -> PROTOCOL_VERSION, version, version);
+        int index = 0;
+        for (ChromaNet.Clientbound<?> packet : ChromaNet.clientbound()) {
+            registerClientbound(packet, index++);
+        }
+        for (ChromaNet.Serverbound<?> packet : ChromaNet.serverbound()) {
+            registerServerbound(packet, index++);
+        }
+    }
+
+    private static <T extends LegacyPayload> void registerClientbound(ChromaNet.Clientbound<T> packet, int index) {
+        channel.messageBuilder(packet.type().payloadClass(), index, PlayNetworkDirection.PLAY_TO_CLIENT)
+                .encoder((payload, buffer) -> packet.codec().encode(buffer, payload))
+                .decoder(packet.codec()::decode)
+                .consumerMainThread((payload, context) -> packet.handler().accept(payload))
+                .add();
+    }
+
+    private static <T extends LegacyPayload> void registerServerbound(ChromaNet.Serverbound<T> packet, int index) {
+        channel.messageBuilder(packet.type().payloadClass(), index, PlayNetworkDirection.PLAY_TO_SERVER)
+                .encoder((payload, buffer) -> packet.codec().encode(buffer, payload))
+                .decoder(packet.codec()::decode)
+                .consumerMainThread((payload, context) -> {
+                    ServerPlayer player = context.getSender();
+                    if (player != null) {
+                        packet.handler().accept(payload, player);
+                    }
+                })
+                .add();
+    }
+
+    @Override
+    public void sendToPlayer(ServerPlayer player, LegacyPayload payload) {
+        if (channel == null || !channel.isRemotePresent(player.connection.connection)) {
+            return;
+        }
+        channel.send(PacketDistributor.PLAYER.with(() -> player), payload);
+    }
+
+    @Override
+    public void sendToServer(LegacyPayload payload) {
+        var client = Minecraft.getInstance().getConnection();
+        if (channel != null && client != null && channel.isRemotePresent(client.getConnection())) {
+            channel.sendToServer(payload);
         }
     }
 }
