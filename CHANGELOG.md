@@ -7,7 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.10.1]
+## [0.10.2] - 2026-11-27
+
+### Added
+
+- Fabric supports Minecraft 1.20 through 1.20.6. Forge supports 1.20 through 1.20.4 and 1.20.6. NeoForge supports 1.20.2 through 1.20.6, with the Forge jar for legacy NeoForge 1.20.1.
+
+## [0.10.1] - 2026-11-26
 
 ### Added
 
